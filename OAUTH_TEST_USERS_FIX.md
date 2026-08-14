@@ -1,29 +1,33 @@
-# How to Fix `Error 403: access_denied` (Google OAuth Test User)
+# Google Cloud OAuth Consent & Test Users Configuration
 
-## Why this happens:
-Your Google Cloud project (`deliverypilot` or `n8n`) is in **"Testing"** mode. In Testing mode, only email addresses explicitly added as **Test Users** are allowed to sign in.
-
----
-
-## 🛠️ Quick 1-Minute Fix: Add Your Email as a Test User
-
-1. Open **[Google Cloud Console OAuth Consent Screen](https://console.cloud.google.com/apis/credentials/consent)** in Chrome.
-2. Ensure you have the right project selected in the top bar (e.g. `deliverypilot`).
-3. Scroll down to the **Test users** section.
-4. Click **+ ADD USERS**.
-5. Enter the email address you are trying to sign in with (e.g. your personal Google account or `info@pexabo.com` / `info@deliverypilot.net`).
-6. Click **SAVE**.
+Direct links and instructions to manage OAuth audience settings and authorized test users for the project.
 
 ---
 
-## 🚀 Re-run the Auth Flow
+## 🔗 Direct Google Cloud Console Links
 
-After adding your email as a test user, rerun the dry-run command:
+- **OAuth Audience & Test Users Page (Project: `gen-lang-client-0369583419`)**:  
+  👉 **[https://console.cloud.google.com/auth/audience?project=gen-lang-client-0369583419](https://console.cloud.google.com/auth/audience?project=gen-lang-client-0369583419)**
 
+- **Credentials & OAuth Client IDs**:  
+  👉 **[https://console.cloud.google.com/apis/credentials?project=gen-lang-client-0369583419](https://console.cloud.google.com/apis/credentials?project=gen-lang-client-0369583419)**
+
+---
+
+## 🛠️ How to Add or Manage Test Users
+
+When an OAuth 2.0 app is in **Testing** mode in Google Cloud:
+1. Open the [OAuth Audience / Test Users link](https://console.cloud.google.com/auth/audience?project=gen-lang-client-0369583419).
+2. Under the **Test users** section, click **+ ADD USERS**.
+3. Enter the email address of the account you want to authenticate (e.g. `info@pexabo.com`, `info@deliverypilot.net`, or your personal Google account).
+4. Click **SAVE**.
+
+---
+
+## 🚀 Re-authenticating
+
+Once added as a test user, run:
 ```bash
 ./venv/bin/python append_skool_link.py --dry-run
 ```
-
-When signing in:
-- Click **Continue** when prompted with the unverified app warning.
-- Check the box to grant YouTube management access.
+Sign in with the test user email to authorize channel metadata access without encountering `Error 403: access_denied`.
