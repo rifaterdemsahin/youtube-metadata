@@ -24,6 +24,7 @@ def main():
     parser = argparse.ArgumentParser(description="Append Skool link to all YouTube video descriptions.")
     parser.add_argument("--link", default=SKOOL_LINK_DEFAULT, help="The link to append to video descriptions")
     parser.add_argument("--prefix", default="\n\n🚀 Join our community:\n", help="Prefix text before the link")
+    parser.add_argument("--dry-run", action="store_true", default=False, help="Explicit flag for dry run (default behavior without --apply)")
     parser.add_argument("--apply", action="store_true", help="Apply actual updates to YouTube (default is dry-run)")
     args = parser.parse_args()
 

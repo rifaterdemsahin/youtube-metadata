@@ -4,11 +4,12 @@ A Python-based **Model Context Protocol (MCP)** server and automated metadata up
 
 ---
 
-## 📺 Configured YouTube Channel
+## 🌐 Live Operations Dashboard & Links
 
-- **Channel URL**: [https://www.youtube.com/@RifatErdemSahin](https://www.youtube.com/@RifatErdemSahin)
-- **Channel Handle**: `@RifatErdemSahin`
+- **GitHub Pages Dashboard**: [https://rifaterdemsahin.github.io/youtube-metadata/](https://rifaterdemsahin.github.io/youtube-metadata/)
+- **Target YouTube Channel**: [https://www.youtube.com/@RifatErdemSahin](https://www.youtube.com/@RifatErdemSahin) (`@RifatErdemSahin`)
 - **Target Skool Community**: [https://www.skool.com/delivery-pilot-8938](https://www.skool.com/delivery-pilot-8938)
+- **Local Dashboard**: [http://localhost:8080/index.html](http://localhost:8080/index.html)
 
 ---
 
@@ -28,6 +29,7 @@ A Python-based **Model Context Protocol (MCP)** server and automated metadata up
 
 ## 📦 Reference Repositories
 
+- **GitHub Repository**: [rifaterdemsahin/youtube-metadata](https://github.com/rifaterdemsahin/youtube-metadata)
 - **Recommended MCP Base**: [i1s-abhishek/youtube-studio-mcp](https://github.com/i1s-abhishek/youtube-studio-mcp)
 - **Official YouTube API Client**: [googleapis/google-api-python-client](https://github.com/googleapis/google-api-python-client)
 - **FastMCP Protocol**: [modelcontextprotocol/python-sdk](https://github.com/modelcontextprotocol/python-sdk)
@@ -73,7 +75,6 @@ Target Link: `https://www.skool.com/delivery-pilot-8938`
 
 ---
 
-## 📊 Operations Dashboard
+## 🔑 OAuth Setup & Troubleshooting
 
-View the local reporting page:
-- [index.html](http://localhost:8080/index.html)
+If you encounter `Error 400: redirect_uri_mismatch`, refer to the detailed resolution guide in [`OAUTH_SETUP_FIX.md`](OAUTH_SETUP_FIX.md).
