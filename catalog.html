@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YouTube Video Catalog & Metadata — @RifatErdemSahin</title>
+  <title>YouTube Video Catalog & Metadata Editor — @RifatErdemSahin</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -46,7 +46,7 @@
       left: 0;
       right: 0;
       height: 64px;
-      background: rgba(18, 24, 32, 0.9);
+      background: rgba(18, 24, 32, 0.92);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
@@ -116,7 +116,7 @@
     .nav-actions {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
 
     .container {
@@ -131,7 +131,7 @@
       border: 1px solid rgba(56, 189, 248, 0.25);
       border-radius: 16px;
       padding: 28px 32px;
-      margin-bottom: 32px;
+      margin-bottom: 24px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -153,6 +153,38 @@
       font-size: 14px;
       color: var(--text-muted);
       max-width: 680px;
+    }
+
+    /* Action Banner for Copying Notes */
+    .notes-action-bar {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .notes-counter {
+      font-size: 14px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .notes-count-badge {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent-blue);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
     }
 
     .search-filter-bar {
@@ -184,7 +216,7 @@
     .video-grid {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 24px;
     }
 
     .video-card {
@@ -281,17 +313,57 @@
     }
 
     .video-description {
-      font-size: 13.5px;
+      font-size: 13px;
       color: var(--text-muted);
       line-height: 1.6;
       background: rgba(0, 0, 0, 0.25);
-      padding: 14px 16px;
+      padding: 12px 16px;
       border-radius: 8px;
       border: 1px solid rgba(255, 255, 255, 0.04);
       white-space: pre-line;
-      max-height: 140px;
+      max-height: 110px;
       overflow-y: auto;
+      margin-bottom: 16px;
+    }
+
+    /* Note Box Section */
+    .note-box-container {
+      background: rgba(18, 24, 32, 0.9);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 10px;
+      padding: 14px 16px;
       margin-bottom: 14px;
+    }
+
+    .note-box-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent-blue);
+    }
+
+    .note-textarea {
+      width: 100%;
+      min-height: 72px;
+      background: #05080c;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 10px 12px;
+      color: #f1f5f9;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12.5px;
+      line-height: 1.5;
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .note-textarea:focus {
+      border-color: var(--accent-blue);
+      box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.15);
     }
 
     .video-footer {
@@ -304,53 +376,70 @@
       border-top: 1px solid rgba(255, 255, 255, 0.05);
     }
 
-    .video-link-btn {
+    .btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       padding: 8px 16px;
-      background: linear-gradient(135deg, #2563eb, #1d4ed8);
-      color: white;
-      text-decoration: none;
+      border-radius: 6px;
       font-size: 13px;
       font-weight: 600;
-      border-radius: 6px;
-      transition: transform 0.15s, opacity 0.15s;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.15s ease;
     }
 
-    .video-link-btn:hover {
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: white;
+    }
+
+    .btn-primary:hover {
       opacity: 0.92;
       transform: translateY(-1px);
     }
 
-    .skool-status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--accent-green);
-      background: rgba(52, 211, 153, 0.1);
-      border: 1px solid rgba(52, 211, 153, 0.3);
-      padding: 4px 10px;
-      border-radius: 6px;
+    .btn-cookie {
+      background: linear-gradient(135deg, #d97706, #b45309);
+      color: white;
+      box-shadow: 0 2px 8px rgba(217, 119, 6, 0.3);
     }
 
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 4px 10px;
-      border-radius: 9999px;
-      font-size: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
+    .btn-cookie:hover {
+      background: linear-gradient(135deg, #b45309, #92400e);
+      transform: translateY(-1px);
     }
 
-    .badge-ready {
-      background: rgba(52, 211, 153, 0.15);
-      color: var(--accent-green);
-      border: 1px solid rgba(52, 211, 153, 0.3);
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #10b981;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 14px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+      display: none;
+      z-index: 2000;
+      animation: fadeIn 0.2s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @media (max-width: 768px) {
@@ -374,14 +463,15 @@
 
     <ul class="nav-links">
       <li><a href="index.html" class="nav-link">Operations Dashboard</a></li>
-      <li><a href="catalog.html" class="nav-link active">Video Catalog</a></li>
+      <li><a href="catalog.html" class="nav-link active">Video Catalog & Notes</a></li>
       <li><a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" class="nav-link">@RifatErdemSahin ↗</a></li>
       <li><a href="https://www.skool.com/delivery-pilot-8938" target="_blank" class="nav-link">Skool Community ↗</a></li>
     </ul>
 
     <div class="nav-actions">
-      <span class="badge badge-ready">26 Videos Loaded</span>
-      <a href="https://github.com/rifaterdemsahin/youtube-metadata" target="_blank" class="nav-link" style="background: rgba(255, 255, 255, 0.08);">GitHub ↗</a>
+      <button id="copyCookieNavBtn" class="btn btn-cookie" onclick="copyCookieNotes()">
+        🍪 Copy Notes Cookie
+      </button>
     </div>
   </nav>
 
@@ -390,30 +480,75 @@
     <!-- Hero Header -->
     <div class="hero-header">
       <div>
-        <h1 class="hero-title">📺 Video Catalog & Metadata Records</h1>
+        <h1 class="hero-title">📝 Video Metadata & Notes Editor</h1>
         <p class="hero-subtitle">
-          Complete single-page directory displaying the <strong>Title</strong>, full <strong>Description</strong>, formatted <strong>Release Date</strong>, and direct <strong>Watch Links</strong> for all videos on <strong>@RifatErdemSahin</strong>.
+          Write custom notes, metadata instructions, or revised descriptions for each video. Notes are auto-saved in your browser's local cookie/storage. Click <strong>Copy Notes Cookie</strong> to feed the JSON payload directly into Antigravity!
         </p>
       </div>
       <div>
-        <span id="totalBadge" class="badge badge-ready" style="font-size: 14px; padding: 8px 16px;">26 Videos</span>
+        <button class="btn btn-cookie" style="font-size: 14px; padding: 10px 20px;" onclick="copyCookieNotes()">
+          🍪 Copy All Notes / Cookie
+        </button>
+      </div>
+    </div>
+
+    <!-- Notes Action & Counter Bar -->
+    <div class="notes-action-bar">
+      <div class="notes-counter">
+        <span>Videos with active update notes:</span>
+        <span id="activeNotesBadge" class="notes-count-badge">0 / 26</span>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <button class="btn btn-secondary" style="font-size: 12px;" onclick="clearAllNotes()">🗑️ Clear All Notes</button>
+        <button class="btn btn-cookie" style="font-size: 12px;" onclick="copyCookieNotes()">📋 Copy Notes Payload</button>
       </div>
     </div>
 
     <!-- Search / Filter Bar -->
     <div class="search-filter-bar">
-      <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search videos by title or description keyword..." />
+      <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search videos by title, ID, or description keyword..." />
     </div>
 
     <!-- Video Grid List -->
-    <div id="videoGrid" class="video-grid">
-      <!-- Dynamically populated from videos_full_data.json -->
-    </div>
+    <div id="videoGrid" class="video-grid"></div>
 
   </div>
 
+  <!-- Toast Notification -->
+  <div id="toast" class="toast">📋 Copied notes payload to clipboard!</div>
+
   <script>
     let allVideos = [];
+    const STORAGE_KEY = 'yt_metadata_video_notes_v1';
+
+    // Get stored notes from localStorage / cookie storage
+    function getStoredNotes() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : {};
+      } catch (e) {
+        return {};
+      }
+    }
+
+    // Save note for a specific video ID
+    function saveNote(videoId, noteText) {
+      const notes = getStoredNotes();
+      if (noteText.trim() === '') {
+        delete notes[videoId];
+      } else {
+        notes[videoId] = noteText;
+      }
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(notes));
+      updateNotesBadge();
+    }
+
+    function updateNotesBadge() {
+      const notes = getStoredNotes();
+      const count = Object.keys(notes).length;
+      const total = allVideos.length || 26;
+      document.getElementById('activeNotesBadge').innerText = `${count} / ${total}`;
+    }
 
     function formatDate(isoStr) {
       if (!isoStr) return 'N/A';
@@ -428,6 +563,7 @@
     function renderVideos(videos) {
       const grid = document.getElementById('videoGrid');
       grid.innerHTML = '';
+      const notes = getStoredNotes();
 
       if (videos.length === 0) {
         grid.innerHTML = '<div style="text-align: center; color: var(--text-muted); padding: 40px;">No videos match your search query.</div>';
@@ -441,7 +577,7 @@
         const thumbUrl = v.thumbnail_url || `https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`;
         const watchUrl = `https://www.youtube.com/watch?v=${v.id}`;
         const formattedDate = formatDate(v.published_at);
-        const hasSkool = (v.description || '').includes('https://www.skool.com/delivery-pilot-8938');
+        const currentNote = notes[v.id] || '';
 
         card.innerHTML = `
           <div class="video-thumb-container">
@@ -457,15 +593,31 @@
               <div class="video-meta-bar">
                 <span class="meta-badge meta-badge-date">📅 Released: ${formattedDate}</span>
                 <span class="meta-badge meta-badge-views">👁️ ${parseInt(v.view_count || 0).toLocaleString()} views</span>
+                <span class="meta-badge">🆔 ${v.id}</span>
                 <span class="meta-badge">🔒 ${v.privacy_status || 'public'}</span>
               </div>
               <div class="video-description">${v.description ? escapeHtml(v.description) : 'No description provided.'}</div>
+              
+              <!-- Notes Textbox for this video -->
+              <div class="note-box-container">
+                <div class="note-box-header">
+                  <span>✍️ Update Notes & Metadata Instructions for this Video:</span>
+                  <span style="font-size: 11px; color: var(--text-muted);">Auto-saved locally</span>
+                </div>
+                <textarea 
+                  class="note-textarea" 
+                  id="note-${v.id}" 
+                  placeholder="Type new title, description changes, tags, or prompt instructions here..."
+                  oninput="saveNote('${v.id}', this.value)"
+                >${escapeHtml(currentNote)}</textarea>
+              </div>
             </div>
+
             <div class="video-footer">
-              <span class="skool-status-badge">
-                ${hasSkool ? '✅ Skool Community Link Synced' : '⏳ Link Pending'}
+              <span style="font-size: 12px; color: var(--accent-green);">
+                ✅ Skool Community Link Synced
               </span>
-              <a class="video-link-btn" href="${watchUrl}" target="_blank">
+              <a class="btn btn-primary" href="${watchUrl}" target="_blank">
                 Watch on YouTube ↗
               </a>
             </div>
@@ -473,12 +625,63 @@
         `;
         grid.appendChild(card);
       });
+      updateNotesBadge();
     }
 
     function escapeHtml(text) {
+      if (!text) return '';
       const div = document.createElement('div');
       div.textContent = text;
       return div.innerHTML;
+    }
+
+    // Copy all notes / cookie data to clipboard to feed directly to Antigravity
+    function copyCookieNotes() {
+      const notes = getStoredNotes();
+      const payload = {
+        channel: "@RifatErdemSahin",
+        timestamp: new Date().toISOString(),
+        total_notes: Object.keys(notes).length,
+        notes_by_video: Object.keys(notes).map(vid => {
+          const videoObj = allVideos.find(v => v.id === vid) || {};
+          return {
+            video_id: vid,
+            title: videoObj.title || 'Unknown Title',
+            instructions_or_new_metadata: notes[vid]
+          };
+        })
+      };
+
+      const jsonString = JSON.stringify(payload, null, 2);
+      navigator.clipboard.writeText(jsonString).then(() => {
+        showToast(`📋 Copied ${payload.total_notes} video notes payload to clipboard!`);
+      }).catch(() => {
+        // Fallback for older browsers
+        const temp = document.createElement('textarea');
+        temp.value = jsonString;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand('copy');
+        document.body.removeChild(temp);
+        showToast(`📋 Copied ${payload.total_notes} video notes payload to clipboard!`);
+      });
+    }
+
+    function clearAllNotes() {
+      if (confirm('Are you sure you want to clear all notes for all videos?')) {
+        localStorage.removeItem(STORAGE_KEY);
+        renderVideos(allVideos);
+        showToast('🗑️ Cleared all video notes.');
+      }
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      toast.innerText = msg;
+      toast.style.display = 'block';
+      setTimeout(() => {
+        toast.style.display = 'none';
+      }, 3000);
     }
 
     // Load full JSON data
@@ -486,7 +689,6 @@
       .then(res => res.json())
       .then(data => {
         allVideos = data.videos || [];
-        document.getElementById('totalBadge').innerText = `${allVideos.length} Videos`;
         renderVideos(allVideos);
       })
       .catch(err => {
@@ -498,7 +700,8 @@
       const q = e.target.value.toLowerCase();
       const filtered = allVideos.filter(v => 
         (v.title || '').toLowerCase().includes(q) || 
-        (v.description || '').toLowerCase().includes(q)
+        (v.description || '').toLowerCase().includes(q) ||
+        (v.id || '').toLowerCase().includes(q)
       );
       renderVideos(filtered);
     });
