@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Video Catalog & Metadata — @RifatErdemSahin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #090d13;
+      --bg-secondary: #121820;
+      --bg-card: #19222c;
+      --bg-card-hover: #1f2b38;
+      --border: #283545;
+      --border-focus: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --accent-blue: #38bdf8;
+      --accent-purple: #818cf8;
+      --accent-green: #34d399;
+      --accent-yellow: #fbbf24;
+      --accent-red: #f87171;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-top: 72px;
+    }
+
+    /* Fixed Top Navigation Bar */
+    .top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(18, 24, 32, 0.9);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      z-index: 1000;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+
+    .nav-logo {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #ff0033, #cc0000);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 16px;
+      color: white;
+      box-shadow: 0 2px 8px rgba(255, 0, 51, 0.3);
+    }
+
+    .nav-title {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-link.active {
+      color: var(--accent-blue);
+      background: rgba(56, 189, 248, 0.1);
+      font-weight: 600;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 32px auto 64px auto;
+      padding: 0 24px;
+    }
+
+    /* Hero Header */
+    .hero-header {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(129, 140, 248, 0.04));
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .hero-title {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 680px;
+    }
+
+    .search-filter-bar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .search-input {
+      flex: 1;
+      min-width: 280px;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 16px;
+      color: var(--text-main);
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--border-focus);
+    }
+
+    /* Video Card List */
+    .video-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .video-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      transition: all 0.2s ease;
+      display: flex;
+      gap: 24px;
+    }
+
+    .video-card:hover {
+      border-color: rgba(56, 189, 248, 0.45);
+      background: var(--bg-card);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .video-thumb-container {
+      flex-shrink: 0;
+      width: 240px;
+    }
+
+    .video-thumb {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #05080c;
+    }
+
+    .video-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-width: 0;
+    }
+
+    .video-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 8px;
+    }
+
+    .video-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.4;
+      text-decoration: none;
+      transition: color 0.15s;
+    }
+
+    .video-title:hover {
+      color: var(--accent-blue);
+    }
+
+    .video-meta-bar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .meta-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.05);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .meta-badge-date {
+      color: var(--accent-blue);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      background: rgba(56, 189, 248, 0.08);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .meta-badge-views {
+      color: var(--accent-yellow);
+      border: 1px solid rgba(251, 191, 36, 0.25);
+      background: rgba(251, 191, 36, 0.08);
+    }
+
+    .video-description {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      background: rgba(0, 0, 0, 0.25);
+      padding: 14px 16px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      white-space: pre-line;
+      max-height: 140px;
+      overflow-y: auto;
+      margin-bottom: 14px;
+    }
+
+    .video-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .video-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: white;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 6px;
+      transition: transform 0.15s, opacity 0.15s;
+    }
+
+    .video-link-btn:hover {
+      opacity: 0.92;
+      transform: translateY(-1px);
+    }
+
+    .skool-status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent-green);
+      background: rgba(52, 211, 153, 0.1);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .badge-ready {
+      background: rgba(52, 211, 153, 0.15);
+      color: var(--accent-green);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      .video-card {
+        flex-direction: column;
+      }
+      .video-thumb-container {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Shared Top Navigation Menu -->
+  <nav class="top-nav">
+    <a href="index.html" class="nav-brand">
+      <div class="nav-logo">▶</div>
+      <div><div class="nav-title">YouTube Studio Catalog</div></div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link">Operations Dashboard</a></li>
+      <li><a href="catalog.html" class="nav-link active">Video Catalog</a></li>
+      <li><a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" class="nav-link">@RifatErdemSahin ↗</a></li>
+      <li><a href="https://www.skool.com/delivery-pilot-8938" target="_blank" class="nav-link">Skool Community ↗</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <span class="badge badge-ready">26 Videos Loaded</span>
+      <a href="https://github.com/rifaterdemsahin/youtube-metadata" target="_blank" class="nav-link" style="background: rgba(255, 255, 255, 0.08);">GitHub ↗</a>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <!-- Hero Header -->
+    <div class="hero-header">
+      <div>
+        <h1 class="hero-title">📺 Video Catalog & Metadata Records</h1>
+        <p class="hero-subtitle">
+          Complete single-page directory displaying the <strong>Title</strong>, full <strong>Description</strong>, formatted <strong>Release Date</strong>, and direct <strong>Watch Links</strong> for all videos on <strong>@RifatErdemSahin</strong>.
+        </p>
+      </div>
+      <div>
+        <span id="totalBadge" class="badge badge-ready" style="font-size: 14px; padding: 8px 16px;">26 Videos</span>
+      </div>
+    </div>
+
+    <!-- Search / Filter Bar -->
+    <div class="search-filter-bar">
+      <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search videos by title or description keyword..." />
+    </div>
+
+    <!-- Video Grid List -->
+    <div id="videoGrid" class="video-grid">
+      <!-- Dynamically populated from videos_full_data.json -->
+    </div>
+
+  </div>
+
+  <script>
+    let allVideos = [];
+
+    function formatDate(isoStr) {
+      if (!isoStr) return 'N/A';
+      const d = new Date(isoStr);
+      return d.toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric'
+      });
+    }
+
+    function renderVideos(videos) {
+      const grid = document.getElementById('videoGrid');
+      grid.innerHTML = '';
+
+      if (videos.length === 0) {
+        grid.innerHTML = '<div style="text-align: center; color: var(--text-muted); padding: 40px;">No videos match your search query.</div>';
+        return;
+      }
+
+      videos.forEach((v, index) => {
+        const card = document.createElement('div');
+        card.className = 'video-card';
+        
+        const thumbUrl = v.thumbnail_url || `https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`;
+        const watchUrl = `https://www.youtube.com/watch?v=${v.id}`;
+        const formattedDate = formatDate(v.published_at);
+        const hasSkool = (v.description || '').includes('https://www.skool.com/delivery-pilot-8938');
+
+        card.innerHTML = `
+          <div class="video-thumb-container">
+            <a href="${watchUrl}" target="_blank">
+              <img class="video-thumb" src="${thumbUrl}" alt="${v.title}" loading="lazy" />
+            </a>
+          </div>
+          <div class="video-content">
+            <div>
+              <div class="video-header-row">
+                <a class="video-title" href="${watchUrl}" target="_blank">#${index + 1}. ${v.title}</a>
+              </div>
+              <div class="video-meta-bar">
+                <span class="meta-badge meta-badge-date">📅 Released: ${formattedDate}</span>
+                <span class="meta-badge meta-badge-views">👁️ ${parseInt(v.view_count || 0).toLocaleString()} views</span>
+                <span class="meta-badge">🔒 ${v.privacy_status || 'public'}</span>
+              </div>
+              <div class="video-description">${v.description ? escapeHtml(v.description) : 'No description provided.'}</div>
+            </div>
+            <div class="video-footer">
+              <span class="skool-status-badge">
+                ${hasSkool ? '✅ Skool Community Link Synced' : '⏳ Link Pending'}
+              </span>
+              <a class="video-link-btn" href="${watchUrl}" target="_blank">
+                Watch on YouTube ↗
+              </a>
+            </div>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function escapeHtml(text) {
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    }
+
+    // Load full JSON data
+    fetch('videos_full_data.json')
+      .then(res => res.json())
+      .then(data => {
+        allVideos = data.videos || [];
+        document.getElementById('totalBadge').innerText = `${allVideos.length} Videos`;
+        renderVideos(allVideos);
+      })
+      .catch(err => {
+        console.error('Error loading videos_full_data.json:', err);
+      });
+
+    // Search filter
+    document.getElementById('searchInput').addEventListener('input', function(e) {
+      const q = e.target.value.toLowerCase();
+      const filtered = allVideos.filter(v => 
+        (v.title || '').toLowerCase().includes(q) || 
+        (v.description || '').toLowerCase().includes(q)
+      );
+      renderVideos(filtered);
+    });
+  </script>
+</body>
+</html>
