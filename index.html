@@ -124,8 +124,8 @@
     }
 
     .status-banner {
-      background: linear-gradient(135deg, rgba(52, 211, 153, 0.12), rgba(52, 211, 153, 0.04));
-      border: 1px solid rgba(52, 211, 153, 0.35);
+      background: linear-gradient(135deg, rgba(52, 211, 153, 0.15), rgba(52, 211, 153, 0.05));
+      border: 1px solid rgba(52, 211, 153, 0.4);
       border-radius: 12px;
       padding: 20px 24px;
       margin-bottom: 32px;
@@ -159,7 +159,7 @@
     }
 
     .banner-title {
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 700;
       color: var(--accent-green);
       margin-bottom: 2px;
@@ -296,7 +296,7 @@
       text-decoration: underline;
     }
 
-    .status-pill-ready {
+    .status-pill-success {
       display: inline-flex;
       align-items: center;
       gap: 6px;
@@ -304,9 +304,9 @@
       border-radius: 6px;
       font-size: 12px;
       font-weight: 600;
-      background: rgba(52, 211, 153, 0.12);
+      background: rgba(52, 211, 153, 0.15);
       color: var(--accent-green);
-      border: 1px solid rgba(52, 211, 153, 0.25);
+      border: 1px solid rgba(52, 211, 153, 0.3);
     }
 
     .meta-tag {
@@ -328,8 +328,6 @@
       border: none;
     }
 
-    .btn-primary { background: #059669; color: white; }
-    .btn-primary:hover { background: #047857; }
     .btn-secondary { background: rgba(255, 255, 255, 0.08); color: var(--text-main); border: 1px solid var(--border); }
     .btn-secondary:hover { background: rgba(255, 255, 255, 0.12); }
   </style>
@@ -345,13 +343,13 @@
 
     <ul class="nav-links">
       <li><a href="#status-overview" class="nav-link active">Status Overview</a></li>
-      <li><a href="#video-queue" class="nav-link">Video Queue (25)</a></li>
+      <li><a href="#video-queue" class="nav-link">Updated Videos (26)</a></li>
       <li><a href="#mcp-config" class="nav-link">MCP Config</a></li>
       <li><a href="#cli-commands" class="nav-link">CLI Commands</a></li>
     </ul>
 
     <div class="nav-actions">
-      <span class="badge badge-ready">OAuth Connected & Backed Up</span>
+      <span class="badge badge-ready">26 Videos Synced ✓</span>
       <a href="https://github.com/rifaterdemsahin/youtube-metadata" target="_blank" class="btn btn-secondary" style="padding: 6px 12px; font-size: 12px;">GitHub ↗</a>
     </div>
   </nav>
@@ -363,14 +361,14 @@
       <div class="status-banner-content">
         <div class="pulse-indicator"></div>
         <div>
-          <div class="banner-title">OAuth Authenticated & Synced with Azure Key Vault</div>
+          <div class="banner-title">🎉 All 26 Channel Videos Updated Successfully!</div>
           <div class="banner-desc">
-            OAuth token successfully generated and backed up to <code>dp-kv-deliverypilot/secrets/youtube-token</code>. Ready for live update execution.
+            The Skool community link (<code>https://www.skool.com/delivery-pilot-8938</code>) has been added to all 26 video descriptions on <strong>@RifatErdemSahin</strong>.
           </div>
         </div>
       </div>
       <div>
-        <a href="#cli-commands" class="btn btn-primary">Apply Live Update 🚀</a>
+        <a href="https://www.youtube.com/@RifatErdemSahin/videos" target="_blank" class="btn btn-secondary" style="background: rgba(52, 211, 153, 0.2); border-color: rgba(52, 211, 153, 0.4); color: white;">View Channel ↗</a>
       </div>
     </div>
 
@@ -389,18 +387,18 @@
         </div>
       </div>
       <div class="card">
-        <div class="card-label">Azure Key Vault Status</div>
-        <div class="card-value" style="color: var(--accent-green); font-size: 16px;">Secrets Backed Up ✓</div>
+        <div class="card-label">Channel Sync Status</div>
+        <div class="card-value" style="color: var(--accent-green); font-size: 18px;">26 / 26 Synced ✓</div>
       </div>
     </div>
 
     <!-- Video Queue Section -->
     <div id="video-queue" class="section">
       <h2 class="section-title">
-        <span>📊 YouTube Channel Video Update Queue (25 Videos)</span>
+        <span>📊 Synchronized YouTube Videos (26 Total)</span>
       </h2>
       <p style="color: var(--text-muted); margin-bottom: 16px;">
-        Targeted videos ready to receive the Skool link:
+        All videos on <strong>@RifatErdemSahin</strong> updated with the Skool link:
       </p>
       <div class="table-container">
         <table>
@@ -408,8 +406,7 @@
             <tr>
               <th>#</th>
               <th>Video Title</th>
-              <th>Duration / Stats</th>
-              <th>Action</th>
+              <th>Video Link</th>
               <th>Status</th>
             </tr>
           </thead>
@@ -444,10 +441,10 @@
     <div id="cli-commands" class="section">
       <h2 class="section-title">⚡ CLI Execution Commands</h2>
       <div class="code-block">
-# 1. Apply Live Update across all channel videos
+# 1. Re-sync anytime (idempotent - skips already updated videos)
 ./venv/bin/python append_skool_link.py --apply
 
-# 2. Pull credentials anytime from Azure Key Vault
+# 2. Pull credentials from Azure Key Vault anytime
 ./venv/bin/python fetch_azure_secrets.py --vault dp-kv-deliverypilot
       </div>
     </div>
@@ -456,31 +453,32 @@
 
   <script>
     const videos = [
-      { id: "1", title: "Claude AI Certification for Architects | Masterclass Intro", duration: "0:11", views: "50 views", age: "1 month ago" },
-      { id: "2", title: "AI No-Code: Build Your Own AI Solutions (Step-by-Step)", duration: "24:54", views: "397 views", age: "5 months ago" },
-      { id: "3", title: "The Agentic Era: How to Build a Digital Workforce & Close the AI Skill Gap", duration: "19:51", views: "395 views", age: "6 months ago" },
-      { id: "4", title: "The New Professional Standard: Navigating the AI Career Shift", duration: "15:37", views: "228 views", age: "6 months ago" },
-      { id: "5", title: "RAISE Your AI SKILLS: Build a RAG Application with Copilot & Codespaces", duration: "20:56", views: "340 views", age: "8 months ago" },
-      { id: "6", title: "10x Your Interview Rate: The ChatGPT + GitHub CV System Recruiters LOVE Tailored Resume in 2 Minutes", duration: "5:55", views: "186 views", age: "9 months ago" },
-      { id: "7", title: "AI Agents vs. Human Freelancers: The Brutal Truth", duration: "12:49", views: "287 views", age: "9 months ago" },
-      { id: "8", title: "Authentic AI Content Creation — Build the Content Magician Using RAG + n8n", duration: "5:08", views: "268 views", age: "9 months ago" },
-      { id: "9", title: "How to Actually Learn AI: The Visual Construction Method Nobody Teaches", duration: "16:59", views: "346 views", age: "9 months ago" },
-      { id: "10", title: "How to Build an AI to Automate LinkedIn Job Hunt", duration: "15:28", views: "531 views", age: "10 months ago" },
-      { id: "11", title: "Our Resumes are Obsolete. Build This AI CV Generator Instead", duration: "10:03", views: "150 views", age: "10 months ago" },
-      { id: "12", title: "How to write your Cover Letters with AI", duration: "8:40", views: "147 views", age: "10 months ago" },
-      { id: "13", title: "The AI Integration Skill Every Professional Needs (MCP Explained)", duration: "5:58", views: "309 views", age: "1 year ago" },
-      { id: "14", title: "The Rise of Personal AI: How It Will Change Everything", duration: "9:34", views: "118 views", age: "1 year ago" },
-      { id: "15", title: "Why \"Being Broken\" is Your Secret Weapon in the Age of AI", duration: "18:20", views: "53 views", age: "1 year ago" },
-      { id: "16", title: "Master Complex Topics with These Simple AI Strategies!", duration: "7:45", views: "81 views", age: "1 year ago" },
-      { id: "17", title: "🚀 Mastering Self-Learning: How to Fail, Learn, & Leverage AI for Success! 💡 | Ultimate Growth Guide", duration: "10:39", views: "100 views", age: "1 year ago" },
-      { id: "18", title: "How to Use AI for Accountability: Tech Lessons from Groundhog Day", duration: "21:18", views: "58 views", age: "1 year ago" },
-      { id: "19", title: "10 AI-Powered Tips to Learn Faster and Execute Like a Pro", duration: "13:50", views: "120 views", age: "1 year ago" },
-      { id: "20", title: "Daily Skill Learning with AI: Transform Your Life One Day at a Time", duration: "15:14", views: "183 views", age: "1 year ago" },
-      { id: "21", title: "AI-Powered CV as Code: Accelerate Skill Mastery with Hands-On Learning", duration: "7:07", views: "302 views", age: "1 year ago" },
-      { id: "22", title: "AI-Powered Emotional Intelligence: Innovate and Thrive in Work and Life", duration: "8:39", views: "83 views", age: "1 year ago" },
-      { id: "23", title: "AI Career Guide: Start Your IT Career Today and Thrive in Tech", duration: "19:59", views: "142 views", age: "2 years ago" },
-      { id: "24", title: "Learn Text Blaze To Boost Your AI Based Self Learning", duration: "5:03", views: "157 views", age: "2 years ago" },
-      { id: "25", title: "Master AI, Stay Ahead, Bridge Skills Gap", duration: "46:04", views: "130 views", age: "2 years ago" }
+      { id: "F8IBooe3bXY", title: "Claude AI Certification for Architects | Masterclass Intro" },
+      { id: "iZtOw2AeheI", title: "green Screen module 1 tester v2" },
+      { id: "yI5BIb74kVI", title: "AI No-Code: Build Your Own AI Solutions (Step-by-Step)" },
+      { id: "c1UotPbvKoQ", title: "The Agentic Era: How to Build a Digital Workforce & Close the AI Skill Gap" },
+      { id: "Frty5ICAdOo", title: "The New Professional Standard: Navigating the AI Career Shift" },
+      { id: "QwFB7tvzLoA", title: "RAISE Your AI SKILLS: Build a RAG Application with Copilot & Codespaces" },
+      { id: "bsH-vBGNERE", title: "10x Your Interview Rate: The ChatGPT + GitHub CV System Recruiters LOVE Tailored Resume in 2 Minutes" },
+      { id: "YZqcACObMws", title: "AI Agents vs. Human Freelancers: The Brutal Truth" },
+      { id: "VdnZI0PfscM", title: "Authentic AI Content Creation — Build the Content Magician Using RAG + n8n" },
+      { id: "IYgcXAZkevY", title: "How to Actually Learn AI: The Visual Construction Method Nobody Teaches" },
+      { id: "qNJpDJ8yHu8", title: "How to Build an AI to Automate LinkedIn Job Hunt" },
+      { id: "pUf8wGV2NBU", title: "Our Resumes are Obsolete. Build This AI CV Generator Instead" },
+      { id: "EtpfGUGAFJw", title: "How to write your Cover Letters with AI" },
+      { id: "wtXDL0Vmr7A", title: "The AI Integration Skill Every Professional Needs (MCP Explained)" },
+      { id: "fxj1orsKpYM", title: "The Rise of Personal AI: How It Will Change Everything" },
+      { id: "3VgRz5GeYDA", title: "Why \"Being Broken\" is Your Secret Weapon in the Age of AI" },
+      { id: "E52uDnN5FB0", title: "Master Complex Topics with These Simple AI Strategies!" },
+      { id: "MnYEZWflHDs", title: "🚀 Mastering Self-Learning: How to Fail, Learn, & Leverage AI for Success! 💡 | Ultimate Growth Guide" },
+      { id: "WK66w51UMrs", title: "How to Use AI for Accountability: Tech Solutions and Life Lessons from Groundhog Day" },
+      { id: "2EVPwgi8NZA", title: "10 AI-Powered Tips to Learn Faster and Execute Like a Pro" },
+      { id: "DDuGVH_uPTA", title: "Daily Skill Learning with AI: Transform Your Life One Day at a Time" },
+      { id: "dCU0GpriG1o", title: "AI-Powered CV as Code: Accelerate Skill Mastery with Hands-On Learning" },
+      { id: "yKN0ParJ0fo", title: "AI-Powered Emotional Intelligence: Innovate and Thrive in Work and Life" },
+      { id: "j5lku3LYoK4", title: "AI Career Guide: Start Your IT Career Today and Thrive in Tech" },
+      { id: "DNQEQZPnpfg", title: "Learn Text Blaze To Boost Your AI Based Self Learning" },
+      { id: "3bwaZ-xUJcs", title: "Master AI, Stay Ahead, Bridge Skills Gap" }
     ];
 
     const tbody = document.getElementById('videoRows');
@@ -490,12 +488,8 @@
       tr.innerHTML = `
         <td style="color: #64748b; font-family: monospace;">${index + 1}</td>
         <td><strong>${v.title}</strong></td>
-        <td>
-          <div>⏱️ ${v.duration}</div>
-          <div class="meta-tag">👁️ ${v.views} • 📅 ${v.age}</div>
-        </td>
-        <td><code style="font-size: 12px; color: var(--accent-blue);">+ Skool Link</code></td>
-        <td><span class="status-pill-ready">Ready to Update</span></td>
+        <td><a class="link-highlight" href="https://www.youtube.com/watch?v=${v.id}" target="_blank">Watch Video ↗</a></td>
+        <td><span class="status-pill-success">✅ Synced Live</span></td>
       `;
       tbody.appendChild(tr);
     });
