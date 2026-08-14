@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Metadata Updates Log — @RifatErdemSahin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #090d13;
+      --bg-secondary: #121820;
+      --bg-card: #19222c;
+      --bg-card-hover: #1f2b38;
+      --border: #283545;
+      --border-focus: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent-blue: #38bdf8;
+      --accent-purple: #818cf8;
+      --accent-green: #34d399;
+      --accent-yellow: #fbbf24;
+      --accent-red: #f87171;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-top: 72px;
+    }
+
+    .top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(18, 24, 32, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      z-index: 1000;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+
+    .nav-logo {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #ff0033, #cc0000);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 16px;
+      color: white;
+      box-shadow: 0 2px 8px rgba(255, 0, 51, 0.3);
+    }
+
+    .nav-title {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-link.active {
+      color: var(--accent-green);
+      background: rgba(52, 211, 153, 0.1);
+      font-weight: 600;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 32px auto 64px auto;
+      padding: 0 24px;
+    }
+
+    .hero-header {
+      background: linear-gradient(135deg, rgba(52, 211, 153, 0.12), rgba(56, 189, 248, 0.04));
+      border: 1px solid rgba(52, 211, 153, 0.35);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .hero-title {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      max-width: 680px;
+    }
+
+    .update-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 24px;
+      transition: all 0.2s;
+    }
+
+    .update-card:hover {
+      border-color: rgba(52, 211, 153, 0.4);
+      background: var(--bg-card);
+    }
+
+    .update-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .update-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .badge-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      background: rgba(52, 211, 153, 0.15);
+      color: var(--accent-green);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+    }
+
+    .diff-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 14px;
+    }
+
+    @media (max-width: 850px) {
+      .diff-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .diff-box {
+      background: #05080c;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+    }
+
+    .diff-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 8px;
+      color: var(--text-muted);
+    }
+
+    .diff-label.applied {
+      color: var(--accent-green);
+    }
+
+    .diff-text {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12.5px;
+      color: #e2e8f0;
+      white-space: pre-wrap;
+      line-height: 1.5;
+      max-height: 260px;
+      overflow-y: auto;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.15s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.92;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Shared Top Navigation Menu -->
+  <nav class="top-nav">
+    <a href="index.html" class="nav-brand">
+      <div class="nav-logo">▶</div>
+      <div><div class="nav-title">YouTube Studio Updates</div></div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link">Operations Dashboard</a></li>
+      <li><a href="catalog.html" class="nav-link">Video Catalog & Notes</a></li>
+      <li><a href="updates.html" class="nav-link active">Applied Updates Log</a></li>
+      <li><a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" class="nav-link">@RifatErdemSahin ↗</a></li>
+      <li><a href="https://www.skool.com/delivery-pilot-8938" target="_blank" class="nav-link">Skool Community ↗</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a href="https://www.youtube.com/@RifatErdemSahin/videos" target="_blank" class="btn btn-primary" style="font-size: 12px; padding: 6px 12px;">Live Channel ↗</a>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <!-- Hero Header -->
+    <div class="hero-header">
+      <div>
+        <h1 class="hero-title">🚀 Metadata Updates Log</h1>
+        <p class="hero-subtitle">
+          Real-time record of custom metadata modifications, revised links, structured timestamps, and YouTube-friendly emoji enhancements applied to <strong>@RifatErdemSahin</strong>.
+        </p>
+      </div>
+      <div>
+        <span class="badge-status" style="font-size: 14px; padding: 8px 16px;">Live YouTube Sync Active</span>
+      </div>
+    </div>
+
+    <!-- Update Record 1 -->
+    <div class="update-card">
+      <div class="update-header">
+        <div>
+          <h2 class="update-title">The Agentic Era: How to Build a Digital Workforce & Close the AI Skill Gap</h2>
+          <div style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">
+            Video ID: <code>c1UotPbvKoQ</code> • Modified: Aug 14, 2026
+          </div>
+        </div>
+        <div>
+          <span class="badge-status">✅ Live Updated on YouTube</span>
+        </div>
+      </div>
+
+      <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 12px;">
+        <strong>Instructions Executed:</strong> Added GitHub profile link <code>https://github.com/rifaterdemsahin</code>, removed outdated Delivery Pilot placeholder assessment link, and structured the description with YouTube-friendly emojis and section dividers.
+      </p>
+
+      <div class="diff-container">
+        <div class="diff-box">
+          <div class="diff-label">Instruction / Request Payload</div>
+          <div class="diff-text">github link https://github.com/rifaterdemsahin
+Remove > Delivery Pilot App: [Insert Link] – Join the simulations and take the AI assessment.
+Apply YouTube-friendly emojis & clean layout</div>
+        </div>
+        <div class="diff-box">
+          <div class="diff-label applied">Applied YouTube Description (Live)</div>
+          <div class="diff-text">Stop just "chatting" with AI and start building your own digital workforce! 🤖🚀
+
+Most professionals are stuck in the "Prompt Era," using tools like ChatGPT for simple questions. That’s like using a Ferrari just to go to the grocery store. To thrive in the AI era, you need to move from passive prompting to Agentic Orchestration.
+
+In this hands-on deep dive, I pull back the curtain on my personal ecosystem: 240+ autonomous workflows running in n8n. I explain how I use Telegram as a command center, how I manage technical "hallucinations" with a custom Blacklist system, and why Bottom-Up Transformation is the only way to stay relevant in 2026.
+
+💡 WHAT YOU WILL LEARN IN THIS VIDEO:
+--------------------------------------------------
+🔹 The Agentic Shift: Why "Prompts" are becoming obsolete and "Agents" are taking over.
+🔹 The Bounded Context: Using Telegram to manage specific agents for Finance, Family, and Projects.
+🔹 The Technical Fail-Safe: How to use Google Sheets and n8n to build an "intelligent" error-handling system.
+🔹 The PARA Method: Organizing your digital life and AI configurations using Tiago Forte’s framework.
+🔹 The Delivery Pilot Mindset: How to use GitHub and simulations to close your own AI skill gaps.
+
+📍 TIMESTAMPS / CHAPTERS:
+--------------------------------------------------
+⏱️ 0:00 – The Ferrari Metaphor: Why your AI strategy is failing
+⏱️ 0:45 – Welcome to the Agentic Era
+⏱️ 1:15 – [SCREENSHARE] The n8n Mammoth: 240+ Workflows at scale
+⏱️ 2:30 – The Sunday Shopping Problem: The moment I realized prompting wasn't enough
+⏱️ 3:45 – The "Bounded Context" strategy for Telegram Agents
+⏱️ 4:30 – [SCREENSHARE] My Telegram Command Center walkthrough
+⏱️ 5:15 – [SCREENSHARE] Stability & Security: The Blacklist & MCP
+⏱️ 6:30 – Why Corporate AI is failing (and how you can win bottom-up)
+⏱️ 7:30 – [SCREENSHARE] The Architect's Repo: Free Simulations & Assessments
+⏱️ 9:00 – Closure: Your first step toward the Agentic Era
+
+🔗 RESOURCES & CODE:
+--------------------------------------------------
+🐙 GitHub Profile & Repositories: https://github.com/rifaterdemsahin
+🌐 Main Platform: https://deliverypilot.net/5_Symbols/index.html
+🧠 Take the AI Diagnostic Assessment: https://deliverypilot.net/5_Symbols/assessment.html
+
+💬 COMMUNITY & DISCUSSION:
+--------------------------------------------------
+What is your biggest AI skill gap right now? Leave a comment below — I read and respond to every single one!
+
+#n8n #AI #Automation #AgenticEra #FutureOfWork #DeliveryPilot #CareerTransformation #GitHub #AITutorial #ModelContextProtocol
+
+🚀 Join our AI Builders & Architects Community:
+👉 https://www.skool.com/delivery-pilot-8938</div>
+        </div>
+      </div>
+
+      <div style="margin-top: 16px; display: flex; justify-content: flex-end;">
+        <a href="https://www.youtube.com/watch?v=c1UotPbvKoQ" target="_blank" class="btn btn-primary">Watch Updated Video on YouTube ↗</a>
+      </div>
+    </div>
+
+    <!-- Update Record 2: Global Batch Skool link -->
+    <div class="update-card">
+      <div class="update-header">
+        <div>
+          <h2 class="update-title">Channel-Wide Batch Update: Skool Community Link & Emoji Syncer</h2>
+          <div style="font-size: 13px; color: var(--text-muted); margin-top: 4px;">
+            Target: All 26 Videos on @RifatErdemSahin • Completed
+          </div>
+        </div>
+        <div>
+          <span class="badge-status">✅ 26 / 26 Videos Synced</span>
+        </div>
+      </div>
+
+      <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 8px;">
+        Appended formatted community link with emojis to every video description across the channel:
+      </p>
+      <div class="diff-box">
+        <div class="diff-text">🚀 Join our AI Builders & Architects Community:
+👉 https://www.skool.com/delivery-pilot-8938</div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

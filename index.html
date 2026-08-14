@@ -14,7 +14,7 @@
       --bg-card: #19222c;
       --bg-card-hover: #1f2b38;
       --border: #283545;
-      --border-focus: #3b82f6;
+      --border-focus: #38bdf8;
       --text-main: #f1f5f9;
       --text-muted: #94a3b8;
       --accent-blue: #38bdf8;
@@ -336,20 +336,21 @@
 
   <!-- Shared Top Navigation Menu -->
   <nav class="top-nav">
-    <a href="#" class="nav-brand">
+    <a href="index.html" class="nav-brand">
       <div class="nav-logo">▶</div>
       <div><div class="nav-title">YouTube Studio MCP</div></div>
     </a>
 
     <ul class="nav-links">
-      <li><a href="#status-overview" class="nav-link active">Status Overview</a></li>
-      <li><a href="#video-queue" class="nav-link">Updated Videos (26)</a></li>
-      <li><a href="#mcp-config" class="nav-link">MCP Config</a></li>
-      <li><a href="#cli-commands" class="nav-link">CLI Commands</a></li>
+      <li><a href="index.html" class="nav-link active">Operations Dashboard</a></li>
+      <li><a href="catalog.html" class="nav-link">Video Catalog & Notes</a></li>
+      <li><a href="updates.html" class="nav-link">Applied Updates Log</a></li>
+      <li><a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" class="nav-link">@RifatErdemSahin ↗</a></li>
+      <li><a href="https://www.skool.com/delivery-pilot-8938" target="_blank" class="nav-link">Skool Community ↗</a></li>
     </ul>
 
     <div class="nav-actions">
-      <span class="badge badge-ready">26 Videos Synced ✓</span>
+      <a href="updates.html" class="badge badge-ready" style="text-decoration: none;">Updates Log ➔</a>
       <a href="https://github.com/rifaterdemsahin/youtube-metadata" target="_blank" class="btn btn-secondary" style="padding: 6px 12px; font-size: 12px;">GitHub ↗</a>
     </div>
   </nav>
@@ -361,14 +362,14 @@
       <div class="status-banner-content">
         <div class="pulse-indicator"></div>
         <div>
-          <div class="banner-title">🎉 All 26 Channel Videos Updated Successfully!</div>
+          <div class="banner-title">🎉 Channel Videos Synced & Updated Live!</div>
           <div class="banner-desc">
-            The Skool community link (<code>https://www.skool.com/delivery-pilot-8938</code>) has been added to all 26 video descriptions on <strong>@RifatErdemSahin</strong>.
+            All videos on <strong>@RifatErdemSahin</strong> synced with YouTube-friendly emojis, custom metadata, and community links.
           </div>
         </div>
       </div>
       <div>
-        <a href="https://www.youtube.com/@RifatErdemSahin/videos" target="_blank" class="btn btn-secondary" style="background: rgba(52, 211, 153, 0.2); border-color: rgba(52, 211, 153, 0.4); color: white;">View Channel ↗</a>
+        <a href="updates.html" class="btn btn-secondary" style="background: rgba(52, 211, 153, 0.2); border-color: rgba(52, 211, 153, 0.4); color: white;">View Updates Log ➔</a>
       </div>
     </div>
 
@@ -395,10 +396,10 @@
     <!-- Video Queue Section -->
     <div id="video-queue" class="section">
       <h2 class="section-title">
-        <span>📊 Synchronized YouTube Videos (26 Total)</span>
+        <span>📊 Synchronized YouTube Videos</span>
       </h2>
       <p style="color: var(--text-muted); margin-bottom: 16px;">
-        All videos on <strong>@RifatErdemSahin</strong> updated with the Skool link:
+        Videos on <strong>@RifatErdemSahin</strong> synchronized with metadata updates:
       </p>
       <div class="table-container">
         <table>
@@ -437,69 +438,26 @@
 }</code></pre>
     </div>
 
-    <!-- CLI Commands Section -->
-    <div id="cli-commands" class="section">
-      <h2 class="section-title">⚡ CLI Execution Commands</h2>
-      <div class="code-block">
-# 1. Re-sync anytime (idempotent - skips already updated videos)
-./venv/bin/python append_skool_link.py --apply
-
-# 2. Pull credentials from Azure Key Vault anytime
-./venv/bin/python fetch_azure_secrets.py --vault dp-kv-deliverypilot
-      </div>
-    </div>
-
   </div>
 
   <script>
-    const videos = [
-      { id: "F8IBooe3bXY", title: "Claude AI Certification for Architects | Masterclass Intro" },
-      { id: "iZtOw2AeheI", title: "green Screen module 1 tester v2" },
-      { id: "yI5BIb74kVI", title: "AI No-Code: Build Your Own AI Solutions (Step-by-Step)" },
-      { id: "c1UotPbvKoQ", title: "The Agentic Era: How to Build a Digital Workforce & Close the AI Skill Gap" },
-      { id: "Frty5ICAdOo", title: "The New Professional Standard: Navigating the AI Career Shift" },
-      { id: "QwFB7tvzLoA", title: "RAISE Your AI SKILLS: Build a RAG Application with Copilot & Codespaces" },
-      { id: "bsH-vBGNERE", title: "10x Your Interview Rate: The ChatGPT + GitHub CV System Recruiters LOVE Tailored Resume in 2 Minutes" },
-      { id: "YZqcACObMws", title: "AI Agents vs. Human Freelancers: The Brutal Truth" },
-      { id: "VdnZI0PfscM", title: "Authentic AI Content Creation — Build the Content Magician Using RAG + n8n" },
-      { id: "IYgcXAZkevY", title: "How to Actually Learn AI: The Visual Construction Method Nobody Teaches" },
-      { id: "qNJpDJ8yHu8", title: "How to Build an AI to Automate LinkedIn Job Hunt" },
-      { id: "pUf8wGV2NBU", title: "Our Resumes are Obsolete. Build This AI CV Generator Instead" },
-      { id: "EtpfGUGAFJw", title: "How to write your Cover Letters with AI" },
-      { id: "wtXDL0Vmr7A", title: "The AI Integration Skill Every Professional Needs (MCP Explained)" },
-      { id: "fxj1orsKpYM", title: "The Rise of Personal AI: How It Will Change Everything" },
-      { id: "3VgRz5GeYDA", title: "Why \"Being Broken\" is Your Secret Weapon in the Age of AI" },
-      { id: "E52uDnN5FB0", title: "Master Complex Topics with These Simple AI Strategies!" },
-      { id: "MnYEZWflHDs", title: "🚀 Mastering Self-Learning: How to Fail, Learn, & Leverage AI for Success! 💡 | Ultimate Growth Guide" },
-      { id: "WK66w51UMrs", title: "How to Use AI for Accountability: Tech Solutions and Life Lessons from Groundhog Day" },
-      { id: "2EVPwgi8NZA", title: "10 AI-Powered Tips to Learn Faster and Execute Like a Pro" },
-      { id: "DDuGVH_uPTA", title: "Daily Skill Learning with AI: Transform Your Life One Day at a Time" },
-      { id: "dCU0GpriG1o", title: "AI-Powered CV as Code: Accelerate Skill Mastery with Hands-On Learning" },
-      { id: "yKN0ParJ0fo", title: "AI-Powered Emotional Intelligence: Innovate and Thrive in Work and Life" },
-      { id: "j5lku3LYoK4", title: "AI Career Guide: Start Your IT Career Today and Thrive in Tech" },
-      { id: "DNQEQZPnpfg", title: "Learn Text Blaze To Boost Your AI Based Self Learning" },
-      { id: "3bwaZ-xUJcs", title: "Master AI, Stay Ahead, Bridge Skills Gap" }
-    ];
-
-    const tbody = document.getElementById('videoRows');
-    tbody.innerHTML = '';
-    videos.forEach((v, index) => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td style="color: #64748b; font-family: monospace;">${index + 1}</td>
-        <td><strong>${v.title}</strong></td>
-        <td><a class="link-highlight" href="https://www.youtube.com/watch?v=${v.id}" target="_blank">Watch Video ↗</a></td>
-        <td><span class="status-pill-success">✅ Synced Live</span></td>
-      `;
-      tbody.appendChild(tr);
-    });
-
-    document.querySelectorAll('.nav-link').forEach(link => {
-      link.addEventListener('click', function(e) {
-        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
-        this.classList.add('active');
+    fetch('videos_full_data.json')
+      .then(res => res.json())
+      .then(data => {
+        const videos = data.videos || [];
+        const tbody = document.getElementById('videoRows');
+        tbody.innerHTML = '';
+        videos.forEach((v, index) => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td style="color: #64748b; font-family: monospace;">${index + 1}</td>
+            <td><strong>${v.title}</strong></td>
+            <td><a class="link-highlight" href="https://www.youtube.com/watch?v=${v.id}" target="_blank">Watch Video ↗</a></td>
+            <td><span class="status-pill-success">✅ Synced Live</span></td>
+          `;
+          tbody.appendChild(tr);
+        });
       });
-    });
   </script>
 </body>
 </html>
