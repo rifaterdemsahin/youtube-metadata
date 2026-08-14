@@ -35,10 +35,9 @@
       background-color: var(--bg-primary);
       color: var(--text-main);
       line-height: 1.6;
-      padding-top: 72px; /* Space for fixed navbar */
+      padding-top: 72px;
     }
 
-    /* Shared Top Navigation Bar */
     .top-nav {
       position: fixed;
       top: 0;
@@ -124,7 +123,6 @@
       padding: 0 24px;
     }
 
-    /* Status Banner - Awaiting OAuth Run */
     .status-banner {
       background: linear-gradient(135deg, rgba(251, 191, 36, 0.12), rgba(251, 191, 36, 0.04));
       border: 1px solid rgba(251, 191, 36, 0.35);
@@ -155,18 +153,9 @@
     }
 
     @keyframes pulse {
-      0% {
-        transform: scale(0.95);
-        box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.7);
-      }
-      70% {
-        transform: scale(1);
-        box-shadow: 0 0 0 10px rgba(251, 191, 36, 0);
-      }
-      100% {
-        transform: scale(0.95);
-        box-shadow: 0 0 0 0 rgba(251, 191, 36, 0);
-      }
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(251, 191, 36, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(251, 191, 36, 0); }
     }
 
     .banner-title {
@@ -249,6 +238,28 @@
       border: 1px solid rgba(251, 191, 36, 0.3);
     }
 
+    .step-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px;
+      margin-bottom: 16px;
+    }
+
+    .step-number {
+      display: inline-block;
+      width: 26px;
+      height: 26px;
+      background: #2563eb;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 26px;
+      font-weight: 700;
+      font-size: 13px;
+      margin-right: 8px;
+    }
+
     .table-container {
       overflow-x: auto;
       border: 1px solid var(--border);
@@ -277,10 +288,6 @@
       background: var(--bg-secondary);
     }
 
-    tr:last-child td {
-      border-bottom: none;
-    }
-
     tr:hover td {
       background: var(--bg-card-hover);
     }
@@ -294,7 +301,7 @@
       font-size: 13px;
       color: #e2e8f0;
       overflow-x: auto;
-      margin-top: 12px;
+      margin-top: 10px;
     }
 
     .link-highlight {
@@ -336,28 +343,13 @@
       font-weight: 600;
       text-decoration: none;
       cursor: pointer;
-      transition: all 0.15s ease;
       border: none;
     }
 
-    .btn-primary {
-      background: #2563eb;
-      color: white;
-    }
-
-    .btn-primary:hover {
-      background: #1d4ed8;
-    }
-
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--text-main);
-      border: 1px solid var(--border);
-    }
-
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.12);
-    }
+    .btn-primary { background: #2563eb; color: white; }
+    .btn-primary:hover { background: #1d4ed8; }
+    .btn-secondary { background: rgba(255, 255, 255, 0.08); color: var(--text-main); border: 1px solid var(--border); }
+    .btn-secondary:hover { background: rgba(255, 255, 255, 0.12); }
   </style>
 </head>
 <body>
@@ -366,13 +358,12 @@
   <nav class="top-nav">
     <a href="#" class="nav-brand">
       <div class="nav-logo">▶</div>
-      <div>
-        <div class="nav-title">YouTube Studio MCP</div>
-      </div>
+      <div><div class="nav-title">YouTube Studio MCP</div></div>
     </a>
 
     <ul class="nav-links">
       <li><a href="#status-overview" class="nav-link active">Status Overview</a></li>
+      <li><a href="#auth-guide" class="nav-link">OAuth & Key Vault Guide</a></li>
       <li><a href="#video-queue" class="nav-link">Video Queue (25)</a></li>
       <li><a href="#mcp-config" class="nav-link">MCP Config</a></li>
       <li><a href="#cli-commands" class="nav-link">CLI Commands</a></li>
@@ -393,12 +384,12 @@
         <div>
           <div class="banner-title">Awaiting OAuth Run</div>
           <div class="banner-desc">
-            The MCP server and metadata updater are ready. Complete the one-time Google OAuth authorization to sync description updates.
+            OAuth Desktop App credentials needed to authorize YouTube Data API v3 and sync the Skool link across video descriptions.
           </div>
         </div>
       </div>
       <div>
-        <a href="#cli-commands" class="btn btn-primary">Run OAuth Dry-Run</a>
+        <a href="#auth-guide" class="btn btn-primary">View Auth Steps ➔</a>
       </div>
     </div>
 
@@ -417,8 +408,45 @@
         </div>
       </div>
       <div class="card">
-        <div class="card-label">Execution Status</div>
-        <div class="card-value" style="color: var(--accent-yellow); font-size: 18px;">Awaiting OAuth Run</div>
+        <div class="card-label">Azure Key Vault</div>
+        <div class="card-value" style="color: var(--accent-blue); font-size: 16px;">dp-kv-deliverypilot</div>
+      </div>
+    </div>
+
+    <!-- OAuth & Azure Key Vault Guide Section -->
+    <div id="auth-guide" class="section">
+      <h2 class="section-title">🔑 Authentication & Azure Key Vault Steps</h2>
+
+      <div class="step-box">
+        <h4><span class="step-number">1</span> Create Desktop App OAuth Client ID</h4>
+        <p style="color: var(--text-muted); font-size: 14px; margin-top: 4px;">
+          Open <a class="link-highlight" href="https://console.cloud.google.com/apis/credentials" target="_blank">Google Cloud Console Credentials (Project: deliverypilot) ↗</a>.<br>
+          Click <strong>+ CREATE CREDENTIALS</strong> ➔ <strong>OAuth client ID</strong> ➔ Set Application type to <strong>Desktop App</strong> ➔ Name: <code>YouTube Studio MCP Desktop</code> ➔ Click <strong>CREATE</strong> ➔ <strong>DOWNLOAD JSON</strong>.
+        </p>
+      </div>
+
+      <div class="step-box">
+        <h4><span class="step-number">2</span> Save & Backup to Azure Key Vault</h4>
+        <p style="color: var(--text-muted); font-size: 14px; margin-top: 4px;">
+          Save the downloaded JSON file as <code>client_secret.json</code> in this project root, then store it in Azure Key Vault:
+        </p>
+        <div class="code-block">az keyvault secret set --vault-name dp-kv-deliverypilot --name youtube-client-secret --file client_secret.json</div>
+      </div>
+
+      <div class="step-box">
+        <h4><span class="step-number">3</span> Run OAuth Dry-Run to Authenticate</h4>
+        <p style="color: var(--text-muted); font-size: 14px; margin-top: 4px;">
+          Run the dry-run command. It will open Google Chrome to complete one-time channel consent:
+        </p>
+        <div class="code-block">./venv/bin/python append_skool_link.py --dry-run</div>
+      </div>
+
+      <div class="step-box">
+        <h4><span class="step-number">4</span> Backup Authorized Token to Azure Key Vault</h4>
+        <p style="color: var(--text-muted); font-size: 14px; margin-top: 4px;">
+          Once the run succeeds and <code>token.json</code> is created, store it in Azure Key Vault:
+        </p>
+        <div class="code-block">az keyvault secret set --vault-name dp-kv-deliverypilot --name youtube-token --file token.json</div>
       </div>
     </div>
 
@@ -471,15 +499,15 @@
     <!-- CLI Commands Section -->
     <div id="cli-commands" class="section">
       <h2 class="section-title">⚡ CLI Execution Commands</h2>
-      <p style="color: var(--text-muted); margin-bottom: 8px;">
-        Run the Python batch tool using your local virtual environment:
-      </p>
       <div class="code-block">
 # 1. Run Dry-Run (Authenticates OAuth & simulates without modifying)
 ./venv/bin/python append_skool_link.py --dry-run
 
 # 2. Apply Live Update across all 25 channel videos
 ./venv/bin/python append_skool_link.py --apply
+
+# 3. Pull credentials from Azure Key Vault anytime
+./venv/bin/python fetch_azure_secrets.py --vault dp-kv-deliverypilot
       </div>
     </div>
 
@@ -531,7 +559,6 @@
       tbody.appendChild(tr);
     });
 
-    // Smooth navigation scroll
     document.querySelectorAll('.nav-link').forEach(link => {
       link.addEventListener('click', function(e) {
         document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
