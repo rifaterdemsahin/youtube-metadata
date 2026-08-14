@@ -113,7 +113,7 @@
     }
 
     .card-value {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 700;
       font-family: 'JetBrains Mono', monospace;
     }
@@ -135,6 +135,10 @@
       gap: 8px;
     }
 
+    .table-container {
+      overflow-x: auto;
+    }
+
     table {
       width: 100%;
       border-collapse: collapse;
@@ -148,6 +152,7 @@
       color: var(--text-muted);
       font-weight: 600;
       border-bottom: 1px solid var(--border);
+      white-space: nowrap;
     }
 
     td {
@@ -155,8 +160,8 @@
       border-bottom: 1px solid var(--border);
     }
 
-    tr:last-child td {
-      border-bottom: none;
+    tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
     }
 
     .code-block {
@@ -180,14 +185,21 @@
       text-decoration: underline;
     }
 
-    .tag-updated {
-      color: var(--accent-green);
+    .tag-status-pending {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 6px;
+      font-size: 12px;
       font-weight: 600;
+      background: rgba(210, 153, 34, 0.15);
+      color: var(--accent-yellow);
+      border: 1px solid rgba(210, 153, 34, 0.3);
     }
 
-    .tag-skipped {
-      color: var(--accent-yellow);
-      font-weight: 600;
+    .meta-tag {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 4px;
     }
   </style>
 </head>
@@ -213,13 +225,37 @@
       </div>
       <div class="card">
         <div class="card-label">Target Skool Community</div>
-        <div class="card-value" style="font-size: 15px; word-break: break-all;">
+        <div class="card-value" style="font-size: 14px; word-break: break-all;">
           <a class="link-highlight" href="https://www.skool.com/delivery-pilot-8938" target="_blank">skool.com/delivery-pilot-8938 ↗</a>
         </div>
       </div>
       <div class="card">
-        <div class="card-label">Server Mode</div>
-        <div id="opMode" class="card-value" style="font-size: 18px; color: var(--accent-blue);">Dry-Run / MCP</div>
+        <div class="card-label">Target Queue Count</div>
+        <div id="queueCount" class="card-value" style="color: var(--accent-blue);">25 Videos</div>
+      </div>
+    </div>
+
+    <!-- Skool Link Append Operations Status -->
+    <div class="section">
+      <h2 class="section-title">📊 YouTube Channel Video Update Queue (25 Videos)</h2>
+      <p style="color: var(--text-muted); margin-bottom: 16px;">
+        Tracking batch metadata synchronization across <strong>@RifatErdemSahin</strong> videos to append the Skool community link.
+      </p>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Video Title</th>
+              <th>Duration / Stats</th>
+              <th>Action</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="videoRows">
+            <!-- Rendered by JS or default fallback -->
+          </tbody>
+        </table>
       </div>
     </div>
 
@@ -245,32 +281,6 @@
 }</code></pre>
     </div>
 
-    <!-- Skool Link Append Operations Status -->
-    <div class="section">
-      <h2 class="section-title">📊 YouTube Metadata Update Queue</h2>
-      <p style="color: var(--text-muted); margin-bottom: 16px;">
-        Batch operation tracker for syncing the Skool community link across <strong>@RifatErdemSahin</strong> video descriptions.
-      </p>
-      <table>
-        <thead>
-          <tr>
-            <th>Video Title / ID</th>
-            <th>Privacy</th>
-            <th>Target Link Action</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody id="videoRows">
-          <tr>
-            <td><strong>@RifatErdemSahin Videos Sync</strong><br><span style="color: var(--text-muted); font-size: 12px;">Automated batch processor</span></td>
-            <td>Public / Unlisted</td>
-            <td>Append <code>https://www.skool.com/delivery-pilot-8938</code></td>
-            <td><span class="tag-skipped">Ready to run</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-
     <!-- Quick Run Commands -->
     <div class="section">
       <h2 class="section-title">⚡ CLI Execution Commands</h2>
@@ -285,37 +295,50 @@
   </div>
 
   <script>
-    fetch('update_report.json')
-      .then(res => res.json())
-      .then(data => {
-        if (!data) return;
-        document.getElementById('opMode').innerText = data.dry_run ? 'Dry Run' : 'Live Update';
-        const tbody = document.getElementById('videoRows');
-        tbody.innerHTML = '';
+    const videos = [
+      { id: "1", title: "Claude AI Certification for Architects | Masterclass Intro", duration: "0:11", views: "50 views", age: "1 month ago" },
+      { id: "2", title: "AI No-Code: Build Your Own AI Solutions (Step-by-Step)", duration: "24:54", views: "397 views", age: "5 months ago" },
+      { id: "3", title: "The Agentic Era: How to Build a Digital Workforce & Close the AI Skill Gap", duration: "19:51", views: "395 views", age: "6 months ago" },
+      { id: "4", title: "The New Professional Standard: Navigating the AI Career Shift", duration: "15:37", views: "228 views", age: "6 months ago" },
+      { id: "5", title: "RAISE Your AI SKILLS: Build a RAG Application with Copilot & Codespaces", duration: "20:56", views: "340 views", age: "8 months ago" },
+      { id: "6", title: "10x Your Interview Rate: The ChatGPT + GitHub CV System Recruiters LOVE Tailored Resume in 2 Minutes", duration: "5:55", views: "186 views", age: "9 months ago" },
+      { id: "7", title: "AI Agents vs. Human Freelancers: The Brutal Truth", duration: "12:49", views: "287 views", age: "9 months ago" },
+      { id: "8", title: "Authentic AI Content Creation — Build the Content Magician Using RAG + n8n", duration: "5:08", views: "268 views", age: "9 months ago" },
+      { id: "9", title: "How to Actually Learn AI: The Visual Construction Method Nobody Teaches", duration: "16:59", views: "346 views", age: "9 months ago" },
+      { id: "10", title: "How to Build an AI to Automate LinkedIn Job Hunt", duration: "15:28", views: "531 views", age: "10 months ago" },
+      { id: "11", title: "Our Resumes are Obsolete. Build This AI CV Generator Instead", duration: "10:03", views: "150 views", age: "10 months ago" },
+      { id: "12", title: "How to write your Cover Letters with AI", duration: "8:40", views: "147 views", age: "10 months ago" },
+      { id: "13", title: "The AI Integration Skill Every Professional Needs (MCP Explained)", duration: "5:58", views: "309 views", age: "1 year ago" },
+      { id: "14", title: "The Rise of Personal AI: How It Will Change Everything", duration: "9:34", views: "118 views", age: "1 year ago" },
+      { id: "15", title: "Why \"Being Broken\" is Your Secret Weapon in the Age of AI", duration: "18:20", views: "53 views", age: "1 year ago" },
+      { id: "16", title: "Master Complex Topics with These Simple AI Strategies!", duration: "7:45", views: "81 views", age: "1 year ago" },
+      { id: "17", title: "🚀 Mastering Self-Learning: How to Fail, Learn, & Leverage AI for Success! 💡 | Ultimate Growth Guide", duration: "10:39", views: "100 views", age: "1 year ago" },
+      { id: "18", title: "How to Use AI for Accountability: Tech Lessons from Groundhog Day", duration: "21:18", views: "58 views", age: "1 year ago" },
+      { id: "19", title: "10 AI-Powered Tips to Learn Faster and Execute Like a Pro", duration: "13:50", views: "120 views", age: "1 year ago" },
+      { id: "20", title: "Daily Skill Learning with AI: Transform Your Life One Day at a Time", duration: "15:14", views: "183 views", age: "1 year ago" },
+      { id: "21", title: "AI-Powered CV as Code: Accelerate Skill Mastery with Hands-On Learning", duration: "7:07", views: "302 views", age: "1 year ago" },
+      { id: "22", title: "AI-Powered Emotional Intelligence: Innovate and Thrive in Work and Life", duration: "8:39", views: "83 views", age: "1 year ago" },
+      { id: "23", title: "AI Career Guide: Start Your IT Career Today and Thrive in Tech", duration: "19:59", views: "142 views", age: "2 years ago" },
+      { id: "24", title: "Learn Text Blaze To Boost Your AI Based Self Learning", duration: "5:03", views: "157 views", age: "2 years ago" },
+      { id: "25", title: "Master AI, Stay Ahead, Bridge Skills Gap", duration: "46:04", views: "130 views", age: "2 years ago" }
+    ];
 
-        (data.updated_videos || []).forEach(v => {
-          const tr = document.createElement('tr');
-          tr.innerHTML = `
-            <td><strong>${v.title}</strong><br><span style="color: #8b949e; font-size: 12px;">ID: ${v.id}</span></td>
-            <td>${v.privacy || 'public'}</td>
-            <td>Append Skool link</td>
-            <td><span class="tag-updated">${v.status}</span></td>
-          `;
-          tbody.appendChild(tr);
-        });
-
-        (data.skipped_videos || []).forEach(v => {
-          const tr = document.createElement('tr');
-          tr.innerHTML = `
-            <td><strong>${v.title}</strong><br><span style="color: #8b949e; font-size: 12px;">ID: ${v.id}</span></td>
-            <td>${v.privacy || 'public'}</td>
-            <td>Already Contains Link</td>
-            <td><span class="tag-skipped">Skipped</span></td>
-          `;
-          tbody.appendChild(tr);
-        });
-      })
-      .catch(() => {});
+    const tbody = document.getElementById('videoRows');
+    tbody.innerHTML = '';
+    videos.forEach((v, index) => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td style="color: #8b949e; font-family: monospace;">${index + 1}</td>
+        <td><strong>${v.title}</strong></td>
+        <td>
+          <div>⏱️ ${v.duration}</div>
+          <div class="meta-tag">👁️ ${v.views} • 📅 ${v.age}</div>
+        </td>
+        <td><code style="font-size: 12px; color: var(--accent-blue);">+ Skool Link</code></td>
+        <td><span class="tag-status-pending">Targeted (Pending Run)</span></td>
+      `;
+      tbody.appendChild(tr);
+    });
   </script>
 </body>
 </html>
