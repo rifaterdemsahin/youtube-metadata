@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+
+# OAuth Tokens & Secrets (Never commit credentials)
+client_secret.json
+token.json
+.env
+
+# Reports
+update_report.json
+
+# IDE
+.vscode/
+.idea/
+.DS_Store
