@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """
-CLI Script to append your Skool community link to all YouTube video descriptions.
+CLI Script to append your Skool community link to YouTube video descriptions.
 Target Channel: https://www.youtube.com/@RifatErdemSahin (@RifatErdemSahin)
 
 Usage:
   ./venv/bin/python append_skool_link.py --dry-run
   ./venv/bin/python append_skool_link.py --apply
+  ./venv/bin/python append_skool_link.py --apply --limit 1
 """
 
 import argparse
@@ -19,34 +20,38 @@ SKOOL_LINK_DEFAULT = "https://www.skool.com/delivery-pilot-8938"
 CHANNEL_HANDLE_DEFAULT = "@RifatErdemSahin"
 CHANNEL_URL_DEFAULT = "https://www.youtube.com/@RifatErdemSahin"
 REPORT_FILE = "update_report.json"
+EMOJI_PREFIX_DEFAULT = "\n\n🚀 Join our AI Builders & Architects Community:\n👉 "
 
 def main():
-    parser = argparse.ArgumentParser(description="Append Skool link to all YouTube video descriptions.")
+    parser = argparse.ArgumentParser(description="Append Skool link to YouTube video descriptions.")
     parser.add_argument("--link", default=SKOOL_LINK_DEFAULT, help="The link to append to video descriptions")
-    parser.add_argument("--prefix", default="\n\n🚀 Join our community:\n", help="Prefix text before the link")
-    parser.add_argument("--dry-run", action="store_true", default=False, help="Explicit flag for dry run (default behavior without --apply)")
+    parser.add_argument("--prefix", default=EMOJI_PREFIX_DEFAULT, help="Prefix text with emojis before the link")
+    parser.add_argument("--limit", type=int, default=None, help="Limit number of videos to process (e.g. 1)")
+    parser.add_argument("--dry-run", action="store_true", default=False, help="Explicit flag for dry run")
     parser.add_argument("--apply", action="store_true", help="Apply actual updates to YouTube (default is dry-run)")
     args = parser.parse_args()
 
     dry_run = not args.apply
     print("=" * 60)
-    print("YouTube Studio Metadata Updater - Skool Link Syncer")
-    print(f"Target Channel: {CHANNEL_HANDLE_DEFAULT} ({CHANNEL_URL_DEFAULT})")
-    print(f"Mode: {'DRY RUN (Simulated)' if dry_run else '🔴 LIVE UPDATE (Applying changes)'}")
-    print(f"Target Link: {args.link}")
+    print("🎬 YouTube Studio Metadata Updater - Skool Link Syncer")
+    print(f"📺 Target Channel: {CHANNEL_HANDLE_DEFAULT} ({CHANNEL_URL_DEFAULT})")
+    print(f"⚙️  Mode: {'🧪 DRY RUN (Simulated)' if dry_run else '🔴 LIVE UPDATE (Applying changes)'}")
+    print(f"🎯 Target Link: {args.link}")
+    if args.limit:
+        print(f"🔢 Limit: Processing maximum {args.limit} video(s)")
     print("=" * 60)
 
     try:
         youtube = youtube_client.get_youtube_service()
     except Exception as e:
-        print(f"\n[ERROR] Authentication failed: {e}")
-        print("Make sure 'client_secret.json' is configured.")
+        print(f"\n❌ [ERROR] Authentication failed: {e}")
+        print("Make sure 'client_secret.json' and 'token.json' are configured.")
         sys.exit(1)
 
-    print("Fetching uploaded videos...")
+    print("🔍 Fetching uploaded videos...")
     channels = youtube.channels().list(mine=True, part="contentDetails,snippet").execute()
     if not channels.get("items"):
-        print("No channel found for authenticated account.")
+        print("❌ No channel found for authenticated account.")
         sys.exit(1)
 
     channel_info = channels["items"][0]["snippet"]
@@ -54,17 +59,18 @@ def main():
     custom_url = channel_info.get("customUrl", CHANNEL_HANDLE_DEFAULT)
     uploads_id = channels["items"][0]["contentDetails"]["relatedPlaylists"]["uploads"]
     
-    print(f"Connected to channel: '{channel_name}' ({custom_url})")
+    print(f" Connected to channel: '{channel_name}' ({custom_url})")
 
     updated_videos = []
     skipped_videos = []
     page_token = None
+    processed_count = 0
 
     while True:
         pl_req = youtube.playlistItems().list(
             playlistId=uploads_id,
             part="snippet,contentDetails",
-            maxResults=50,
+            maxResults=min(50, args.limit) if args.limit else 50,
             pageToken=page_token
         )
         pl_res = pl_req.execute()
@@ -75,6 +81,9 @@ def main():
 
         v_res = youtube.videos().list(id=",".join(video_ids), part="snippet,status").execute()
         for v in v_res.get("items", []):
+            if args.limit and processed_count >= args.limit:
+                break
+
             vid = v["id"]
             title = v["snippet"]["title"]
             desc = v["snippet"].get("description", "")
@@ -87,15 +96,15 @@ def main():
                     "privacy": privacy,
                     "reason": "Link already present"
                 })
-                print(f"  [SKIPPED] {title} ({vid}) - Already has link")
+                print(f"  ⏭️  [SKIPPED] {title} ({vid}) - Already contains link")
             else:
                 new_desc = desc.rstrip() + args.prefix + args.link
                 if not dry_run:
                     v["snippet"]["description"] = new_desc
                     youtube.videos().update(part="snippet", body={"id": vid, "snippet": v["snippet"]}).execute()
-                    print(f"  [UPDATED] {title} ({vid})")
+                    print(f"  ✅ [UPDATED] {title} ({vid})")
                 else:
-                    print(f"  [WOULD UPDATE] {title} ({vid})")
+                    print(f"  👀 [WOULD UPDATE] {title} ({vid})")
 
                 updated_videos.append({
                     "id": vid,
@@ -104,6 +113,10 @@ def main():
                     "status": "Updated" if not dry_run else "Pending (Dry Run)",
                     "updated_at": datetime.now().isoformat()
                 })
+                processed_count += 1
+
+        if args.limit and processed_count >= args.limit:
+            break
 
         page_token = pl_res.get("nextPageToken")
         if not page_token:
@@ -127,11 +140,11 @@ def main():
         json.dump(report_data, f, indent=2)
 
     print("\n" + "=" * 60)
-    print(f"Execution Completed for Channel: {channel_name} ({custom_url})")
-    print(f"Total Videos Checked: {report_data['total_checked']}")
-    print(f"Targeted for Update: {report_data['total_updated']}")
-    print(f"Skipped (Already present): {report_data['total_skipped']}")
-    print(f"Report saved to: {REPORT_FILE}")
+    print(f"🎉 Execution Completed for Channel: {channel_name} ({custom_url})")
+    print(f"📊 Total Videos Checked: {report_data['total_checked']}")
+    print(f"✨ Updated Count: {report_data['total_updated']}")
+    print(f"⏭️  Skipped Count: {report_data['total_skipped']}")
+    print(f"📁 Report saved to: {REPORT_FILE}")
     print("=" * 60)
 
 if __name__ == "__main__":
