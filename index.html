@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YouTube Studio Metadata & MCP Operations Dashboard</title>
+  <title>YouTube Studio MCP & Metadata Operations - @RifatErdemSahin</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -113,7 +113,7 @@
     }
 
     .card-value {
-      font-size: 28px;
+      font-size: 22px;
       font-weight: 700;
       font-family: 'JetBrains Mono', monospace;
     }
@@ -189,25 +189,6 @@
       color: var(--accent-yellow);
       font-weight: 600;
     }
-
-    .btn-action {
-      background: #238636;
-      color: #fff;
-      border: 1px solid rgba(240, 246, 252, 0.1);
-      padding: 8px 16px;
-      border-radius: 6px;
-      font-weight: 600;
-      cursor: pointer;
-      font-size: 14px;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .btn-action:hover {
-      background: #2ea043;
-    }
   </style>
 </head>
 <body>
@@ -225,18 +206,20 @@
     <!-- Quick Metrics -->
     <div class="grid">
       <div class="card">
-        <div class="card-label">Target Link</div>
-        <div class="card-value" style="font-size: 15px; word-break: break-all;">
-          <a class="link-highlight" href="https://www.skool.com/delivery-pilot-8938" target="_blank">skool.com/delivery-pilot-8938</a>
+        <div class="card-label">Target YouTube Channel</div>
+        <div class="card-value" style="font-size: 16px;">
+          <a class="link-highlight" href="https://www.youtube.com/@RifatErdemSahin" target="_blank">@RifatErdemSahin ↗</a>
         </div>
       </div>
       <div class="card">
-        <div class="card-label">Operation Mode</div>
-        <div id="opMode" class="card-value" style="font-size: 20px; color: var(--accent-blue);">Dry-Run / MCP</div>
+        <div class="card-label">Target Skool Community</div>
+        <div class="card-value" style="font-size: 15px; word-break: break-all;">
+          <a class="link-highlight" href="https://www.skool.com/delivery-pilot-8938" target="_blank">skool.com/delivery-pilot-8938 ↗</a>
+        </div>
       </div>
       <div class="card">
-        <div class="card-label">Server Status</div>
-        <div class="card-value" style="font-size: 20px; color: var(--accent-green);">Ready (stdio)</div>
+        <div class="card-label">Server Mode</div>
+        <div id="opMode" class="card-value" style="font-size: 18px; color: var(--accent-blue);">Dry-Run / MCP</div>
       </div>
     </div>
 
@@ -249,7 +232,7 @@
       <pre class="code-block"><code>{
   "mcpServers": {
     "youtube-studio": {
-      "command": "python3",
+      "command": "/Users/rifaterdemsahin/projects/youtube-metadata/venv/bin/python3",
       "args": [
         "/Users/rifaterdemsahin/projects/youtube-metadata/server.py"
       ],
@@ -266,7 +249,7 @@
     <div class="section">
       <h2 class="section-title">📊 YouTube Metadata Update Queue</h2>
       <p style="color: var(--text-muted); margin-bottom: 16px;">
-        Batch operation tracker for syncing the Skool community link across video descriptions.
+        Batch operation tracker for syncing the Skool community link across <strong>@RifatErdemSahin</strong> video descriptions.
       </p>
       <table>
         <thead>
@@ -279,10 +262,10 @@
         </thead>
         <tbody id="videoRows">
           <tr>
-            <td><strong>Channel Videos Sync</strong><br><span style="color: var(--text-muted); font-size: 12px;">Automated batch processor</span></td>
+            <td><strong>@RifatErdemSahin Videos Sync</strong><br><span style="color: var(--text-muted); font-size: 12px;">Automated batch processor</span></td>
             <td>Public / Unlisted</td>
             <td>Append <code>https://www.skool.com/delivery-pilot-8938</code></td>
-            <td><span class="tag-skipped">Awaiting OAuth run</span></td>
+            <td><span class="tag-skipped">Ready to run</span></td>
           </tr>
         </tbody>
       </table>
@@ -292,20 +275,16 @@
     <div class="section">
       <h2 class="section-title">⚡ CLI Execution Commands</h2>
       <div class="code-block">
-# 1. Install dependencies
-pip install -r requirements.txt
+# 1. Test run (Dry-Run: inspect without modifying YouTube descriptions)
+./venv/bin/python append_skool_link.py --dry-run
 
-# 2. Test run (Dry-Run: inspect without changing descriptions)
-python append_skool_link.py --dry-run
-
-# 3. Apply live update to all channel videos
-python append_skool_link.py --apply
+# 2. Apply live update across all channel videos
+./venv/bin/python append_skool_link.py --apply
       </div>
     </div>
   </div>
 
   <script>
-    // Fetch live update report if generated
     fetch('update_report.json')
       .then(res => res.json())
       .then(data => {
@@ -336,9 +315,7 @@ python append_skool_link.py --apply
           tbody.appendChild(tr);
         });
       })
-      .catch(() => {
-        // Fallback when report hasn't been generated yet
-      });
+      .catch(() => {});
   </script>
 </body>
 </html>

@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
 """
 CLI Script to append your Skool community link to all YouTube video descriptions.
+Target Channel: https://www.youtube.com/@RifatErdemSahin (@RifatErdemSahin)
+
 Usage:
-  python append_skool_link.py --dry-run
-  python append_skool_link.py --apply
+  ./venv/bin/python append_skool_link.py --dry-run
+  ./venv/bin/python append_skool_link.py --apply
 """
 
 import argparse
@@ -14,6 +16,8 @@ from datetime import datetime
 import youtube_client
 
 SKOOL_LINK_DEFAULT = "https://www.skool.com/delivery-pilot-8938"
+CHANNEL_HANDLE_DEFAULT = "@RifatErdemSahin"
+CHANNEL_URL_DEFAULT = "https://www.youtube.com/@RifatErdemSahin"
 REPORT_FILE = "update_report.json"
 
 def main():
@@ -26,6 +30,7 @@ def main():
     dry_run = not args.apply
     print("=" * 60)
     print("YouTube Studio Metadata Updater - Skool Link Syncer")
+    print(f"Target Channel: {CHANNEL_HANDLE_DEFAULT} ({CHANNEL_URL_DEFAULT})")
     print(f"Mode: {'DRY RUN (Simulated)' if dry_run else '🔴 LIVE UPDATE (Applying changes)'}")
     print(f"Target Link: {args.link}")
     print("=" * 60)
@@ -34,7 +39,7 @@ def main():
         youtube = youtube_client.get_youtube_service()
     except Exception as e:
         print(f"\n[ERROR] Authentication failed: {e}")
-        print("Make sure 'client_secret.json' is placed in the project root folder.")
+        print("Make sure 'client_secret.json' is configured.")
         sys.exit(1)
 
     print("Fetching uploaded videos...")
@@ -43,9 +48,12 @@ def main():
         print("No channel found for authenticated account.")
         sys.exit(1)
 
-    channel_name = channels["items"][0]["snippet"]["title"]
+    channel_info = channels["items"][0]["snippet"]
+    channel_name = channel_info.get("title", "Unknown Channel")
+    custom_url = channel_info.get("customUrl", CHANNEL_HANDLE_DEFAULT)
     uploads_id = channels["items"][0]["contentDetails"]["relatedPlaylists"]["uploads"]
-    print(f"Connected to channel: '{channel_name}'")
+    
+    print(f"Connected to channel: '{channel_name}' ({custom_url})")
 
     updated_videos = []
     skipped_videos = []
@@ -102,6 +110,8 @@ def main():
 
     report_data = {
         "channel_name": channel_name,
+        "channel_handle": custom_url,
+        "channel_url": CHANNEL_URL_DEFAULT,
         "timestamp": datetime.now().isoformat(),
         "dry_run": dry_run,
         "link": args.link,
@@ -116,7 +126,7 @@ def main():
         json.dump(report_data, f, indent=2)
 
     print("\n" + "=" * 60)
-    print(f"Execution Completed!")
+    print(f"Execution Completed for Channel: {channel_name} ({custom_url})")
     print(f"Total Videos Checked: {report_data['total_checked']}")
     print(f"Targeted for Update: {report_data['total_updated']}")
     print(f"Skipped (Already present): {report_data['total_skipped']}")

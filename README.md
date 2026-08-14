@@ -4,16 +4,24 @@ A Python-based **Model Context Protocol (MCP)** server and automated metadata up
 
 ---
 
+## 📺 Configured YouTube Channel
+
+- **Channel URL**: [https://www.youtube.com/@RifatErdemSahin](https://www.youtube.com/@RifatErdemSahin)
+- **Channel Handle**: `@RifatErdemSahin`
+- **Target Skool Community**: [https://www.skool.com/delivery-pilot-8938](https://www.skool.com/delivery-pilot-8938)
+
+---
+
 ## 🌟 Features
 
 - **MCP Tools for Claude Desktop & Cursor**:
-  - `check_auth_status`: Validate OAuth2 authentication and channel access.
+  - `check_auth_status`: Validate OAuth2 authentication and channel access for `@RifatErdemSahin`.
   - `list_videos`: Fetch all uploaded videos, metadata, statistics, and thumbnails.
   - `update_video`: Edit video title, description, tags, category, and privacy status.
   - `set_thumbnail`: Upload custom high-res video thumbnails.
   - `append_link_to_all_descriptions`: Batch append community/promotional links (such as Skool) across all channel videos with dry-run support.
-- **Local OAuth 2.0 Management**: Supports `client_secret.json` and persistent `token.json` token refresh.
-- **Bulk Metadata CLI Script**: `append_skool_link.py` to batch-append your [Skool Community link](https://www.skool.com/delivery-pilot-8938) to all videos with simulation and report generation.
+- **Local OAuth 2.0 Management**: Supports `client_secret.json` and persistent `token.json` token refresh with Azure Key Vault sync.
+- **Bulk Metadata CLI Script**: `append_skool_link.py` to batch-append your Skool Community link to all videos with simulation and report generation.
 - **Visual Operations Dashboard**: `index.html` for tracking server configuration and update reports.
 
 ---
@@ -26,22 +34,6 @@ A Python-based **Model Context Protocol (MCP)** server and automated metadata up
 
 ---
 
-## 🚀 Quick Setup
-
-### 1. Install Dependencies
-```bash
-pip install -r requirements.txt
-```
-
-### 2. Configure Google Cloud OAuth Credentials
-1. Go to the [Google Cloud Console](https://console.cloud.google.com/).
-2. Create a project and enable the **YouTube Data API v3**.
-3. Create OAuth 2.0 Credentials:
-   - Application type: **Desktop App**
-4. Download the JSON credential file and save it as **`client_secret.json`** in this project directory.
-
----
-
 ## 🔌 MCP Configuration (Claude Desktop & Cursor)
 
 Add the following block to your MCP config (`~/Library/Application Support/Claude/claude_desktop_config.json`):
@@ -50,7 +42,7 @@ Add the following block to your MCP config (`~/Library/Application Support/Claud
 {
   "mcpServers": {
     "youtube-studio": {
-      "command": "python3",
+      "command": "/Users/rifaterdemsahin/projects/youtube-metadata/venv/bin/python3",
       "args": [
         "/Users/rifaterdemsahin/projects/youtube-metadata/server.py"
       ],
@@ -67,16 +59,16 @@ Add the following block to your MCP config (`~/Library/Application Support/Claud
 
 ## 🎯 Batch Update: Append Skool Link to All Videos
 
-To append `https://www.skool.com/delivery-pilot-8938` to all video descriptions:
+Target Link: `https://www.skool.com/delivery-pilot-8938`
 
 ### Dry-run (Preview without modifying):
 ```bash
-python append_skool_link.py --dry-run
+./venv/bin/python append_skool_link.py --dry-run
 ```
 
 ### Apply Live Changes:
 ```bash
-python append_skool_link.py --apply
+./venv/bin/python append_skool_link.py --apply
 ```
 
 ---
@@ -84,4 +76,4 @@ python append_skool_link.py --apply
 ## 📊 Operations Dashboard
 
 View the local reporting page:
-- [index.html](file:///Users/rifaterdemsahin/projects/youtube-metadata/index.html)
+- [index.html](http://localhost:8080/index.html)
