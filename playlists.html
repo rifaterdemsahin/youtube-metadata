@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Playlists & Learning Paths — @RifatErdemSahin</title>
+  <meta name="description" content="Curated YouTube playlists and AI learning paths by @RifatErdemSahin covering Hands On Tools, Claude Certification, Reskilling, Upskilling, Skill Mastery, and Personal Development.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #090d13;
+      --bg-secondary: #121820;
+      --bg-card: #19222c;
+      --bg-card-hover: #1f2b38;
+      --border: #283545;
+      --border-focus: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent-blue: #38bdf8;
+      --accent-purple: #818cf8;
+      --accent-green: #34d399;
+      --accent-yellow: #fbbf24;
+      --accent-red: #f87171;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-top: 72px;
+    }
+
+    .top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(18, 24, 32, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      z-index: 1000;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+
+    .nav-logo {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #ff0033, #cc0000);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 16px;
+      color: white;
+      box-shadow: 0 2px 8px rgba(255, 0, 51, 0.3);
+    }
+
+    .nav-title {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-link.active {
+      color: var(--accent-purple);
+      background: rgba(129, 140, 248, 0.12);
+      font-weight: 600;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 32px auto 64px auto;
+      padding: 0 24px;
+    }
+
+    .hero-header {
+      background: linear-gradient(135deg, rgba(129, 140, 248, 0.12), rgba(56, 189, 248, 0.05));
+      border: 1px solid rgba(129, 140, 248, 0.3);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .hero-title {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-desc {
+      color: var(--text-muted);
+      font-size: 14px;
+      max-width: 720px;
+    }
+
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .search-input {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 16px;
+      color: var(--text-main);
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      min-width: 280px;
+      flex-grow: 1;
+      max-width: 500px;
+      transition: border-color 0.2s;
+    }
+
+    .search-input:focus {
+      border-color: var(--border-focus);
+    }
+
+    .playlist-stats {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* Playlist Grid */
+    .playlist-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .playlist-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .playlist-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.2s ease;
+    }
+
+    .playlist-card:hover {
+      border-color: rgba(129, 140, 248, 0.45);
+      background: var(--bg-card);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .playlist-thumb-wrapper {
+      position: relative;
+      aspect-ratio: 16/9;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .playlist-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .playlist-card:hover .playlist-thumb {
+      transform: scale(1.03);
+    }
+
+    .playlist-badge {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background: rgba(9, 13, 19, 0.88);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: white;
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .playlist-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      gap: 12px;
+    }
+
+    .playlist-title {
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--text-main);
+    }
+
+    .playlist-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.55;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      flex-grow: 1;
+    }
+
+    .playlist-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: auto;
+      padding-top: 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.15s ease;
+      flex: 1;
+    }
+
+    .btn-primary {
+      background: #818cf8;
+      color: #090d13;
+    }
+
+    .btn-primary:hover {
+      background: #a5b4fc;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.14);
+      color: #fff;
+    }
+
+    /* Expandable Video Drawer */
+    .video-accordion {
+      border-top: 1px solid var(--border);
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .accordion-header {
+      padding: 10px 20px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent-blue);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    .accordion-header:hover {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+
+    .accordion-content.open {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .playlist-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 12.5px;
+      transition: all 0.15s ease;
+    }
+
+    .playlist-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+    }
+
+    .item-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      min-width: 18px;
+    }
+
+    .item-thumb {
+      width: 48px;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      border-radius: 4px;
+      background: #000;
+    }
+
+    .item-title {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex-grow: 1;
+    }
+
+    /* Toast */
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      pointer-events: none;
+    }
+
+    .toast {
+      background: #19222c;
+      color: var(--text-main);
+      border: 1px solid var(--border-focus);
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.25s ease-out;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 32px 0;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="top-nav" id="topNav">
+    <a href="index.html" class="nav-brand" id="navBrand">
+      <div class="nav-logo">▶</div>
+      <div><div class="nav-title">YouTube Studio MCP</div></div>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="nav-link" id="navLinkDashboard">Operations Dashboard</a></li>
+      <li><a href="catalog.html" class="nav-link" id="navLinkCatalog">Video Catalog & Notes</a></li>
+      <li><a href="playlists.html" class="nav-link active" id="navLinkPlaylists">Playlists & Paths</a></li>
+      <li><a href="updates.html" class="nav-link" id="navLinkUpdates">Applied Updates Log</a></li>
+      <li><a href="thumbnails.html" class="nav-link" id="navLinkThumbnails">Thumbnails Studio</a></li>
+      <li><a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" class="nav-link" id="navLinkYTChannel">@RifatErdemSahin ↗</a></li>
+      <li><a href="https://www.skool.com/delivery-pilot-8938" target="_blank" class="nav-link" id="navLinkSkool">Skool Community ↗</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a href="https://www.youtube.com/@RifatErdemSahin/playlists" target="_blank" class="btn btn-secondary" style="padding: 6px 12px; font-size: 12px;">All Playlists on YT ↗</a>
+    </div>
+  </nav>
+
+  <div class="container" id="mainContainer">
+
+    <!-- Hero Header -->
+    <header class="hero-header" id="heroHeader">
+      <div>
+        <h1 class="hero-title" id="pageTitle">
+          <span>📚</span> Playlists & Learning Paths
+        </h1>
+        <p class="hero-desc" id="pageDesc">
+          Curated playlists from <strong>@RifatErdemSahin</strong> designed to guide your journey through Hands-On Tools, Claude AI Certification, Reskilling, Upskilling, Skill Mastery, and Personal Development.
+        </p>
+      </div>
+    </header>
+
+    <!-- Filter & Search Bar -->
+    <div class="filter-bar" id="filterBar">
+      <input type="text" id="playlistSearch" class="search-input" placeholder="🔍 Search playlists or topics (e.g. Claude, Reskilling, Tools)..." oninput="filterPlaylists()">
+      <div class="playlist-stats" id="playlistStats">6 Playlists • 46 Total Videos</div>
+    </div>
+
+    <!-- Playlist Grid -->
+    <div class="playlist-grid" id="playlistGrid">
+
+      <!-- 1. Hands On Tools -->
+      <div class="playlist-card" data-title="hands on tools obsidian claude gemini ai knowledge engine" data-desc="learn how to use hands on tools to master ai">
+        <div class="playlist-thumb-wrapper">
+          <img src="thumbnails/thumbnail_HUTlnlw3h8o.jpg" alt="Hands On Tools Playlist Cover" class="playlist-thumb">
+          <div class="playlist-badge"><span>▶</span> 7 Videos</div>
+        </div>
+        <div class="playlist-body">
+          <h2 class="playlist-title">Hands On Tools</h2>
+          <p class="playlist-desc">Learn how to use hands on tools to master AI, explore workflows, tool integrations, Obsidian Second Brains, and practical automation pipelines.</p>
+          <div class="playlist-actions">
+            <a href="https://www.youtube.com/playlist?list=PLEaC7OEmKSrctJZUNh0pglIpJavDNO3yh" target="_blank" class="btn btn-primary">
+              ▶ Watch on YouTube ↗
+            </a>
+            <button class="btn btn-secondary" onclick="copyPlaylistLink('https://www.youtube.com/playlist?list=PLEaC7OEmKSrctJZUNh0pglIpJavDNO3yh')">
+              🔗 Copy Link
+            </button>
+          </div>
+        </div>
+        <div class="video-accordion">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>View Videos (7)</span>
+            <span class="accordion-arrow">▼</span>
+          </div>
+          <div class="accordion-content">
+            <a href="https://www.youtube.com/watch?v=HUTlnlw3h8o&list=PLEaC7OEmKSrctJZUNh0pglIpJavDNO3yh" target="_blank" class="playlist-item" style="background: rgba(56, 189, 248, 0.08); border-left: 3px solid var(--accent-blue);">
+              <span class="item-num" style="color:var(--accent-blue); font-weight:700;">★</span>
+              <img src="thumbnails/thumbnail_HUTlnlw3h8o.jpg" class="item-thumb" alt="Thumbnail">
+              <span class="item-title" style="color:var(--text-main); font-weight:600;">Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity</span>
+            </a>
+            <a href="https://www.youtube.com/watch?v=yI5BIb74kVI&list=PLEaC7OEmKSrctJZUNh0pglIpJavDNO3yh" target="_blank" class="playlist-item">
+              <span class="item-num">1</span>
+              <img src="https://i.ytimg.com/vi/yI5BIb74kVI/mqdefault.jpg" class="item-thumb" alt="Thumbnail">
+              <span class="item-title">Mastering Claude 3.5 Sonnet: Hands-On Tools</span>
+            </a>
+            <a href="https://www.youtube.com/watch?v=1oD31jVdZ8w&list=PLEaC7OEmKSrctJZUNh0pglIpJavDNO3yh" target="_blank" class="playlist-item">
+              <span class="item-num">2</span>
+              <img src="https://i.ytimg.com/vi/1oD31jVdZ8w/mqdefault.jpg" class="item-thumb" alt="Thumbnail">
+              <span class="item-title">AI Tool Setup & Workflow Execution</span>
+            </a>
+            <a href="https://www.youtube.com/watch?v=jW7K61n0318&list=PLEaC7OEmKSrctJZUNh0pglIpJavDNO3yh" target="_blank" class="playlist-item">
+              <span class="item-num">3</span>
+              <img src="https://i.ytimg.com/vi/jW7K61n0318/mqdefault.jpg" class="item-thumb" alt="Thumbnail">
+              <span class="item-title">Automation & Terminal Integration</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Claude AI Certification Course -->
+      <div class="playlist-card" data-title="claude ai certification course" data-desc="claude ai certification course for architects masterclass">
+        <div class="playlist-thumb-wrapper">
+          <img src="https://i.ytimg.com/vi/J0D7qV3nl7w/hqdefault.jpg" alt="Claude AI Certification Course Cover" class="playlist-thumb">
+          <div class="playlist-badge"><span>▶</span> 3 Videos</div>
+        </div>
+        <div class="playlist-body">
+          <h2 class="playlist-title">Claude AI Certification Course</h2>
+          <p class="playlist-desc">The definitive Claude AI Certification Course for Solutions, Enterprise, and AI Architects. Master enterprise LLM deployment, security, and prompt architecture.</p>
+          <div class="playlist-actions">
+            <a href="https://www.youtube.com/playlist?list=PLEaC7OEmKSrcrDQrZMEQGlMUge7q4Peiy" target="_blank" class="btn btn-primary">
+              ▶ Watch on YouTube ↗
+            </a>
+            <button class="btn btn-secondary" onclick="copyPlaylistLink('https://www.youtube.com/playlist?list=PLEaC7OEmKSrcrDQrZMEQGlMUge7q4Peiy')">
+              🔗 Copy Link
+            </button>
+          </div>
+        </div>
+        <div class="video-accordion">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>View Videos (3)</span>
+            <span class="accordion-arrow">▼</span>
+          </div>
+          <div class="accordion-content">
+            <a href="https://www.youtube.com/watch?v=J0D7qV3nl7w&list=PLEaC7OEmKSrcrDQrZMEQGlMUge7q4Peiy" target="_blank" class="playlist-item">
+              <span class="item-num">1</span>
+              <img src="https://i.ytimg.com/vi/J0D7qV3nl7w/mqdefault.jpg" class="item-thumb" alt="Thumbnail">
+              <span class="item-title">Claude AI Certification for Architects | Masterclass Intro</span>
+            </a>
+            <a href="https://www.youtube.com/watch?v=vV7Y1qW2Z8w&list=PLEaC7OEmKSrcrDQrZMEQGlMUge7q4Peiy" target="_blank" class="playlist-item">
+              <span class="item-num">2</span>
+              <img src="https://i.ytimg.com/vi/J0D7qV3nl7w/mqdefault.jpg" class="item-thumb" alt="Thumbnail">
+              <span class="item-title">Architectural Patterns with Anthropic Claude</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. 🔄 Reskilling with AI 🚀 -->
+      <div class="playlist-card" data-title="reskilling with ai" data-desc="time to upgrade your skillset and stay competitive digital age career pivot">
+        <div class="playlist-thumb-wrapper">
+          <img src="https://i.ytimg.com/vi/yI5BIb74kVI/hqdefault.jpg" alt="Reskilling with AI Cover" class="playlist-thumb">
+          <div class="playlist-badge"><span>▶</span> 15 Videos</div>
+        </div>
+        <div class="playlist-body">
+          <h2 class="playlist-title">🔄 Reskilling with AI 🚀</h2>
+          <p class="playlist-desc">Time to upgrade your skillset and stay competitive! Leveraging AI to help you learn faster, smarter, and more effectively whether you're pivoting careers or expanding knowledge.</p>
+          <div class="playlist-actions">
+            <a href="https://www.youtube.com/playlist?list=PLEaC7OEmKSrfCd46qgr4r0s9IrQd3F5ag" target="_blank" class="btn btn-primary">
+              ▶ Watch on YouTube ↗
+            </a>
+            <button class="btn btn-secondary" onclick="copyPlaylistLink('https://www.youtube.com/playlist?list=PLEaC7OEmKSrfCd46qgr4r0s9IrQd3F5ag')">
+              🔗 Copy Link
+            </button>
+          </div>
+        </div>
+        <div class="video-accordion">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>View Videos (15)</span>
+            <span class="accordion-arrow">▼</span>
+          </div>
+          <div class="accordion-content">
+            <a href="https://www.youtube.com/watch?v=yI5BIb74kVI&list=PLEaC7OEmKSrfCd46qgr4r0s9IrQd3F5ag" target="_blank" class="playlist-item">
+              <span class="item-num">1</span>
+              <img src="https://i.ytimg.com/vi/yI5BIb74kVI/mqdefault.jpg" class="item-thumb" alt="Thumbnail">
+              <span class="item-title">The Agentic Era: Building a Digital Workforce</span>
+            </a>
+            <a href="https://www.youtube.com/watch?v=qX3e0r7v80w&list=PLEaC7OEmKSrfCd46qgr4r0s9IrQd3F5ag" target="_blank" class="playlist-item">
+              <span class="item-num">2</span>
+              <img src="https://i.ytimg.com/vi/yI5BIb74kVI/mqdefault.jpg" class="item-thumb" alt="Thumbnail">
+              <span class="item-title">The New Professional Standard: Delivery Pilot Model</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. 📈 Upskilling with AI 🚀 -->
+      <div class="playlist-card" data-title="upskilling with ai" data-desc="ready to take your abilities to the next level career growth advanced techniques">
+        <div class="playlist-thumb-wrapper">
+          <img src="https://i.ytimg.com/vi/c1UotPbvKoQ/hqdefault.jpg" alt="Upskilling with AI Cover" class="playlist-thumb">
+          <div class="playlist-badge"><span>▶</span> 9 Videos</div>
+        </div>
+        <div class="playlist-body">
+          <h2 class="playlist-title">📈 Upskilling with AI 🚀</h2>
+          <p class="playlist-desc">Ready to take your abilities to the next level? Enhance your current skills, learn advanced techniques, boost your career, and thrive with AI-driven self-learning!</p>
+          <div class="playlist-actions">
+            <a href="https://www.youtube.com/playlist?list=PLEaC7OEmKSrcJWs_BtpE2fSG-YKWxO35Y" target="_blank" class="btn btn-primary">
+              ▶ Watch on YouTube ↗
+            </a>
+            <button class="btn btn-secondary" onclick="copyPlaylistLink('https://www.youtube.com/playlist?list=PLEaC7OEmKSrcJWs_BtpE2fSG-YKWxO35Y')">
+              🔗 Copy Link
+            </button>
+          </div>
+        </div>
+        <div class="video-accordion">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>View Videos (9)</span>
+            <span class="accordion-arrow">▼</span>
+          </div>
+          <div class="accordion-content">
+            <a href="https://www.youtube.com/watch?v=c1UotPbvKoQ&list=PLEaC7OEmKSrcJWs_BtpE2fSG-YKWxO35Y" target="_blank" class="playlist-item">
+              <span class="item-num">1</span>
+              <img src="https://i.ytimg.com/vi/c1UotPbvKoQ/mqdefault.jpg" class="item-thumb" alt="Thumbnail">
+              <span class="item-title">AI No-Code: Build Your Own AI Solutions</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. 🔧 Mastering Skills with AI 🤖 -->
+      <div class="playlist-card" data-title="mastering skills with ai" data-desc="welcome to your go to playlist for self education tech skills creative problem solving">
+        <div class="playlist-thumb-wrapper">
+          <img src="https://i.ytimg.com/vi/Frty5ICAdOo/hqdefault.jpg" alt="Mastering Skills with AI Cover" class="playlist-thumb">
+          <div class="playlist-badge"><span>▶</span> 10 Videos</div>
+        </div>
+        <div class="playlist-body">
+          <h2 class="playlist-title">🔧 Mastering Skills with AI 🤖</h2>
+          <p class="playlist-desc">Your go-to playlist for self-education! Sharpen your tech skills, bridge skill gaps with AI, and learn smarter, not harder—from coding to creative problem solving.</p>
+          <div class="playlist-actions">
+            <a href="https://www.youtube.com/playlist?list=PLEaC7OEmKSrc3_-Puch6jNCI8cHyvU2Q1" target="_blank" class="btn btn-primary">
+              ▶ Watch on YouTube ↗
+            </a>
+            <button class="btn btn-secondary" onclick="copyPlaylistLink('https://www.youtube.com/playlist?list=PLEaC7OEmKSrc3_-Puch6jNCI8cHyvU2Q1')">
+              🔗 Copy Link
+            </button>
+          </div>
+        </div>
+        <div class="video-accordion">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>View Videos (10)</span>
+            <span class="accordion-arrow">▼</span>
+          </div>
+          <div class="accordion-content">
+            <a href="https://www.youtube.com/watch?v=Frty5ICAdOo&list=PLEaC7OEmKSrc3_-Puch6jNCI8cHyvU2Q1" target="_blank" class="playlist-item">
+              <span class="item-num">1</span>
+              <img src="https://i.ytimg.com/vi/Frty5ICAdOo/mqdefault.jpg" class="item-thumb" alt="Thumbnail">
+              <span class="item-title">Modern AI Coding Workflows & Multi-Agent Systems</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. 🌱 Personal Development with AI 💡 -->
+      <div class="playlist-card" data-title="personal development with ai" data-desc="unlock your full potential self improvement productivity habits growth mindset">
+        <div class="playlist-thumb-wrapper">
+          <img src="https://i.ytimg.com/vi/WK66w51UMrs/hqdefault.jpg" alt="Personal Development with AI Cover" class="playlist-thumb">
+          <div class="playlist-badge"><span>▶</span> 3 Videos</div>
+        </div>
+        <div class="playlist-body">
+          <h2 class="playlist-title">🌱 Personal Development with AI 💡</h2>
+          <p class="playlist-desc">Unlock your full potential with AI as your self-improvement partner. Boost productivity, master new skills, build better habits, and cultivate a growth mindset.</p>
+          <div class="playlist-actions">
+            <a href="https://www.youtube.com/playlist?list=PLEaC7OEmKSrfL3KWNbcnoT1WM0mZdtoik" target="_blank" class="btn btn-primary">
+              ▶ Watch on YouTube ↗
+            </a>
+            <button class="btn btn-secondary" onclick="copyPlaylistLink('https://www.youtube.com/playlist?list=PLEaC7OEmKSrfL3KWNbcnoT1WM0mZdtoik')">
+              🔗 Copy Link
+            </button>
+          </div>
+        </div>
+        <div class="video-accordion">
+          <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>View Videos (3)</span>
+            <span class="accordion-arrow">▼</span>
+          </div>
+          <div class="accordion-content">
+            <a href="https://www.youtube.com/watch?v=WK66w51UMrs&list=PLEaC7OEmKSrfL3KWNbcnoT1WM0mZdtoik" target="_blank" class="playlist-item">
+              <span class="item-num">1</span>
+              <img src="https://i.ytimg.com/vi/WK66w51UMrs/mqdefault.jpg" class="item-thumb" alt="Thumbnail">
+              <span class="item-title">AI Habits & High-Performance Self-Management</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" id="pageFooter">
+      <p>YouTube Studio Metadata & Playlist Navigator • @RifatErdemSahin</p>
+      <p style="margin-top: 6px; font-size: 12px;">Skool Community: <a href="https://www.skool.com/delivery-pilot-8938" target="_blank" style="color: var(--accent-blue);">https://www.skool.com/delivery-pilot-8938</a></p>
+    </footer>
+
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script>
+    function showToast(message) {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.innerHTML = `<span>✅</span><span>${message}</span>`;
+      container.appendChild(toast);
+      
+      setTimeout(() => toast.classList.add('show'), 10);
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+      }, 2200);
+    }
+
+    function copyPlaylistLink(url) {
+      navigator.clipboard.writeText(url).then(() => {
+        showToast('Playlist link copied to clipboard!');
+      });
+    }
+
+    function toggleAccordion(header) {
+      const content = header.nextElementSibling;
+      const arrow = header.querySelector('.accordion-arrow');
+      content.classList.toggle('open');
+      if (content.classList.contains('open')) {
+        arrow.innerText = '▲';
+      } else {
+        arrow.innerText = '▼';
+      }
+    }
+
+    function filterPlaylists() {
+      const query = document.getElementById('playlistSearch').value.toLowerCase().trim();
+      const cards = document.querySelectorAll('.playlist-card');
+      let visible = 0;
+
+      cards.forEach(card => {
+        const title = card.getAttribute('data-title') || '';
+        const desc = card.getAttribute('data-desc') || '';
+        if (title.includes(query) || desc.includes(query)) {
+          card.style.display = 'flex';
+          visible++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      document.getElementById('playlistStats').innerText = `${visible} Playlists Found`;
+    }
+  </script>
+</body>
+</html>

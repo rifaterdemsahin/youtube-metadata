@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Video Studio & Thumbnail Generator — @RifatErdemSahin</title>
+  <meta name="description" content="AI-generated thumbnail showcase, full transcript processing, and metadata updates for video l7bc8KTOyMo">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #090d13;
+      --bg-secondary: #121820;
+      --bg-card: #19222c;
+      --bg-card-hover: #1f2b38;
+      --border: #283545;
+      --border-focus: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent-blue: #38bdf8;
+      --accent-purple: #818cf8;
+      --accent-green: #34d399;
+      --accent-yellow: #fbbf24;
+      --accent-red: #f87171;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-top: 72px;
+    }
+
+    .top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(18, 24, 32, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      z-index: 1000;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+
+    .nav-logo {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #ff0033, #cc0000);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 16px;
+      color: white;
+      box-shadow: 0 2px 8px rgba(255, 0, 51, 0.3);
+    }
+
+    .nav-title {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      list-style: none;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .nav-link:hover {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-link.active {
+      color: var(--accent-blue);
+      background: rgba(56, 189, 248, 0.12);
+      font-weight: 600;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 32px auto 64px auto;
+      padding: 0 24px;
+    }
+
+    .hero-header {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(129, 140, 248, 0.05));
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .hero-title {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-desc {
+      color: var(--text-muted);
+      font-size: 14px;
+      max-width: 720px;
+    }
+
+    .badge-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 600;
+      background: rgba(251, 191, 36, 0.15);
+      color: var(--accent-yellow);
+      border: 1px solid rgba(251, 191, 36, 0.35);
+    }
+
+    .grid-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 32px;
+    }
+
+    @media (max-width: 900px) {
+      .grid-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 12px;
+    }
+
+    .card-title {
+      font-size: 17px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .thumbnail-preview-container {
+      position: relative;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: #000;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .thumbnail-preview-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+
+    .thumbnail-preview-container:hover img {
+      transform: scale(1.02);
+    }
+
+    .meta-field {
+      margin-bottom: 18px;
+    }
+
+    .meta-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .meta-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .btn-group {
+      display: inline-flex;
+      gap: 6px;
+    }
+
+    .meta-value-box {
+      background: #0a0e14;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 14px;
+      font-size: 13.5px;
+      color: var(--text-main);
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .code-box {
+      background: #070a0e;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12.5px;
+      color: #38bdf8;
+      max-height: 280px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      line-height: 1.6;
+    }
+
+    .tags-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .tag-chip {
+      background: rgba(56, 189, 248, 0.1);
+      color: var(--accent-blue);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 12px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s ease;
+    }
+
+    .btn-primary {
+      background: #38bdf8;
+      color: #090d13;
+    }
+
+    .btn-primary:hover {
+      background: #7dd3fc;
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateY(-1px);
+    }
+
+    .action-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+      color: var(--text-main);
+      padding: 5px 10px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: all 0.15s ease;
+    }
+
+    .action-btn:hover {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: var(--accent-blue);
+      color: #fff;
+    }
+
+    .action-btn-success {
+      background: rgba(52, 211, 153, 0.12);
+      border-color: rgba(52, 211, 153, 0.3);
+      color: var(--accent-green);
+    }
+
+    .action-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    .highlight-pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: rgba(52, 211, 153, 0.15);
+      color: var(--accent-green);
+      font-weight: 600;
+      font-size: 12px;
+    }
+
+    /* Toast Notification */
+    .toast-container {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      pointer-events: none;
+    }
+
+    .toast {
+      background: #19222c;
+      color: var(--text-main);
+      border: 1px solid var(--border-focus);
+      padding: 12px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all 0.25s ease-out;
+      pointer-events: auto;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .footer {
+      text-align: center;
+      padding: 32px 0;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="top-nav" id="topNav">
+    <a href="index.html" class="nav-brand" id="navBrand">
+      <div class="nav-logo">▶</div>
+      <div><div class="nav-title">YouTube Studio MCP</div></div>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="nav-link" id="navLinkDashboard">Operations Dashboard</a></li>
+      <li><a href="catalog.html" class="nav-link" id="navLinkCatalog">Video Catalog & Notes</a></li>
+      <li><a href="playlists.html" class="nav-link" id="navLinkPlaylists">Playlists & Paths</a></li>
+      <li><a href="updates.html" class="nav-link" id="navLinkUpdates">Applied Updates Log</a></li>
+      <li><a href="thumbnails.html" class="nav-link active" id="navLinkThumbnails">Thumbnails Studio</a></li>
+      <li><a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" class="nav-link" id="navLinkYTChannel">@RifatErdemSahin ↗</a></li>
+      <li><a href="https://www.skool.com/delivery-pilot-8938" target="_blank" class="nav-link" id="navLinkSkool">Skool Community ↗</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <span class="badge-status" id="videoPrivacyBadge">🔒 Status: UNLISTED</span>
+    </div>
+  </nav>
+
+  <div class="container" id="mainContainer">
+
+    <!-- Hero Header -->
+    <header class="hero-header" id="heroHeader">
+      <div>
+        <h1 class="hero-title" id="pageTitle">
+          <span>🎨</span> Video Studio: Thumbnail & Metadata
+        </h1>
+        <p class="hero-desc" id="pageDesc">
+          Generated custom 16:9 4K thumbnail, transcribed audio captions, and synchronized optimized YouTube SEO metadata while preserving <strong>UNLISTED</strong> privacy status.
+        </p>
+      </div>
+      <div class="action-row" id="headerActions">
+        <a href="https://www.youtube.com/watch?v=HUTlnlw3h8o" target="_blank" class="btn btn-primary" id="btnWatchYouTube">
+          ▶ Watch on YouTube (Unlisted) ↗
+        </a>
+        <a href="https://studio.youtube.com/video/HUTlnlw3h8o/edit" target="_blank" class="btn btn-secondary" id="btnEditStudio">
+          ⚙️ YouTube Studio ↗
+        </a>
+      </div>
+    </header>
+
+    <!-- Main Grid -->
+    <div class="grid-layout" id="studioGrid">
+
+      <!-- Left Column: Thumbnail Showcase -->
+      <section class="card" id="thumbnailCard">
+        <div class="card-header">
+          <h2 class="card-title">
+            <span>🖼️</span> Generated YouTube Thumbnail (16:9)
+          </h2>
+          <span class="highlight-pill">Applied & Live</span>
+        </div>
+
+        <div class="thumbnail-preview-container" id="thumbPreviewWrapper">
+          <img src="thumbnails/thumbnail_HUTlnlw3h8o.jpg" alt="Generated YouTube Thumbnail for Obsidian AI Knowledge Engine" id="thumbnailImage">
+        </div>
+
+        <div class="meta-field">
+          <div class="meta-label">Thumbnail Concept & Specifications</div>
+          <div class="meta-value-box" style="font-size: 13px;">
+<strong>Visual Theme:</strong> 3D Glowing Neural Brain & Knowledge Graph transforming into Claude + Gemini dual-agent orchestration nodes.<br>
+<strong>Resolution:</strong> 16:9 HD / 4K Crisp Composition.<br>
+<strong>Color Palette:</strong> Deep Tech Cyan (#38bdf8) & Neural Gold/Amber energy flow conduits.
+          </div>
+        </div>
+
+        <div class="action-row">
+          <a href="thumbnails/thumbnail_HUTlnlw3h8o.jpg" download="thumbnail_HUTlnlw3h8o.jpg" class="btn btn-secondary" id="btnDownloadThumb" style="width: 100%;">
+            ⬇️ Download Full Resolution Thumbnail (.jpg)
+          </a>
+        </div>
+      </section>
+
+      <!-- Right Column: Video Metadata -->
+      <section class="card" id="metadataCard">
+        <div class="card-header">
+          <h2 class="card-title">
+            <span>📝</span> Video Metadata (Synchronized)
+          </h2>
+          <div class="btn-group">
+            <button class="action-btn" id="btnCopyAllMeta" onclick="copyFullMetadata()">📋 Copy All</button>
+            <button class="action-btn" id="btnDownloadAllMeta" onclick="downloadFullMetadata()">⬇️ Download Package</button>
+          </div>
+        </div>
+
+        <!-- Video Title Field -->
+        <div class="meta-field">
+          <div class="meta-header-row">
+            <span class="meta-label">Video Title</span>
+            <div class="btn-group">
+              <button class="action-btn" id="btnCopyTitle" onclick="copyTitle()">📋 Copy Title</button>
+              <button class="action-btn" id="btnDownloadTitle" onclick="downloadTitle()">⬇️ Download Title</button>
+            </div>
+          </div>
+          <div class="meta-value-box" id="videoTitleBox" style="font-weight: 600; color: #38bdf8;">Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini)</div>
+        </div>
+
+        <!-- Video Description Field -->
+        <div class="meta-field">
+          <div class="meta-header-row">
+            <span class="meta-label">Description & Community Links</span>
+            <div class="btn-group">
+              <button class="action-btn" id="btnCopyDesc" onclick="copyDescription()">📋 Copy Description</button>
+              <button class="action-btn" id="btnDownloadDesc" onclick="downloadDescription()">⬇️ Download Description</button>
+            </div>
+          </div>
+          <div class="meta-value-box" id="videoDescBox" style="max-height: 240px; overflow-y: auto;">Are you drowning in a sea of 46,000 Obsidian notes? Overwhelmed by endless information and struggling to find clarity in the chaos?
+
+Let's flip the script. In this video, we explore how to build an AI Knowledge Engine that sculpts your thoughts into a masterpiece with automated background synthesis.
+
+🧠 What You Will Learn:
+• The PARA Framework: Structuring Projects, Areas, Resources, and Archive for AI synthesis.
+• Dual-Agent Orchestration: Syncing Claude and Gemini seamlessly with GitHub, Google Drive, and Proxmox.
+• The 4-Step Conveyor Loop: Tell ➔ Show ➔ Do ➔ Apply — the actionable roadmap to AI mastery.
+• Building Your Second Brain: Turning raw knowledge into structured genius.
+
+🚀 Join our AI Builders & Architects Community & Sunday Live Cohort:
+👉 https://www.skool.com/delivery-pilot-8938
+
+#Obsidian #SecondBrain #AIAgents #ClaudeAI #Gemini #Productivity #KnowledgeManagement #Automation #HandsOnTools
+
+────────────────────────────────────────
+📚 References, Attributions & Trademarks Notice:
+All third-party trademarks, product names, frameworks, and registered copyrights mentioned in this video remain the property of their respective owners. Mention of them is for educational, transformative, and commentary purposes:
+• PARA Method & Building a Second Brain: Conceived and authored by Tiago Forte (Forte Labs).
+• Obsidian: Note-taking & knowledge base application developed by Dynalist Inc.
+• Claude: Generative AI model developed by Anthropic PBC.
+• Google Gemini & Google Drive: AI models and cloud services by Google LLC / Alphabet Inc.
+• GitHub: Platform developed by GitHub, Inc. / Microsoft Corporation.
+• Proxmox VE: Virtualization platform developed by Proxmox Server Solutions GmbH.</div>
+        </div>
+
+        <!-- Tags Field -->
+        <div class="meta-field">
+          <div class="meta-header-row">
+            <span class="meta-label">Tags & Keywords</span>
+            <button class="action-btn" onclick="copyTags()">📋 Copy Tags</button>
+          </div>
+          <div class="tags-container" id="tagsContainer">
+            <span class="tag-chip">#Obsidian</span>
+            <span class="tag-chip">#Second Brain</span>
+            <span class="tag-chip">#AI Knowledge Engine</span>
+            <span class="tag-chip">#Claude AI</span>
+            <span class="tag-chip">#Google Gemini</span>
+            <span class="tag-chip">#Dual Agent</span>
+            <span class="tag-chip">#PARA Method</span>
+            <span class="tag-chip">#Tiago Forte</span>
+            <span class="tag-chip">#Automation</span>
+            <span class="tag-chip">#Hands On Tools</span>
+          </div>
+        </div>
+
+        <!-- Privacy Status & Reupload Audit -->
+        <div class="meta-field">
+          <div class="meta-label">Privacy, Playlist & Video State</div>
+          <div class="meta-value-box" style="display:flex; flex-direction:column; gap:8px; background: rgba(251, 191, 36, 0.08); border-color: rgba(251, 191, 36, 0.3); margin-top: 6px;">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span>🔒 <strong>Unlisted</strong> (Preserved)</span>
+              <span style="font-size: 12px; color: var(--text-muted);">Active ID: <code style="color:var(--accent-blue); font-weight:700;">HUTlnlw3h8o</code></span>
+            </div>
+            <div style="font-size: 12px; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 6px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:4px;">
+              <span>📂 Playlist: <strong style="color:var(--accent-purple);">Hands On Tools</strong></span>
+              <span style="color:var(--text-muted);">Old ID: <code>l7bc8KTOyMo</code> ➔ Re-uploaded & Synced</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Transcript Section -->
+    <section class="card" id="transcriptSection">
+      <div class="card-header">
+        <h2 class="card-title">
+          <span>📜</span> Full Processed Transcript
+        </h2>
+        <div class="btn-group">
+          <button class="action-btn" id="btnCopyTranscript" onclick="copyTranscript()">📋 Copy Transcript</button>
+          <button class="action-btn" id="btnDownloadTranscript" onclick="downloadTranscript()">⬇️ Download Transcript (.txt)</button>
+        </div>
+      </div>
+
+      <div class="code-box" id="transcriptBox">Are you drowning in a sea of 46,000 obsidian notes? Overwhelmed by endless information, struggling to find clarity and chaos? Let's flip the script. Imagine an AI knowledge engine. Sculpting your thoughts into a masterpiece. Running background synthesis, turning confusion into clarity. Enter the pair framework. Projects, areas, resources, archive. Organize your knowledge like never before. Each category, a beacon guiding your focus, transforming chaos into structured genius. Now, let's talk dual agent orchestration. Gemini and Claude syncing seamlessly with GitHub, Drive, Proxmox. Imagine your tools working in harmony, creating a symphony of productivity. And here's the game changer, the four-step conveyor loop. Tell, show, do, apply. This isn't just theory, it's your road map to mastery. Now envision your second brain awakening. Join our free Sunday live cohort build. Unleash your potential. Transform your life. The future is yours. Let's seize it together.</div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-top: 8px;">
+        <div style="background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 8px; padding: 12px;">
+          <div style="font-weight: 700; color: var(--accent-blue); font-size: 13px; margin-bottom: 4px;">🗂️ PARA Framework</div>
+          <div style="font-size: 12px; color: var(--text-muted);">Projects, Areas, Resources, Archive methodology for structured notes.</div>
+        </div>
+        <div style="background: rgba(129, 140, 248, 0.08); border: 1px solid rgba(129, 140, 248, 0.2); border-radius: 8px; padding: 12px;">
+          <div style="font-weight: 700; color: var(--accent-purple); font-size: 13px; margin-bottom: 4px;">🤖 Dual-Agent Sync</div>
+          <div style="font-size: 12px; color: var(--text-muted);">Gemini + Claude syncing across GitHub, Google Drive, and Proxmox.</div>
+        </div>
+        <div style="background: rgba(52, 211, 153, 0.08); border: 1px solid rgba(52, 211, 153, 0.2); border-radius: 8px; padding: 12px;">
+          <div style="font-weight: 700; color: var(--accent-green); font-size: 13px; margin-bottom: 4px;">🔄 Conveyor Loop</div>
+          <div style="font-size: 12px; color: var(--text-muted);">4-Step Mastery: Tell ➔ Show ➔ Do ➔ Apply execution flow.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="pageFooter">
+      <p>YouTube Studio Metadata & Thumbnail Automation System • @RifatErdemSahin</p>
+      <p style="margin-top: 6px; font-size: 12px;">Skool Community: <a href="https://www.skool.com/delivery-pilot-8938" target="_blank" style="color: var(--accent-blue);">https://www.skool.com/delivery-pilot-8938</a></p>
+    </footer>
+
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script>
+    // Toast helper
+    function showToast(message, icon = '✅') {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      toast.className = 'toast';
+      toast.innerHTML = `<span>${icon}</span><span>${message}</span>`;
+      container.appendChild(toast);
+      
+      setTimeout(() => toast.classList.add('show'), 10);
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+      }, 2500);
+    }
+
+    // Client-side file downloader helper
+    function triggerDownload(content, filename, mimeType = 'text/plain;charset=utf-8') {
+      const blob = new Blob([content], { type: mimeType });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast(`Downloaded ${filename}`, '⬇️');
+    }
+
+    // Title actions
+    function copyTitle() {
+      const title = document.getElementById('videoTitleBox').innerText.trim();
+      navigator.clipboard.writeText(title).then(() => {
+        showToast('Title copied to clipboard!');
+      });
+    }
+
+    function downloadTitle() {
+      const title = document.getElementById('videoTitleBox').innerText.trim();
+      triggerDownload(title, 'title_HUTlnlw3h8o.txt');
+    }
+
+    // Description actions
+    function copyDescription() {
+      const desc = document.getElementById('videoDescBox').innerText.trim();
+      navigator.clipboard.writeText(desc).then(() => {
+        showToast('Description copied to clipboard!');
+      });
+    }
+
+    function downloadDescription() {
+      const desc = document.getElementById('videoDescBox').innerText.trim();
+      triggerDownload(desc, 'description_HUTlnlw3h8o.txt');
+    }
+
+    // Tags actions
+    function copyTags() {
+      const tags = Array.from(document.querySelectorAll('.tag-chip')).map(el => el.innerText.trim()).join(', ');
+      navigator.clipboard.writeText(tags).then(() => {
+        showToast('Tags copied to clipboard!');
+      });
+    }
+
+    // Full Package actions
+    function copyFullMetadata() {
+      const title = document.getElementById('videoTitleBox').innerText.trim();
+      const desc = document.getElementById('videoDescBox').innerText.trim();
+      const tags = Array.from(document.querySelectorAll('.tag-chip')).map(el => el.innerText.trim()).join(', ');
+      const bundle = `=== TITLE ===\n${title}\n\n=== DESCRIPTION ===\n${desc}\n\n=== TAGS ===\n${tags}`;
+      navigator.clipboard.writeText(bundle).then(() => {
+        showToast('Full metadata package copied!');
+      });
+    }
+
+    function downloadFullMetadata() {
+      const title = document.getElementById('videoTitleBox').innerText.trim();
+      const desc = document.getElementById('videoDescBox').innerText.trim();
+      const tags = Array.from(document.querySelectorAll('.tag-chip')).map(el => el.innerText.trim()).join(', ');
+      const transcript = document.getElementById('transcriptBox').innerText.trim();
+
+      const metadataObj = {
+        video_id: "HUTlnlw3h8o",
+        previous_video_id: "l7bc8KTOyMo",
+        playlist: "Hands On Tools (PLEaC7OEmKSrctJZUNh0pglIpJavDNO3yh)",
+        privacy_status: "unlisted",
+        title: title,
+        description: desc,
+        tags: tags.split(', '),
+        transcript: transcript,
+        updated_at: new Date().toISOString()
+      };
+
+      triggerDownload(JSON.stringify(metadataObj, null, 2), 'metadata_HUTlnlw3h8o.json', 'application/json');
+    }
+
+    // Transcript actions
+    function copyTranscript() {
+      const text = document.getElementById('transcriptBox').innerText.trim();
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('Transcript copied to clipboard!');
+      });
+    }
+
+    function downloadTranscript() {
+      const text = document.getElementById('transcriptBox').innerText.trim();
+      triggerDownload(text, 'transcript_HUTlnlw3h8o.txt');
+    }
+  </script>
+</body>
+</html>

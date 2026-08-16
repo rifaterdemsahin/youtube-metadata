@@ -1,0 +1,56 @@
+[
+  {
+    "id": "PLEaC7OEmKSrcrDQrZMEQGlMUge7q4Peiy",
+    "title": "Claude AI Certification",
+    "description": "## \ud83c\udfdb\ufe0f Claude AI Certification for Architects: Enterprise Systems & Integration\n\nWelcome to the definitive **Claude AI Certification Course for Solutions, Enterprise, and AI Architects**.\n\nMoving AI from a playground prototype to a secure, scalable, production-grade enterprise system requires architecture\u2014not just clever prompting. In this comprehensive masterclass, you will learn how to design, secure, and orchestrate enterprise-grade AI infrastructure leveraging Anthropic\u2019s Claude ecosystem.\n\nWe dive deep into system topologies, Model Context Protocol (MCP) implementations, cost-optimization matrixes, and strict data governance models required to deploy Claude at scale.\n\n\ud83d\udd17 **Links & Resources:**\n\n* Take the Official Architect Certification Exam: https://anthropic.skilljar.com/\n* Download the AI Architecture Blueprint & Checklist: `[Insert Link]`\n* Access GitHub Repo (MCP Servers & Templates): https://github.com/rifaterdemsahin/claude-architect-certification * Join our Enterprise AI Architect Community: `[Insert Link]`\n\n---\n\n## \ud83d\udcca What You Will Master in This Course\n\nBy the end of this certification, you will be equipped to architect resilient AI solutions:\n\n* **Enterprise Integration:** Connect Claude securely to legacy infrastructure and databases using the **Model Context Protocol (MCP)**.\n* **Scalable Topology Design:** Build robust multi-agent orchestration loops and fallback systems.\n* **Security & Compliance Governance:** Architect data boundaries that guarantee zero-data retention (ZDR) and comply with SOC2, HIPAA, and GDPR.\n* **Cost & Performance Engineering:** Implement token-budgeting, advanced prompt caching, and latency-reduction frameworks.\n\n---\n\n## \ud83d\udee0\ufe0f Course Curriculum Breakdown\n\n### \ud83d\udd39 Module 1: The Claude Architecture Blueprint\n\n* Understanding Anthropic\u2019s model topology (Claude 3.5 Sonnet, Haiku, Opus execution profiles).\n* Context window management: Optimizing token mechanics and effective throughput.\n* State management: Designing stateless vs. stateful AI middleware.\n\n### \ud83d\udd39 Module 2: Model Context Protocol (MCP) & Data Integration\n\n* Architecting secure data pipelines between Claude and enterprise data silos.\n* Setting up, hosting, and scaling custom MCP servers.\n* Bridging the gap between real-time enterprise context and LLM constraints.\n\n### \ud83d\udd39 Module 3: Security, Privacy, and Enterprise Governance\n\n* Data residency and isolation strategies (VPC deployments, AWS Bedrock vs. Google Cloud Vertex vs. Anthropic API).\n* Immutability, guardrails, and deterministic safety layers.\n* Mitigating prompt injection and data exfiltration vectors at the infrastructure layer.\n\n### \ud83d\udd39 Module 4: Multi-Agent Orchestration & Workflow Design\n\n* Designing autonomous routing layers and deterministic fallback systems.\n* Orchestrating agentic loops for code generation, system monitoring, and automated reasoning.\n* Managing parallel processing states and preventing infinite agent execution loops.\n\n### \ud83d\udd39 Module 5: Cost Optimization & Performance Engineering\n\n* Implementing **Prompt Caching** to reduce production costs by up to 90%.\n* Optimizing Time-to-First-Token (TTFT) and total generation latency.\n* Building an enterprise AI rate-limiting and token-throttling microservice.\n\n---\n\n## \ud83d\udc65 Who This Certification Is For\n\n* **Solutions & Enterprise Architects** tasked with integrating LLMs into existing corporate infrastructure.\n* **AI Engineers & Tech Leads** moving prototypes into highly secure, high-throughput production environments.\n* **CTOs & IT Directors** looking for a definitive blueprint on AI governance, vendor selection, and cost control.\n\n---\n\n## \u23f0 Timestamps / Chapters\n\n0:00 - The Role of the AI Architect\n3:15 - Module 1: Anatomy of the Claude Ecosystem\n15:45 - Module 2: Implementing Model Context Protocol (MCP)\n32:20 - Module 3: Enterprise Security & Zero-Data Retention\n48:10 - Module 4: Engineering Multi-Agent Topologies\n1:10:05 - Module 5: Prompt Caching & Financial Engineering\n1:28:40 - Exam Preparation & Case Study Walkthrough\n\n---\n\n### \ud83d\udce2 Support the Channel\n\nIf this architectural deep-dive helps you design better AI systems:\n\ud83d\udc4d **Like** this video to support free technical education.\n\ud83d\udce2 **Subscribe** for weekly deep-dives into enterprise AI engineering.\n\ud83d\udcac **Comment below:** What is your biggest challenge when scaling Claude in your current tech stack?\n\n#ClaudeAI #EnterpriseArchitecture #AIArchitect #Anthropic #ModelContextProtocol #CloudArchitecture #SoftwareEngineering",
+    "item_count": 3,
+    "privacy_status": "public",
+    "thumbnail": "https://i.ytimg.com/vi/J0D7qV3nl7w/hqdefault.jpg",
+    "url": "https://www.youtube.com/playlist?list=PLEaC7OEmKSrcrDQrZMEQGlMUge7q4Peiy"
+  },
+  {
+    "id": "PLEaC7OEmKSrctJZUNh0pglIpJavDNO3yh",
+    "title": "Hands On Tools",
+    "description": "Learn how to use hands on tools to master AI",
+    "item_count": 6,
+    "privacy_status": "public",
+    "thumbnail": "https://i.ytimg.com/vi/yI5BIb74kVI/hqdefault.jpg",
+    "url": "https://www.youtube.com/playlist?list=PLEaC7OEmKSrctJZUNh0pglIpJavDNO3yh"
+  },
+  {
+    "id": "PLEaC7OEmKSrfCd46qgr4r0s9IrQd3F5ag",
+    "title": "\ud83d\udd04 Reskilling with AI \ud83d\ude80",
+    "description": "Time to upgrade your skillset and stay competitive! \ud83e\udde0\ud83d\udca1 This playlist is all about reskilling in the digital age\u2014leveraging AI to help you learn faster, smarter, and more effectively. \ud83e\udd16 Whether you're pivoting careers or just expanding your knowledge, these videos will guide you through new skills that matter. \ud83d\udd27\ud83d\ude80 Dive in, adapt, and thrive in today's fast-changing world! \ud83d\udcbc\u2728\n\n#Reskilling #AI #SkillUpgrade #CareerPivot #LifelongLearning #DigitalTransformation #AIInLearning #StayCompetitive #NewSkills #FutureOfWork",
+    "item_count": 15,
+    "privacy_status": "public",
+    "thumbnail": "https://i.ytimg.com/vi/yI5BIb74kVI/hqdefault.jpg",
+    "url": "https://www.youtube.com/playlist?list=PLEaC7OEmKSrfCd46qgr4r0s9IrQd3F5ag"
+  },
+  {
+    "id": "PLEaC7OEmKSrfL3KWNbcnoT1WM0mZdtoik",
+    "title": "\ud83c\udf31 Personal Development with AI \ud83d\udca1",
+    "description": "Unlock your full potential with the power of AI! \ud83e\udd16 This playlist is designed to help you grow through personal development\u2014from boosting your productivity to mastering new skills and building better habits. \ud83d\ude80\ud83d\udcda Learn how to use AI as your partner in self-improvement and transformation. \ud83e\udde0\u2728 Start your journey to becoming the best version of yourself today! \ud83c\udf1f\ud83c\udfaf\n\n#PersonalDevelopment #AI #SelfImprovement #Upskilling #Reskilling #GrowthMindset #ProductivityHacks #LifelongLearning #MindsetMatters #SkillBuilding",
+    "item_count": 3,
+    "privacy_status": "public",
+    "thumbnail": "https://i.ytimg.com/vi/WK66w51UMrs/hqdefault.jpg",
+    "url": "https://www.youtube.com/playlist?list=PLEaC7OEmKSrfL3KWNbcnoT1WM0mZdtoik"
+  },
+  {
+    "id": "PLEaC7OEmKSrc3_-Puch6jNCI8cHyvU2Q1",
+    "title": "\ud83d\udd27 Mastering Skills with AI \ud83e\udd16",
+    "description": "Welcome to your go-to playlist for self-education! \ud83d\ude80 Whether you're sharpening your tech skills or learning something entirely new, these videos are here to guide you on your journey. \ud83d\udcda\u2728 Empower yourself by bridging skill gaps with the power of AI and stay ahead in the game. \ud83d\udca1 From coding to creative problem-solving, this playlist is packed with resources to help you learn smarter, not harder! \ud83d\ude4c Start your self-learning adventure today! \ud83c\udfaf\n\n#SelfEducation #AI #SkillMastery #TechSkills #CreativeProblemSolving #LearnSmarter #AIInEducation #SkillGaps #SelfLearning #FutureSkills",
+    "item_count": 10,
+    "privacy_status": "public",
+    "thumbnail": "https://i.ytimg.com/vi/Frty5ICAdOo/hqdefault.jpg",
+    "url": "https://www.youtube.com/playlist?list=PLEaC7OEmKSrc3_-Puch6jNCI8cHyvU2Q1"
+  },
+  {
+    "id": "PLEaC7OEmKSrcJWs_BtpE2fSG-YKWxO35Y",
+    "title": "\ud83d\udcc8 Upskilling with AI \ud83d\ude80",
+    "description": "Ready to take your abilities to the next level? \ud83d\udca1 This playlist is your guide to upskilling with the help of AI! \ud83e\udd16 Whether you're looking to enhance your current skills or learn advanced techniques, these videos will empower you to stay ahead and grow in your field. \ud83d\udcbc\ud83d\udd27 Boost your career, increase your expertise, and thrive with AI-driven self-learning! \ud83c\udf1f\ud83c\udfaf\n\n#Upskilling #AI #SkillDevelopment #CareerGrowth #SelfLearning #AdvancedTechniques #DigitalSkills #TechSavvy #AIInEducation #FutureOfWork",
+    "item_count": 9,
+    "privacy_status": "public",
+    "thumbnail": "https://i.ytimg.com/vi/c1UotPbvKoQ/hqdefault.jpg",
+    "url": "https://www.youtube.com/playlist?list=PLEaC7OEmKSrcJWs_BtpE2fSG-YKWxO35Y"
+  }
+]

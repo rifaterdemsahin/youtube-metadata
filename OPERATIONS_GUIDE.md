@@ -80,8 +80,36 @@ python3 -m venv venv
 ```
 No re-authentication or Google sign-in required.
 
+### Step 4: Extract Video Transcripts
+To extract and clean captions/subtitles from any YouTube video URL or ID:
+
+```bash
+./venv/bin/python fetch_transcript.py <VIDEO_URL_OR_ID>
+# Example:
+./venv/bin/python fetch_transcript.py https://www.youtube.com/watch?v=l7bc8KTOyMo
+```
+This saves the clean, timestamp-free transcript in `transcripts/<VIDEO_ID>.txt`.
+
 ---
 
-## 🌐 Live Operations Dashboard
-- **Local Dashboard**: [http://localhost:8080/index.html](http://localhost:8080/index.html)
+### Step 5: Update Video Title, Description, Tags & Upload Custom Thumbnail
+To update a single video's metadata and apply a custom 16:9 thumbnail while setting/preserving privacy:
+
+```bash
+./venv/bin/python update_video_metadata_cli.py <VIDEO_ID> \
+  --title "Your Video Title" \
+  --description "Your Description" \
+  --tags "Obsidian,AI,Claude" \
+  --privacy unlisted \
+  --thumbnail thumbnails/your_thumbnail.jpg \
+  --append-skool
+```
+
+---
+
+## 🌐 Live Operations Dashboard & Pages
+- **Operations Dashboard**: [http://localhost:8888/index.html](http://localhost:8888/index.html)
+- **Thumbnails & Video Studio**: [http://localhost:8888/thumbnails.html](http://localhost:8888/thumbnails.html)
+- **Video Catalog & Notes**: [http://localhost:8888/catalog.html](http://localhost:8888/catalog.html)
+- **Applied Updates Log**: [http://localhost:8888/updates.html](http://localhost:8888/updates.html)
 - **GitHub Pages**: [https://rifaterdemsahin.github.io/youtube-metadata/](https://rifaterdemsahin.github.io/youtube-metadata/)

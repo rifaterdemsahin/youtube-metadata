@@ -1,0 +1,16 @@
+[
+  {
+    "event": "manual_reupload",
+    "timestamp": "2026-08-16T17:42:06.655997",
+    "old_video_id": "l7bc8KTOyMo",
+    "old_url": "https://www.youtube.com/watch?v=l7bc8KTOyMo",
+    "new_video_id": "HUTlnlw3h8o",
+    "new_url": "https://www.youtube.com/watch?v=HUTlnlw3h8o",
+    "new_studio_url": "https://studio.youtube.com/video/HUTlnlw3h8o/edit",
+    "title": "Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini)",
+    "playlist_id": "PLEaC7OEmKSrctJZUNh0pglIpJavDNO3yh",
+    "playlist_title": "Hands On Tools",
+    "privacy_status": "unlisted",
+    "thumbnail_file": "thumbnails/thumbnail_HUTlnlw3h8o.jpg"
+  }
+]
