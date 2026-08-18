@@ -253,6 +253,81 @@ def update_first_lines_skool_cta(
         return f"Error updating first lines CTA: {str(e)}"
 
 
+@mcp.tool()
+def configure_end_cards(
+    featured_video_id: str = "HUTlnlw3h8o",
+    skool_link: str = "https://www.skool.com/delivery-pilot-8938",
+    limit: int = None
+) -> str:
+    """
+    Calculates and generates End Card and End Screen configurations promoting the featured Skool video and link.
+    Returns Studio deep links and element layouts for each eligible channel video.
+    """
+    try:
+        from sync_end_cards import parse_iso8601_duration, format_seconds_to_timecode, FEATURED_SKOOL_VIDEO_TITLE
+        channel = youtube_client.get_channel_info()
+        youtube = youtube_client.get_youtube_service()
+        if not channel:
+            return "Failed: channel info not found."
+
+        uploads_id = channel["uploads_id"]
+        page_token = None
+        video_records = []
+        count = 0
+
+        while True:
+            pl_req = youtube.playlistItems().list(
+                playlistId=uploads_id,
+                part="snippet,contentDetails",
+                maxResults=min(50, limit) if limit else 50,
+                pageToken=page_token
+            )
+            pl_res = pl_req.execute()
+            items = pl_res.get("items", [])
+            if not items:
+                break
+
+            video_ids = [it["contentDetails"]["videoId"] for it in items]
+            v_res = youtube.videos().list(id=",".join(video_ids), part="snippet,contentDetails").execute()
+
+            for v in v_res.get("items", []):
+                if limit and count >= limit:
+                    break
+                vid = v["id"]
+                title = v["snippet"]["title"]
+                duration_iso = v["contentDetails"].get("duration", "PT0S")
+                duration_secs = parse_iso8601_duration(duration_iso)
+                is_eligible = duration_secs >= 25
+                end_start = max(0, duration_secs - 20) if is_eligible else 0
+
+                video_records.append({
+                    "video_id": vid,
+                    "title": title,
+                    "duration": format_seconds_to_timecode(duration_secs),
+                    "is_eligible": is_eligible,
+                    "end_screen_window": f"{format_seconds_to_timecode(end_start)} - {format_seconds_to_timecode(duration_secs)}",
+                    "featured_target": featured_video_id if vid != featured_video_id else "BEST_FOR_VIEWER",
+                    "studio_endscreen_url": f"https://studio.youtube.com/video/{vid}/editor"
+                })
+                count += 1
+
+            if limit and count >= limit:
+                break
+            page_token = pl_res.get("nextPageToken")
+            if not page_token:
+                break
+
+        return json.dumps({
+            "total": len(video_records),
+            "eligible": len([v for v in video_records if v["is_eligible"]]),
+            "featured_video_id": featured_video_id,
+            "videos": video_records
+        }, indent=2)
+    except Exception as e:
+        return f"Error configuring end cards: {str(e)}"
+
+
 if __name__ == "__main__":
     mcp.run(transport="stdio")
+
 

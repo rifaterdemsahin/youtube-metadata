@@ -37,7 +37,8 @@
 ## ⚡ Antigravity Skills & CLI Runbooks
 - **Skill 1: Pinned Comments Promoter**: [`sync_pinned_comments.py`](file:///Users/rifaterdemsahin/projects/youtube-metadata/sync_pinned_comments.py) · [`.agents/skills/sync-pinned-comments-skool/SKILL.md`](file:///Users/rifaterdemsahin/projects/youtube-metadata/.agents/skills/sync-pinned-comments-skool/SKILL.md)
 - **Skill 2: Top 2 Lines Skool CTA Syncer**: [`update_first_lines_skool.py`](file:///Users/rifaterdemsahin/projects/youtube-metadata/update_first_lines_skool.py) · [`.agents/skills/sync-first-lines-skool-cta/SKILL.md`](file:///Users/rifaterdemsahin/projects/youtube-metadata/.agents/skills/sync-first-lines-skool-cta/SKILL.md)
-- **Skill 3: Skool Link Description Appender**: [`append_skool_link.py`](file:///Users/rifaterdemsahin/projects/youtube-metadata/append_skool_link.py) · [`.agents/skills/append-skool-link/SKILL.md`](file:///Users/rifaterdemsahin/projects/youtube-metadata/.agents/skills/append-skool-link/SKILL.md)
+- **Skill 3: End Cards & Skool Video Promoter**: [`sync_end_cards.py`](file:///Users/rifaterdemsahin/projects/youtube-metadata/sync_end_cards.py) · [`.agents/skills/sync-end-cards-skool/SKILL.md`](file:///Users/rifaterdemsahin/projects/youtube-metadata/.agents/skills/sync-end-cards-skool/SKILL.md)
+- **Skill 4: Skool Link Description Appender**: [`append_skool_link.py`](file:///Users/rifaterdemsahin/projects/youtube-metadata/append_skool_link.py) · [`.agents/skills/append-skool-link/SKILL.md`](file:///Users/rifaterdemsahin/projects/youtube-metadata/.agents/skills/append-skool-link/SKILL.md)
 
 ---
 
