@@ -182,3 +182,98 @@ def update_video_thumbnail(video_id, image_file_path):
         "video_id": video_id,
         "response": thumb_response
     }
+
+
+def get_channel_info():
+    """Returns the authenticated channel's details."""
+    youtube = get_youtube_service()
+    res = youtube.channels().list(mine=True, part="snippet,contentDetails").execute()
+    if not res.get("items"):
+        return None
+    item = res["items"][0]
+    return {
+        "id": item["id"],
+        "title": item["snippet"]["title"],
+        "custom_url": item["snippet"].get("customUrl", ""),
+        "uploads_id": item["contentDetails"]["relatedPlaylists"]["uploads"]
+    }
+
+
+def list_video_comments(video_id, max_results=50):
+    """Fetches top-level comments for a given video."""
+    youtube = get_youtube_service()
+    try:
+        req = youtube.commentThreads().list(
+            videoId=video_id,
+            part="snippet",
+            maxResults=min(max_results, 100)
+        )
+        res = req.execute()
+        return res.get("items", [])
+    except Exception as e:
+        print(f"Error fetching comments for video {video_id}: {e}")
+        return []
+
+
+def create_or_update_video_comment(video_id, comment_text, match_keyword="skool.com"):
+    """
+    Creates a new top-level comment or updates an existing comment authored by the channel.
+    Matches existing comments by author channel ID and optional keyword.
+    """
+    youtube = get_youtube_service()
+    channel = get_channel_info()
+    channel_id = channel["id"] if channel else None
+
+    existing_comments = list_video_comments(video_id)
+    target_comment_id = None
+
+    for item in existing_comments:
+        top_snippet = item.get("snippet", {}).get("topLevelComment", {}).get("snippet", {})
+        author_channel = top_snippet.get("authorChannelId", {}).get("value")
+        text = top_snippet.get("textOriginal", "")
+
+        # Check if authored by channel owner and matches keyword (or is any comment by owner if keyword matches)
+        if author_channel == channel_id and (match_keyword in text.lower() or "skool" in text.lower()):
+            target_comment_id = item.get("snippet", {}).get("topLevelComment", {}).get("id")
+            break
+
+    if target_comment_id:
+        # Update existing comment
+        updated = youtube.comments().update(
+            part="snippet",
+            body={
+                "id": target_comment_id,
+                "snippet": {
+                    "textOriginal": comment_text
+                }
+            }
+        ).execute()
+        return {
+            "action": "updated",
+            "comment_id": target_comment_id,
+            "video_id": video_id,
+            "text": comment_text
+        }
+    else:
+        # Create new top-level comment
+        created = youtube.commentThreads().insert(
+            part="snippet",
+            body={
+                "snippet": {
+                    "videoId": video_id,
+                    "topLevelComment": {
+                        "snippet": {
+                            "textOriginal": comment_text
+                        }
+                    }
+                }
+            }
+        ).execute()
+        new_id = created.get("id")
+        return {
+            "action": "created",
+            "comment_id": new_id,
+            "video_id": video_id,
+            "text": comment_text
+        }
+

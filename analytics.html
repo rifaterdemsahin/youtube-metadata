@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Analytics & Performance Hub — @RifatErdemSahin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #090d13;
+      --bg-secondary: #121820;
+      --bg-card: #19222c;
+      --bg-card-hover: #1f2b38;
+      --border: #283545;
+      --border-focus: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --accent-blue: #38bdf8;
+      --accent-purple: #818cf8;
+      --accent-green: #34d399;
+      --accent-yellow: #fbbf24;
+      --accent-red: #f87171;
+      --accent-cyan: #22d3ee;
+      --accent-orange: #fb923c;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-top: 72px;
+    }
+
+    /* Fixed Top Navigation Bar */
+    .top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(18, 24, 32, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      z-index: 1000;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+
+    .nav-logo {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #ff0033, #cc0000);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 16px;
+      color: white;
+      box-shadow: 0 2px 8px rgba(255, 0, 51, 0.3);
+    }
+
+    .nav-title {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      list-style: none;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 11px;
+      border-radius: 6px;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-link.active {
+      color: var(--accent-cyan);
+      background: rgba(34, 211, 238, 0.12);
+      font-weight: 600;
+      border: 1px solid rgba(34, 211, 238, 0.3);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .container {
+      max-width: 1320px;
+      margin: 28px auto 80px auto;
+      padding: 0 24px;
+    }
+
+    /* Page Header */
+    .page-header {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .header-info h1 {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-info p {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .header-badge-live {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      background: rgba(52, 211, 153, 0.15);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      color: var(--accent-green);
+      border-radius: 9999px;
+      font-size: 12px;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-green);
+      box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.7);
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(52, 211, 153, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.15s ease;
+    }
+
+    .btn-primary { background: #ff0033; color: white; }
+    .btn-primary:hover { background: #e6002e; transform: translateY(-1px); }
+    .btn-secondary { background: var(--bg-card); color: var(--text-main); border: 1px solid var(--border); }
+    .btn-secondary:hover { background: var(--bg-card-hover); border-color: var(--text-muted); }
+    .btn-cyan { background: rgba(34, 211, 238, 0.15); color: var(--accent-cyan); border: 1px solid rgba(34, 211, 238, 0.4); }
+    .btn-cyan:hover { background: rgba(34, 211, 238, 0.25); }
+
+    /* Top KPI Cards Grid */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .kpi-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+
+    .kpi-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(56, 189, 248, 0.4);
+    }
+
+    .kpi-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      font-weight: 600;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .kpi-value {
+      font-size: 28px;
+      font-weight: 800;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-main);
+      margin-bottom: 4px;
+      letter-spacing: -0.03em;
+    }
+
+    .kpi-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .kpi-tag-pos {
+      color: var(--accent-green);
+      font-weight: 600;
+    }
+
+    .kpi-tag-cyan {
+      color: var(--accent-cyan);
+      font-weight: 600;
+    }
+
+    .kpi-tag-yellow {
+      color: var(--accent-yellow);
+      font-weight: 600;
+    }
+
+    /* Section Containers */
+    .section-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 28px;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Multi-Window Stats Row */
+    .window-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    @media (max-width: 980px) {
+      .window-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .window-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px;
+    }
+
+    .window-box-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .metric-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      font-size: 13px;
+    }
+
+    .metric-row:last-child {
+      border-bottom: none;
+    }
+
+    .metric-row-label {
+      color: var(--text-muted);
+    }
+
+    .metric-row-val {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    /* Traffic Sources Stacked Visual */
+    .traffic-bar-wrapper {
+      margin-bottom: 20px;
+    }
+
+    .traffic-bar {
+      display: flex;
+      height: 24px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+      margin-bottom: 12px;
+    }
+
+    .traffic-segment {
+      height: 100%;
+      position: relative;
+      cursor: pointer;
+      transition: opacity 0.15s ease;
+    }
+
+    .traffic-segment:hover {
+      opacity: 0.85;
+    }
+
+    .traffic-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      font-size: 12px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+
+    /* Data Tables */
+    .table-responsive {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg-card);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      text-align: left;
+    }
+
+    th {
+      background: rgba(18, 24, 32, 0.95);
+      padding: 12px 16px;
+      color: var(--text-muted);
+      font-weight: 600;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    th:hover {
+      color: var(--accent-cyan);
+    }
+
+    td {
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(40, 53, 69, 0.4);
+      color: var(--text-main);
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr.video-row:hover td {
+      background-color: var(--bg-card-hover);
+      cursor: pointer;
+    }
+
+    .mono-cell {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+    }
+
+    /* Retention & Percentage Bars */
+    .pct-bar-container {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 130px;
+    }
+
+    .pct-bar-track {
+      flex: 1;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+
+    .pct-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
+    }
+
+    .badge-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .chip-green { background: rgba(52, 211, 153, 0.15); color: var(--accent-green); border: 1px solid rgba(52, 211, 153, 0.3); }
+    .chip-cyan { background: rgba(34, 211, 238, 0.15); color: var(--accent-cyan); border: 1px solid rgba(34, 211, 238, 0.3); }
+    .chip-purple { background: rgba(129, 140, 248, 0.15); color: var(--accent-purple); border: 1px solid rgba(129, 140, 248, 0.3); }
+    .chip-yellow { background: rgba(251, 191, 36, 0.15); color: var(--accent-yellow); border: 1px solid rgba(251, 191, 36, 0.3); }
+    .chip-orange { background: rgba(251, 146, 60, 0.15); color: var(--accent-orange); border: 1px solid rgba(251, 146, 60, 0.3); }
+
+    /* Filter & Search Bar */
+    .controls-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .search-input-wrapper {
+      position: relative;
+      flex: 1;
+      min-width: 260px;
+    }
+
+    .search-input {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 9px 14px 9px 36px;
+      font-size: 13px;
+      color: var(--text-main);
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent-cyan);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-dim);
+      font-size: 14px;
+    }
+
+    .filter-pills {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .pill-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .pill-btn:hover {
+      color: var(--text-main);
+      border-color: var(--text-muted);
+    }
+
+    .pill-btn.active {
+      background: rgba(34, 211, 238, 0.15);
+      color: var(--accent-cyan);
+      border-color: rgba(34, 211, 238, 0.4);
+      font-weight: 600;
+    }
+
+    /* Insights Grid */
+    .insights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 16px;
+    }
+
+    .insight-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .insight-title {
+      font-size: 14px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .insight-body {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .insight-pill {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 6px;
+      border-radius: 4px;
+    }
+
+    /* Modal / Drawer for Video Inspection */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 640px;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 24px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
+
+    .modal-title {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 20px;
+      cursor: pointer;
+      padding: 4px 8px;
+    }
+
+    .modal-close:hover {
+      color: white;
+    }
+
+    .modal-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin: 16px 0;
+    }
+
+    .modal-metric-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .modal-metric-val {
+      font-size: 18px;
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent-cyan);
+    }
+
+    .modal-metric-lbl {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 4px;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Shared Top Navigation Menu -->
+  <nav class="top-nav">
+    <a href="index.html" class="nav-brand">
+      <div class="nav-logo">▶</div>
+      <div><div class="nav-title">YouTube Studio MCP</div></div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link">Operations Dashboard</a></li>
+      <li><a href="skills.html" class="nav-link">Skills Studio</a></li>
+      <li><a href="catalog.html" class="nav-link">Video Catalog & Notes</a></li>
+      <li><a href="playlists.html" class="nav-link">Playlists & Paths</a></li>
+      <li><a href="updates.html" class="nav-link">Applied Updates Log</a></li>
+      <li><a href="thumbnails.html" class="nav-link">Thumbnails Studio</a></li>
+      <li><a href="analytics.html" class="nav-link active">Analytics & Performance</a></li>
+      <li><a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" class="nav-link">@RifatErdemSahin ↗</a></li>
+      <li><a href="https://www.skool.com/delivery-pilot-8938" target="_blank" class="nav-link">Skool Community ↗</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a href="analytics_data.json" target="_blank" class="btn btn-secondary" style="padding: 6px 12px; font-size: 12px;">Data JSON ↗</a>
+      <a href="https://github.com/rifaterdemsahin/youtube-metadata" target="_blank" class="btn btn-secondary" style="padding: 6px 12px; font-size: 12px;">GitHub ↗</a>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="header-info">
+        <h1>
+          <span>📊 Channel Analytics & Video Intelligence</span>
+          <span class="header-badge-live"><span class="pulse-dot"></span> 706 Live Subscribers</span>
+        </h1>
+        <p>Comprehensive audience retention, traffic acquisition paths, and video-by-video performance breakdown for <strong>@RifatErdemSahin</strong>.</p>
+      </div>
+      <div class="header-actions">
+        <button class="btn btn-cyan" onclick="exportAnalyticsCSV()">📥 Export CSV</button>
+        <a href="catalog.html" class="btn btn-secondary">Metadata Catalog ➔</a>
+      </div>
+    </div>
+
+    <!-- Top KPI Grid -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">
+          <span>Total Views (365d)</span>
+          <span>📈</span>
+        </div>
+        <div class="kpi-value">3,614</div>
+        <div class="kpi-sub">
+          <span class="kpi-tag-cyan">100%</span> across 26 indexed videos
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">
+          <span>Total Watch Time</span>
+          <span>⏱️</span>
+        </div>
+        <div class="kpi-value">92.8 <span style="font-size: 16px; font-weight: 500;">hrs</span></div>
+        <div class="kpi-sub">
+          <span class="kpi-tag-pos">5,568+</span> mins audience engagement
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">
+          <span>Impressions & CTR</span>
+          <span>🎯</span>
+        </div>
+        <div class="kpi-value">35.5k <span style="font-size: 16px; font-weight: 500;">/ 2.3%</span></div>
+        <div class="kpi-sub">
+          <span class="kpi-tag-yellow">35,548</span> total impressions
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">
+          <span>Avg View Retention</span>
+          <span>⏳</span>
+        </div>
+        <div class="kpi-value">1:32 <span style="font-size: 16px; font-weight: 500;">(10.2%)</span></div>
+        <div class="kpi-sub">
+          <span class="kpi-tag-pos">Up to 66.6%</span> on masterclasses
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <div class="kpi-label">
+          <span>Subscribers Gained</span>
+          <span>👥</span>
+        </div>
+        <div class="kpi-value">+79 <span style="font-size: 16px; font-weight: 500;">(706 Total)</span></div>
+        <div class="kpi-sub">
+          <span class="kpi-tag-pos">+200%</span> in latest 28-day window
+        </div>
+      </div>
+    </div>
+
+    <!-- Multi-Window Timeframe Metrics -->
+    <div class="window-grid">
+      <!-- 365 Days Summary -->
+      <div class="window-box">
+        <div class="window-box-title">
+          <span>📅 Last 365 Days Overview</span>
+          <span class="badge-chip chip-cyan">16 Aug '25 – 15 Aug '26</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-row-label">Total Channel Views</span>
+          <span class="metric-row-val">3,614</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-row-label">Watch Time (Hours)</span>
+          <span class="metric-row-val">92.8 hrs</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-row-label">Subscriber Growth</span>
+          <span class="metric-row-val">+79</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-row-label">Impressions Click-Through Rate</span>
+          <span class="metric-row-val">2.3% (35,548 imp)</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-row-label">Average View Duration</span>
+          <span class="metric-row-val">1:32 (10.2% avg)</span>
+        </div>
+      </div>
+
+      <!-- Last 28 Days Performance -->
+      <div class="window-box">
+        <div class="window-box-title">
+          <span>⚡ Last 28 Days Pulse</span>
+          <span class="badge-chip chip-purple">19 Jul – 15 Aug '26</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-row-label">Views in Period</span>
+          <span class="metric-row-val">72 views</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-row-label">Watch Time</span>
+          <span class="metric-row-val">2.0 hrs</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-row-label">Subscribers</span>
+          <span class="metric-row-val">+1 (200% ↑)</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-row-label">Top Velocity Video</span>
+          <span class="metric-row-val">Claude AI Intro (13)</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-row-label">Runner-Up Video</span>
+          <span class="metric-row-val">AI No-Code (12)</span>
+        </div>
+      </div>
+
+      <!-- Realtime 48H & Latest Release -->
+      <div class="window-box">
+        <div class="window-box-title">
+          <span>🔴 Realtime (Last 48 Hours)</span>
+          <span class="badge-chip chip-green">14 Views</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-row-label">Live Audience Watch</span>
+          <span class="metric-row-val">14 views</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-row-label">Claude Architect Intro</span>
+          <span class="metric-row-val">3 views</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-row-label">Obsidian AI Engine (New)</span>
+          <span class="metric-row-val">1 view (59.4% ret)</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-row-label">Latest Course: Claude Cert</span>
+          <span class="metric-row-val">13 views (1 mo ago)</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-row-label">A/B Testing Experiments</span>
+          <span class="metric-row-val">12 tests completed</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Traffic Acquisition Analysis Section -->
+    <div class="section-card">
+      <div class="section-head">
+        <div>
+          <div class="section-title">🌐 Traffic Sources Breakdown</div>
+          <div class="section-desc">Analysis of how viewers discover channel content across YouTube surfaces and external referrals.</div>
+        </div>
+        <span class="badge-chip chip-cyan">3,614 Total Views</span>
+      </div>
+
+      <!-- Visual Distribution Multi-Segment Bar -->
+      <div class="traffic-bar-wrapper">
+        <div class="traffic-bar" id="trafficVisualBar">
+          <!-- Filled dynamically by JavaScript -->
+        </div>
+        <div class="traffic-legend" id="trafficLegend">
+          <!-- Filled dynamically by JavaScript -->
+        </div>
+      </div>
+
+      <!-- Detailed Traffic Source Table -->
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Traffic Source</th>
+              <th>Views</th>
+              <th>Share (%)</th>
+              <th>Watch Time (Hours)</th>
+              <th>Avg Duration</th>
+              <th>Avg % Viewed</th>
+              <th>Impressions</th>
+              <th>CTR</th>
+            </tr>
+          </thead>
+          <tbody id="trafficTableBody">
+            <!-- Populated via JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Video Performance Deep-Dive Hub -->
+    <div class="section-card">
+      <div class="section-head">
+        <div>
+          <div class="section-title">🎬 Video-by-Video Analytics & Retention Matrix</div>
+          <div class="section-desc">Click any video row to inspect full performance details, watch time metrics, and optimization opportunities.</div>
+        </div>
+        <div id="videoCountBadge" class="badge-chip chip-purple">26 Videos</div>
+      </div>
+
+      <!-- Filter and Search Controls -->
+      <div class="controls-bar">
+        <div class="search-input-wrapper">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="videoSearchInput" class="search-input" placeholder="Search by video title, category, or keyword..." oninput="filterAndRenderVideos()">
+        </div>
+
+        <div class="filter-pills" id="categoryPills">
+          <button class="pill-btn active" onclick="setCategoryFilter('all', this)">All (26)</button>
+          <button class="pill-btn" onclick="setCategoryFilter('Career & CV', this)">Career & CV</button>
+          <button class="pill-btn" onclick="setCategoryFilter('AI Agents & Workforce', this)">AI Agents</button>
+          <button class="pill-btn" onclick="setCategoryFilter('RAG & Engineering', this)">RAG & Code</button>
+          <button class="pill-btn" onclick="setCategoryFilter('Learning Methodologies', this)">Learning</button>
+          <button class="pill-btn" onclick="setCategoryFilter('Course Intros', this)">Masterclasses</button>
+        </div>
+      </div>
+
+      <!-- Video Performance Table -->
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th onclick="sortTable('rank')">#</th>
+              <th onclick="sortTable('title')">Video Title ↕</th>
+              <th onclick="sortTable('published_date')">Publish Date ↕</th>
+              <th onclick="sortTable('duration_sec')">Duration ↕</th>
+              <th onclick="sortTable('views')">Views ↕</th>
+              <th onclick="sortTable('views_share_pct')">Share (%) ↕</th>
+              <th onclick="sortTable('avg_percentage_viewed')">Retention Rate ↕</th>
+              <th onclick="sortTable('avg_view_duration')">Avg Duration ↕</th>
+              <th onclick="sortTable('comments')">Comments ↕</th>
+              <th>Status / Tests</th>
+            </tr>
+          </thead>
+          <tbody id="videoTableBody">
+            <!-- Populated via JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Strategic Insights & Growth Recommendations -->
+    <div class="section-card">
+      <div class="section-head">
+        <div>
+          <div class="section-title">💡 Strategic Channel Insights & Optimizations</div>
+          <div class="section-desc">Actionable findings derived from audience retention data, traffic source conversion, and video velocity.</div>
+        </div>
+      </div>
+
+      <div class="insights-grid">
+        <div class="insight-card">
+          <div class="insight-title">
+            <span>🚀 High-Impact Acquisition Drivers</span>
+            <span class="insight-pill chip-green">Top 3 = 36.7%</span>
+          </div>
+          <div class="insight-body">
+            <strong>LinkedIn Job Hunt (531 views)</strong>, <strong>AI No-Code (398 views)</strong>, and <strong>The Agentic Era (396 views)</strong> generate over one-third of total channel traffic. Practical, outcome-focused tools that bridge career transformation and automation show the highest organic demand.
+          </div>
+        </div>
+
+        <div class="insight-card">
+          <div class="insight-title">
+            <span>🎯 Retention Sweet Spot</span>
+            <span class="insight-pill chip-cyan">66.6% Retention</span>
+          </div>
+          <div class="insight-body">
+            Short, highly dense masterclass trailers (e.g. <strong>Claude AI Certification Intro: 66.6%</strong>) and focused tutorials under 6 minutes (e.g. <strong>10x Interview Rate: 23.2%</strong>) demonstrate the highest viewer retention. Long-form videos retain 7-10% of audience across 15-25 min durations.
+          </div>
+        </div>
+
+        <div class="insight-card">
+          <div class="insight-title">
+            <span>🌐 Traffic Diversification Gap</span>
+            <span class="insight-pill chip-orange">40.8% External</span>
+          </div>
+          <div class="insight-body">
+            With <strong>40.8% External</strong> and <strong>23.1% Direct</strong>, the channel excels at driving external community traffic (Skool, GitHub, LinkedIn). Optimizing YouTube SEO metadata, tags, and chapter markers will unlock higher <strong>YouTube Search (currently 4.4%)</strong> and <strong>Suggested (4.4%)</strong> algorithmic reach.
+          </div>
+        </div>
+
+        <div class="insight-card">
+          <div class="insight-title">
+            <span>💬 High-Engagement Community Topics</span>
+            <span class="insight-pill chip-purple">Discussion Hubs</span>
+          </div>
+          <div class="insight-body">
+            Videos featuring interactive frameworks (e.g. <strong>Master Complex Topics: 7 comments</strong>, <strong>Master AI & Bridge Gap: 6 comments</strong>, <strong>Resumes are Obsolete: 5 comments</strong>) generate the strongest audience dialogue. Embedding pinned Skool community links in these comments maximizes funnel conversion.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Video Inspection Modal -->
+  <div id="videoModal" class="modal-overlay" onclick="closeModalOnBackdrop(event)">
+    <div class="modal-card">
+      <div class="modal-header">
+        <div class="modal-title" id="modalTitle">Video Title</div>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+
+      <div class="modal-metrics-grid">
+        <div class="modal-metric-box">
+          <div class="modal-metric-val" id="modalViews">0</div>
+          <div class="modal-metric-lbl">Total Views</div>
+        </div>
+        <div class="modal-metric-box">
+          <div class="modal-metric-val" id="modalRetention">0%</div>
+          <div class="modal-metric-lbl">Retention %</div>
+        </div>
+        <div class="modal-metric-box">
+          <div class="modal-metric-val" id="modalAvgDuration">0:00</div>
+          <div class="modal-metric-lbl">Avg Duration</div>
+        </div>
+      </div>
+
+      <div style="margin-top: 14px; font-size: 13px; line-height: 1.6; color: var(--text-muted);">
+        <div style="margin-bottom: 8px;"><strong>Category:</strong> <span id="modalCategory" class="badge-chip chip-cyan">-</span></div>
+        <div style="margin-bottom: 8px;"><strong>Publish Date:</strong> <span id="modalDate" style="color: var(--text-main);">-</span></div>
+        <div style="margin-bottom: 8px;"><strong>Video Length:</strong> <span id="modalLength" style="color: var(--text-main);">-</span></div>
+        <div style="margin-bottom: 8px;"><strong>A/B Test Status:</strong> <span id="modalABTest" class="badge-chip chip-green">-</span></div>
+        <div style="margin-bottom: 8px;"><strong>Comments:</strong> <span id="modalComments" style="color: var(--text-main);">-</span></div>
+        <div style="margin-bottom: 12px;"><strong>Last 28 Days Velocity:</strong> <span id="modal28d" style="color: var(--accent-green); font-weight: 600;">-</span></div>
+      </div>
+
+      <div style="display: flex; gap: 10px; margin-top: 20px; justify-content: flex-end;">
+        <a id="modalYTLink" href="#" target="_blank" class="btn btn-primary">Watch on YouTube ↗</a>
+        <button class="btn btn-secondary" onclick="closeModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let analyticsData = null;
+    let currentCategory = 'all';
+    let currentSortField = 'views';
+    let currentSortAsc = false;
+
+    const sourceColors = {
+      'External': '#38bdf8',
+      'Direct or unknown': '#818cf8',
+      'Browse features': '#34d399',
+      'Channel pages': '#fbbf24',
+      'Suggested videos': '#f87171',
+      'YouTube search': '#22d3ee',
+      'Other YouTube features': '#fb923c',
+      'Playlists': '#a78bfa',
+      'Notifications': '#f472b6',
+      'Shorts feed': '#e879f9',
+      'Hashtag pages': '#4ade80',
+      'End screens': '#94a3b8'
+    };
+
+    async function loadData() {
+      try {
+        const res = await fetch('analytics_data.json');
+        analyticsData = await res.json();
+        renderTrafficSources();
+        filterAndRenderVideos();
+      } catch (e) {
+        console.error('Failed to load analytics_data.json:', e);
+      }
+    }
+
+    function renderTrafficSources() {
+      if (!analyticsData || !analyticsData.traffic_sources) return;
+
+      const sources = analyticsData.traffic_sources;
+      const bar = document.getElementById('trafficVisualBar');
+      const legend = document.getElementById('trafficLegend');
+      const tbody = document.getElementById('trafficTableBody');
+
+      bar.innerHTML = '';
+      legend.innerHTML = '';
+      tbody.innerHTML = '';
+
+      sources.forEach(src => {
+        const color = sourceColors[src.source] || '#38bdf8';
+
+        // Add to visual bar if share > 0
+        if (src.views_share_pct > 0) {
+          const seg = document.createElement('div');
+          seg.className = 'traffic-segment';
+          seg.style.width = src.views_share_pct + '%';
+          seg.style.backgroundColor = color;
+          seg.title = `${src.source}: ${src.views} views (${src.views_share_pct}%)`;
+          bar.appendChild(seg);
+        }
+
+        // Add to legend
+        const legItem = document.createElement('div');
+        legItem.className = 'legend-item';
+        legItem.innerHTML = `<span class="legend-dot" style="background-color: ${color}"></span> <span>${src.source} (${src.views_share_pct}%)</span>`;
+        legend.appendChild(legItem);
+
+        // Add to table
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td><strong style="color: ${color}">●</strong> ${src.source}</td>
+          <td class="mono-cell">${src.views.toLocaleString()}</td>
+          <td class="mono-cell">${src.views_share_pct.toFixed(1)}%</td>
+          <td class="mono-cell">${src.watch_time_hours.toFixed(1)} hrs (${src.watch_time_share_pct}%)</td>
+          <td class="mono-cell">${src.avg_view_duration}</td>
+          <td>
+            <div class="pct-bar-container">
+              <span class="mono-cell" style="width: 45px;">${src.avg_percentage_viewed}%</span>
+              <div class="pct-bar-track">
+                <div class="pct-bar-fill" style="width: ${Math.min(src.avg_percentage_viewed, 100)}%; background: ${color};"></div>
+              </div>
+            </div>
+          </td>
+          <td class="mono-cell">${src.impressions ? src.impressions.toLocaleString() : '—'}</td>
+          <td class="mono-cell">${src.ctr || '—'}</td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    function setCategoryFilter(cat, btn) {
+      currentCategory = cat;
+      document.querySelectorAll('.filter-pills .pill-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      filterAndRenderVideos();
+    }
+
+    function sortTable(field) {
+      if (currentSortField === field) {
+        currentSortAsc = !currentSortAsc;
+      } else {
+        currentSortField = field;
+        currentSortAsc = false;
+      }
+      filterAndRenderVideos();
+    }
+
+    function filterAndRenderVideos() {
+      if (!analyticsData || !analyticsData.videos) return;
+
+      const query = (document.getElementById('videoSearchInput').value || '').toLowerCase().trim();
+      let list = [...analyticsData.videos];
+
+      // Filter by category
+      if (currentCategory !== 'all') {
+        list = list.filter(v => (v.category || '').toLowerCase().includes(currentCategory.toLowerCase()));
+      }
+
+      // Filter by search query
+      if (query) {
+        list = list.filter(v => 
+          v.title.toLowerCase().includes(query) ||
+          (v.category && v.category.toLowerCase().includes(query)) ||
+          v.published_date.toLowerCase().includes(query)
+        );
+      }
+
+      // Sort
+      list.sort((a, b) => {
+        let valA = a[currentSortField];
+        let valB = b[currentSortField];
+
+        if (currentSortField === 'rank') {
+          return currentSortAsc ? 0 : 0;
+        }
+
+        if (typeof valA === 'string') {
+          return currentSortAsc ? valA.localeCompare(valB) : valB.localeCompare(valA);
+        }
+        return currentSortAsc ? valA - valB : valB - valA;
+      });
+
+      const tbody = document.getElementById('videoTableBody');
+      const badge = document.getElementById('videoCountBadge');
+      badge.textContent = `${list.length} Videos`;
+      tbody.innerHTML = '';
+
+      list.forEach((v, idx) => {
+        const tr = document.createElement('tr');
+        tr.className = 'video-row';
+        tr.onclick = () => openModal(v);
+
+        let testChip = v.ab_test ? '<span class="badge-chip chip-green">A/B Test Done</span>' : '<span class="badge-chip chip-purple">' + v.status + '</span>';
+        
+        tr.innerHTML = `
+          <td class="mono-cell" style="color: var(--text-dim);">${idx + 1}</td>
+          <td>
+            <div style="font-weight: 600; margin-bottom: 2px;">${v.title}</div>
+            <div style="font-size: 11px; color: var(--text-muted); display: flex; gap: 8px; align-items: center;">
+              <span class="badge-chip chip-cyan" style="font-size: 10px; padding: 1px 6px;">${v.category || 'General'}</span>
+              ${v.top_28d_views > 0 ? `<span style="color: var(--accent-green);">+${v.top_28d_views} views (28d)</span>` : ''}
+            </div>
+          </td>
+          <td class="mono-cell" style="white-space: nowrap; font-size: 12px;">${v.published_date}</td>
+          <td class="mono-cell">${v.duration}</td>
+          <td class="mono-cell" style="color: var(--accent-cyan); font-weight: 700;">${v.views.toLocaleString()}</td>
+          <td class="mono-cell">${v.views_share_pct.toFixed(1)}%</td>
+          <td>
+            <div class="pct-bar-container">
+              <span class="mono-cell" style="width: 45px;">${v.avg_percentage_viewed}%</span>
+              <div class="pct-bar-track">
+                <div class="pct-bar-fill" style="width: ${Math.min(v.avg_percentage_viewed, 100)}%;"></div>
+              </div>
+            </div>
+          </td>
+          <td class="mono-cell">${v.avg_view_duration}</td>
+          <td class="mono-cell">${v.comments}</td>
+          <td>${testChip}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function openModal(v) {
+      document.getElementById('modalTitle').textContent = v.title;
+      document.getElementById('modalViews').textContent = v.views.toLocaleString();
+      document.getElementById('modalRetention').textContent = v.avg_percentage_viewed + '%';
+      document.getElementById('modalAvgDuration').textContent = v.avg_view_duration;
+      document.getElementById('modalCategory').textContent = v.category || 'General';
+      document.getElementById('modalDate').textContent = v.published_date;
+      document.getElementById('modalLength').textContent = v.duration;
+      document.getElementById('modalABTest').textContent = v.ab_test ? 'A/B Test Completed' : v.status;
+      document.getElementById('modalComments').textContent = v.comments + ' comments';
+      document.getElementById('modal28d').textContent = (v.top_28d_views || 0) + ' views in past 28 days';
+      
+      const ytLink = document.getElementById('modalYTLink');
+      if (v.id && !v.id.includes('_')) {
+        ytLink.href = 'https://www.youtube.com/watch?v=' + v.id;
+        ytLink.style.display = 'inline-flex';
+      } else {
+        ytLink.href = 'https://www.youtube.com/@RifatErdemSahin/videos';
+        ytLink.style.display = 'inline-flex';
+      }
+
+      document.getElementById('videoModal').classList.add('active');
+    }
+
+    function closeModal() {
+      document.getElementById('videoModal').classList.remove('active');
+    }
+
+    function closeModalOnBackdrop(e) {
+      if (e.target.id === 'videoModal') {
+        closeModal();
+      }
+    }
+
+    function exportAnalyticsCSV() {
+      if (!analyticsData || !analyticsData.videos) return;
+      const headers = ['Title', 'Category', 'Published Date', 'Duration', 'Views', 'Views Share %', 'Avg View Duration', 'Avg % Viewed', 'Comments', 'Status'];
+      const rows = analyticsData.videos.map(v => [
+        `"${v.title.replace(/"/g, '""')}"`,
+        `"${v.category}"`,
+        `"${v.published_date}"`,
+        `"${v.duration}"`,
+        v.views,
+        v.views_share_pct,
+        `"${v.avg_view_duration}"`,
+        v.avg_percentage_viewed,
+        v.comments,
+        `"${v.status}"`
+      ]);
+
+      const csvContent = 'data:text/csv;charset=utf-8,' + [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
+      const encodedUri = encodeURI(csvContent);
+      const link = document.createElement('a');
+      link.setAttribute('href', encodedUri);
+      link.setAttribute('download', 'youtube_analytics_rifaterdemsahin.csv');
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeModal();
+    });
+
+    loadData();
+  </script>
+</body>
+</html>

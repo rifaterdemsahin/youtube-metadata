@@ -2,6 +2,30 @@
   "channel_title": "Rifat Erdem Sahin",
   "videos": [
     {
+      "id": "HUTlnlw3h8o",
+      "title": "Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini)",
+      "description": "Are you drowning in a sea of 46,000 Obsidian notes? Overwhelmed by endless information and struggling to find clarity in the chaos?\n\nLet's flip the script. In this video, we explore how to build an AI Knowledge Engine that sculpts your thoughts into a masterpiece with automated background synthesis.\n\n\ud83e\udde0 What You Will Learn:\n\u2022 The PARA Framework: Structuring Projects, Areas, Resources, and Archive for AI synthesis.\n\u2022 Dual-Agent Orchestration: Syncing Claude and Gemini seamlessly with GitHub, Google Drive, and Proxmox.\n\u2022 The 4-Step Conveyor Loop: Tell \u2794 Show \u2794 Do \u2794 Apply \u2014 the actionable roadmap to AI mastery.\n\u2022 Building Your Second Brain: Turning raw knowledge into structured genius.\n\n\ud83d\ude80 Join our AI Builders & Architects Community & Sunday Live Cohort:\n\ud83d\udc49 https://www.skool.com/delivery-pilot-8938\n\n#Obsidian #SecondBrain #AIAgents #ClaudeAI #Gemini #Productivity #KnowledgeManagement #Automation #HandsOnTools\n\n\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\n\ud83d\udcda References, Attributions & Trademarks Notice:\nAll third-party trademarks, product names, frameworks, and registered copyrights mentioned in this video remain the property of their respective owners. Mention of them is for educational, transformative, and commentary purposes:\n\u2022 PARA Method & Building a Second Brain: Conceived and authored by Tiago Forte (Forte Labs).\n\u2022 Obsidian: Note-taking & knowledge base application developed by Dynalist Inc.\n\u2022 Claude: Generative AI model developed by Anthropic PBC.\n\u2022 Google Gemini & Google Drive: AI models and cloud services by Google LLC / Alphabet Inc.\n\u2022 GitHub: Platform developed by GitHub, Inc. / Microsoft Corporation.\n\u2022 Proxmox VE: Virtualization platform developed by Proxmox Server Solutions GmbH.",
+      "tags": [
+        "AI Automation",
+        "AI Knowledge Engine",
+        "Claude AI",
+        "Dual Agent",
+        "Google Gemini",
+        "Hands On Tools",
+        "Obsidian",
+        "PARA Method",
+        "Productivity",
+        "Second Brain",
+        "Tiago Forte"
+      ],
+      "category_id": "27",
+      "privacy_status": "public",
+      "published_at": "2026-08-16T16:48:21Z",
+      "view_count": "38",
+      "like_count": "2",
+      "thumbnail_url": "https://i.ytimg.com/vi/HUTlnlw3h8o/hqdefault.jpg"
+    },
+    {
       "id": "F8IBooe3bXY",
       "title": "Claude AI Certification for Architects | Masterclass Intro",
       "description": "\ud83d\ude80 Welcome to the definitive Claude AI Certification Course for Solutions, Enterprise, and AI Architects. \n\nMoving AI from a playground prototype to a secure, scalable, production-grade enterprise system requires architecture\u2014not just clever prompting. In this comprehensive masterclass, you will learn how to design, secure, and orchestrate enterprise-grade AI infrastructure leveraging Anthropic\u2019s Claude ecosystem.\n\nWe dive deep into system topologies, Model Context Protocol (MCP) implementations, cost-optimization matrixes, and strict data governance models required to deploy Claude at scale.\n\n\ud83d\udd17 LINKS & RESOURCES\n--------------------------------------------------\n\n\ud83d\udcbb Access GitHub Repo (MCP Servers & Templates): https://github.com/rifaterdemsahin/claude-architect-certification\n\n\n\ud83d\udcca WHAT YOU WILL MASTER IN THIS COURSE\n--------------------------------------------------\nBy the end of this certification, you will be equipped to architect resilient AI solutions:\n\u2022 Enterprise Integration: Connect Claude securely to legacy infrastructure and databases using the Model Context Protocol (MCP).\n\u2022 Scalable Topology Design: Build robust multi-agent orchestration loops and fallback systems.\n\u2022 Security & Compliance Governance: Architect data boundaries that guarantee zero-data retention (ZDR) and comply with SOC2, HIPAA, and GDPR.\n\u2022 Cost & Performance Engineering: Implement token-budgeting, advanced prompt caching, and latency-reduction frameworks.\n\n\ud83d\udee0\ufe0f COURSE CURRICULUM BREAKDOWN\n--------------------------------------------------\n\ud83d\udd39 Module 1: The Claude Architecture Blueprint\n\u2022 Understanding Anthropic\u2019s model topology (Claude 3.5 Sonnet, Haiku, Opus).\n\u2022 Context window management & state management (stateless vs. stateful AI middleware).\n\n\ud83d\udd39 Module 2: Model Context Protocol (MCP) & Data Integration\n\u2022 Architecting secure data pipelines between Claude and enterprise data silos.\n\u2022 Setting up, hosting, and scaling custom MCP servers.\n\n\ud83d\udd39 Module 3: Security, Privacy, and Enterprise Governance\n\u2022 Data residency and isolation strategies (VPC, AWS Bedrock, Google Cloud Vertex, Anthropic API).\n\u2022 Mitigating prompt injection and data exfiltration vectors at the infrastructure layer.\n\n\ud83d\udd39 Module 4: Multi-Agent Orchestration & Workflow Design\n\u2022 Designing autonomous routing layers and deterministic fallback systems.\n\u2022 Managing parallel processing states and preventing infinite agent execution loops.\n\n\ud83d\udd39 Module 5: Cost Optimization & Performance Engineering\n\u2022 Implementing Prompt Caching to reduce production costs by up to 90%.\n\u2022 Building an enterprise AI rate-limiting and token-throttling microservice.\n\n\ud83d\udc65 WHO THIS CERTIFICATION IS FOR\n--------------------------------------------------\n\u2022 Solutions & Enterprise Architects integrating LLMs into existing corporate infrastructure.\n\u2022 AI Engineers & Tech Leads moving prototypes into highly secure, high-throughput production environments.\n\u2022 CTOs & IT Directors looking for a definitive blueprint on AI governance, vendor selection, and cost control.\n\n\u23f0 TIMESTAMPS / CHAPTERS\n--------------------------------------------------\n0:00 - The Role of the AI Architect\n3:15 - Module 1: Anatomy of the Claude Ecosystem\n15:45 - Module 2: Implementing Model Context Protocol (MCP)\n32:20 - Module 3: Enterprise Security & Zero-Data Retention\n48:10 - Module 4: Engineering Multi-Agent Topologies\n1:10:05 - Module 5: Prompt Caching & Financial Engineering\n1:28:40 - Exam Preparation & Case Study Walkthrough\n\n\ud83d\udce2 SUPPORT THE CHANNEL\n--------------------------------------------------\nIf this architectural deep-dive helps you design better AI systems:\n\ud83d\udc4d Like this video to support free technical education.\n\ud83d\udd14 Subscribe for weekly deep-dives into enterprise AI engineering.\n\ud83d\udcac Comment below: What is your biggest challenge when scaling Claude in your current tech stack?\n\n#ClaudeAI #EnterpriseArchitecture #AIArchitect #Anthropic #ModelContextProtocol #CloudArchitecture #SoftwareEngineering #genai \n\ntodo: add all the insert links to here,\n\n\ud83d\ude80 Join our AI Builders & Architects Community:\n\ud83d\udc49 https://www.skool.com/delivery-pilot-8938",
@@ -9,7 +33,7 @@
       "category_id": "27",
       "privacy_status": "public",
       "published_at": "2026-06-22T06:47:38Z",
-      "view_count": "50",
+      "view_count": "53",
       "like_count": "0",
       "thumbnail_url": "https://i.ytimg.com/vi/F8IBooe3bXY/hqdefault.jpg"
     },
@@ -21,7 +45,7 @@
       "category_id": "27",
       "privacy_status": "public",
       "published_at": "2026-03-08T21:54:24Z",
-      "view_count": "397",
+      "view_count": "399",
       "like_count": "17",
       "thumbnail_url": "https://i.ytimg.com/vi/yI5BIb74kVI/hqdefault.jpg"
     },
@@ -33,7 +57,7 @@
       "category_id": "27",
       "privacy_status": "public",
       "published_at": "2026-02-08T15:04:43Z",
-      "view_count": "395",
+      "view_count": "396",
       "like_count": "14",
       "thumbnail_url": "https://i.ytimg.com/vi/c1UotPbvKoQ/hqdefault.jpg"
     },
@@ -80,7 +104,7 @@
       "category_id": "27",
       "privacy_status": "public",
       "published_at": "2025-11-17T08:45:06Z",
-      "view_count": "340",
+      "view_count": "342",
       "like_count": "12",
       "thumbnail_url": "https://i.ytimg.com/vi/QwFB7tvzLoA/hqdefault.jpg"
     },
@@ -124,7 +148,7 @@
       "category_id": "27",
       "privacy_status": "public",
       "published_at": "2025-11-10T09:00:06Z",
-      "view_count": "186",
+      "view_count": "187",
       "like_count": "9",
       "thumbnail_url": "https://i.ytimg.com/vi/bsH-vBGNERE/hqdefault.jpg"
     },
@@ -159,7 +183,7 @@
       "category_id": "27",
       "privacy_status": "public",
       "published_at": "2025-11-02T20:17:56Z",
-      "view_count": "287",
+      "view_count": "289",
       "like_count": "8",
       "thumbnail_url": "https://i.ytimg.com/vi/YZqcACObMws/hqdefault.jpg"
     },
@@ -235,7 +259,7 @@
       "category_id": "27",
       "privacy_status": "public",
       "published_at": "2025-10-21T12:52:06Z",
-      "view_count": "347",
+      "view_count": "348",
       "like_count": "13",
       "thumbnail_url": "https://i.ytimg.com/vi/IYgcXAZkevY/hqdefault.jpg"
     },
@@ -277,7 +301,7 @@
       "category_id": "27",
       "privacy_status": "public",
       "published_at": "2025-10-12T23:07:16Z",
-      "view_count": "531",
+      "view_count": "532",
       "like_count": "13",
       "thumbnail_url": "https://i.ytimg.com/vi/qNJpDJ8yHu8/hqdefault.jpg"
     },

@@ -1,0 +1,220 @@
+{
+  "channel_title": "Rifat Erdem Sahin",
+  "channel_url": "https://www.youtube.com/@rifaterdemsahin",
+  "timestamp": "2026-08-18T19:57:37.475545",
+  "dry_run": false,
+  "total_processed": 26,
+  "created_count": 6,
+  "updated_count": 20,
+  "matching_count": 0,
+  "results": [
+    {
+      "video_id": "HUTlnlw3h8o",
+      "title": "Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini)",
+      "action": "update",
+      "status": "updated",
+      "existing_comment_id": "Ugy-fOm4ToUFnQeIHVp4AaABAg",
+      "timestamp": "2026-08-18T19:57:13.623553"
+    },
+    {
+      "video_id": "F8IBooe3bXY",
+      "title": "Claude AI Certification for Architects | Masterclass Intro",
+      "action": "create",
+      "status": "created",
+      "existing_comment_id": null,
+      "timestamp": "2026-08-18T19:57:14.490489"
+    },
+    {
+      "video_id": "yI5BIb74kVI",
+      "title": "AI No-Code: Build Your Own AI Solutions (Step-by-Step)",
+      "action": "create",
+      "status": "created",
+      "existing_comment_id": null,
+      "timestamp": "2026-08-18T19:57:15.359030"
+    },
+    {
+      "video_id": "c1UotPbvKoQ",
+      "title": "The Agentic Era: How to Build a Digital Workforce & Close the AI Skill Gap",
+      "action": "create",
+      "status": "created",
+      "existing_comment_id": null,
+      "timestamp": "2026-08-18T19:57:16.158242"
+    },
+    {
+      "video_id": "Frty5ICAdOo",
+      "title": "The New Professional Standard: Navigating the AI Career Shift",
+      "action": "update",
+      "status": "updated",
+      "existing_comment_id": "Ugz-GGdb3hENQIafK914AaABAg",
+      "timestamp": "2026-08-18T19:57:17.100558"
+    },
+    {
+      "video_id": "QwFB7tvzLoA",
+      "title": "RAISE Your AI SKILLS: Build a RAG Application with Copilot & Codespaces",
+      "action": "update",
+      "status": "updated",
+      "existing_comment_id": "UgwwhN8DGlx-robGC_V4AaABAg",
+      "timestamp": "2026-08-18T19:57:18.021152"
+    },
+    {
+      "video_id": "bsH-vBGNERE",
+      "title": "10x Your Interview Rate: The ChatGPT + GitHub CV System Recruiters LOVE Tailored Resume in 2 Minutes",
+      "action": "create",
+      "status": "created",
+      "existing_comment_id": null,
+      "timestamp": "2026-08-18T19:57:18.956206"
+    },
+    {
+      "video_id": "YZqcACObMws",
+      "title": "AI Agents vs. Human Freelancers: The Brutal Truth",
+      "action": "create",
+      "status": "created",
+      "existing_comment_id": null,
+      "timestamp": "2026-08-18T19:57:19.802479"
+    },
+    {
+      "video_id": "VdnZI0PfscM",
+      "title": "Authentic AI Content Creation \u2014 Build the Content Magician Using RAG + n8n",
+      "action": "update",
+      "status": "updated",
+      "existing_comment_id": "Ugxgylpg463jZXGqDl54AaABAg",
+      "timestamp": "2026-08-18T19:57:20.704708"
+    },
+    {
+      "video_id": "IYgcXAZkevY",
+      "title": "How to Actually Learn AI: The Visual Construction Method Nobody Teaches",
+      "action": "update",
+      "status": "updated",
+      "existing_comment_id": "Ugw6cUlhJROwti4dLPl4AaABAg",
+      "timestamp": "2026-08-18T19:57:21.580376"
+    },
+    {
+      "video_id": "qNJpDJ8yHu8",
+      "title": "How to Build an AI to Automate LinkedIn Job Hunt",
+      "action": "update",
+      "status": "updated",
+      "existing_comment_id": "UgxJt4SYdkzzG_jEQAJ4AaABAg",
+      "timestamp": "2026-08-18T19:57:22.418470"
+    },
+    {
+      "video_id": "pUf8wGV2NBU",
+      "title": "Our Resumes are Obsolete. Build This AI CV Generator Instead",
+      "action": "update",
+      "status": "updated",
+      "existing_comment_id": "Ugz8GElIjYNQt3oCUSx4AaABAg",
+      "timestamp": "2026-08-18T19:57:23.290466"
+    },
+    {
+      "video_id": "EtpfGUGAFJw",
+      "title": "How to write your Cover Letters with AI",
+      "action": "update",
+      "status": "updated",
+      "existing_comment_id": "UgyNGbZkuuJqkBNt5gJ4AaABAg",
+      "timestamp": "2026-08-18T19:57:24.140610"
+    },
+    {
+      "video_id": "wtXDL0Vmr7A",
+      "title": "The AI Integration Skill Every Professional Needs (MCP Explained)",
+      "action": "update",
+      "status": "updated",
+      "existing_comment_id": "UgzCWRMBpOnEzH4KHIh4AaABAg",
+      "timestamp": "2026-08-18T19:57:25.578611"
+    },
+    {
+      "video_id": "fxj1orsKpYM",
+      "title": "The Rise of Personal AI: How It Will Change Everything",
+      "action": "update",
+      "status": "updated",
+      "existing_comment_id": "Ugwth9YQc8KjuazlBW54AaABAg",
+      "timestamp": "2026-08-18T19:57:26.429872"
+    },
+    {
+      "video_id": "3VgRz5GeYDA",
+      "title": "Why \"Being Broken\" is Your Secret Weapon in the Age of AI",
+      "action": "update",
+      "status": "updated",
+      "existing_comment_id": "UgyGZSMnE74-lXluhiZ4AaABAg",
+      "timestamp": "2026-08-18T19:57:27.413164"
+    },
+    {
+      "video_id": "E52uDnN5FB0",
+      "title": "Master Complex Topics with These Simple AI Strategies!",
+      "action": "update",
+      "status": "updated",
+      "existing_comment_id": "UgyX45KLkSOe_7Zm19J4AaABAg",
+      "timestamp": "2026-08-18T19:57:29.408414"
+    },
+    {
+      "video_id": "MnYEZWflHDs",
+      "title": "\ud83d\ude80 Mastering Self-Learning: How to Fail, Learn, & Leverage AI for Success! \ud83d\udca1 | Ultimate Growth Guide",
+      "action": "update",
+      "status": "updated",
+      "existing_comment_id": "Ugy232jcFg5QxmVEQAF4AaABAg",
+      "timestamp": "2026-08-18T19:57:30.160717"
+    },
+    {
+      "video_id": "WK66w51UMrs",
+      "title": "How to Use AI for Accountability: Tech Solutions and Life Lessons from Groundhog Day",
+      "action": "update",
+      "status": "updated",
+      "existing_comment_id": "UgxdTHsSKEVwh8ETkIh4AaABAg",
+      "timestamp": "2026-08-18T19:57:30.902900"
+    },
+    {
+      "video_id": "2EVPwgi8NZA",
+      "title": "10 AI-Powered Tips to Learn Faster and Execute Like a Pro",
+      "action": "update",
+      "status": "updated",
+      "existing_comment_id": "UgxFCA2y7IAbd9EbNU94AaABAg",
+      "timestamp": "2026-08-18T19:57:31.640454"
+    },
+    {
+      "video_id": "DDuGVH_uPTA",
+      "title": "Daily Skill Learning with AI: Transform Your Life One Day at a Time",
+      "action": "create",
+      "status": "created",
+      "existing_comment_id": null,
+      "timestamp": "2026-08-18T19:57:32.575759"
+    },
+    {
+      "video_id": "dCU0GpriG1o",
+      "title": "AI-Powered CV as Code: Accelerate Skill Mastery with Hands-On Learning",
+      "action": "update",
+      "status": "updated",
+      "existing_comment_id": "UgxP1aC5xhfEVDl80QV4AaABAg",
+      "timestamp": "2026-08-18T19:57:33.512504"
+    },
+    {
+      "video_id": "yKN0ParJ0fo",
+      "title": "AI-Powered Emotional Intelligence: Innovate and Thrive in Work and Life",
+      "action": "update",
+      "status": "updated",
+      "existing_comment_id": "UgyxaAHgcc40qm4GsWZ4AaABAg",
+      "timestamp": "2026-08-18T19:57:34.385784"
+    },
+    {
+      "video_id": "j5lku3LYoK4",
+      "title": "AI Career Guide: Start Your IT Career Today and Thrive in Tech",
+      "action": "update",
+      "status": "updated",
+      "existing_comment_id": "UgxAgRTWIKPWnZ6tjht4AaABAg",
+      "timestamp": "2026-08-18T19:57:35.896016"
+    },
+    {
+      "video_id": "DNQEQZPnpfg",
+      "title": "Learn Text Blaze To Boost Your AI Based Self Learning",
+      "action": "update",
+      "status": "updated",
+      "existing_comment_id": "UgwhrKpW_5ub4TChHNN4AaABAg",
+      "timestamp": "2026-08-18T19:57:36.632905"
+    },
+    {
+      "video_id": "3bwaZ-xUJcs",
+      "title": "Master AI, Stay Ahead, Bridge Skills Gap",
+      "action": "update",
+      "status": "updated",
+      "existing_comment_id": "Ugygt_U3_DsT7Oe3VON4AaABAg",
+      "timestamp": "2026-08-18T19:57:37.475533"
+    }
+  ]
+}

@@ -113,16 +113,146 @@ def append_link_to_all_descriptions(
             if not page_token:
                 break
 
-        summary = {
-            "dry_run": dry_run,
-            "total_updated": len(updated_videos),
-            "total_skipped": len(skipped_videos),
-            "updated_videos": updated_videos,
-            "skipped_videos": skipped_videos
-        }
-        return json.dumps(summary, indent=2)
+@mcp.tool()
+def sync_pinned_comments(
+    comment_text: str = "🚀 Join our AI Architect & Builder Community on Skool: https://www.skool.com/delivery-pilot-8938",
+    limit: int = None,
+    dry_run: bool = True
+) -> str:
+    """
+    Creates or updates featured/pinned promo comments across channel videos promoting Skool.
+    Set dry_run=False to execute live.
+    """
+    try:
+        channel = youtube_client.get_channel_info()
+        youtube = youtube_client.get_youtube_service()
+        if not channel:
+            return "Failed: channel info not found."
+
+        uploads_id = channel["uploads_id"]
+        page_token = None
+        results = []
+        count = 0
+
+        while True:
+            pl_req = youtube.playlistItems().list(
+                playlistId=uploads_id,
+                part="snippet,contentDetails",
+                maxResults=min(50, limit) if limit else 50,
+                pageToken=page_token
+            )
+            pl_res = pl_req.execute()
+            items = pl_res.get("items", [])
+            if not items:
+                break
+
+            for item in items:
+                if limit and count >= limit:
+                    break
+                vid = item["contentDetails"]["videoId"]
+                title = item["snippet"]["title"]
+
+                comments = youtube_client.list_video_comments(vid, max_results=20)
+                owner_comment = None
+                for c in comments:
+                    top_snippet = c.get("snippet", {}).get("topLevelComment", {}).get("snippet", {})
+                    if top_snippet.get("authorChannelId", {}).get("value") == channel["id"]:
+                        owner_comment = {"id": c.get("snippet", {}).get("topLevelComment", {}).get("id"), "text": top_snippet.get("textOriginal", "")}
+                        break
+
+                if owner_comment:
+                    if owner_comment["text"].strip() == comment_text.strip():
+                        status = "already_matching"
+                    else:
+                        status = "updated" if not dry_run else "would_update"
+                        if not dry_run:
+                            youtube.comments().update(part="snippet", body={"id": owner_comment["id"], "snippet": {"textOriginal": comment_text}}).execute()
+                else:
+                    status = "created" if not dry_run else "would_create"
+                    if not dry_run:
+                        youtube.commentThreads().insert(part="snippet", body={"snippet": {"videoId": vid, "topLevelComment": {"snippet": {"textOriginal": comment_text}}}}).execute()
+
+                results.append({"video_id": vid, "title": title, "status": status})
+                count += 1
+
+            if limit and count >= limit:
+                break
+            page_token = pl_res.get("nextPageToken")
+            if not page_token:
+                break
+
+        return json.dumps({"dry_run": dry_run, "total": len(results), "results": results}, indent=2)
     except Exception as e:
-        return f"Error in bulk description updater: {str(e)}"
+        return f"Error syncing pinned comments: {str(e)}"
+
+
+@mcp.tool()
+def update_first_lines_skool_cta(
+    cta_line: str = "🚀 Join our AI Architect & Builder Community: https://www.skool.com/delivery-pilot-8938",
+    limit: int = None,
+    dry_run: bool = True
+) -> str:
+    """
+    Updates the top 2 lines of video descriptions to feature the Skool community call-to-action above the fold.
+    Set dry_run=False to apply live.
+    """
+    try:
+        from update_first_lines_skool import format_description_with_cta
+        channel = youtube_client.get_channel_info()
+        youtube = youtube_client.get_youtube_service()
+        if not channel:
+            return "Failed: channel info not found."
+
+        uploads_id = channel["uploads_id"]
+        page_token = None
+        results = []
+        count = 0
+
+        while True:
+            pl_req = youtube.playlistItems().list(
+                playlistId=uploads_id,
+                part="snippet,contentDetails",
+                maxResults=min(50, limit) if limit else 50,
+                pageToken=page_token
+            )
+            pl_res = pl_req.execute()
+            items = pl_res.get("items", [])
+            if not items:
+                break
+
+            video_ids = [it["contentDetails"]["videoId"] for it in items]
+            v_res = youtube.videos().list(id=",".join(video_ids), part="snippet").execute()
+
+            for v in v_res.get("items", []):
+                if limit and count >= limit:
+                    break
+                vid = v["id"]
+                title = v["snippet"]["title"]
+                desc = v["snippet"].get("description", "")
+                new_desc = format_description_with_cta(desc, cta_line)
+
+                if new_desc == desc:
+                    status = "already_matching"
+                else:
+                    status = "updated" if not dry_run else "would_update"
+                    if not dry_run:
+                        v["snippet"]["description"] = new_desc
+                        youtube.videos().update(part="snippet", body={"id": vid, "snippet": v["snippet"]}).execute()
+
+                results.append({"video_id": vid, "title": title, "status": status})
+                count += 1
+
+            if limit and count >= limit:
+                break
+            page_token = pl_res.get("nextPageToken")
+            if not page_token:
+                break
+
+        return json.dumps({"dry_run": dry_run, "total": len(results), "results": results}, indent=2)
+    except Exception as e:
+        return f"Error updating first lines CTA: {str(e)}"
+
 
 if __name__ == "__main__":
     mcp.run(transport="stdio")
+
