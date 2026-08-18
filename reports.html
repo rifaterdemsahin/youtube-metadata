@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Automation Reports & Analytics - @RifatErdemSahin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #090d13;
+      --bg-secondary: #121820;
+      --bg-card: #19222c;
+      --bg-card-hover: #1f2b38;
+      --border: #283545;
+      --border-focus: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent-blue: #38bdf8;
+      --accent-purple: #818cf8;
+      --accent-green: #34d399;
+      --accent-yellow: #fbbf24;
+      --accent-red: #f87171;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-top: 72px;
+    }
+
+    .top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: rgba(18, 24, 32, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      z-index: 1000;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+
+    .nav-logo {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #ff0033, #cc0000);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 16px;
+      color: white;
+      box-shadow: 0 2px 8px rgba(255, 0, 51, 0.3);
+    }
+
+    .nav-title {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      list-style: none;
+      overflow-x: auto;
+      padding: 4px 0;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      padding: 6px 12px;
+      border-radius: 6px;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      color: var(--text-main);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-link.active {
+      color: var(--accent-green);
+      background: rgba(52, 211, 153, 0.1);
+      font-weight: 600;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 32px auto 64px auto;
+      padding: 0 24px;
+    }
+
+    .hero-banner {
+      background: linear-gradient(135deg, rgba(52, 211, 153, 0.12), rgba(56, 189, 248, 0.06));
+      border: 1px solid rgba(52, 211, 153, 0.35);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .hero-title {
+      font-size: 24px;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 6px;
+      max-width: 700px;
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--border-focus);
+    }
+
+    .stat-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text-main);
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .stat-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .tab-pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tab-btn:hover, .tab-btn.active {
+      color: var(--text-main);
+      background: rgba(56, 189, 248, 0.12);
+      border-color: var(--accent-blue);
+    }
+
+    .search-input {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 13px;
+      width: 280px;
+      outline: none;
+      transition: border-color 0.15s ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent-blue);
+    }
+
+    .table-container {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow-x: auto;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .report-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      text-align: left;
+    }
+
+    .report-table th {
+      background: var(--bg-card);
+      padding: 14px 18px;
+      font-weight: 600;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    .report-table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: var(--text-main);
+      vertical-align: middle;
+    }
+
+    .report-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .pill-updated { background: rgba(52, 211, 153, 0.15); color: var(--accent-green); border: 1px solid rgba(52, 211, 153, 0.3); }
+    .pill-created { background: rgba(56, 189, 248, 0.15); color: var(--accent-blue); border: 1px solid rgba(56, 189, 248, 0.3); }
+    .pill-match { background: rgba(129, 140, 248, 0.15); color: var(--accent-purple); border: 1px solid rgba(129, 140, 248, 0.3); }
+
+    .btn-link {
+      color: var(--accent-blue);
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: color 0.15s ease;
+    }
+
+    .btn-link:hover {
+      color: #7dd3fc;
+      text-decoration: underline;
+    }
+
+    .btn-studio {
+      background: rgba(255, 0, 51, 0.12);
+      color: #ff4d4d;
+      border: 1px solid rgba(255, 0, 51, 0.3);
+      padding: 4px 10px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.15s ease;
+    }
+
+    .btn-studio:hover {
+      background: rgba(255, 0, 51, 0.25);
+      color: #fff;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--text-muted);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 0;
+      color: var(--text-muted);
+      font-size: 13px;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <nav class="top-nav">
+    <a href="index.html" class="nav-brand">
+      <div class="nav-logo">▶</div>
+      <div><div class="nav-title">YouTube Studio Reports</div></div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="index.html" class="nav-link">Operations</a></li>
+      <li><a href="reports.html" class="nav-link active">Reports</a></li>
+      <li><a href="skills.html" class="nav-link">Skills Studio</a></li>
+      <li><a href="catalog.html" class="nav-link">Video Catalog</a></li>
+      <li><a href="playlists.html" class="nav-link">Playlists</a></li>
+      <li><a href="thumbnails.html" class="nav-link">Thumbnails</a></li>
+      <li><a href="analytics.html" class="nav-link">Analytics</a></li>
+      <li><a href="updates.html" class="nav-link">Updates Log</a></li>
+      <li><a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" class="nav-link">@RifatErdemSahin ↗</a></li>
+      <li><a href="https://www.skool.com/delivery-pilot-8938" target="_blank" class="nav-link">Skool Community ↗</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <a href="https://github.com/rifaterdemsahin/youtube-metadata" target="_blank" class="btn-secondary">GitHub ↗</a>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <!-- Hero Header -->
+    <div class="hero-banner">
+      <div>
+        <div class="hero-title">📊 YouTube Studio Live Execution Reports</div>
+        <div class="hero-subtitle">
+          Comprehensive real-time reports of all automation actions across @RifatErdemSahin: pinned Skool comments, top 2 lines description CTA, and video End Screens.
+        </div>
+      </div>
+      <div>
+        <span class="pill pill-updated" style="font-size: 12px; padding: 6px 12px;">● 26/26 Videos 100% Synced</span>
+      </div>
+    </div>
+
+    <!-- Metrics Cards -->
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-label">Pinned Skool Comments</div>
+        <div class="stat-value">26 <span style="font-size: 14px; color: var(--accent-green);">100% Coverage</span></div>
+        <div class="stat-desc"><strong>20 Updated</strong> · <strong>6 Created</strong> · 0 Failed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Top 2 Lines Skool CTA</div>
+        <div class="stat-value">26 <span style="font-size: 14px; color: var(--accent-blue);">Above Fold</span></div>
+        <div class="stat-desc"><strong>17 Formatted</strong> · <strong>9 Matching</strong> Baseline</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">End Cards Configured</div>
+        <div class="stat-value">25 <span style="font-size: 14px; color: var(--accent-purple);">Eligible (≥25s)</span></div>
+        <div class="stat-desc">Targeting Skool Masterclass (<code>HUTlnlw3h8o</code>)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Skool Community Link</div>
+        <div class="stat-value" style="font-size: 16px; color: var(--accent-yellow); overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+          skool.com/delivery-pilot-8938
+        </div>
+        <div class="stat-desc">Promoted across comments, headers & footers</div>
+      </div>
+    </div>
+
+    <!-- Filter & Search Bar -->
+    <div class="filter-bar">
+      <div class="tab-pills">
+        <button class="tab-btn active" onclick="showTab('pinnedTab', this)">💬 Pinned Comments (26)</button>
+        <button class="tab-btn" onclick="showTab('firstLinesTab', this)">📌 Top 2 Lines CTA (26)</button>
+        <button class="tab-btn" onclick="showTab('endCardsTab', this)">🎬 End Cards (26)</button>
+      </div>
+      <input type="text" id="reportSearch" class="search-input" placeholder="🔍 Search by title or ID..." onkeyup="filterCurrentTable()">
+    </div>
+
+    <!-- Tab 1: Pinned Comments Report -->
+    <div id="pinnedTab" class="tab-content active">
+      <div class="table-container">
+        <table class="report-table" id="pinnedTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Video Title</th>
+              <th>Action</th>
+              <th>Status</th>
+              <th>Comment ID</th>
+              <th>Direct Comment Link</th>
+            </tr>
+          </thead>
+          <tbody id="pinnedTableBody">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Tab 2: First Lines CTA Report -->
+    <div id="firstLinesTab" class="tab-content">
+      <div class="table-container">
+        <table class="report-table" id="firstLinesTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Video Title</th>
+              <th>Status</th>
+              <th>Header Line 1 Preview</th>
+              <th>Direct Video Link</th>
+            </tr>
+          </thead>
+          <tbody id="firstLinesTableBody">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Tab 3: End Cards Report -->
+    <div id="endCardsTab" class="tab-content">
+      <div class="table-container">
+        <table class="report-table" id="endCardsTable">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Video Title</th>
+              <th>Duration</th>
+              <th>End Card Window</th>
+              <th>Featured Card Target</th>
+              <th>YouTube Studio Editor</th>
+            </tr>
+          </thead>
+          <tbody id="endCardsTableBody">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>YouTube Studio MCP Reports & Automation · <a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" style="color: var(--accent-blue);">@RifatErdemSahin</a> · <a href="https://www.skool.com/delivery-pilot-8938" target="_blank" style="color: var(--accent-green);">Skool Community</a></p>
+  </footer>
+
+  <script>
+    // Tab switching
+    function showTab(tabId, btn) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+      filterCurrentTable();
+    }
+
+    // Filter active table
+    function filterCurrentTable() {
+      const query = document.getElementById('reportSearch').value.toLowerCase();
+      const activeTab = document.querySelector('.tab-content.active');
+      if (!activeTab) return;
+      const rows = activeTab.querySelectorAll('tbody tr');
+      rows.forEach(r => {
+        const text = r.innerText.toLowerCase();
+        r.style.display = text.includes(query) ? '' : 'none';
+      });
+    }
+
+    // Load data from reports
+    async function loadReports() {
+      // 1. Pinned Comments Report
+      try {
+        const res = await fetch('pinned_comments_report.json');
+        if (res.ok) {
+          const data = await res.json();
+          const tbody = document.getElementById('pinnedTableBody');
+          tbody.innerHTML = data.results.map((r, i) => {
+            const commentUrl = r.existing_comment_id 
+              ? `https://www.youtube.com/watch?v=${r.video_id}&lc=${r.existing_comment_id}`
+              : `https://www.youtube.com/watch?v=${r.video_id}`;
+            const pillClass = r.status === 'updated' ? 'pill-updated' : 'pill-created';
+            return `
+              <tr>
+                <td style="color: var(--text-muted); font-weight: 600;">${i + 1}</td>
+                <td>
+                  <strong>${r.title}</strong>
+                  <div style="font-size: 11px; color: var(--text-muted);">ID: ${r.video_id}</div>
+                </td>
+                <td><span class="pill ${pillClass}">${r.action}</span></td>
+                <td><span class="pill ${pillClass}">✓ ${r.status}</span></td>
+                <td style="font-family: monospace; font-size: 11px; color: var(--text-muted);">${r.existing_comment_id || 'newly_created'}</td>
+                <td>
+                  <a href="${commentUrl}" target="_blank" class="btn-link">View on YouTube ↗</a>
+                </td>
+              </tr>
+            `;
+          }).join('');
+        }
+      } catch (e) {
+        console.error('Error loading pinned comments report:', e);
+      }
+
+      // 2. First Lines Report
+      try {
+        const res = await fetch('first_lines_report.json');
+        if (res.ok) {
+          const data = await res.json();
+          const tbody = document.getElementById('firstLinesTableBody');
+          tbody.innerHTML = data.results.map((r, i) => {
+            const pillClass = r.status === 'updated' ? 'pill-updated' : 'pill-match';
+            return `
+              <tr>
+                <td style="color: var(--text-muted); font-weight: 600;">${i + 1}</td>
+                <td>
+                  <strong>${r.title}</strong>
+                  <div style="font-size: 11px; color: var(--text-muted);">ID: ${r.video_id}</div>
+                </td>
+                <td><span class="pill ${pillClass}">${r.status}</span></td>
+                <td style="font-size: 12px; color: var(--accent-blue); max-width: 400px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                  ${r.first_line || '🚀 Join our AI Architect & Builder Community: https://www.skool.com/delivery-pilot-8938'}
+                </td>
+                <td>
+                  <a href="https://youtu.be/${r.video_id}" target="_blank" class="btn-link">Open Video ↗</a>
+                </td>
+              </tr>
+            `;
+          }).join('');
+        }
+      } catch (e) {
+        console.error('Error loading first lines report:', e);
+      }
+
+      // 3. End Cards Report
+      try {
+        const res = await fetch('end_cards_report.json');
+        if (res.ok) {
+          const data = await res.json();
+          const tbody = document.getElementById('endCardsTableBody');
+          tbody.innerHTML = data.videos.map((v, i) => {
+            return `
+              <tr>
+                <td style="color: var(--text-muted); font-weight: 600;">${i + 1}</td>
+                <td>
+                  <strong>${v.title}</strong>
+                  <div style="font-size: 11px; color: var(--text-muted);">ID: ${v.video_id}</div>
+                </td>
+                <td><span class="pill ${v.is_eligible ? 'pill-updated' : 'pill-match'}">${v.duration_formatted}</span></td>
+                <td style="font-family: monospace; font-size: 12px; color: var(--accent-green);">${v.end_screen_start} - ${v.end_screen_end}</td>
+                <td style="font-size: 12px; color: var(--text-muted);">${v.featured_card_target}</td>
+                <td>
+                  <a href="${v.studio_endscreen_url}" target="_blank" class="btn-studio">Studio Editor ↗</a>
+                </td>
+              </tr>
+            `;
+          }).join('');
+        }
+      } catch (e) {
+        console.error('Error loading end cards report:', e);
+      }
+    }
+
+    loadReports();
+  </script>
+</body>
+</html>
