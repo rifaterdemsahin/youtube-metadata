@@ -1,7 +1,7 @@
 {
   "channel_title": "Rifat Erdem Sahin",
   "channel_url": "https://www.youtube.com/@rifaterdemsahin",
-  "timestamp": "2026-08-18T20:23:05.880423",
+  "timestamp": "2026-08-18T20:30:27.058529",
   "dry_run": false,
   "featured_skool_video_id": "F8IBooe3bXY",
   "featured_skool_video_title": "Claude AI Certification for Architects | Masterclass Intro",
@@ -17,15 +17,27 @@
       "is_eligible": true,
       "end_screen_start": "00:49",
       "end_screen_end": "01:09",
-      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "featured_card_target": "F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "card_specifications": {
+        "card_type": "Video Card",
+        "linked_content_id": "F8IBooe3bXY",
+        "linked_content_title": "Claude AI Certification for Architects | Masterclass Intro",
+        "custom_message": "Join our Skool Community",
+        "teaser_text": "Become AI Certified Pro",
+        "timestamp": "Last Frame / Final Sequence",
+        "teaser_popup_preview": "\u24d8 Become AI Certified Pro",
+        "visual_frame_graphic": "Build Your Second Brain - Join the Hands-On Cohort"
+      },
       "studio_endscreen_url": "https://studio.youtube.com/video/HUTlnlw3h8o/editor",
       "studio_edit_url": "https://studio.youtube.com/video/HUTlnlw3h8o/edit",
       "elements": [
         {
-          "type": "VIDEO",
-          "label": "Featured Skool Community Masterclass",
+          "type": "VIDEO_CARD",
+          "label": "Featured Closing Masterclass",
           "target_video_id": "F8IBooe3bXY",
           "target_title": "Claude AI Certification for Architects | Masterclass Intro",
+          "custom_message": "Join our Skool Community",
+          "teaser_text": "Become AI Certified Pro",
           "position": "TOP_RIGHT",
           "start_time": "00:49",
           "end_time": "01:09"
@@ -38,8 +50,8 @@
           "end_time": "01:09"
         },
         {
-          "type": "LINK / PLAYLIST",
-          "label": "Skool Delivery Pilot / Community Cohort",
+          "type": "LINK_CARD",
+          "label": "Skool Community Cohort & Second Brain Blueprints",
           "target_url": "https://www.skool.com/delivery-pilot-8938",
           "position": "BOTTOM_RIGHT",
           "start_time": "00:49",
@@ -47,7 +59,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:23:05.880161"
+      "timestamp": "2026-08-18T20:30:27.058256"
     },
     {
       "video_id": "F8IBooe3bXY",
@@ -57,15 +69,27 @@
       "is_eligible": false,
       "end_screen_start": "00:00",
       "end_screen_end": "00:11",
-      "featured_card_target": "Latest Upload / Best for Viewer",
+      "featured_card_target": "Best for Viewer",
+      "card_specifications": {
+        "card_type": "Video Card",
+        "linked_content_id": "BEST_FOR_VIEWER",
+        "linked_content_title": "Best for Viewer",
+        "custom_message": "Join our Skool Community",
+        "teaser_text": "Become AI Certified Pro",
+        "timestamp": "Last Frame / Final Sequence",
+        "teaser_popup_preview": "\u24d8 Become AI Certified Pro",
+        "visual_frame_graphic": "Build Your Second Brain - Join the Hands-On Cohort"
+      },
       "studio_endscreen_url": "https://studio.youtube.com/video/F8IBooe3bXY/editor",
       "studio_edit_url": "https://studio.youtube.com/video/F8IBooe3bXY/edit",
       "elements": [
         {
-          "type": "VIDEO",
-          "label": "Featured Skool Community Masterclass",
+          "type": "VIDEO_CARD",
+          "label": "Featured Closing Masterclass",
           "target_video_id": "BEST_FOR_VIEWER",
           "target_title": "Best for Viewer",
+          "custom_message": "Join our Skool Community",
+          "teaser_text": "Become AI Certified Pro",
           "position": "TOP_RIGHT",
           "start_time": "00:00",
           "end_time": "00:11"
@@ -78,8 +102,8 @@
           "end_time": "00:11"
         },
         {
-          "type": "LINK / PLAYLIST",
-          "label": "Skool Delivery Pilot / Community Cohort",
+          "type": "LINK_CARD",
+          "label": "Skool Community Cohort & Second Brain Blueprints",
           "target_url": "https://www.skool.com/delivery-pilot-8938",
           "position": "BOTTOM_RIGHT",
           "start_time": "00:00",
@@ -87,7 +111,7 @@
         }
       ],
       "status": "Duration < 25s",
-      "timestamp": "2026-08-18T20:23:05.880185"
+      "timestamp": "2026-08-18T20:30:27.058280"
     },
     {
       "video_id": "yI5BIb74kVI",
@@ -97,15 +121,27 @@
       "is_eligible": true,
       "end_screen_start": "24:34",
       "end_screen_end": "24:54",
-      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "featured_card_target": "F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "card_specifications": {
+        "card_type": "Video Card",
+        "linked_content_id": "F8IBooe3bXY",
+        "linked_content_title": "Claude AI Certification for Architects | Masterclass Intro",
+        "custom_message": "Join our Skool Community",
+        "teaser_text": "Become AI Certified Pro",
+        "timestamp": "Last Frame / Final Sequence",
+        "teaser_popup_preview": "\u24d8 Become AI Certified Pro",
+        "visual_frame_graphic": "Build Your Second Brain - Join the Hands-On Cohort"
+      },
       "studio_endscreen_url": "https://studio.youtube.com/video/yI5BIb74kVI/editor",
       "studio_edit_url": "https://studio.youtube.com/video/yI5BIb74kVI/edit",
       "elements": [
         {
-          "type": "VIDEO",
-          "label": "Featured Skool Community Masterclass",
+          "type": "VIDEO_CARD",
+          "label": "Featured Closing Masterclass",
           "target_video_id": "F8IBooe3bXY",
           "target_title": "Claude AI Certification for Architects | Masterclass Intro",
+          "custom_message": "Join our Skool Community",
+          "teaser_text": "Become AI Certified Pro",
           "position": "TOP_RIGHT",
           "start_time": "24:34",
           "end_time": "24:54"
@@ -118,8 +154,8 @@
           "end_time": "24:54"
         },
         {
-          "type": "LINK / PLAYLIST",
-          "label": "Skool Delivery Pilot / Community Cohort",
+          "type": "LINK_CARD",
+          "label": "Skool Community Cohort & Second Brain Blueprints",
           "target_url": "https://www.skool.com/delivery-pilot-8938",
           "position": "BOTTOM_RIGHT",
           "start_time": "24:34",
@@ -127,7 +163,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:23:05.880198"
+      "timestamp": "2026-08-18T20:30:27.058294"
     },
     {
       "video_id": "c1UotPbvKoQ",
@@ -137,15 +173,27 @@
       "is_eligible": true,
       "end_screen_start": "19:31",
       "end_screen_end": "19:51",
-      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "featured_card_target": "F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "card_specifications": {
+        "card_type": "Video Card",
+        "linked_content_id": "F8IBooe3bXY",
+        "linked_content_title": "Claude AI Certification for Architects | Masterclass Intro",
+        "custom_message": "Join our Skool Community",
+        "teaser_text": "Become AI Certified Pro",
+        "timestamp": "Last Frame / Final Sequence",
+        "teaser_popup_preview": "\u24d8 Become AI Certified Pro",
+        "visual_frame_graphic": "Build Your Second Brain - Join the Hands-On Cohort"
+      },
       "studio_endscreen_url": "https://studio.youtube.com/video/c1UotPbvKoQ/editor",
       "studio_edit_url": "https://studio.youtube.com/video/c1UotPbvKoQ/edit",
       "elements": [
         {
-          "type": "VIDEO",
-          "label": "Featured Skool Community Masterclass",
+          "type": "VIDEO_CARD",
+          "label": "Featured Closing Masterclass",
           "target_video_id": "F8IBooe3bXY",
           "target_title": "Claude AI Certification for Architects | Masterclass Intro",
+          "custom_message": "Join our Skool Community",
+          "teaser_text": "Become AI Certified Pro",
           "position": "TOP_RIGHT",
           "start_time": "19:31",
           "end_time": "19:51"
@@ -158,8 +206,8 @@
           "end_time": "19:51"
         },
         {
-          "type": "LINK / PLAYLIST",
-          "label": "Skool Delivery Pilot / Community Cohort",
+          "type": "LINK_CARD",
+          "label": "Skool Community Cohort & Second Brain Blueprints",
           "target_url": "https://www.skool.com/delivery-pilot-8938",
           "position": "BOTTOM_RIGHT",
           "start_time": "19:31",
@@ -167,7 +215,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:23:05.880209"
+      "timestamp": "2026-08-18T20:30:27.058304"
     },
     {
       "video_id": "Frty5ICAdOo",
@@ -177,15 +225,27 @@
       "is_eligible": true,
       "end_screen_start": "15:17",
       "end_screen_end": "15:37",
-      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "featured_card_target": "F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "card_specifications": {
+        "card_type": "Video Card",
+        "linked_content_id": "F8IBooe3bXY",
+        "linked_content_title": "Claude AI Certification for Architects | Masterclass Intro",
+        "custom_message": "Join our Skool Community",
+        "teaser_text": "Become AI Certified Pro",
+        "timestamp": "Last Frame / Final Sequence",
+        "teaser_popup_preview": "\u24d8 Become AI Certified Pro",
+        "visual_frame_graphic": "Build Your Second Brain - Join the Hands-On Cohort"
+      },
       "studio_endscreen_url": "https://studio.youtube.com/video/Frty5ICAdOo/editor",
       "studio_edit_url": "https://studio.youtube.com/video/Frty5ICAdOo/edit",
       "elements": [
         {
-          "type": "VIDEO",
-          "label": "Featured Skool Community Masterclass",
+          "type": "VIDEO_CARD",
+          "label": "Featured Closing Masterclass",
           "target_video_id": "F8IBooe3bXY",
           "target_title": "Claude AI Certification for Architects | Masterclass Intro",
+          "custom_message": "Join our Skool Community",
+          "teaser_text": "Become AI Certified Pro",
           "position": "TOP_RIGHT",
           "start_time": "15:17",
           "end_time": "15:37"
@@ -198,8 +258,8 @@
           "end_time": "15:37"
         },
         {
-          "type": "LINK / PLAYLIST",
-          "label": "Skool Delivery Pilot / Community Cohort",
+          "type": "LINK_CARD",
+          "label": "Skool Community Cohort & Second Brain Blueprints",
           "target_url": "https://www.skool.com/delivery-pilot-8938",
           "position": "BOTTOM_RIGHT",
           "start_time": "15:17",
@@ -207,7 +267,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:23:05.880219"
+      "timestamp": "2026-08-18T20:30:27.058314"
     },
     {
       "video_id": "QwFB7tvzLoA",
@@ -217,15 +277,27 @@
       "is_eligible": true,
       "end_screen_start": "20:36",
       "end_screen_end": "20:56",
-      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "featured_card_target": "F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "card_specifications": {
+        "card_type": "Video Card",
+        "linked_content_id": "F8IBooe3bXY",
+        "linked_content_title": "Claude AI Certification for Architects | Masterclass Intro",
+        "custom_message": "Join our Skool Community",
+        "teaser_text": "Become AI Certified Pro",
+        "timestamp": "Last Frame / Final Sequence",
+        "teaser_popup_preview": "\u24d8 Become AI Certified Pro",
+        "visual_frame_graphic": "Build Your Second Brain - Join the Hands-On Cohort"
+      },
       "studio_endscreen_url": "https://studio.youtube.com/video/QwFB7tvzLoA/editor",
       "studio_edit_url": "https://studio.youtube.com/video/QwFB7tvzLoA/edit",
       "elements": [
         {
-          "type": "VIDEO",
-          "label": "Featured Skool Community Masterclass",
+          "type": "VIDEO_CARD",
+          "label": "Featured Closing Masterclass",
           "target_video_id": "F8IBooe3bXY",
           "target_title": "Claude AI Certification for Architects | Masterclass Intro",
+          "custom_message": "Join our Skool Community",
+          "teaser_text": "Become AI Certified Pro",
           "position": "TOP_RIGHT",
           "start_time": "20:36",
           "end_time": "20:56"
@@ -238,8 +310,8 @@
           "end_time": "20:56"
         },
         {
-          "type": "LINK / PLAYLIST",
-          "label": "Skool Delivery Pilot / Community Cohort",
+          "type": "LINK_CARD",
+          "label": "Skool Community Cohort & Second Brain Blueprints",
           "target_url": "https://www.skool.com/delivery-pilot-8938",
           "position": "BOTTOM_RIGHT",
           "start_time": "20:36",
@@ -247,7 +319,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:23:05.880228"
+      "timestamp": "2026-08-18T20:30:27.058323"
     },
     {
       "video_id": "bsH-vBGNERE",
@@ -257,15 +329,27 @@
       "is_eligible": true,
       "end_screen_start": "05:35",
       "end_screen_end": "05:55",
-      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "featured_card_target": "F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "card_specifications": {
+        "card_type": "Video Card",
+        "linked_content_id": "F8IBooe3bXY",
+        "linked_content_title": "Claude AI Certification for Architects | Masterclass Intro",
+        "custom_message": "Join our Skool Community",
+        "teaser_text": "Become AI Certified Pro",
+        "timestamp": "Last Frame / Final Sequence",
+        "teaser_popup_preview": "\u24d8 Become AI Certified Pro",
+        "visual_frame_graphic": "Build Your Second Brain - Join the Hands-On Cohort"
+      },
       "studio_endscreen_url": "https://studio.youtube.com/video/bsH-vBGNERE/editor",
       "studio_edit_url": "https://studio.youtube.com/video/bsH-vBGNERE/edit",
       "elements": [
         {
-          "type": "VIDEO",
-          "label": "Featured Skool Community Masterclass",
+          "type": "VIDEO_CARD",
+          "label": "Featured Closing Masterclass",
           "target_video_id": "F8IBooe3bXY",
           "target_title": "Claude AI Certification for Architects | Masterclass Intro",
+          "custom_message": "Join our Skool Community",
+          "teaser_text": "Become AI Certified Pro",
           "position": "TOP_RIGHT",
           "start_time": "05:35",
           "end_time": "05:55"
@@ -278,8 +362,8 @@
           "end_time": "05:55"
         },
         {
-          "type": "LINK / PLAYLIST",
-          "label": "Skool Delivery Pilot / Community Cohort",
+          "type": "LINK_CARD",
+          "label": "Skool Community Cohort & Second Brain Blueprints",
           "target_url": "https://www.skool.com/delivery-pilot-8938",
           "position": "BOTTOM_RIGHT",
           "start_time": "05:35",
@@ -287,7 +371,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:23:05.880238"
+      "timestamp": "2026-08-18T20:30:27.058333"
     },
     {
       "video_id": "YZqcACObMws",
@@ -297,15 +381,27 @@
       "is_eligible": true,
       "end_screen_start": "12:29",
       "end_screen_end": "12:49",
-      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "featured_card_target": "F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "card_specifications": {
+        "card_type": "Video Card",
+        "linked_content_id": "F8IBooe3bXY",
+        "linked_content_title": "Claude AI Certification for Architects | Masterclass Intro",
+        "custom_message": "Join our Skool Community",
+        "teaser_text": "Become AI Certified Pro",
+        "timestamp": "Last Frame / Final Sequence",
+        "teaser_popup_preview": "\u24d8 Become AI Certified Pro",
+        "visual_frame_graphic": "Build Your Second Brain - Join the Hands-On Cohort"
+      },
       "studio_endscreen_url": "https://studio.youtube.com/video/YZqcACObMws/editor",
       "studio_edit_url": "https://studio.youtube.com/video/YZqcACObMws/edit",
       "elements": [
         {
-          "type": "VIDEO",
-          "label": "Featured Skool Community Masterclass",
+          "type": "VIDEO_CARD",
+          "label": "Featured Closing Masterclass",
           "target_video_id": "F8IBooe3bXY",
           "target_title": "Claude AI Certification for Architects | Masterclass Intro",
+          "custom_message": "Join our Skool Community",
+          "teaser_text": "Become AI Certified Pro",
           "position": "TOP_RIGHT",
           "start_time": "12:29",
           "end_time": "12:49"
@@ -318,8 +414,8 @@
           "end_time": "12:49"
         },
         {
-          "type": "LINK / PLAYLIST",
-          "label": "Skool Delivery Pilot / Community Cohort",
+          "type": "LINK_CARD",
+          "label": "Skool Community Cohort & Second Brain Blueprints",
           "target_url": "https://www.skool.com/delivery-pilot-8938",
           "position": "BOTTOM_RIGHT",
           "start_time": "12:29",
@@ -327,7 +423,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:23:05.880248"
+      "timestamp": "2026-08-18T20:30:27.058342"
     },
     {
       "video_id": "VdnZI0PfscM",
@@ -337,15 +433,27 @@
       "is_eligible": true,
       "end_screen_start": "04:48",
       "end_screen_end": "05:08",
-      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "featured_card_target": "F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "card_specifications": {
+        "card_type": "Video Card",
+        "linked_content_id": "F8IBooe3bXY",
+        "linked_content_title": "Claude AI Certification for Architects | Masterclass Intro",
+        "custom_message": "Join our Skool Community",
+        "teaser_text": "Become AI Certified Pro",
+        "timestamp": "Last Frame / Final Sequence",
+        "teaser_popup_preview": "\u24d8 Become AI Certified Pro",
+        "visual_frame_graphic": "Build Your Second Brain - Join the Hands-On Cohort"
+      },
       "studio_endscreen_url": "https://studio.youtube.com/video/VdnZI0PfscM/editor",
       "studio_edit_url": "https://studio.youtube.com/video/VdnZI0PfscM/edit",
       "elements": [
         {
-          "type": "VIDEO",
-          "label": "Featured Skool Community Masterclass",
+          "type": "VIDEO_CARD",
+          "label": "Featured Closing Masterclass",
           "target_video_id": "F8IBooe3bXY",
           "target_title": "Claude AI Certification for Architects | Masterclass Intro",
+          "custom_message": "Join our Skool Community",
+          "teaser_text": "Become AI Certified Pro",
           "position": "TOP_RIGHT",
           "start_time": "04:48",
           "end_time": "05:08"
@@ -358,8 +466,8 @@
           "end_time": "05:08"
         },
         {
-          "type": "LINK / PLAYLIST",
-          "label": "Skool Delivery Pilot / Community Cohort",
+          "type": "LINK_CARD",
+          "label": "Skool Community Cohort & Second Brain Blueprints",
           "target_url": "https://www.skool.com/delivery-pilot-8938",
           "position": "BOTTOM_RIGHT",
           "start_time": "04:48",
@@ -367,7 +475,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:23:05.880257"
+      "timestamp": "2026-08-18T20:30:27.058351"
     },
     {
       "video_id": "IYgcXAZkevY",
@@ -377,15 +485,27 @@
       "is_eligible": true,
       "end_screen_start": "16:39",
       "end_screen_end": "16:59",
-      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "featured_card_target": "F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "card_specifications": {
+        "card_type": "Video Card",
+        "linked_content_id": "F8IBooe3bXY",
+        "linked_content_title": "Claude AI Certification for Architects | Masterclass Intro",
+        "custom_message": "Join our Skool Community",
+        "teaser_text": "Become AI Certified Pro",
+        "timestamp": "Last Frame / Final Sequence",
+        "teaser_popup_preview": "\u24d8 Become AI Certified Pro",
+        "visual_frame_graphic": "Build Your Second Brain - Join the Hands-On Cohort"
+      },
       "studio_endscreen_url": "https://studio.youtube.com/video/IYgcXAZkevY/editor",
       "studio_edit_url": "https://studio.youtube.com/video/IYgcXAZkevY/edit",
       "elements": [
         {
-          "type": "VIDEO",
-          "label": "Featured Skool Community Masterclass",
+          "type": "VIDEO_CARD",
+          "label": "Featured Closing Masterclass",
           "target_video_id": "F8IBooe3bXY",
           "target_title": "Claude AI Certification for Architects | Masterclass Intro",
+          "custom_message": "Join our Skool Community",
+          "teaser_text": "Become AI Certified Pro",
           "position": "TOP_RIGHT",
           "start_time": "16:39",
           "end_time": "16:59"
@@ -398,8 +518,8 @@
           "end_time": "16:59"
         },
         {
-          "type": "LINK / PLAYLIST",
-          "label": "Skool Delivery Pilot / Community Cohort",
+          "type": "LINK_CARD",
+          "label": "Skool Community Cohort & Second Brain Blueprints",
           "target_url": "https://www.skool.com/delivery-pilot-8938",
           "position": "BOTTOM_RIGHT",
           "start_time": "16:39",
@@ -407,7 +527,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:23:05.880267"
+      "timestamp": "2026-08-18T20:30:27.058362"
     },
     {
       "video_id": "qNJpDJ8yHu8",
@@ -417,15 +537,27 @@
       "is_eligible": true,
       "end_screen_start": "15:08",
       "end_screen_end": "15:28",
-      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "featured_card_target": "F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "card_specifications": {
+        "card_type": "Video Card",
+        "linked_content_id": "F8IBooe3bXY",
+        "linked_content_title": "Claude AI Certification for Architects | Masterclass Intro",
+        "custom_message": "Join our Skool Community",
+        "teaser_text": "Become AI Certified Pro",
+        "timestamp": "Last Frame / Final Sequence",
+        "teaser_popup_preview": "\u24d8 Become AI Certified Pro",
+        "visual_frame_graphic": "Build Your Second Brain - Join the Hands-On Cohort"
+      },
       "studio_endscreen_url": "https://studio.youtube.com/video/qNJpDJ8yHu8/editor",
       "studio_edit_url": "https://studio.youtube.com/video/qNJpDJ8yHu8/edit",
       "elements": [
         {
-          "type": "VIDEO",
-          "label": "Featured Skool Community Masterclass",
+          "type": "VIDEO_CARD",
+          "label": "Featured Closing Masterclass",
           "target_video_id": "F8IBooe3bXY",
           "target_title": "Claude AI Certification for Architects | Masterclass Intro",
+          "custom_message": "Join our Skool Community",
+          "teaser_text": "Become AI Certified Pro",
           "position": "TOP_RIGHT",
           "start_time": "15:08",
           "end_time": "15:28"
@@ -438,8 +570,8 @@
           "end_time": "15:28"
         },
         {
-          "type": "LINK / PLAYLIST",
-          "label": "Skool Delivery Pilot / Community Cohort",
+          "type": "LINK_CARD",
+          "label": "Skool Community Cohort & Second Brain Blueprints",
           "target_url": "https://www.skool.com/delivery-pilot-8938",
           "position": "BOTTOM_RIGHT",
           "start_time": "15:08",
@@ -447,7 +579,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:23:05.880276"
+      "timestamp": "2026-08-18T20:30:27.058373"
     },
     {
       "video_id": "pUf8wGV2NBU",
@@ -457,15 +589,27 @@
       "is_eligible": true,
       "end_screen_start": "09:43",
       "end_screen_end": "10:03",
-      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "featured_card_target": "F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "card_specifications": {
+        "card_type": "Video Card",
+        "linked_content_id": "F8IBooe3bXY",
+        "linked_content_title": "Claude AI Certification for Architects | Masterclass Intro",
+        "custom_message": "Join our Skool Community",
+        "teaser_text": "Become AI Certified Pro",
+        "timestamp": "Last Frame / Final Sequence",
+        "teaser_popup_preview": "\u24d8 Become AI Certified Pro",
+        "visual_frame_graphic": "Build Your Second Brain - Join the Hands-On Cohort"
+      },
       "studio_endscreen_url": "https://studio.youtube.com/video/pUf8wGV2NBU/editor",
       "studio_edit_url": "https://studio.youtube.com/video/pUf8wGV2NBU/edit",
       "elements": [
         {
-          "type": "VIDEO",
-          "label": "Featured Skool Community Masterclass",
+          "type": "VIDEO_CARD",
+          "label": "Featured Closing Masterclass",
           "target_video_id": "F8IBooe3bXY",
           "target_title": "Claude AI Certification for Architects | Masterclass Intro",
+          "custom_message": "Join our Skool Community",
+          "teaser_text": "Become AI Certified Pro",
           "position": "TOP_RIGHT",
           "start_time": "09:43",
           "end_time": "10:03"
@@ -478,8 +622,8 @@
           "end_time": "10:03"
         },
         {
-          "type": "LINK / PLAYLIST",
-          "label": "Skool Delivery Pilot / Community Cohort",
+          "type": "LINK_CARD",
+          "label": "Skool Community Cohort & Second Brain Blueprints",
           "target_url": "https://www.skool.com/delivery-pilot-8938",
           "position": "BOTTOM_RIGHT",
           "start_time": "09:43",
@@ -487,7 +631,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:23:05.880286"
+      "timestamp": "2026-08-18T20:30:27.058384"
     },
     {
       "video_id": "EtpfGUGAFJw",
@@ -497,15 +641,27 @@
       "is_eligible": true,
       "end_screen_start": "08:20",
       "end_screen_end": "08:40",
-      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "featured_card_target": "F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "card_specifications": {
+        "card_type": "Video Card",
+        "linked_content_id": "F8IBooe3bXY",
+        "linked_content_title": "Claude AI Certification for Architects | Masterclass Intro",
+        "custom_message": "Join our Skool Community",
+        "teaser_text": "Become AI Certified Pro",
+        "timestamp": "Last Frame / Final Sequence",
+        "teaser_popup_preview": "\u24d8 Become AI Certified Pro",
+        "visual_frame_graphic": "Build Your Second Brain - Join the Hands-On Cohort"
+      },
       "studio_endscreen_url": "https://studio.youtube.com/video/EtpfGUGAFJw/editor",
       "studio_edit_url": "https://studio.youtube.com/video/EtpfGUGAFJw/edit",
       "elements": [
         {
-          "type": "VIDEO",
-          "label": "Featured Skool Community Masterclass",
+          "type": "VIDEO_CARD",
+          "label": "Featured Closing Masterclass",
           "target_video_id": "F8IBooe3bXY",
           "target_title": "Claude AI Certification for Architects | Masterclass Intro",
+          "custom_message": "Join our Skool Community",
+          "teaser_text": "Become AI Certified Pro",
           "position": "TOP_RIGHT",
           "start_time": "08:20",
           "end_time": "08:40"
@@ -518,8 +674,8 @@
           "end_time": "08:40"
         },
         {
-          "type": "LINK / PLAYLIST",
-          "label": "Skool Delivery Pilot / Community Cohort",
+          "type": "LINK_CARD",
+          "label": "Skool Community Cohort & Second Brain Blueprints",
           "target_url": "https://www.skool.com/delivery-pilot-8938",
           "position": "BOTTOM_RIGHT",
           "start_time": "08:20",
@@ -527,7 +683,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:23:05.880295"
+      "timestamp": "2026-08-18T20:30:27.058394"
     },
     {
       "video_id": "wtXDL0Vmr7A",
@@ -537,15 +693,27 @@
       "is_eligible": true,
       "end_screen_start": "05:38",
       "end_screen_end": "05:58",
-      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "featured_card_target": "F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "card_specifications": {
+        "card_type": "Video Card",
+        "linked_content_id": "F8IBooe3bXY",
+        "linked_content_title": "Claude AI Certification for Architects | Masterclass Intro",
+        "custom_message": "Join our Skool Community",
+        "teaser_text": "Become AI Certified Pro",
+        "timestamp": "Last Frame / Final Sequence",
+        "teaser_popup_preview": "\u24d8 Become AI Certified Pro",
+        "visual_frame_graphic": "Build Your Second Brain - Join the Hands-On Cohort"
+      },
       "studio_endscreen_url": "https://studio.youtube.com/video/wtXDL0Vmr7A/editor",
       "studio_edit_url": "https://studio.youtube.com/video/wtXDL0Vmr7A/edit",
       "elements": [
         {
-          "type": "VIDEO",
-          "label": "Featured Skool Community Masterclass",
+          "type": "VIDEO_CARD",
+          "label": "Featured Closing Masterclass",
           "target_video_id": "F8IBooe3bXY",
           "target_title": "Claude AI Certification for Architects | Masterclass Intro",
+          "custom_message": "Join our Skool Community",
+          "teaser_text": "Become AI Certified Pro",
           "position": "TOP_RIGHT",
           "start_time": "05:38",
           "end_time": "05:58"
@@ -558,8 +726,8 @@
           "end_time": "05:58"
         },
         {
-          "type": "LINK / PLAYLIST",
-          "label": "Skool Delivery Pilot / Community Cohort",
+          "type": "LINK_CARD",
+          "label": "Skool Community Cohort & Second Brain Blueprints",
           "target_url": "https://www.skool.com/delivery-pilot-8938",
           "position": "BOTTOM_RIGHT",
           "start_time": "05:38",
@@ -567,7 +735,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:23:05.880304"
+      "timestamp": "2026-08-18T20:30:27.058404"
     },
     {
       "video_id": "fxj1orsKpYM",
@@ -577,15 +745,27 @@
       "is_eligible": true,
       "end_screen_start": "09:14",
       "end_screen_end": "09:34",
-      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "featured_card_target": "F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "card_specifications": {
+        "card_type": "Video Card",
+        "linked_content_id": "F8IBooe3bXY",
+        "linked_content_title": "Claude AI Certification for Architects | Masterclass Intro",
+        "custom_message": "Join our Skool Community",
+        "teaser_text": "Become AI Certified Pro",
+        "timestamp": "Last Frame / Final Sequence",
+        "teaser_popup_preview": "\u24d8 Become AI Certified Pro",
+        "visual_frame_graphic": "Build Your Second Brain - Join the Hands-On Cohort"
+      },
       "studio_endscreen_url": "https://studio.youtube.com/video/fxj1orsKpYM/editor",
       "studio_edit_url": "https://studio.youtube.com/video/fxj1orsKpYM/edit",
       "elements": [
         {
-          "type": "VIDEO",
-          "label": "Featured Skool Community Masterclass",
+          "type": "VIDEO_CARD",
+          "label": "Featured Closing Masterclass",
           "target_video_id": "F8IBooe3bXY",
           "target_title": "Claude AI Certification for Architects | Masterclass Intro",
+          "custom_message": "Join our Skool Community",
+          "teaser_text": "Become AI Certified Pro",
           "position": "TOP_RIGHT",
           "start_time": "09:14",
           "end_time": "09:34"
@@ -598,8 +778,8 @@
           "end_time": "09:34"
         },
         {
-          "type": "LINK / PLAYLIST",
-          "label": "Skool Delivery Pilot / Community Cohort",
+          "type": "LINK_CARD",
+          "label": "Skool Community Cohort & Second Brain Blueprints",
           "target_url": "https://www.skool.com/delivery-pilot-8938",
           "position": "BOTTOM_RIGHT",
           "start_time": "09:14",
@@ -607,7 +787,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:23:05.880316"
+      "timestamp": "2026-08-18T20:30:27.058414"
     },
     {
       "video_id": "3VgRz5GeYDA",
@@ -617,15 +797,27 @@
       "is_eligible": true,
       "end_screen_start": "18:00",
       "end_screen_end": "18:20",
-      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "featured_card_target": "F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "card_specifications": {
+        "card_type": "Video Card",
+        "linked_content_id": "F8IBooe3bXY",
+        "linked_content_title": "Claude AI Certification for Architects | Masterclass Intro",
+        "custom_message": "Join our Skool Community",
+        "teaser_text": "Become AI Certified Pro",
+        "timestamp": "Last Frame / Final Sequence",
+        "teaser_popup_preview": "\u24d8 Become AI Certified Pro",
+        "visual_frame_graphic": "Build Your Second Brain - Join the Hands-On Cohort"
+      },
       "studio_endscreen_url": "https://studio.youtube.com/video/3VgRz5GeYDA/editor",
       "studio_edit_url": "https://studio.youtube.com/video/3VgRz5GeYDA/edit",
       "elements": [
         {
-          "type": "VIDEO",
-          "label": "Featured Skool Community Masterclass",
+          "type": "VIDEO_CARD",
+          "label": "Featured Closing Masterclass",
           "target_video_id": "F8IBooe3bXY",
           "target_title": "Claude AI Certification for Architects | Masterclass Intro",
+          "custom_message": "Join our Skool Community",
+          "teaser_text": "Become AI Certified Pro",
           "position": "TOP_RIGHT",
           "start_time": "18:00",
           "end_time": "18:20"
@@ -638,8 +830,8 @@
           "end_time": "18:20"
         },
         {
-          "type": "LINK / PLAYLIST",
-          "label": "Skool Delivery Pilot / Community Cohort",
+          "type": "LINK_CARD",
+          "label": "Skool Community Cohort & Second Brain Blueprints",
           "target_url": "https://www.skool.com/delivery-pilot-8938",
           "position": "BOTTOM_RIGHT",
           "start_time": "18:00",
@@ -647,7 +839,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:23:05.880326"
+      "timestamp": "2026-08-18T20:30:27.058424"
     },
     {
       "video_id": "E52uDnN5FB0",
@@ -657,15 +849,27 @@
       "is_eligible": true,
       "end_screen_start": "07:25",
       "end_screen_end": "07:45",
-      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "featured_card_target": "F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "card_specifications": {
+        "card_type": "Video Card",
+        "linked_content_id": "F8IBooe3bXY",
+        "linked_content_title": "Claude AI Certification for Architects | Masterclass Intro",
+        "custom_message": "Join our Skool Community",
+        "teaser_text": "Become AI Certified Pro",
+        "timestamp": "Last Frame / Final Sequence",
+        "teaser_popup_preview": "\u24d8 Become AI Certified Pro",
+        "visual_frame_graphic": "Build Your Second Brain - Join the Hands-On Cohort"
+      },
       "studio_endscreen_url": "https://studio.youtube.com/video/E52uDnN5FB0/editor",
       "studio_edit_url": "https://studio.youtube.com/video/E52uDnN5FB0/edit",
       "elements": [
         {
-          "type": "VIDEO",
-          "label": "Featured Skool Community Masterclass",
+          "type": "VIDEO_CARD",
+          "label": "Featured Closing Masterclass",
           "target_video_id": "F8IBooe3bXY",
           "target_title": "Claude AI Certification for Architects | Masterclass Intro",
+          "custom_message": "Join our Skool Community",
+          "teaser_text": "Become AI Certified Pro",
           "position": "TOP_RIGHT",
           "start_time": "07:25",
           "end_time": "07:45"
@@ -678,8 +882,8 @@
           "end_time": "07:45"
         },
         {
-          "type": "LINK / PLAYLIST",
-          "label": "Skool Delivery Pilot / Community Cohort",
+          "type": "LINK_CARD",
+          "label": "Skool Community Cohort & Second Brain Blueprints",
           "target_url": "https://www.skool.com/delivery-pilot-8938",
           "position": "BOTTOM_RIGHT",
           "start_time": "07:25",
@@ -687,7 +891,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:23:05.880335"
+      "timestamp": "2026-08-18T20:30:27.058434"
     },
     {
       "video_id": "MnYEZWflHDs",
@@ -697,15 +901,27 @@
       "is_eligible": true,
       "end_screen_start": "10:19",
       "end_screen_end": "10:39",
-      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "featured_card_target": "F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "card_specifications": {
+        "card_type": "Video Card",
+        "linked_content_id": "F8IBooe3bXY",
+        "linked_content_title": "Claude AI Certification for Architects | Masterclass Intro",
+        "custom_message": "Join our Skool Community",
+        "teaser_text": "Become AI Certified Pro",
+        "timestamp": "Last Frame / Final Sequence",
+        "teaser_popup_preview": "\u24d8 Become AI Certified Pro",
+        "visual_frame_graphic": "Build Your Second Brain - Join the Hands-On Cohort"
+      },
       "studio_endscreen_url": "https://studio.youtube.com/video/MnYEZWflHDs/editor",
       "studio_edit_url": "https://studio.youtube.com/video/MnYEZWflHDs/edit",
       "elements": [
         {
-          "type": "VIDEO",
-          "label": "Featured Skool Community Masterclass",
+          "type": "VIDEO_CARD",
+          "label": "Featured Closing Masterclass",
           "target_video_id": "F8IBooe3bXY",
           "target_title": "Claude AI Certification for Architects | Masterclass Intro",
+          "custom_message": "Join our Skool Community",
+          "teaser_text": "Become AI Certified Pro",
           "position": "TOP_RIGHT",
           "start_time": "10:19",
           "end_time": "10:39"
@@ -718,8 +934,8 @@
           "end_time": "10:39"
         },
         {
-          "type": "LINK / PLAYLIST",
-          "label": "Skool Delivery Pilot / Community Cohort",
+          "type": "LINK_CARD",
+          "label": "Skool Community Cohort & Second Brain Blueprints",
           "target_url": "https://www.skool.com/delivery-pilot-8938",
           "position": "BOTTOM_RIGHT",
           "start_time": "10:19",
@@ -727,7 +943,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:23:05.880345"
+      "timestamp": "2026-08-18T20:30:27.058444"
     },
     {
       "video_id": "WK66w51UMrs",
@@ -737,15 +953,27 @@
       "is_eligible": true,
       "end_screen_start": "20:58",
       "end_screen_end": "21:18",
-      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "featured_card_target": "F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "card_specifications": {
+        "card_type": "Video Card",
+        "linked_content_id": "F8IBooe3bXY",
+        "linked_content_title": "Claude AI Certification for Architects | Masterclass Intro",
+        "custom_message": "Join our Skool Community",
+        "teaser_text": "Become AI Certified Pro",
+        "timestamp": "Last Frame / Final Sequence",
+        "teaser_popup_preview": "\u24d8 Become AI Certified Pro",
+        "visual_frame_graphic": "Build Your Second Brain - Join the Hands-On Cohort"
+      },
       "studio_endscreen_url": "https://studio.youtube.com/video/WK66w51UMrs/editor",
       "studio_edit_url": "https://studio.youtube.com/video/WK66w51UMrs/edit",
       "elements": [
         {
-          "type": "VIDEO",
-          "label": "Featured Skool Community Masterclass",
+          "type": "VIDEO_CARD",
+          "label": "Featured Closing Masterclass",
           "target_video_id": "F8IBooe3bXY",
           "target_title": "Claude AI Certification for Architects | Masterclass Intro",
+          "custom_message": "Join our Skool Community",
+          "teaser_text": "Become AI Certified Pro",
           "position": "TOP_RIGHT",
           "start_time": "20:58",
           "end_time": "21:18"
@@ -758,8 +986,8 @@
           "end_time": "21:18"
         },
         {
-          "type": "LINK / PLAYLIST",
-          "label": "Skool Delivery Pilot / Community Cohort",
+          "type": "LINK_CARD",
+          "label": "Skool Community Cohort & Second Brain Blueprints",
           "target_url": "https://www.skool.com/delivery-pilot-8938",
           "position": "BOTTOM_RIGHT",
           "start_time": "20:58",
@@ -767,7 +995,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:23:05.880355"
+      "timestamp": "2026-08-18T20:30:27.058454"
     },
     {
       "video_id": "2EVPwgi8NZA",
@@ -777,15 +1005,27 @@
       "is_eligible": true,
       "end_screen_start": "13:30",
       "end_screen_end": "13:50",
-      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "featured_card_target": "F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "card_specifications": {
+        "card_type": "Video Card",
+        "linked_content_id": "F8IBooe3bXY",
+        "linked_content_title": "Claude AI Certification for Architects | Masterclass Intro",
+        "custom_message": "Join our Skool Community",
+        "teaser_text": "Become AI Certified Pro",
+        "timestamp": "Last Frame / Final Sequence",
+        "teaser_popup_preview": "\u24d8 Become AI Certified Pro",
+        "visual_frame_graphic": "Build Your Second Brain - Join the Hands-On Cohort"
+      },
       "studio_endscreen_url": "https://studio.youtube.com/video/2EVPwgi8NZA/editor",
       "studio_edit_url": "https://studio.youtube.com/video/2EVPwgi8NZA/edit",
       "elements": [
         {
-          "type": "VIDEO",
-          "label": "Featured Skool Community Masterclass",
+          "type": "VIDEO_CARD",
+          "label": "Featured Closing Masterclass",
           "target_video_id": "F8IBooe3bXY",
           "target_title": "Claude AI Certification for Architects | Masterclass Intro",
+          "custom_message": "Join our Skool Community",
+          "teaser_text": "Become AI Certified Pro",
           "position": "TOP_RIGHT",
           "start_time": "13:30",
           "end_time": "13:50"
@@ -798,8 +1038,8 @@
           "end_time": "13:50"
         },
         {
-          "type": "LINK / PLAYLIST",
-          "label": "Skool Delivery Pilot / Community Cohort",
+          "type": "LINK_CARD",
+          "label": "Skool Community Cohort & Second Brain Blueprints",
           "target_url": "https://www.skool.com/delivery-pilot-8938",
           "position": "BOTTOM_RIGHT",
           "start_time": "13:30",
@@ -807,7 +1047,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:23:05.880365"
+      "timestamp": "2026-08-18T20:30:27.058463"
     },
     {
       "video_id": "DDuGVH_uPTA",
@@ -817,15 +1057,27 @@
       "is_eligible": true,
       "end_screen_start": "14:54",
       "end_screen_end": "15:14",
-      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "featured_card_target": "F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "card_specifications": {
+        "card_type": "Video Card",
+        "linked_content_id": "F8IBooe3bXY",
+        "linked_content_title": "Claude AI Certification for Architects | Masterclass Intro",
+        "custom_message": "Join our Skool Community",
+        "teaser_text": "Become AI Certified Pro",
+        "timestamp": "Last Frame / Final Sequence",
+        "teaser_popup_preview": "\u24d8 Become AI Certified Pro",
+        "visual_frame_graphic": "Build Your Second Brain - Join the Hands-On Cohort"
+      },
       "studio_endscreen_url": "https://studio.youtube.com/video/DDuGVH_uPTA/editor",
       "studio_edit_url": "https://studio.youtube.com/video/DDuGVH_uPTA/edit",
       "elements": [
         {
-          "type": "VIDEO",
-          "label": "Featured Skool Community Masterclass",
+          "type": "VIDEO_CARD",
+          "label": "Featured Closing Masterclass",
           "target_video_id": "F8IBooe3bXY",
           "target_title": "Claude AI Certification for Architects | Masterclass Intro",
+          "custom_message": "Join our Skool Community",
+          "teaser_text": "Become AI Certified Pro",
           "position": "TOP_RIGHT",
           "start_time": "14:54",
           "end_time": "15:14"
@@ -838,8 +1090,8 @@
           "end_time": "15:14"
         },
         {
-          "type": "LINK / PLAYLIST",
-          "label": "Skool Delivery Pilot / Community Cohort",
+          "type": "LINK_CARD",
+          "label": "Skool Community Cohort & Second Brain Blueprints",
           "target_url": "https://www.skool.com/delivery-pilot-8938",
           "position": "BOTTOM_RIGHT",
           "start_time": "14:54",
@@ -847,7 +1099,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:23:05.880374"
+      "timestamp": "2026-08-18T20:30:27.058472"
     },
     {
       "video_id": "dCU0GpriG1o",
@@ -857,15 +1109,27 @@
       "is_eligible": true,
       "end_screen_start": "06:47",
       "end_screen_end": "07:07",
-      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "featured_card_target": "F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "card_specifications": {
+        "card_type": "Video Card",
+        "linked_content_id": "F8IBooe3bXY",
+        "linked_content_title": "Claude AI Certification for Architects | Masterclass Intro",
+        "custom_message": "Join our Skool Community",
+        "teaser_text": "Become AI Certified Pro",
+        "timestamp": "Last Frame / Final Sequence",
+        "teaser_popup_preview": "\u24d8 Become AI Certified Pro",
+        "visual_frame_graphic": "Build Your Second Brain - Join the Hands-On Cohort"
+      },
       "studio_endscreen_url": "https://studio.youtube.com/video/dCU0GpriG1o/editor",
       "studio_edit_url": "https://studio.youtube.com/video/dCU0GpriG1o/edit",
       "elements": [
         {
-          "type": "VIDEO",
-          "label": "Featured Skool Community Masterclass",
+          "type": "VIDEO_CARD",
+          "label": "Featured Closing Masterclass",
           "target_video_id": "F8IBooe3bXY",
           "target_title": "Claude AI Certification for Architects | Masterclass Intro",
+          "custom_message": "Join our Skool Community",
+          "teaser_text": "Become AI Certified Pro",
           "position": "TOP_RIGHT",
           "start_time": "06:47",
           "end_time": "07:07"
@@ -878,8 +1142,8 @@
           "end_time": "07:07"
         },
         {
-          "type": "LINK / PLAYLIST",
-          "label": "Skool Delivery Pilot / Community Cohort",
+          "type": "LINK_CARD",
+          "label": "Skool Community Cohort & Second Brain Blueprints",
           "target_url": "https://www.skool.com/delivery-pilot-8938",
           "position": "BOTTOM_RIGHT",
           "start_time": "06:47",
@@ -887,7 +1151,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:23:05.880383"
+      "timestamp": "2026-08-18T20:30:27.058482"
     },
     {
       "video_id": "yKN0ParJ0fo",
@@ -897,15 +1161,27 @@
       "is_eligible": true,
       "end_screen_start": "08:19",
       "end_screen_end": "08:39",
-      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "featured_card_target": "F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "card_specifications": {
+        "card_type": "Video Card",
+        "linked_content_id": "F8IBooe3bXY",
+        "linked_content_title": "Claude AI Certification for Architects | Masterclass Intro",
+        "custom_message": "Join our Skool Community",
+        "teaser_text": "Become AI Certified Pro",
+        "timestamp": "Last Frame / Final Sequence",
+        "teaser_popup_preview": "\u24d8 Become AI Certified Pro",
+        "visual_frame_graphic": "Build Your Second Brain - Join the Hands-On Cohort"
+      },
       "studio_endscreen_url": "https://studio.youtube.com/video/yKN0ParJ0fo/editor",
       "studio_edit_url": "https://studio.youtube.com/video/yKN0ParJ0fo/edit",
       "elements": [
         {
-          "type": "VIDEO",
-          "label": "Featured Skool Community Masterclass",
+          "type": "VIDEO_CARD",
+          "label": "Featured Closing Masterclass",
           "target_video_id": "F8IBooe3bXY",
           "target_title": "Claude AI Certification for Architects | Masterclass Intro",
+          "custom_message": "Join our Skool Community",
+          "teaser_text": "Become AI Certified Pro",
           "position": "TOP_RIGHT",
           "start_time": "08:19",
           "end_time": "08:39"
@@ -918,8 +1194,8 @@
           "end_time": "08:39"
         },
         {
-          "type": "LINK / PLAYLIST",
-          "label": "Skool Delivery Pilot / Community Cohort",
+          "type": "LINK_CARD",
+          "label": "Skool Community Cohort & Second Brain Blueprints",
           "target_url": "https://www.skool.com/delivery-pilot-8938",
           "position": "BOTTOM_RIGHT",
           "start_time": "08:19",
@@ -927,7 +1203,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:23:05.880393"
+      "timestamp": "2026-08-18T20:30:27.058491"
     },
     {
       "video_id": "j5lku3LYoK4",
@@ -937,15 +1213,27 @@
       "is_eligible": true,
       "end_screen_start": "19:39",
       "end_screen_end": "19:59",
-      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "featured_card_target": "F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "card_specifications": {
+        "card_type": "Video Card",
+        "linked_content_id": "F8IBooe3bXY",
+        "linked_content_title": "Claude AI Certification for Architects | Masterclass Intro",
+        "custom_message": "Join our Skool Community",
+        "teaser_text": "Become AI Certified Pro",
+        "timestamp": "Last Frame / Final Sequence",
+        "teaser_popup_preview": "\u24d8 Become AI Certified Pro",
+        "visual_frame_graphic": "Build Your Second Brain - Join the Hands-On Cohort"
+      },
       "studio_endscreen_url": "https://studio.youtube.com/video/j5lku3LYoK4/editor",
       "studio_edit_url": "https://studio.youtube.com/video/j5lku3LYoK4/edit",
       "elements": [
         {
-          "type": "VIDEO",
-          "label": "Featured Skool Community Masterclass",
+          "type": "VIDEO_CARD",
+          "label": "Featured Closing Masterclass",
           "target_video_id": "F8IBooe3bXY",
           "target_title": "Claude AI Certification for Architects | Masterclass Intro",
+          "custom_message": "Join our Skool Community",
+          "teaser_text": "Become AI Certified Pro",
           "position": "TOP_RIGHT",
           "start_time": "19:39",
           "end_time": "19:59"
@@ -958,8 +1246,8 @@
           "end_time": "19:59"
         },
         {
-          "type": "LINK / PLAYLIST",
-          "label": "Skool Delivery Pilot / Community Cohort",
+          "type": "LINK_CARD",
+          "label": "Skool Community Cohort & Second Brain Blueprints",
           "target_url": "https://www.skool.com/delivery-pilot-8938",
           "position": "BOTTOM_RIGHT",
           "start_time": "19:39",
@@ -967,7 +1255,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:23:05.880403"
+      "timestamp": "2026-08-18T20:30:27.058501"
     },
     {
       "video_id": "DNQEQZPnpfg",
@@ -977,15 +1265,27 @@
       "is_eligible": true,
       "end_screen_start": "04:43",
       "end_screen_end": "05:03",
-      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "featured_card_target": "F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "card_specifications": {
+        "card_type": "Video Card",
+        "linked_content_id": "F8IBooe3bXY",
+        "linked_content_title": "Claude AI Certification for Architects | Masterclass Intro",
+        "custom_message": "Join our Skool Community",
+        "teaser_text": "Become AI Certified Pro",
+        "timestamp": "Last Frame / Final Sequence",
+        "teaser_popup_preview": "\u24d8 Become AI Certified Pro",
+        "visual_frame_graphic": "Build Your Second Brain - Join the Hands-On Cohort"
+      },
       "studio_endscreen_url": "https://studio.youtube.com/video/DNQEQZPnpfg/editor",
       "studio_edit_url": "https://studio.youtube.com/video/DNQEQZPnpfg/edit",
       "elements": [
         {
-          "type": "VIDEO",
-          "label": "Featured Skool Community Masterclass",
+          "type": "VIDEO_CARD",
+          "label": "Featured Closing Masterclass",
           "target_video_id": "F8IBooe3bXY",
           "target_title": "Claude AI Certification for Architects | Masterclass Intro",
+          "custom_message": "Join our Skool Community",
+          "teaser_text": "Become AI Certified Pro",
           "position": "TOP_RIGHT",
           "start_time": "04:43",
           "end_time": "05:03"
@@ -998,8 +1298,8 @@
           "end_time": "05:03"
         },
         {
-          "type": "LINK / PLAYLIST",
-          "label": "Skool Delivery Pilot / Community Cohort",
+          "type": "LINK_CARD",
+          "label": "Skool Community Cohort & Second Brain Blueprints",
           "target_url": "https://www.skool.com/delivery-pilot-8938",
           "position": "BOTTOM_RIGHT",
           "start_time": "04:43",
@@ -1007,7 +1307,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:23:05.880412"
+      "timestamp": "2026-08-18T20:30:27.058510"
     },
     {
       "video_id": "3bwaZ-xUJcs",
@@ -1017,15 +1317,27 @@
       "is_eligible": true,
       "end_screen_start": "45:44",
       "end_screen_end": "46:04",
-      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "featured_card_target": "F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
+      "card_specifications": {
+        "card_type": "Video Card",
+        "linked_content_id": "F8IBooe3bXY",
+        "linked_content_title": "Claude AI Certification for Architects | Masterclass Intro",
+        "custom_message": "Join our Skool Community",
+        "teaser_text": "Become AI Certified Pro",
+        "timestamp": "Last Frame / Final Sequence",
+        "teaser_popup_preview": "\u24d8 Become AI Certified Pro",
+        "visual_frame_graphic": "Build Your Second Brain - Join the Hands-On Cohort"
+      },
       "studio_endscreen_url": "https://studio.youtube.com/video/3bwaZ-xUJcs/editor",
       "studio_edit_url": "https://studio.youtube.com/video/3bwaZ-xUJcs/edit",
       "elements": [
         {
-          "type": "VIDEO",
-          "label": "Featured Skool Community Masterclass",
+          "type": "VIDEO_CARD",
+          "label": "Featured Closing Masterclass",
           "target_video_id": "F8IBooe3bXY",
           "target_title": "Claude AI Certification for Architects | Masterclass Intro",
+          "custom_message": "Join our Skool Community",
+          "teaser_text": "Become AI Certified Pro",
           "position": "TOP_RIGHT",
           "start_time": "45:44",
           "end_time": "46:04"
@@ -1038,8 +1350,8 @@
           "end_time": "46:04"
         },
         {
-          "type": "LINK / PLAYLIST",
-          "label": "Skool Delivery Pilot / Community Cohort",
+          "type": "LINK_CARD",
+          "label": "Skool Community Cohort & Second Brain Blueprints",
           "target_url": "https://www.skool.com/delivery-pilot-8938",
           "position": "BOTTOM_RIGHT",
           "start_time": "45:44",
@@ -1047,7 +1359,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:23:05.880421"
+      "timestamp": "2026-08-18T20:30:27.058527"
     }
   ]
 }

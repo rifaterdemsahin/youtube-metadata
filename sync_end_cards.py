@@ -21,6 +21,9 @@ SKOOL_LINK = "https://www.skool.com/delivery-pilot-8938"
 CHANNEL_HANDLE = "@RifatErdemSahin"
 FEATURED_SKOOL_VIDEO_ID = "F8IBooe3bXY"
 FEATURED_SKOOL_VIDEO_TITLE = "Claude AI Certification for Architects | Masterclass Intro"
+CUSTOM_MESSAGE = "Join our Skool Community"
+TEASER_TEXT = "Become AI Certified Pro"
+VISUAL_FRAME_PROMO = "Build Your Second Brain - Join the Hands-On Cohort"
 REPORT_FILE = "end_cards_report.json"
 
 
@@ -49,6 +52,8 @@ def main():
     parser = argparse.ArgumentParser(description="Configure End Cards and End Screens promoting Skool community video.")
     parser.add_argument("--featured-video", default=FEATURED_SKOOL_VIDEO_ID, help="Video ID of the featured Skool community video")
     parser.add_argument("--skool-link", default=SKOOL_LINK, help="Skool community link")
+    parser.add_argument("--custom-message", default=CUSTOM_MESSAGE, help="Custom message for video card")
+    parser.add_argument("--teaser-text", default=TEASER_TEXT, help="Teaser popup text for video card")
     parser.add_argument("--limit", type=int, default=None, help="Limit number of videos to process")
     parser.add_argument("--dry-run", action="store_true", default=False, help="Perform dry run without applying")
     parser.add_argument("--apply", action="store_true", help="Generate and save live End Screen configurations")
@@ -56,13 +61,15 @@ def main():
 
     dry_run = not args.apply
 
-    print("=" * 70)
-    print("🎬 YouTube Studio Skill: End Cards & End Screen Skool Community Promoter")
+    print("=" * 75)
+    print("🎬 YouTube Studio Skill: End Cards & Closing Product Promoter")
     print(f"📺 Target Channel: {CHANNEL_HANDLE}")
-    print(f"🎯 Featured Skool Video: {args.featured_video} ({FEATURED_SKOOL_VIDEO_TITLE})")
-    print(f"🔗 Target Skool Link: {args.skool_link}")
+    print(f"🎯 Linked Content: {args.featured_video} ({FEATURED_SKOOL_VIDEO_TITLE})")
+    print(f"💬 Custom Message: {args.custom_message}")
+    print(f"💡 Teaser Popup Text: {args.teaser_text}")
+    print(f"🖼️ Visual Frame Promo: {VISUAL_FRAME_PROMO}")
     print(f"⚙️  Mode: {'🧪 DRY RUN (Simulated)' if dry_run else '🔴 LIVE SYNC & BLUEPRINT GENERATION'}")
-    print("=" * 70)
+    print("=" * 75)
 
     try:
         youtube = youtube_client.get_youtube_service()
@@ -105,9 +112,6 @@ def main():
             duration_secs = parse_iso8601_duration(duration_iso)
             privacy = v.get("status", {}).get("privacyStatus", "unknown")
 
-            # YouTube End Screen requirements:
-            # - Video must be at least 25 seconds long.
-            # - End screen can appear in the last 5 to 20 seconds of the video.
             is_eligible = duration_secs >= 25
             end_start_secs = max(0, duration_secs - 20) if is_eligible else 0
             end_finish_secs = duration_secs
@@ -116,14 +120,28 @@ def main():
             studio_edit_url = f"https://studio.youtube.com/video/{vid}/edit"
 
             is_self = (vid == args.featured_video)
-            card_target_video = "Latest Upload / Best for Viewer" if is_self else f"Specific Video: {args.featured_video} ({FEATURED_SKOOL_VIDEO_TITLE})"
+            card_target_video = "Best for Viewer" if is_self else f"{args.featured_video} ({FEATURED_SKOOL_VIDEO_TITLE})"
+
+            # Specifications for YouTube Card & End Screen Elements
+            card_specifications = {
+                "card_type": "Video Card",
+                "linked_content_id": args.featured_video if not is_self else "BEST_FOR_VIEWER",
+                "linked_content_title": FEATURED_SKOOL_VIDEO_TITLE if not is_self else "Best for Viewer",
+                "custom_message": args.custom_message,
+                "teaser_text": args.teaser_text,
+                "timestamp": "Last Frame / Final Sequence",
+                "teaser_popup_preview": f"ⓘ {args.teaser_text}",
+                "visual_frame_graphic": VISUAL_FRAME_PROMO
+            }
 
             end_card_elements = [
                 {
-                    "type": "VIDEO",
-                    "label": "Featured Skool Community Masterclass",
+                    "type": "VIDEO_CARD",
+                    "label": "Featured Closing Masterclass",
                     "target_video_id": args.featured_video if not is_self else "BEST_FOR_VIEWER",
                     "target_title": FEATURED_SKOOL_VIDEO_TITLE if not is_self else "Best for Viewer",
+                    "custom_message": args.custom_message,
+                    "teaser_text": args.teaser_text,
                     "position": "TOP_RIGHT",
                     "start_time": format_seconds_to_timecode(end_start_secs),
                     "end_time": format_seconds_to_timecode(end_finish_secs)
@@ -136,8 +154,8 @@ def main():
                     "end_time": format_seconds_to_timecode(end_finish_secs)
                 },
                 {
-                    "type": "LINK / PLAYLIST",
-                    "label": "Skool Delivery Pilot / Community Cohort",
+                    "type": "LINK_CARD",
+                    "label": "Skool Community Cohort & Second Brain Blueprints",
                     "target_url": args.skool_link,
                     "position": "BOTTOM_RIGHT",
                     "start_time": format_seconds_to_timecode(end_start_secs),
@@ -146,9 +164,9 @@ def main():
             ]
 
             print(f"🎬 Video [{processed_count + 1}]: {title} ({vid})")
-            print(f"   ⏱️ Duration: {format_seconds_to_timecode(duration_secs)} ({duration_secs}s) | Eligible: {'✅ YES' if is_eligible else '⚠️ <25s'}")
-            print(f"   🎯 End Card Window: {format_seconds_to_timecode(end_start_secs)} - {format_seconds_to_timecode(end_finish_secs)}")
-            print(f"   🔗 Studio Editor: {studio_endscreen_url}")
+            print(f"   ⏱️ Duration: {format_seconds_to_timecode(duration_secs)} | End Screen: {format_seconds_to_timecode(end_start_secs)} - {format_seconds_to_timecode(end_finish_secs)}")
+            print(f"   💡 Teaser: '{args.teaser_text}' | Message: '{args.custom_message}'")
+            print(f"   🔗 Studio: {studio_endscreen_url}")
 
             video_records.append({
                 "video_id": vid,
@@ -159,6 +177,7 @@ def main():
                 "end_screen_start": format_seconds_to_timecode(end_start_secs),
                 "end_screen_end": format_seconds_to_timecode(end_finish_secs),
                 "featured_card_target": card_target_video,
+                "card_specifications": card_specifications,
                 "studio_endscreen_url": studio_endscreen_url,
                 "studio_edit_url": studio_edit_url,
                 "elements": end_card_elements,
