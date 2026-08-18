@@ -24,6 +24,8 @@
 
 ## 📄 Application Pages
 - **Operations Dashboard**: [`index.html`](file:///Users/rifaterdemsahin/projects/youtube-metadata/index.html)
+- **End Video Closing Strategy**: [`endvideo.html`](file:///Users/rifaterdemsahin/projects/youtube-metadata/endvideo.html)
+- **Live Execution Reports**: [`reports.html`](file:///Users/rifaterdemsahin/projects/youtube-metadata/reports.html)
 - **Skills Studio & Automation**: [`skills.html`](file:///Users/rifaterdemsahin/projects/youtube-metadata/skills.html)
 - **Video Catalog & Notes Editor**: [`catalog.html`](file:///Users/rifaterdemsahin/projects/youtube-metadata/catalog.html)
 - **Playlists & Learning Paths**: [`playlists.html`](file:///Users/rifaterdemsahin/projects/youtube-metadata/playlists.html)
