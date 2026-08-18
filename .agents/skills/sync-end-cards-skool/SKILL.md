@@ -7,11 +7,11 @@ description: >-
 
 # Skill: YouTube End Cards & Skool Community Video Promoter
 
-Configures End Cards and End Screens across channel videos to drive viewer engagement and conversions directly to the featured Skool community video (`HUTlnlw3h8o` - *Building an AI Knowledge Engine*) and the Skool community link.
+Configures End Cards and End Screens across channel videos to drive viewer engagement and conversions directly to the featured Skool community masterclass video (`F8IBooe3bXY` - *Claude AI Certification for Architects | Masterclass Intro*) and the Skool community link.
 
 ## 🎯 Target Channel & Featured Skool Assets
 - **Target Channel**: `@RifatErdemSahin`
-- **Featured Skool Video**: `HUTlnlw3h8o` (*Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity*)
+- **Featured Skool Video**: `F8IBooe3bXY` (*Claude AI Certification for Architects | Masterclass Intro*)
 - **Skool Community Link**: `https://www.skool.com/delivery-pilot-8938`
 
 ## 🚀 Execution Commands
@@ -28,7 +28,7 @@ Configures End Cards and End Screens across channel videos to drive viewer engag
 
 ### 3. Custom Featured Video Selection
 ```bash
-./venv/bin/python sync_end_cards.py --apply --featured-video HUTlnlw3h8o
+./venv/bin/python sync_end_cards.py --apply --featured-video F8IBooe3bXY
 ```
 
 ## 📊 Output & Reports

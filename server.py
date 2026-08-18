@@ -255,7 +255,7 @@ def update_first_lines_skool_cta(
 
 @mcp.tool()
 def configure_end_cards(
-    featured_video_id: str = "HUTlnlw3h8o",
+    featured_video_id: str = "F8IBooe3bXY",
     skool_link: str = "https://www.skool.com/delivery-pilot-8938",
     limit: int = None
 ) -> str:

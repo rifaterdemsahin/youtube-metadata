@@ -19,8 +19,8 @@ import youtube_client
 
 SKOOL_LINK = "https://www.skool.com/delivery-pilot-8938"
 CHANNEL_HANDLE = "@RifatErdemSahin"
-FEATURED_SKOOL_VIDEO_ID = "HUTlnlw3h8o"
-FEATURED_SKOOL_VIDEO_TITLE = "Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini)"
+FEATURED_SKOOL_VIDEO_ID = "F8IBooe3bXY"
+FEATURED_SKOOL_VIDEO_TITLE = "Claude AI Certification for Architects | Masterclass Intro"
 REPORT_FILE = "end_cards_report.json"
 
 

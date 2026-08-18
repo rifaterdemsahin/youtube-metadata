@@ -1,10 +1,10 @@
 {
   "channel_title": "Rifat Erdem Sahin",
   "channel_url": "https://www.youtube.com/@rifaterdemsahin",
-  "timestamp": "2026-08-18T20:03:16.445620",
+  "timestamp": "2026-08-18T20:23:05.880423",
   "dry_run": false,
-  "featured_skool_video_id": "HUTlnlw3h8o",
-  "featured_skool_video_title": "Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini)",
+  "featured_skool_video_id": "F8IBooe3bXY",
+  "featured_skool_video_title": "Claude AI Certification for Architects | Masterclass Intro",
   "skool_community_link": "https://www.skool.com/delivery-pilot-8938",
   "total_videos": 26,
   "eligible_videos": 25,
@@ -17,15 +17,15 @@
       "is_eligible": true,
       "end_screen_start": "00:49",
       "end_screen_end": "01:09",
-      "featured_card_target": "Latest Upload / Best for Viewer",
+      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
       "studio_endscreen_url": "https://studio.youtube.com/video/HUTlnlw3h8o/editor",
       "studio_edit_url": "https://studio.youtube.com/video/HUTlnlw3h8o/edit",
       "elements": [
         {
           "type": "VIDEO",
           "label": "Featured Skool Community Masterclass",
-          "target_video_id": "BEST_FOR_VIEWER",
-          "target_title": "Best for Viewer",
+          "target_video_id": "F8IBooe3bXY",
+          "target_title": "Claude AI Certification for Architects | Masterclass Intro",
           "position": "TOP_RIGHT",
           "start_time": "00:49",
           "end_time": "01:09"
@@ -47,7 +47,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:03:16.445362"
+      "timestamp": "2026-08-18T20:23:05.880161"
     },
     {
       "video_id": "F8IBooe3bXY",
@@ -57,15 +57,15 @@
       "is_eligible": false,
       "end_screen_start": "00:00",
       "end_screen_end": "00:11",
-      "featured_card_target": "Specific Video: HUTlnlw3h8o (Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini))",
+      "featured_card_target": "Latest Upload / Best for Viewer",
       "studio_endscreen_url": "https://studio.youtube.com/video/F8IBooe3bXY/editor",
       "studio_edit_url": "https://studio.youtube.com/video/F8IBooe3bXY/edit",
       "elements": [
         {
           "type": "VIDEO",
           "label": "Featured Skool Community Masterclass",
-          "target_video_id": "HUTlnlw3h8o",
-          "target_title": "Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini)",
+          "target_video_id": "BEST_FOR_VIEWER",
+          "target_title": "Best for Viewer",
           "position": "TOP_RIGHT",
           "start_time": "00:00",
           "end_time": "00:11"
@@ -87,7 +87,7 @@
         }
       ],
       "status": "Duration < 25s",
-      "timestamp": "2026-08-18T20:03:16.445386"
+      "timestamp": "2026-08-18T20:23:05.880185"
     },
     {
       "video_id": "yI5BIb74kVI",
@@ -97,15 +97,15 @@
       "is_eligible": true,
       "end_screen_start": "24:34",
       "end_screen_end": "24:54",
-      "featured_card_target": "Specific Video: HUTlnlw3h8o (Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini))",
+      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
       "studio_endscreen_url": "https://studio.youtube.com/video/yI5BIb74kVI/editor",
       "studio_edit_url": "https://studio.youtube.com/video/yI5BIb74kVI/edit",
       "elements": [
         {
           "type": "VIDEO",
           "label": "Featured Skool Community Masterclass",
-          "target_video_id": "HUTlnlw3h8o",
-          "target_title": "Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini)",
+          "target_video_id": "F8IBooe3bXY",
+          "target_title": "Claude AI Certification for Architects | Masterclass Intro",
           "position": "TOP_RIGHT",
           "start_time": "24:34",
           "end_time": "24:54"
@@ -127,7 +127,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:03:16.445399"
+      "timestamp": "2026-08-18T20:23:05.880198"
     },
     {
       "video_id": "c1UotPbvKoQ",
@@ -137,15 +137,15 @@
       "is_eligible": true,
       "end_screen_start": "19:31",
       "end_screen_end": "19:51",
-      "featured_card_target": "Specific Video: HUTlnlw3h8o (Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini))",
+      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
       "studio_endscreen_url": "https://studio.youtube.com/video/c1UotPbvKoQ/editor",
       "studio_edit_url": "https://studio.youtube.com/video/c1UotPbvKoQ/edit",
       "elements": [
         {
           "type": "VIDEO",
           "label": "Featured Skool Community Masterclass",
-          "target_video_id": "HUTlnlw3h8o",
-          "target_title": "Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini)",
+          "target_video_id": "F8IBooe3bXY",
+          "target_title": "Claude AI Certification for Architects | Masterclass Intro",
           "position": "TOP_RIGHT",
           "start_time": "19:31",
           "end_time": "19:51"
@@ -167,7 +167,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:03:16.445409"
+      "timestamp": "2026-08-18T20:23:05.880209"
     },
     {
       "video_id": "Frty5ICAdOo",
@@ -177,15 +177,15 @@
       "is_eligible": true,
       "end_screen_start": "15:17",
       "end_screen_end": "15:37",
-      "featured_card_target": "Specific Video: HUTlnlw3h8o (Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini))",
+      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
       "studio_endscreen_url": "https://studio.youtube.com/video/Frty5ICAdOo/editor",
       "studio_edit_url": "https://studio.youtube.com/video/Frty5ICAdOo/edit",
       "elements": [
         {
           "type": "VIDEO",
           "label": "Featured Skool Community Masterclass",
-          "target_video_id": "HUTlnlw3h8o",
-          "target_title": "Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini)",
+          "target_video_id": "F8IBooe3bXY",
+          "target_title": "Claude AI Certification for Architects | Masterclass Intro",
           "position": "TOP_RIGHT",
           "start_time": "15:17",
           "end_time": "15:37"
@@ -207,7 +207,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:03:16.445419"
+      "timestamp": "2026-08-18T20:23:05.880219"
     },
     {
       "video_id": "QwFB7tvzLoA",
@@ -217,15 +217,15 @@
       "is_eligible": true,
       "end_screen_start": "20:36",
       "end_screen_end": "20:56",
-      "featured_card_target": "Specific Video: HUTlnlw3h8o (Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini))",
+      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
       "studio_endscreen_url": "https://studio.youtube.com/video/QwFB7tvzLoA/editor",
       "studio_edit_url": "https://studio.youtube.com/video/QwFB7tvzLoA/edit",
       "elements": [
         {
           "type": "VIDEO",
           "label": "Featured Skool Community Masterclass",
-          "target_video_id": "HUTlnlw3h8o",
-          "target_title": "Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini)",
+          "target_video_id": "F8IBooe3bXY",
+          "target_title": "Claude AI Certification for Architects | Masterclass Intro",
           "position": "TOP_RIGHT",
           "start_time": "20:36",
           "end_time": "20:56"
@@ -247,7 +247,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:03:16.445428"
+      "timestamp": "2026-08-18T20:23:05.880228"
     },
     {
       "video_id": "bsH-vBGNERE",
@@ -257,15 +257,15 @@
       "is_eligible": true,
       "end_screen_start": "05:35",
       "end_screen_end": "05:55",
-      "featured_card_target": "Specific Video: HUTlnlw3h8o (Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini))",
+      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
       "studio_endscreen_url": "https://studio.youtube.com/video/bsH-vBGNERE/editor",
       "studio_edit_url": "https://studio.youtube.com/video/bsH-vBGNERE/edit",
       "elements": [
         {
           "type": "VIDEO",
           "label": "Featured Skool Community Masterclass",
-          "target_video_id": "HUTlnlw3h8o",
-          "target_title": "Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini)",
+          "target_video_id": "F8IBooe3bXY",
+          "target_title": "Claude AI Certification for Architects | Masterclass Intro",
           "position": "TOP_RIGHT",
           "start_time": "05:35",
           "end_time": "05:55"
@@ -287,7 +287,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:03:16.445437"
+      "timestamp": "2026-08-18T20:23:05.880238"
     },
     {
       "video_id": "YZqcACObMws",
@@ -297,15 +297,15 @@
       "is_eligible": true,
       "end_screen_start": "12:29",
       "end_screen_end": "12:49",
-      "featured_card_target": "Specific Video: HUTlnlw3h8o (Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini))",
+      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
       "studio_endscreen_url": "https://studio.youtube.com/video/YZqcACObMws/editor",
       "studio_edit_url": "https://studio.youtube.com/video/YZqcACObMws/edit",
       "elements": [
         {
           "type": "VIDEO",
           "label": "Featured Skool Community Masterclass",
-          "target_video_id": "HUTlnlw3h8o",
-          "target_title": "Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini)",
+          "target_video_id": "F8IBooe3bXY",
+          "target_title": "Claude AI Certification for Architects | Masterclass Intro",
           "position": "TOP_RIGHT",
           "start_time": "12:29",
           "end_time": "12:49"
@@ -327,7 +327,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:03:16.445446"
+      "timestamp": "2026-08-18T20:23:05.880248"
     },
     {
       "video_id": "VdnZI0PfscM",
@@ -337,15 +337,15 @@
       "is_eligible": true,
       "end_screen_start": "04:48",
       "end_screen_end": "05:08",
-      "featured_card_target": "Specific Video: HUTlnlw3h8o (Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini))",
+      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
       "studio_endscreen_url": "https://studio.youtube.com/video/VdnZI0PfscM/editor",
       "studio_edit_url": "https://studio.youtube.com/video/VdnZI0PfscM/edit",
       "elements": [
         {
           "type": "VIDEO",
           "label": "Featured Skool Community Masterclass",
-          "target_video_id": "HUTlnlw3h8o",
-          "target_title": "Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini)",
+          "target_video_id": "F8IBooe3bXY",
+          "target_title": "Claude AI Certification for Architects | Masterclass Intro",
           "position": "TOP_RIGHT",
           "start_time": "04:48",
           "end_time": "05:08"
@@ -367,7 +367,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:03:16.445456"
+      "timestamp": "2026-08-18T20:23:05.880257"
     },
     {
       "video_id": "IYgcXAZkevY",
@@ -377,15 +377,15 @@
       "is_eligible": true,
       "end_screen_start": "16:39",
       "end_screen_end": "16:59",
-      "featured_card_target": "Specific Video: HUTlnlw3h8o (Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini))",
+      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
       "studio_endscreen_url": "https://studio.youtube.com/video/IYgcXAZkevY/editor",
       "studio_edit_url": "https://studio.youtube.com/video/IYgcXAZkevY/edit",
       "elements": [
         {
           "type": "VIDEO",
           "label": "Featured Skool Community Masterclass",
-          "target_video_id": "HUTlnlw3h8o",
-          "target_title": "Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini)",
+          "target_video_id": "F8IBooe3bXY",
+          "target_title": "Claude AI Certification for Architects | Masterclass Intro",
           "position": "TOP_RIGHT",
           "start_time": "16:39",
           "end_time": "16:59"
@@ -407,7 +407,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:03:16.445470"
+      "timestamp": "2026-08-18T20:23:05.880267"
     },
     {
       "video_id": "qNJpDJ8yHu8",
@@ -417,15 +417,15 @@
       "is_eligible": true,
       "end_screen_start": "15:08",
       "end_screen_end": "15:28",
-      "featured_card_target": "Specific Video: HUTlnlw3h8o (Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini))",
+      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
       "studio_endscreen_url": "https://studio.youtube.com/video/qNJpDJ8yHu8/editor",
       "studio_edit_url": "https://studio.youtube.com/video/qNJpDJ8yHu8/edit",
       "elements": [
         {
           "type": "VIDEO",
           "label": "Featured Skool Community Masterclass",
-          "target_video_id": "HUTlnlw3h8o",
-          "target_title": "Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini)",
+          "target_video_id": "F8IBooe3bXY",
+          "target_title": "Claude AI Certification for Architects | Masterclass Intro",
           "position": "TOP_RIGHT",
           "start_time": "15:08",
           "end_time": "15:28"
@@ -447,7 +447,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:03:16.445479"
+      "timestamp": "2026-08-18T20:23:05.880276"
     },
     {
       "video_id": "pUf8wGV2NBU",
@@ -457,15 +457,15 @@
       "is_eligible": true,
       "end_screen_start": "09:43",
       "end_screen_end": "10:03",
-      "featured_card_target": "Specific Video: HUTlnlw3h8o (Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini))",
+      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
       "studio_endscreen_url": "https://studio.youtube.com/video/pUf8wGV2NBU/editor",
       "studio_edit_url": "https://studio.youtube.com/video/pUf8wGV2NBU/edit",
       "elements": [
         {
           "type": "VIDEO",
           "label": "Featured Skool Community Masterclass",
-          "target_video_id": "HUTlnlw3h8o",
-          "target_title": "Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini)",
+          "target_video_id": "F8IBooe3bXY",
+          "target_title": "Claude AI Certification for Architects | Masterclass Intro",
           "position": "TOP_RIGHT",
           "start_time": "09:43",
           "end_time": "10:03"
@@ -487,7 +487,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:03:16.445489"
+      "timestamp": "2026-08-18T20:23:05.880286"
     },
     {
       "video_id": "EtpfGUGAFJw",
@@ -497,15 +497,15 @@
       "is_eligible": true,
       "end_screen_start": "08:20",
       "end_screen_end": "08:40",
-      "featured_card_target": "Specific Video: HUTlnlw3h8o (Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini))",
+      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
       "studio_endscreen_url": "https://studio.youtube.com/video/EtpfGUGAFJw/editor",
       "studio_edit_url": "https://studio.youtube.com/video/EtpfGUGAFJw/edit",
       "elements": [
         {
           "type": "VIDEO",
           "label": "Featured Skool Community Masterclass",
-          "target_video_id": "HUTlnlw3h8o",
-          "target_title": "Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini)",
+          "target_video_id": "F8IBooe3bXY",
+          "target_title": "Claude AI Certification for Architects | Masterclass Intro",
           "position": "TOP_RIGHT",
           "start_time": "08:20",
           "end_time": "08:40"
@@ -527,7 +527,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:03:16.445498"
+      "timestamp": "2026-08-18T20:23:05.880295"
     },
     {
       "video_id": "wtXDL0Vmr7A",
@@ -537,15 +537,15 @@
       "is_eligible": true,
       "end_screen_start": "05:38",
       "end_screen_end": "05:58",
-      "featured_card_target": "Specific Video: HUTlnlw3h8o (Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini))",
+      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
       "studio_endscreen_url": "https://studio.youtube.com/video/wtXDL0Vmr7A/editor",
       "studio_edit_url": "https://studio.youtube.com/video/wtXDL0Vmr7A/edit",
       "elements": [
         {
           "type": "VIDEO",
           "label": "Featured Skool Community Masterclass",
-          "target_video_id": "HUTlnlw3h8o",
-          "target_title": "Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini)",
+          "target_video_id": "F8IBooe3bXY",
+          "target_title": "Claude AI Certification for Architects | Masterclass Intro",
           "position": "TOP_RIGHT",
           "start_time": "05:38",
           "end_time": "05:58"
@@ -567,7 +567,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:03:16.445506"
+      "timestamp": "2026-08-18T20:23:05.880304"
     },
     {
       "video_id": "fxj1orsKpYM",
@@ -577,15 +577,15 @@
       "is_eligible": true,
       "end_screen_start": "09:14",
       "end_screen_end": "09:34",
-      "featured_card_target": "Specific Video: HUTlnlw3h8o (Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini))",
+      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
       "studio_endscreen_url": "https://studio.youtube.com/video/fxj1orsKpYM/editor",
       "studio_edit_url": "https://studio.youtube.com/video/fxj1orsKpYM/edit",
       "elements": [
         {
           "type": "VIDEO",
           "label": "Featured Skool Community Masterclass",
-          "target_video_id": "HUTlnlw3h8o",
-          "target_title": "Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini)",
+          "target_video_id": "F8IBooe3bXY",
+          "target_title": "Claude AI Certification for Architects | Masterclass Intro",
           "position": "TOP_RIGHT",
           "start_time": "09:14",
           "end_time": "09:34"
@@ -607,7 +607,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:03:16.445515"
+      "timestamp": "2026-08-18T20:23:05.880316"
     },
     {
       "video_id": "3VgRz5GeYDA",
@@ -617,15 +617,15 @@
       "is_eligible": true,
       "end_screen_start": "18:00",
       "end_screen_end": "18:20",
-      "featured_card_target": "Specific Video: HUTlnlw3h8o (Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini))",
+      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
       "studio_endscreen_url": "https://studio.youtube.com/video/3VgRz5GeYDA/editor",
       "studio_edit_url": "https://studio.youtube.com/video/3VgRz5GeYDA/edit",
       "elements": [
         {
           "type": "VIDEO",
           "label": "Featured Skool Community Masterclass",
-          "target_video_id": "HUTlnlw3h8o",
-          "target_title": "Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini)",
+          "target_video_id": "F8IBooe3bXY",
+          "target_title": "Claude AI Certification for Architects | Masterclass Intro",
           "position": "TOP_RIGHT",
           "start_time": "18:00",
           "end_time": "18:20"
@@ -647,7 +647,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:03:16.445524"
+      "timestamp": "2026-08-18T20:23:05.880326"
     },
     {
       "video_id": "E52uDnN5FB0",
@@ -657,15 +657,15 @@
       "is_eligible": true,
       "end_screen_start": "07:25",
       "end_screen_end": "07:45",
-      "featured_card_target": "Specific Video: HUTlnlw3h8o (Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini))",
+      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
       "studio_endscreen_url": "https://studio.youtube.com/video/E52uDnN5FB0/editor",
       "studio_edit_url": "https://studio.youtube.com/video/E52uDnN5FB0/edit",
       "elements": [
         {
           "type": "VIDEO",
           "label": "Featured Skool Community Masterclass",
-          "target_video_id": "HUTlnlw3h8o",
-          "target_title": "Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini)",
+          "target_video_id": "F8IBooe3bXY",
+          "target_title": "Claude AI Certification for Architects | Masterclass Intro",
           "position": "TOP_RIGHT",
           "start_time": "07:25",
           "end_time": "07:45"
@@ -687,7 +687,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:03:16.445535"
+      "timestamp": "2026-08-18T20:23:05.880335"
     },
     {
       "video_id": "MnYEZWflHDs",
@@ -697,15 +697,15 @@
       "is_eligible": true,
       "end_screen_start": "10:19",
       "end_screen_end": "10:39",
-      "featured_card_target": "Specific Video: HUTlnlw3h8o (Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini))",
+      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
       "studio_endscreen_url": "https://studio.youtube.com/video/MnYEZWflHDs/editor",
       "studio_edit_url": "https://studio.youtube.com/video/MnYEZWflHDs/edit",
       "elements": [
         {
           "type": "VIDEO",
           "label": "Featured Skool Community Masterclass",
-          "target_video_id": "HUTlnlw3h8o",
-          "target_title": "Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini)",
+          "target_video_id": "F8IBooe3bXY",
+          "target_title": "Claude AI Certification for Architects | Masterclass Intro",
           "position": "TOP_RIGHT",
           "start_time": "10:19",
           "end_time": "10:39"
@@ -727,7 +727,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:03:16.445544"
+      "timestamp": "2026-08-18T20:23:05.880345"
     },
     {
       "video_id": "WK66w51UMrs",
@@ -737,15 +737,15 @@
       "is_eligible": true,
       "end_screen_start": "20:58",
       "end_screen_end": "21:18",
-      "featured_card_target": "Specific Video: HUTlnlw3h8o (Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini))",
+      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
       "studio_endscreen_url": "https://studio.youtube.com/video/WK66w51UMrs/editor",
       "studio_edit_url": "https://studio.youtube.com/video/WK66w51UMrs/edit",
       "elements": [
         {
           "type": "VIDEO",
           "label": "Featured Skool Community Masterclass",
-          "target_video_id": "HUTlnlw3h8o",
-          "target_title": "Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini)",
+          "target_video_id": "F8IBooe3bXY",
+          "target_title": "Claude AI Certification for Architects | Masterclass Intro",
           "position": "TOP_RIGHT",
           "start_time": "20:58",
           "end_time": "21:18"
@@ -767,7 +767,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:03:16.445554"
+      "timestamp": "2026-08-18T20:23:05.880355"
     },
     {
       "video_id": "2EVPwgi8NZA",
@@ -777,15 +777,15 @@
       "is_eligible": true,
       "end_screen_start": "13:30",
       "end_screen_end": "13:50",
-      "featured_card_target": "Specific Video: HUTlnlw3h8o (Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini))",
+      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
       "studio_endscreen_url": "https://studio.youtube.com/video/2EVPwgi8NZA/editor",
       "studio_edit_url": "https://studio.youtube.com/video/2EVPwgi8NZA/edit",
       "elements": [
         {
           "type": "VIDEO",
           "label": "Featured Skool Community Masterclass",
-          "target_video_id": "HUTlnlw3h8o",
-          "target_title": "Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini)",
+          "target_video_id": "F8IBooe3bXY",
+          "target_title": "Claude AI Certification for Architects | Masterclass Intro",
           "position": "TOP_RIGHT",
           "start_time": "13:30",
           "end_time": "13:50"
@@ -807,7 +807,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:03:16.445563"
+      "timestamp": "2026-08-18T20:23:05.880365"
     },
     {
       "video_id": "DDuGVH_uPTA",
@@ -817,15 +817,15 @@
       "is_eligible": true,
       "end_screen_start": "14:54",
       "end_screen_end": "15:14",
-      "featured_card_target": "Specific Video: HUTlnlw3h8o (Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini))",
+      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
       "studio_endscreen_url": "https://studio.youtube.com/video/DDuGVH_uPTA/editor",
       "studio_edit_url": "https://studio.youtube.com/video/DDuGVH_uPTA/edit",
       "elements": [
         {
           "type": "VIDEO",
           "label": "Featured Skool Community Masterclass",
-          "target_video_id": "HUTlnlw3h8o",
-          "target_title": "Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini)",
+          "target_video_id": "F8IBooe3bXY",
+          "target_title": "Claude AI Certification for Architects | Masterclass Intro",
           "position": "TOP_RIGHT",
           "start_time": "14:54",
           "end_time": "15:14"
@@ -847,7 +847,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:03:16.445572"
+      "timestamp": "2026-08-18T20:23:05.880374"
     },
     {
       "video_id": "dCU0GpriG1o",
@@ -857,15 +857,15 @@
       "is_eligible": true,
       "end_screen_start": "06:47",
       "end_screen_end": "07:07",
-      "featured_card_target": "Specific Video: HUTlnlw3h8o (Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini))",
+      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
       "studio_endscreen_url": "https://studio.youtube.com/video/dCU0GpriG1o/editor",
       "studio_edit_url": "https://studio.youtube.com/video/dCU0GpriG1o/edit",
       "elements": [
         {
           "type": "VIDEO",
           "label": "Featured Skool Community Masterclass",
-          "target_video_id": "HUTlnlw3h8o",
-          "target_title": "Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini)",
+          "target_video_id": "F8IBooe3bXY",
+          "target_title": "Claude AI Certification for Architects | Masterclass Intro",
           "position": "TOP_RIGHT",
           "start_time": "06:47",
           "end_time": "07:07"
@@ -887,7 +887,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:03:16.445581"
+      "timestamp": "2026-08-18T20:23:05.880383"
     },
     {
       "video_id": "yKN0ParJ0fo",
@@ -897,15 +897,15 @@
       "is_eligible": true,
       "end_screen_start": "08:19",
       "end_screen_end": "08:39",
-      "featured_card_target": "Specific Video: HUTlnlw3h8o (Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini))",
+      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
       "studio_endscreen_url": "https://studio.youtube.com/video/yKN0ParJ0fo/editor",
       "studio_edit_url": "https://studio.youtube.com/video/yKN0ParJ0fo/edit",
       "elements": [
         {
           "type": "VIDEO",
           "label": "Featured Skool Community Masterclass",
-          "target_video_id": "HUTlnlw3h8o",
-          "target_title": "Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini)",
+          "target_video_id": "F8IBooe3bXY",
+          "target_title": "Claude AI Certification for Architects | Masterclass Intro",
           "position": "TOP_RIGHT",
           "start_time": "08:19",
           "end_time": "08:39"
@@ -927,7 +927,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:03:16.445591"
+      "timestamp": "2026-08-18T20:23:05.880393"
     },
     {
       "video_id": "j5lku3LYoK4",
@@ -937,15 +937,15 @@
       "is_eligible": true,
       "end_screen_start": "19:39",
       "end_screen_end": "19:59",
-      "featured_card_target": "Specific Video: HUTlnlw3h8o (Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini))",
+      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
       "studio_endscreen_url": "https://studio.youtube.com/video/j5lku3LYoK4/editor",
       "studio_edit_url": "https://studio.youtube.com/video/j5lku3LYoK4/edit",
       "elements": [
         {
           "type": "VIDEO",
           "label": "Featured Skool Community Masterclass",
-          "target_video_id": "HUTlnlw3h8o",
-          "target_title": "Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini)",
+          "target_video_id": "F8IBooe3bXY",
+          "target_title": "Claude AI Certification for Architects | Masterclass Intro",
           "position": "TOP_RIGHT",
           "start_time": "19:39",
           "end_time": "19:59"
@@ -967,7 +967,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:03:16.445600"
+      "timestamp": "2026-08-18T20:23:05.880403"
     },
     {
       "video_id": "DNQEQZPnpfg",
@@ -977,15 +977,15 @@
       "is_eligible": true,
       "end_screen_start": "04:43",
       "end_screen_end": "05:03",
-      "featured_card_target": "Specific Video: HUTlnlw3h8o (Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini))",
+      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
       "studio_endscreen_url": "https://studio.youtube.com/video/DNQEQZPnpfg/editor",
       "studio_edit_url": "https://studio.youtube.com/video/DNQEQZPnpfg/edit",
       "elements": [
         {
           "type": "VIDEO",
           "label": "Featured Skool Community Masterclass",
-          "target_video_id": "HUTlnlw3h8o",
-          "target_title": "Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini)",
+          "target_video_id": "F8IBooe3bXY",
+          "target_title": "Claude AI Certification for Architects | Masterclass Intro",
           "position": "TOP_RIGHT",
           "start_time": "04:43",
           "end_time": "05:03"
@@ -1007,7 +1007,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:03:16.445609"
+      "timestamp": "2026-08-18T20:23:05.880412"
     },
     {
       "video_id": "3bwaZ-xUJcs",
@@ -1017,15 +1017,15 @@
       "is_eligible": true,
       "end_screen_start": "45:44",
       "end_screen_end": "46:04",
-      "featured_card_target": "Specific Video: HUTlnlw3h8o (Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini))",
+      "featured_card_target": "Specific Video: F8IBooe3bXY (Claude AI Certification for Architects | Masterclass Intro)",
       "studio_endscreen_url": "https://studio.youtube.com/video/3bwaZ-xUJcs/editor",
       "studio_edit_url": "https://studio.youtube.com/video/3bwaZ-xUJcs/edit",
       "elements": [
         {
           "type": "VIDEO",
           "label": "Featured Skool Community Masterclass",
-          "target_video_id": "HUTlnlw3h8o",
-          "target_title": "Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity (Claude + Gemini)",
+          "target_video_id": "F8IBooe3bXY",
+          "target_title": "Claude AI Certification for Architects | Masterclass Intro",
           "position": "TOP_RIGHT",
           "start_time": "45:44",
           "end_time": "46:04"
@@ -1047,7 +1047,7 @@
         }
       ],
       "status": "Configured & Ready",
-      "timestamp": "2026-08-18T20:03:16.445618"
+      "timestamp": "2026-08-18T20:23:05.880421"
     }
   ]
 }
