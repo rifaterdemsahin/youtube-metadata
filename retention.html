@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audience Retention — @RifatErdemSahin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="nav.css">
+  <style>
+    :root {
+      --bg-primary: #090d13;
+      --bg-secondary: #121820;
+      --bg-card: #19222c;
+      --bg-card-hover: #1f2b38;
+      --border: #283545;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --accent-blue: #38bdf8;
+      --accent-purple: #818cf8;
+      --accent-green: #34d399;
+      --accent-yellow: #fbbf24;
+      --accent-red: #f87171;
+      --accent-cyan: #22d3ee;
+      --accent-orange: #fb923c;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-top: 72px;
+    }
+
+    .top-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 64px;
+      background: rgba(18, 24, 32, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      z-index: 1000;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+
+    .nav-logo {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, #ff0033, #cc0000);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 16px; color: white;
+      box-shadow: 0 2px 8px rgba(255, 0, 51, 0.3);
+    }
+
+    .nav-title { font-size: 16px; font-weight: 700; letter-spacing: -0.02em; }
+
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+
+    .container { max-width: 1320px; margin: 28px auto 80px; padding: 0 24px; }
+
+    .page-header {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .header-info h1 {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .header-info p { color: var(--text-muted); font-size: 14px; max-width: 720px; }
+
+    .header-badge-live {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 10px;
+      background: rgba(52, 211, 153, 0.15);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      color: var(--accent-green);
+      border-radius: 9999px;
+      font-size: 12px; font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .pulse-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent-green);
+      box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.7);
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(52, 211, 153, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(52, 211, 153, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(52, 211, 153, 0); }
+    }
+
+    .header-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 16px; border-radius: 8px;
+      font-size: 13px; font-weight: 600;
+      text-decoration: none; cursor: pointer; border: none;
+      transition: all 0.15s ease;
+    }
+    .btn-primary { background: #ff0033; color: white; }
+    .btn-primary:hover { background: #e6002e; }
+    .btn-secondary { background: var(--bg-card); color: var(--text-main); border: 1px solid var(--border); }
+    .btn-secondary:hover { background: var(--bg-card-hover); }
+    .btn-cyan { background: rgba(34, 211, 238, 0.15); color: var(--accent-cyan); border: 1px solid rgba(34, 211, 238, 0.4); }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .kpi-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+    .kpi-card:hover { transform: translateY(-2px); border-color: rgba(56, 189, 248, 0.4); }
+    .kpi-label {
+      font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em;
+      color: var(--text-muted); margin-bottom: 8px; font-weight: 600;
+      display: flex; justify-content: space-between;
+    }
+    .kpi-value {
+      font-size: 28px; font-weight: 800;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: -0.03em; margin-bottom: 4px;
+    }
+    .kpi-sub { font-size: 12px; color: var(--text-muted); }
+    .kpi-tag-pos { color: var(--accent-green); font-weight: 600; }
+    .kpi-tag-yellow { color: var(--accent-yellow); font-weight: 600; }
+    .kpi-tag-cyan { color: var(--accent-cyan); font-weight: 600; }
+    .kpi-tag-red { color: var(--accent-red); font-weight: 600; }
+
+    .section-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 28px;
+    }
+
+    .section-head {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 20px; flex-wrap: wrap; gap: 12px;
+    }
+    .section-title { font-size: 18px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+    .section-desc { font-size: 13px; color: var(--text-muted); margin-top: 4px; max-width: 760px; }
+
+    .define-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+    .define-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+    }
+    .define-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+    .define-card p { font-size: 13px; color: var(--text-muted); }
+
+    .badge-chip {
+      display: inline-flex; align-items: center;
+      padding: 2px 8px; border-radius: 6px;
+      font-size: 11px; font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .chip-green { background: rgba(52, 211, 153, 0.15); color: var(--accent-green); border: 1px solid rgba(52, 211, 153, 0.3); }
+    .chip-cyan { background: rgba(34, 211, 238, 0.15); color: var(--accent-cyan); border: 1px solid rgba(34, 211, 238, 0.3); }
+    .chip-purple { background: rgba(129, 140, 248, 0.15); color: var(--accent-purple); border: 1px solid rgba(129, 140, 248, 0.3); }
+    .chip-yellow { background: rgba(251, 191, 36, 0.15); color: var(--accent-yellow); border: 1px solid rgba(251, 191, 36, 0.3); }
+    .chip-orange { background: rgba(251, 146, 60, 0.15); color: var(--accent-orange); border: 1px solid rgba(251, 146, 60, 0.3); }
+    .chip-red { background: rgba(248, 113, 113, 0.15); color: var(--accent-red); border: 1px solid rgba(248, 113, 113, 0.3); }
+
+    .band-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+    .band-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+    }
+    .band-label { font-size: 12px; color: var(--text-muted); font-weight: 600; margin-bottom: 6px; }
+    .band-count { font-size: 22px; font-weight: 800; font-family: 'JetBrains Mono', monospace; }
+    .band-bar { height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; margin-top: 10px; overflow: hidden; }
+    .band-fill { height: 100%; border-radius: 3px; }
+
+    .scatter-wrap {
+      position: relative;
+      height: 340px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-top: 8px;
+    }
+    .scatter-plot { position: absolute; inset: 28px 24px 40px 56px; }
+    .scatter-axis-y, .scatter-axis-x {
+      position: absolute;
+      color: var(--text-dim);
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .scatter-axis-y { left: 10px; top: 28px; bottom: 40px; writing-mode: vertical-rl; transform: rotate(180deg); }
+    .scatter-axis-x { bottom: 12px; left: 56px; right: 24px; text-align: center; }
+    .scatter-dot {
+      position: absolute;
+      width: 12px; height: 12px;
+      border-radius: 50%;
+      transform: translate(-50%, 50%);
+      cursor: pointer;
+      border: 2px solid rgba(9, 13, 19, 0.6);
+    }
+    .scatter-dot:hover { transform: translate(-50%, 50%) scale(1.4); z-index: 2; }
+    .scatter-legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 12px; font-size: 12px; color: var(--text-muted); }
+    .legend-dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 6px; }
+
+    .table-responsive {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg-card);
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; }
+    th {
+      background: rgba(18, 24, 32, 0.95);
+      padding: 12px 16px; color: var(--text-muted); font-weight: 600;
+      border-bottom: 1px solid var(--border); white-space: nowrap; cursor: pointer; user-select: none;
+    }
+    th:hover { color: var(--accent-cyan); }
+    td { padding: 12px 16px; border-bottom: 1px solid rgba(40, 53, 69, 0.4); }
+    tr:last-child td { border-bottom: none; }
+    tr.video-row:hover td { background: var(--bg-card-hover); }
+    .mono-cell { font-family: 'JetBrains Mono', monospace; font-weight: 600; }
+
+    .pct-bar-container { display: flex; align-items: center; gap: 8px; min-width: 140px; }
+    .pct-bar-track { flex: 1; height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
+    .pct-bar-fill { height: 100%; border-radius: 3px; }
+
+    .insights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+    .insight-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px;
+    }
+    .insight-title { font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .insight-body { font-size: 13px; color: var(--text-muted); }
+
+    .playbook-list { list-style: none; display: grid; gap: 10px; }
+    .playbook-list li {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .playbook-list strong { color: var(--text-main); }
+
+    .controls-bar { display: flex; align-items: center; justify-content: space-between; gap: 14px; margin-bottom: 16px; flex-wrap: wrap; }
+    .search-input-wrapper { position: relative; flex: 1; min-width: 240px; }
+    .search-input {
+      width: 100%; background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 8px; padding: 9px 14px 9px 36px; font-size: 13px;
+      color: var(--text-main); outline: none;
+    }
+    .search-input:focus { border-color: var(--accent-cyan); }
+    .search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); }
+
+    .filter-pills { display: flex; gap: 6px; flex-wrap: wrap; }
+    .pill-btn {
+      background: var(--bg-card); border: 1px solid var(--border); color: var(--text-muted);
+      padding: 6px 12px; border-radius: 6px; font-size: 12px; font-weight: 500; cursor: pointer;
+    }
+    .pill-btn.active {
+      background: rgba(34, 211, 238, 0.15); color: var(--accent-cyan);
+      border-color: rgba(34, 211, 238, 0.4); font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <nav class="top-nav">
+    <a href="index.html" class="nav-brand">
+      <div class="nav-logo">▶</div>
+      <div><div class="nav-title">YouTube Studio MCP</div></div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li class="nav-group" data-group="operate">
+        <button type="button" class="nav-link nav-group-toggle">Operate <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Studio ops</li>
+          <li><a href="index.html" class="nav-dropdown-link" data-page="index.html">Dashboard <span class="nav-dropdown-hint">home</span></a></li>
+          <li><a href="endvideo.html" class="nav-dropdown-link" data-page="endvideo.html">End Video Closing</a></li>
+          <li><a href="skills.html" class="nav-dropdown-link" data-page="skills.html">Skills Studio</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="library">
+        <button type="button" class="nav-link nav-group-toggle">Library <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Content assets</li>
+          <li><a href="catalog.html" class="nav-dropdown-link" data-page="catalog.html">Video Catalog</a></li>
+          <li><a href="playlists.html" class="nav-dropdown-link" data-page="playlists.html">Playlists</a></li>
+          <li><a href="thumbnails.html" class="nav-dropdown-link" data-page="thumbnails.html">Thumbnails</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="performance">
+        <button type="button" class="nav-link nav-group-toggle">Performance <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Audience metrics</li>
+          <li><a href="analytics.html" class="nav-dropdown-link" data-page="analytics.html">Overview</a></li>
+          <li><a href="retention.html" class="nav-dropdown-link" data-page="retention.html">Retention</a></li>
+          <li><a href="ctr.html" class="nav-dropdown-link" data-page="ctr.html">CTR</a></li>
+          <li><a href="august.html" class="nav-dropdown-link" data-page="august.html">August 2026</a></li>
+          <li><a href="year.html" class="nav-dropdown-link" data-page="year.html">Year briefing</a></li>
+          <li><a href="flow.html" class="nav-dropdown-link" data-page="flow.html">Google Flow</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="logs">
+        <button type="button" class="nav-link nav-group-toggle">Logs <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Change history</li>
+          <li><a href="reports.html" class="nav-dropdown-link" data-page="reports.html">Reports</a></li>
+          <li><a href="updates.html" class="nav-dropdown-link" data-page="updates.html">Updates Log</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="channel">
+        <button type="button" class="nav-link nav-group-toggle">Channel <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">External</li>
+          <li><a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" rel="noopener" class="nav-dropdown-link">@RifatErdemSahin ↗</a></li>
+          <li><a href="https://www.skool.com/delivery-pilot-8938" target="_blank" rel="noopener" class="nav-dropdown-link">Skool Community ↗</a></li>
+        </ul>
+      </li>
+    </ul>
+    <div class="nav-actions">
+      <a href="ctr.html" class="btn btn-secondary" style="padding: 6px 12px; font-size: 12px;">CTR ➔</a>
+      <a href="analytics.html" class="btn btn-secondary" style="padding: 6px 12px; font-size: 12px;">Analytics ➔</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <div class="header-info">
+        <h1>
+          <span>Audience Retention</span>
+          <span class="header-badge-live"><span class="pulse-dot"></span> 10.2% channel avg</span>
+        </h1>
+        <p>How much of each video viewers actually watch. Retention is average percentage viewed — the signal YouTube uses to decide whether a title earned the click <em>and</em> the video deserved the watch.</p>
+      </div>
+      <div class="header-actions">
+        <a href="ctr.html" class="btn btn-cyan">CTR companion ➔</a>
+        <a href="analytics.html" class="btn btn-secondary">Full analytics ➔</a>
+      </div>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label"><span>Channel avg viewed</span><span>⏳</span></div>
+        <div class="kpi-value" id="kpiAvg">10.2%</div>
+        <div class="kpi-sub"><span class="kpi-tag-cyan">1:32</span> average view duration · 365d</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label"><span>Unweighted median</span><span>📊</span></div>
+        <div class="kpi-value" id="kpiMedian">—</div>
+        <div class="kpi-sub">Per-video median, not view-weighted</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label"><span>Best retainer</span><span>🏆</span></div>
+        <div class="kpi-value" id="kpiBest">—</div>
+        <div class="kpi-sub" id="kpiBestTitle">—</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label"><span>Weakest retainer</span><span>⚠️</span></div>
+        <div class="kpi-value" id="kpiWorst">—</div>
+        <div class="kpi-sub" id="kpiWorstTitle">—</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label"><span>Above 15% viewed</span><span>✅</span></div>
+        <div class="kpi-value" id="kpiHigh">—</div>
+        <div class="kpi-sub">Short dense cuts and trailers dominate this band</div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-head">
+        <div>
+          <div class="section-title">What retention measures</div>
+          <div class="section-desc">YouTube reports this as “average percentage viewed.” It is not unique viewers — it is watch time ÷ video length, averaged across views.</div>
+        </div>
+      </div>
+      <div class="define-grid">
+        <div class="define-card">
+          <h3>Hook (0–15s)</h3>
+          <p>Most drop-off happens here. A retained video states the payoff in the first sentence and shows a result on screen before the intro bumper.</p>
+        </div>
+        <div class="define-card">
+          <h3>Hold (body)</h3>
+          <p>Pattern interrupts every 20–40 seconds: a cut, a diagram, a checkpoint. Long-form on this channel sits around 7–12% because density falls in the middle third.</p>
+        </div>
+        <div class="define-card">
+          <h3>End (last 20%)</h3>
+          <p>End screens only work if people are still there. The 66.6% masterclass intro and 59.4% Obsidian short prove length is the first lever.</p>
+        </div>
+        <div class="define-card">
+          <h3>How YouTube uses it</h3>
+          <p>Suggested and Browse rank videos that keep similar viewers watching. A 2.3% CTR with 10% retention under-trains the algorithm versus a tighter cut with 20%+.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-head">
+        <div>
+          <div class="section-title">Retention bands</div>
+          <div class="section-desc">Videos grouped by average percentage viewed. Channel-weighted average is 10.2%; unweighted mean is pulled up by two short outliers.</div>
+        </div>
+        <span class="badge-chip chip-purple" id="videoCountChip">26 videos</span>
+      </div>
+      <div class="band-grid" id="bandGrid"></div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-head">
+        <div>
+          <div class="section-title">Duration vs retention</div>
+          <div class="section-desc">Each dot is a video. X-axis is length, Y-axis is average percentage viewed. Short trailers cluster at the top-left; 15–25 minute pieces sit in the 7–12% band.</div>
+        </div>
+      </div>
+      <div class="scatter-wrap">
+        <div class="scatter-axis-y">Avg % viewed →</div>
+        <div class="scatter-plot" id="scatterPlot"></div>
+        <div class="scatter-axis-x">Video duration (minutes) →</div>
+      </div>
+      <div class="scatter-legend">
+        <span><i class="legend-dot" style="background:#22d3ee"></i> Under 8 min</span>
+        <span><i class="legend-dot" style="background:#818cf8"></i> 8–15 min</span>
+        <span><i class="legend-dot" style="background:#fbbf24"></i> 15–25 min</span>
+        <span><i class="legend-dot" style="background:#f87171"></i> 25+ min</span>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-head">
+        <div>
+          <div class="section-title">Video retention table</div>
+          <div class="section-desc">Sorted by average percentage viewed. Use this to pick the next recut: keep the topic, shorten the body, move the payoff earlier.</div>
+        </div>
+      </div>
+      <div class="controls-bar">
+        <div class="search-input-wrapper">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="videoSearchInput" class="search-input" placeholder="Search title or category…" oninput="renderTable()">
+        </div>
+        <div class="filter-pills">
+          <button class="pill-btn active" onclick="setBand('all', this)">All</button>
+          <button class="pill-btn" onclick="setBand('high', this)">≥15%</button>
+          <button class="pill-btn" onclick="setBand('mid', this)">8–15%</button>
+          <button class="pill-btn" onclick="setBand('low', this)">&lt;8%</button>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th onclick="sortBy('rank')">#</th>
+              <th onclick="sortBy('title')">Video ↕</th>
+              <th onclick="sortBy('duration_sec')">Length ↕</th>
+              <th onclick="sortBy('views')">Views ↕</th>
+              <th onclick="sortBy('avg_percentage_viewed')">Retention ↕</th>
+              <th onclick="sortBy('avg_view_duration')">Avg duration ↕</th>
+              <th>Verdict</th>
+            </tr>
+          </thead>
+          <tbody id="videoTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-head">
+        <div>
+          <div class="section-title">What the data says</div>
+          <div class="section-desc">Actionable patterns from the current catalog — not generic YouTube advice.</div>
+        </div>
+      </div>
+      <div class="insights-grid">
+        <div class="insight-card">
+          <div class="insight-title">Short dense cuts win <span class="badge-chip chip-green">66.6% / 59.4%</span></div>
+          <div class="insight-body">The Claude Architect intro (0:11) and the Obsidian knowledge-engine clip (1:09) are the only videos above 50%. Length is the cheapest retention lever on this channel.</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-title">Sub-6-minute tutorials hold <span class="badge-chip chip-cyan">23.2%</span></div>
+          <div class="insight-body"><strong>10x Interview Rate</strong> (5:55, 23.2%) and <strong>MCP Explained</strong> (5:58, 18.7%) outperform 15–25 minute career videos that sit at 7–11% despite more views.</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-title">Long-form is a hold problem <span class="badge-chip chip-yellow">7–12%</span></div>
+          <div class="insight-body">LinkedIn Job Hunt, Agentic Era, and AI No-Code drive traffic but leak viewers in the middle. Recut those as 6–8 minute “one outcome” versions before recording more 20-minute pieces.</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-title">One 46-minute exception <span class="badge-chip chip-purple">16.0%</span></div>
+          <div class="insight-body"><strong>Master AI, Stay Ahead</strong> retains 16% at 46:04 — workshop energy, not lecture. If long-form is required, structure it as a live working session, not a slide tour.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-head">
+        <div>
+          <div class="section-title">Retention playbook</div>
+          <div class="section-desc">Apply on the next upload. Pair with the CTR page — a high click with a 1% hold still loses the impression auction next time.</div>
+        </div>
+      </div>
+      <ul class="playbook-list">
+        <li><strong>1. Open on the result.</strong> First frame should match the thumbnail promise. No 20-second channel ident.</li>
+        <li><strong>2. Target 8 minutes or less</strong> for tutorials unless it is a live build. Channel data: under-8-minute videos cluster well above the 10.2% average.</li>
+        <li><strong>3. Recut the three traffic engines.</strong> LinkedIn Job Hunt, AI No-Code, and Agentic Era are 36.7% of views at ~8% hold. A tight recut would compound both CTR and suggested traffic.</li>
+        <li><strong>4. Chapter the body.</strong> Spoken checkpoints (“three things, then the demo”) reduce the mid-video cliff on 15+ minute videos.</li>
+        <li><strong>5. End screen only after a hold.</strong> End screens currently contribute 1 view. Retention in the last 20 seconds is the prerequisite — see End Video Closing under Operate.</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    let videos = [];
+    let sortField = 'avg_percentage_viewed';
+    let sortAsc = false;
+    let bandFilter = 'all';
+
+    const BANDS = [
+      { id: 'elite', label: '50%+ viewed', min: 50, max: 101, color: '#34d399' },
+      { id: 'strong', label: '20–50%', min: 20, max: 50, color: '#22d3ee' },
+      { id: 'ok', label: '10–20%', min: 10, max: 20, color: '#818cf8' },
+      { id: 'weak', label: '5–10%', min: 5, max: 10, color: '#fbbf24' },
+      { id: 'fail', label: 'Under 5%', min: 0, max: 5, color: '#f87171' }
+    ];
+
+    function durationColor(sec) {
+      if (sec < 480) return '#22d3ee';
+      if (sec < 900) return '#818cf8';
+      if (sec < 1500) return '#fbbf24';
+      return '#f87171';
+    }
+
+    function verdict(v) {
+      if (v.avg_percentage_viewed >= 50) return { t: 'Trailer / short — keep this format', c: 'chip-green' };
+      if (v.avg_percentage_viewed >= 18) return { t: 'Dense tutorial — model for recuts', c: 'chip-cyan' };
+      if (v.avg_percentage_viewed >= 12) return { t: 'Holds for length — tighten middle', c: 'chip-purple' };
+      if (v.avg_percentage_viewed >= 8) return { t: 'Average hold — recut or chapter', c: 'chip-yellow' };
+      return { t: 'Early drop — rewrite hook', c: 'chip-red' };
+    }
+
+    function median(nums) {
+      const s = [...nums].sort((a, b) => a - b);
+      const mid = Math.floor(s.length / 2);
+      return s.length % 2 ? s[mid] : (s[mid - 1] + s[mid]) / 2;
+    }
+
+    async function load() {
+      const res = await fetch('analytics_data.json');
+      const data = await res.json();
+      videos = data.videos || [];
+      renderKpis();
+      renderBands();
+      renderScatter();
+      renderTable();
+    }
+
+    function renderKpis() {
+      const pcts = videos.map(v => v.avg_percentage_viewed);
+      const best = videos.reduce((a, b) => a.avg_percentage_viewed > b.avg_percentage_viewed ? a : b);
+      const worst = videos.reduce((a, b) => a.avg_percentage_viewed < b.avg_percentage_viewed ? a : b);
+      const high = videos.filter(v => v.avg_percentage_viewed >= 15).length;
+      document.getElementById('kpiMedian').textContent = median(pcts).toFixed(1) + '%';
+      document.getElementById('kpiBest').textContent = best.avg_percentage_viewed + '%';
+      document.getElementById('kpiBestTitle').innerHTML = '<span class="kpi-tag-pos">' + best.title + '</span>';
+      document.getElementById('kpiWorst').textContent = worst.avg_percentage_viewed + '%';
+      document.getElementById('kpiWorstTitle').innerHTML = '<span class="kpi-tag-red">' + worst.title + '</span>';
+      document.getElementById('kpiHigh').textContent = high + ' / ' + videos.length;
+      document.getElementById('videoCountChip').textContent = videos.length + ' videos';
+    }
+
+    function renderBands() {
+      const grid = document.getElementById('bandGrid');
+      grid.innerHTML = '';
+      BANDS.forEach(b => {
+        const count = videos.filter(v => v.avg_percentage_viewed >= b.min && v.avg_percentage_viewed < b.max).length;
+        const pct = videos.length ? (count / videos.length) * 100 : 0;
+        const el = document.createElement('div');
+        el.className = 'band-card';
+        el.innerHTML = `
+          <div class="band-label">${b.label}</div>
+          <div class="band-count">${count}</div>
+          <div class="band-bar"><div class="band-fill" style="width:${pct}%; background:${b.color}"></div></div>
+        `;
+        grid.appendChild(el);
+      });
+    }
+
+    function renderScatter() {
+      const plot = document.getElementById('scatterPlot');
+      plot.innerHTML = '';
+      const maxSec = Math.max(...videos.map(v => v.duration_sec), 1);
+      const maxPct = Math.max(...videos.map(v => v.avg_percentage_viewed), 1);
+      videos.forEach(v => {
+        const x = (v.duration_sec / maxSec) * 100;
+        const y = (v.avg_percentage_viewed / maxPct) * 100;
+        const dot = document.createElement('div');
+        dot.className = 'scatter-dot';
+        dot.style.left = x + '%';
+        dot.style.bottom = y + '%';
+        dot.style.background = durationColor(v.duration_sec);
+        dot.title = v.title + ' · ' + v.duration + ' · ' + v.avg_percentage_viewed + '%';
+        plot.appendChild(dot);
+      });
+    }
+
+    function setBand(id, btn) {
+      bandFilter = id;
+      document.querySelectorAll('.filter-pills .pill-btn').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      renderTable();
+    }
+
+    function sortBy(field) {
+      if (sortField === field) sortAsc = !sortAsc;
+      else { sortField = field; sortAsc = false; }
+      renderTable();
+    }
+
+    function renderTable() {
+      const q = (document.getElementById('videoSearchInput').value || '').toLowerCase().trim();
+      let list = [...videos];
+      if (bandFilter === 'high') list = list.filter(v => v.avg_percentage_viewed >= 15);
+      if (bandFilter === 'mid') list = list.filter(v => v.avg_percentage_viewed >= 8 && v.avg_percentage_viewed < 15);
+      if (bandFilter === 'low') list = list.filter(v => v.avg_percentage_viewed < 8);
+      if (q) {
+        list = list.filter(v => v.title.toLowerCase().includes(q) || (v.category || '').toLowerCase().includes(q));
+      }
+      list.sort((a, b) => {
+        const va = a[sortField], vb = b[sortField];
+        if (typeof va === 'string') return sortAsc ? va.localeCompare(vb) : vb.localeCompare(va);
+        return sortAsc ? va - vb : vb - va;
+      });
+      const tbody = document.getElementById('videoTableBody');
+      tbody.innerHTML = '';
+      list.forEach((v, i) => {
+        const ver = verdict(v);
+        const fill = Math.min(v.avg_percentage_viewed, 100);
+        const color = v.avg_percentage_viewed >= 15 ? 'var(--accent-green)' : v.avg_percentage_viewed >= 8 ? 'var(--accent-yellow)' : 'var(--accent-red)';
+        const tr = document.createElement('tr');
+        tr.className = 'video-row';
+        tr.innerHTML = `
+          <td class="mono-cell" style="color:var(--text-dim)">${i + 1}</td>
+          <td>
+            <div style="font-weight:600">${v.title}</div>
+            <div style="font-size:11px;color:var(--text-muted);margin-top:2px">${v.category || ''} · ${v.published_date}</div>
+          </td>
+          <td class="mono-cell">${v.duration}</td>
+          <td class="mono-cell" style="color:var(--accent-cyan)">${v.views.toLocaleString()}</td>
+          <td>
+            <div class="pct-bar-container">
+              <span class="mono-cell" style="width:48px">${v.avg_percentage_viewed}%</span>
+              <div class="pct-bar-track"><div class="pct-bar-fill" style="width:${fill}%;background:${color}"></div></div>
+            </div>
+          </td>
+          <td class="mono-cell">${v.avg_view_duration}</td>
+          <td><span class="badge-chip ${ver.c}">${ver.t}</span></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    load().catch(err => console.error(err));
+  </script>
+</body>
+</html>

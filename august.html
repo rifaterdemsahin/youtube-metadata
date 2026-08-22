@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>August 2026 YouTube Analytics — @RifatErdemSahin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="nav.css">
+  <style>
+    :root {
+      --bg-primary: #090d13;
+      --bg-secondary: #121820;
+      --bg-card: #19222c;
+      --bg-card-hover: #1f2b38;
+      --border: #283545;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --accent-blue: #38bdf8;
+      --accent-purple: #818cf8;
+      --accent-green: #34d399;
+      --accent-yellow: #fbbf24;
+      --accent-red: #f87171;
+      --accent-cyan: #22d3ee;
+      --accent-orange: #fb923c;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-top: 72px;
+    }
+    .top-nav {
+      position: fixed; top: 0; left: 0; right: 0; height: 64px;
+      background: rgba(18, 24, 32, 0.92);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 28px; z-index: 1000;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-main); }
+    .nav-logo {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, #ff0033, #cc0000);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 16px; color: white;
+    }
+    .nav-title { font-size: 16px; font-weight: 700; }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+    .container { max-width: 1320px; margin: 28px auto 80px; padding: 0 24px; }
+    .page-header {
+      background: var(--bg-secondary); border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;
+    }
+    .header-info h1 {
+      font-size: 26px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 6px;
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    }
+    .header-info p { color: var(--text-muted); font-size: 14px; max-width: 760px; }
+    .header-badge-live {
+      display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px;
+      background: rgba(251, 146, 60, 0.15); border: 1px solid rgba(251, 146, 60, 0.35);
+      color: var(--accent-orange); border-radius: 9999px; font-size: 12px; font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .pulse-dot {
+      width: 8px; height: 8px; border-radius: 50%; background: var(--accent-orange);
+      box-shadow: 0 0 0 0 rgba(251, 146, 60, 0.7); animation: pulse 1.8s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(251, 146, 60, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(251, 146, 60, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(251, 146, 60, 0.7); }
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 8px;
+      font-size: 13px; font-weight: 600; text-decoration: none; border: none; cursor: pointer;
+    }
+    .btn-secondary { background: var(--bg-card); color: var(--text-main); border: 1px solid var(--border); }
+    .btn-cyan { background: rgba(34, 211, 238, 0.15); color: var(--accent-cyan); border: 1px solid rgba(34, 211, 238, 0.4); }
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 28px; }
+    .kpi-card {
+      background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 20px;
+    }
+    .kpi-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); font-weight: 600; margin-bottom: 8px; }
+    .kpi-value { font-size: 28px; font-weight: 800; font-family: 'JetBrains Mono', monospace; letter-spacing: -0.03em; }
+    .kpi-sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+    .up { color: var(--accent-green); font-weight: 600; }
+    .down { color: var(--accent-red); font-weight: 600; }
+    .flat { color: var(--accent-yellow); font-weight: 600; }
+    .section-card {
+      background: var(--bg-secondary); border: 1px solid var(--border);
+      border-radius: 14px; padding: 24px; margin-bottom: 28px;
+    }
+    .section-title { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+    .section-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 18px; max-width: 820px; }
+    .badge-chip {
+      display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 6px;
+      font-size: 11px; font-weight: 600; font-family: 'JetBrains Mono', monospace;
+    }
+    .chip-green { background: rgba(52, 211, 153, 0.15); color: var(--accent-green); border: 1px solid rgba(52, 211, 153, 0.3); }
+    .chip-cyan { background: rgba(34, 211, 238, 0.15); color: var(--accent-cyan); border: 1px solid rgba(34, 211, 238, 0.3); }
+    .chip-yellow { background: rgba(251, 191, 36, 0.15); color: var(--accent-yellow); border: 1px solid rgba(251, 191, 36, 0.3); }
+    .chip-orange { background: rgba(251, 146, 60, 0.15); color: var(--accent-orange); border: 1px solid rgba(251, 146, 60, 0.3); }
+    .chip-red { background: rgba(248, 113, 113, 0.15); color: var(--accent-red); border: 1px solid rgba(248, 113, 113, 0.3); }
+    .chip-purple { background: rgba(129, 140, 248, 0.15); color: var(--accent-purple); border: 1px solid rgba(129, 140, 248, 0.3); }
+    .thesis {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
+      padding: 16px 18px; font-size: 14px; color: var(--text-muted); margin-bottom: 16px;
+    }
+    .thesis strong { color: var(--text-main); }
+    .insights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+    .insight-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+    .insight-title { font-size: 14px; font-weight: 700; margin-bottom: 6px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .insight-body { font-size: 13px; color: var(--text-muted); }
+    .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+    .video-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .video-card img { width: 100%; height: 160px; object-fit: cover; display: block; background: #000; }
+    .video-body { padding: 16px; }
+    .video-body h3 { font-size: 15px; font-weight: 700; line-height: 1.35; margin-bottom: 8px; }
+    .meta { font-size: 12px; color: var(--text-muted); margin-bottom: 12px; }
+    .metric-row { display: flex; justify-content: space-between; font-size: 13px; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .metric-row:last-child { border-bottom: none; }
+    .mono { font-family: 'JetBrains Mono', monospace; font-weight: 600; }
+    .bars { display: flex; align-items: flex-end; gap: 4px; height: 160px; padding-top: 8px; }
+    .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; height: 100%; justify-content: flex-end; gap: 4px; }
+    .bar {
+      width: 100%; max-width: 22px; border-radius: 4px 4px 0 0;
+      background: linear-gradient(180deg, var(--accent-cyan), var(--accent-blue));
+      min-height: 2px;
+    }
+    .bar.spike { background: linear-gradient(180deg, var(--accent-green), #059669); }
+    .bar-label { font-size: 9px; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; writing-mode: vertical-rl; transform: rotate(180deg); height: 28px; }
+    .table-responsive { overflow-x: auto; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-card); }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; }
+    th { background: rgba(18,24,32,0.95); padding: 12px 16px; color: var(--text-muted); font-weight: 600; border-bottom: 1px solid var(--border); white-space: nowrap; }
+    td { padding: 12px 16px; border-bottom: 1px solid rgba(40,53,69,0.4); }
+    tr:last-child td { border-bottom: none; }
+    .source-bar { display: grid; grid-template-columns: 180px 1fr 60px; gap: 12px; align-items: center; padding: 8px 0; font-size: 13px; }
+    .source-track { height: 8px; background: rgba(255,255,255,0.08); border-radius: 4px; overflow: hidden; }
+    .source-fill { height: 100%; border-radius: 4px; background: var(--accent-cyan); }
+    .playbook-list { list-style: none; display: grid; gap: 10px; }
+    .playbook-list li {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
+      padding: 14px 16px; font-size: 13px; color: var(--text-muted);
+    }
+    .playbook-list strong { color: var(--text-main); }
+    .note {
+      font-size: 12px; color: var(--text-dim); margin-top: 10px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+  </style>
+</head>
+<body>
+  <nav class="top-nav">
+    <a href="index.html" class="nav-brand">
+      <div class="nav-logo">▶</div>
+      <div><div class="nav-title">YouTube Studio MCP</div></div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li class="nav-group" data-group="operate">
+        <button type="button" class="nav-link nav-group-toggle">Operate <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Studio ops</li>
+          <li><a href="index.html" class="nav-dropdown-link" data-page="index.html">Dashboard <span class="nav-dropdown-hint">home</span></a></li>
+          <li><a href="endvideo.html" class="nav-dropdown-link" data-page="endvideo.html">End Video Closing</a></li>
+          <li><a href="skills.html" class="nav-dropdown-link" data-page="skills.html">Skills Studio</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="library">
+        <button type="button" class="nav-link nav-group-toggle">Library <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Content assets</li>
+          <li><a href="catalog.html" class="nav-dropdown-link" data-page="catalog.html">Video Catalog</a></li>
+          <li><a href="playlists.html" class="nav-dropdown-link" data-page="playlists.html">Playlists</a></li>
+          <li><a href="thumbnails.html" class="nav-dropdown-link" data-page="thumbnails.html">Thumbnails</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="performance">
+        <button type="button" class="nav-link nav-group-toggle">Performance <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Audience metrics</li>
+          <li><a href="analytics.html" class="nav-dropdown-link" data-page="analytics.html">Overview</a></li>
+          <li><a href="retention.html" class="nav-dropdown-link" data-page="retention.html">Retention</a></li>
+          <li><a href="ctr.html" class="nav-dropdown-link" data-page="ctr.html">CTR</a></li>
+          <li><a href="august.html" class="nav-dropdown-link" data-page="august.html">August 2026</a></li>
+          <li><a href="year.html" class="nav-dropdown-link" data-page="year.html">Year briefing</a></li>
+          <li><a href="flow.html" class="nav-dropdown-link" data-page="flow.html">Google Flow</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="logs">
+        <button type="button" class="nav-link nav-group-toggle">Logs <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Change history</li>
+          <li><a href="reports.html" class="nav-dropdown-link" data-page="reports.html">Reports</a></li>
+          <li><a href="updates.html" class="nav-dropdown-link" data-page="updates.html">Updates Log</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="channel">
+        <button type="button" class="nav-link nav-group-toggle">Channel <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">External</li>
+          <li><a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" rel="noopener" class="nav-dropdown-link">@RifatErdemSahin ↗</a></li>
+          <li><a href="https://www.skool.com/delivery-pilot-8938" target="_blank" rel="noopener" class="nav-dropdown-link">Skool Community ↗</a></li>
+        </ul>
+      </li>
+    </ul>
+    <div class="nav-actions">
+      <a href="retention.html" class="btn btn-secondary" style="padding: 6px 12px; font-size: 12px;">Retention ➔</a>
+      <a href="analytics.html" class="btn btn-secondary" style="padding: 6px 12px; font-size: 12px;">Overview ➔</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <div class="header-info">
+        <h1>
+          <span>August 2026 Analytics</span>
+          <span class="header-badge-live"><span class="pulse-dot"></span> Month in progress</span>
+        </h1>
+        <p>Live pull from YouTube Analytics (Aug 1–18 complete) plus Data API snapshot on 21 Aug 2026. Two shorts shipped this month after a June–August publishing gap. The Knowledge Engine clip is the month.</p>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <a href="august_analytics.json" class="btn btn-cyan" target="_blank">Raw JSON ↗</a>
+        <a href="https://studio.youtube.com/channel/UCSJyG3bTM7lnjMIZcV8C4OQ/analytics/tab-overview/period-default" target="_blank" rel="noopener" class="btn btn-secondary">YouTube Studio ↗</a>
+      </div>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">August views</div>
+        <div class="kpi-value">103</div>
+        <div class="kpi-sub"><span class="up">+12%</span> vs July (92) · Analytics to 18th</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Watch time</div>
+        <div class="kpi-value">71 <span style="font-size:16px;font-weight:500;">min</span></div>
+        <div class="kpi-sub"><span class="down">−64%</span> vs July 199 min — shorts cut hours</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Avg view duration</div>
+        <div class="kpi-value">0:41</div>
+        <div class="kpi-sub">July was 2:09 · format shift, not a demand crash</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Channel retention</div>
+        <div class="kpi-value">8.8%</div>
+        <div class="kpi-sub">New clips hold <span class="up">51–55%</span> · catalog long-form drags the average</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Net subscribers</div>
+        <div class="kpi-value">0</div>
+        <div class="kpi-sub"><span class="flat">+2 / −2</span> · live count 707</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Shares / likes</div>
+        <div class="kpi-value">6 / 2</div>
+        <div class="kpi-sub">5 of 6 shares are the Knowledge Engine clip</div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">Month thesis</div>
+      <div class="section-desc">What August actually did, not what the 365-day dashboard already said.</div>
+      <div class="thesis">
+        August is a <strong>format experiment, not a growth month</strong>. You published twice (16 Aug Knowledge Engine 1:09, 19 Aug AI Isn’t a Bubble 1:54) after 55 days of silence. Views ticked up versus July, but almost all of the lift is one 69-second clip: <strong>47 of 103 Analytics views (46%)</strong>. Watch time collapsed because you swapped 15–25 minute catalog drips for shorts that people actually finish. Algorithmic YouTube is still not in the mix — Browse is 4 views, Suggested does not appear as a source. Direct + external URLs are 55 of 103 views. Subscriber net is flat. Comments on all three latest videos are your own Skool pin.
+      </div>
+      <div class="insights-grid">
+        <div class="insight-card">
+          <div class="insight-title">The drought then the spike <span class="badge-chip chip-orange">31 vs 72</span></div>
+          <div class="insight-body">Aug 1–15: 31 views, six zero-days. Aug 16–18: 72 views in three days after the Knowledge Engine upload. Publishing cadence is still the first lever — the catalog does not move without a new asset.</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-title">Shorts win hold, lose hours <span class="badge-chip chip-green">55% ret</span></div>
+          <div class="insight-body">Knowledge Engine retains 55.2% (38s of 69s). Claude intro retains 51% in August. July’s 13.8% channel retention looked better only because people sat in long videos they abandoned. These new clips are the first things on the channel that actually get watched through.</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-title">YouTube is not distributing <span class="badge-chip chip-red">Browse = 4</span></div>
+          <div class="insight-body">Playback location: Watch page 92, Embedded 7, Browse 4. Traffic: Direct 28, External 27, Subscribers 20, Channel page 13, Search 9. Home/Suggested is missing. This is a community + search channel this month, not an algorithmic one.</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-title">Search still pays in minutes <span class="badge-chip chip-cyan">136s AVD</span></div>
+          <div class="insight-body">Nine YouTube Search views produced 20 watch minutes — the highest-duration source. Those are catalog long-form clicks (Learn AI visual method, 189s AVD on 6 views). Shorts get the clicks; old tutorials still earn the hours when Search finds them.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">Last 3 videos</div>
+      <div class="section-desc">Newest first. Analytics for the Aug 19 upload has not landed yet — Data API numbers are used where the report is empty.</div>
+      <div class="video-grid" id="last3"></div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">Daily views — August 1 to 18</div>
+      <div class="section-desc">Green bars are the Knowledge Engine publish window. Aug 19–21 are omitted because Analytics has not closed those days.</div>
+      <div class="bars" id="dailyBars"></div>
+      <div class="note" id="pulledAt"></div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">How August traffic arrived</div>
+      <div class="section-desc">Off-platform (direct + external) is still more than half. That is Skool, GitHub, and pasted links — not Home.</div>
+      <div id="trafficBars"></div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">Devices and where they watched</div>
+      <div class="section-desc">Mac + Windows = 62 views. This is a desktop builder audience, which matches the Knowledge Engine topic. Mobile still produces almost as many watch minutes (25 vs 26) on half the views — they linger.</div>
+      <div class="insights-grid">
+        <div class="insight-card">
+          <div class="insight-title">Devices</div>
+          <div class="insight-body" id="devicesBox"></div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-title">OS</div>
+          <div class="insight-body" id="osBox"></div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-title">Playback location</div>
+          <div class="insight-body" id="playBox"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">Four-month comparison</div>
+      <div class="section-desc">August is the first month with real share activity. Watch time is the price of the short-form test.</div>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Month</th><th>Views</th><th>Minutes</th><th>Avg duration</th><th>Retention</th><th>Subs +/−</th><th>Likes</th><th>Shares</th>
+            </tr>
+          </thead>
+          <tbody id="monthTable"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">Catalog drip in August</div>
+      <div class="section-desc">Everything that still got views besides the last three. Long-form hold is still weak — except the Visual Construction Method (18.6% / 3:09 AVD on 6 views).</div>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Video</th><th>Aug views</th><th>Minutes</th><th>AVD</th><th>Retention</th>
+            </tr>
+          </thead>
+          <tbody id="catalogTable"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">What to do in the rest of August</div>
+      <div class="section-desc">Ten days left in the month. The reporting lag means the Bubble video should be re-read around 22–23 Aug.</div>
+      <ul class="playbook-list">
+        <li><strong>1. Treat Knowledge Engine as the packaging template.</strong> 47 views, 55% retention, 5 shares, 1 sub in 72 hours. Same length band (60–90s), same “one system, one visual” promise. Do not go back to 20-minute uploads as the default this month.</li>
+        <li><strong>2. Re-cut one catalog winner as a sibling short.</strong> “How to Actually Learn AI” still holds 18.6% at 16:59 and produced 18 of the month’s 71 minutes from 6 views. A 90-second “visual construction method” cut would borrow Search demand the short-form test does not have yet.</li>
+        <li><strong>3. Stop expecting Browse.</strong> Four Browse views. Thumbnails on the new shorts need a Suggested-language version (face + one object, almost no text) or they will keep living on Skool/GitHub forwards. See the CTR page.</li>
+        <li><strong>4. Wait 48 hours, then judge the Bubble video on hold, not views.</strong> 28 Data API views in ~40 hours is slower than Knowledge Engine’s 11/22/14 three-day curve, but Analytics has not scored retention. If it holds &lt;40%, the doomsday-headline hook is selling a comment, not a watch.</li>
+        <li><strong>5. Keep the Claude intro as the end-screen target.</strong> 11 August views on an 11-second trailer published in June, 51% hold. It still drips. The last-3 set is two new shorts plus this evergreen bumper — that mix is working.</li>
+        <li><strong>6. Viewer comments are zero.</strong> All three latest comment threads are your own Skool pin. Ask a specific question on-screen in the last 5 seconds of the next short (“What’s the first vault you would wire — Drive, Git, or Obsidian?”) or the pin has nothing to sit on.</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    const TITLES = {
+      HUTlnlw3h8o: "Building an AI Knowledge Engine",
+      F8IBooe3bXY: "Claude AI Certification Intro",
+      "27jXA2V2Zio": "AI Isn't a Bubble",
+      yI5BIb74kVI: "AI No-Code: Build Your Own AI Solutions",
+      qNJpDJ8yHu8: "How to Build an AI to Automate LinkedIn Job Hunt",
+      IYgcXAZkevY: "How to Actually Learn AI",
+      c1UotPbvKoQ: "The Agentic Era",
+      YZqcACObMws: "AI Agents vs. Human Freelancers",
+      QwFB7tvzLoA: "RAISE Your AI SKILLS",
+      EtpfGUGAFJw: "EtpfGUGAFJw",
+      "bsH-vBGNERE": "10x Your Interview Rate",
+      DNQEQZPnpfg: "DNQEQZPnpfg",
+      dCU0GpriG1o: "dCU0GpriG1o",
+      Frty5ICAdOo: "The New Professional Standard"
+    };
+
+    function sec(n) {
+      const m = Math.floor(n / 60);
+      const s = String(n % 60).padStart(2, '0');
+      return m + ':' + s;
+    }
+
+    function verdict(v) {
+      if (v.id === 'HUTlnlw3h8o') return { t: 'Month winner — keep this format', c: 'chip-green' };
+      if (v.id === '27jXA2V2Zio') return { t: 'Too new for Analytics — re-read 22 Aug', c: 'chip-orange' };
+      if (v.id === 'F8IBooe3bXY') return { t: 'Evergreen bumper — keep as end screen', c: 'chip-cyan' };
+      return { t: 'Catalog', c: 'chip-purple' };
+    }
+
+    async function load() {
+      const data = await fetch('august_analytics.json').then(r => r.json());
+      document.getElementById('pulledAt').textContent =
+        'Pulled ' + data.pulled_at + ' · Analytics complete through ' + data.window.analytics_last_complete_day + ' · ' + data.window.note;
+
+      const grid = document.getElementById('last3');
+      data.last3_videos.forEach(v => {
+        const ver = verdict(v);
+        const aug = v.analytics_aug;
+        const live = v.data_api;
+        const card = document.createElement('div');
+        card.className = 'video-card';
+        card.innerHTML = `
+          <a href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener">
+            <img src="${v.thumbnail}" alt="">
+          </a>
+          <div class="video-body">
+            <span class="badge-chip ${ver.c}">${ver.t}</span>
+            <h3 style="margin-top:10px">${v.title}</h3>
+            <div class="meta">${v.published_at.slice(0,10)} · ${v.duration} · ${v.privacy} · ${v.id}</div>
+            <div class="metric-row"><span>Live views (Data API)</span><span class="mono">${live.views}</span></div>
+            <div class="metric-row"><span>August Analytics views</span><span class="mono">${aug ? aug.views : 'pending'}</span></div>
+            <div class="metric-row"><span>Retention / AVD</span><span class="mono">${aug ? aug.retention_pct.toFixed(1) + '% / ' + sec(aug.avd_sec) : 'pending'}</span></div>
+            <div class="metric-row"><span>Likes · comments · shares</span><span class="mono">${aug ? aug.likes + ' · ' + aug.comments + ' · ' + aug.shares : live.likes + ' · ' + live.comments + ' · —'}</span></div>
+            <div class="metric-row"><span>Subs gained</span><span class="mono">${aug ? aug.subscribers_gained : '—'}</span></div>
+            <div style="margin-top:12px;font-size:12px;color:var(--text-dim)">${v.analytics_note || (aug ? '5 of 6 August shares landed here.' : '')}</div>
+            <div style="margin-top:12px"><a class="btn btn-secondary" style="font-size:12px" href="https://www.youtube.com/watch?v=${v.id}" target="_blank">Watch ↗</a></div>
+          </div>`;
+        grid.appendChild(card);
+      });
+
+      const maxV = Math.max(...data.daily.map(d => d.views), 1);
+      const bars = document.getElementById('dailyBars');
+      data.daily.forEach(d => {
+        const col = document.createElement('div');
+        col.className = 'bar-col';
+        const h = Math.max((d.views / maxV) * 100, d.views ? 6 : 2);
+        const spike = d.day >= '2026-08-16';
+        col.innerHTML = `<div class="bar${spike ? ' spike' : ''}" style="height:${h}%" title="${d.day}: ${d.views} views"></div><div class="bar-label">${d.day.slice(8)}</div>`;
+        bars.appendChild(col);
+      });
+
+      const tmax = Math.max(...data.traffic_sources.map(s => s.views), 1);
+      const tb = document.getElementById('trafficBars');
+      data.traffic_sources.forEach(s => {
+        const row = document.createElement('div');
+        row.className = 'source-bar';
+        row.innerHTML = `<div>${s.source}</div><div class="source-track"><div class="source-fill" style="width:${(s.views/tmax)*100}%"></div></div><div class="mono">${s.views}</div>`;
+        tb.appendChild(row);
+      });
+
+      document.getElementById('devicesBox').innerHTML = data.devices.map(d => `${d.device}: <span class="mono">${d.views}</span> views · ${d.minutes} min`).join('<br>');
+      document.getElementById('osBox').innerHTML = data.os.map(d => `${d.os}: <span class="mono">${d.views}</span>`).join('<br>');
+      document.getElementById('playBox').innerHTML = data.playback.map(d => `${d.location}: <span class="mono">${d.views}</span> · ${d.minutes} min`).join('<br>');
+
+      document.getElementById('monthTable').innerHTML = data.monthly_comparison.map(m => `
+        <tr>
+          <td><strong>${m.month}</strong></td>
+          <td class="mono">${m.views}</td>
+          <td class="mono">${m.minutes}</td>
+          <td class="mono">${sec(m.avd_sec)}</td>
+          <td class="mono">${m.retention_pct.toFixed(1)}%</td>
+          <td class="mono">+${m.subs_gained} / −${m.subs_lost}</td>
+          <td class="mono">${m.likes}</td>
+          <td class="mono">${m.shares}</td>
+        </tr>`).join('');
+
+      const skip = new Set(['HUTlnlw3h8o', 'F8IBooe3bXY', '27jXA2V2Zio']);
+      document.getElementById('catalogTable').innerHTML = data.august_top_videos.filter(v => !skip.has(v.id)).map(v => `
+        <tr>
+          <td>${v.title || TITLES[v.id] || v.id}</td>
+          <td class="mono">${v.views}</td>
+          <td class="mono">${v.minutes}</td>
+          <td class="mono">${sec(v.avd_sec)}</td>
+          <td class="mono">${v.retention_pct.toFixed(1)}%</td>
+        </tr>`).join('');
+    }
+
+    load().catch(err => console.error(err));
+  </script>
+</body>
+</html>

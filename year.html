@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Year briefing — @RifatErdemSahin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="nav.css">
+  <style>
+    :root {
+      --bg-primary: #090d13;
+      --bg-secondary: #121820;
+      --bg-card: #19222c;
+      --bg-card-hover: #1f2b38;
+      --border: #283545;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --accent-blue: #38bdf8;
+      --accent-purple: #818cf8;
+      --accent-green: #34d399;
+      --accent-yellow: #fbbf24;
+      --accent-red: #f87171;
+      --accent-cyan: #22d3ee;
+      --accent-orange: #fb923c;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-top: 72px;
+    }
+    .top-nav {
+      position: fixed; top: 0; left: 0; right: 0; height: 64px;
+      background: rgba(18, 24, 32, 0.92);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 28px; z-index: 1000;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-main); }
+    .nav-logo {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, #ff0033, #cc0000);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 16px; color: white;
+    }
+    .nav-title { font-size: 16px; font-weight: 700; }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+    .container { max-width: 1320px; margin: 28px auto 80px; padding: 0 24px; }
+    .page-header {
+      background: var(--bg-secondary); border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px;
+    }
+    .header-info h1 {
+      font-size: 26px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 6px;
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    }
+    .header-info p { color: var(--text-muted); font-size: 14px; max-width: 780px; }
+    .header-badge-live {
+      display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px;
+      background: rgba(251, 146, 60, 0.15); border: 1px solid rgba(251, 146, 60, 0.35);
+      color: var(--accent-orange); border-radius: 9999px; font-size: 12px; font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .pulse-dot {
+      width: 8px; height: 8px; border-radius: 50%; background: var(--accent-orange);
+      box-shadow: 0 0 0 0 rgba(251, 146, 60, 0.7); animation: pulse 1.8s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(251, 146, 60, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(251, 146, 60, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(251, 146, 60, 0.7); }
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 8px;
+      font-size: 13px; font-weight: 600; text-decoration: none; border: none; cursor: pointer;
+    }
+    .btn-secondary { background: var(--bg-card); color: var(--text-main); border: 1px solid var(--border); }
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-bottom: 28px; }
+    .kpi-card {
+      background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 20px;
+    }
+    .kpi-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); font-weight: 600; margin-bottom: 8px; }
+    .kpi-value { font-size: 28px; font-weight: 800; font-family: 'JetBrains Mono', monospace; letter-spacing: -0.03em; }
+    .kpi-sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+    .flat { color: var(--accent-yellow); font-weight: 600; }
+    .up { color: var(--accent-green); font-weight: 600; }
+    .section-card {
+      background: var(--bg-secondary); border: 1px solid var(--border);
+      border-radius: 14px; padding: 24px; margin-bottom: 28px;
+    }
+    .section-title { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+    .section-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 18px; max-width: 860px; }
+    .badge-chip {
+      display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 6px;
+      font-size: 11px; font-weight: 600; font-family: 'JetBrains Mono', monospace;
+    }
+    .chip-green { background: rgba(52, 211, 153, 0.15); color: var(--accent-green); border: 1px solid rgba(52, 211, 153, 0.3); }
+    .chip-cyan { background: rgba(34, 211, 238, 0.15); color: var(--accent-cyan); border: 1px solid rgba(34, 211, 238, 0.3); }
+    .chip-yellow { background: rgba(251, 191, 36, 0.15); color: var(--accent-yellow); border: 1px solid rgba(251, 191, 36, 0.3); }
+    .chip-orange { background: rgba(251, 146, 60, 0.15); color: var(--accent-orange); border: 1px solid rgba(251, 146, 60, 0.3); }
+    .chip-red { background: rgba(248, 113, 113, 0.15); color: var(--accent-red); border: 1px solid rgba(248, 113, 113, 0.3); }
+    .chip-purple { background: rgba(129, 140, 248, 0.15); color: var(--accent-purple); border: 1px solid rgba(129, 140, 248, 0.3); }
+    .insights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 14px; }
+    .insight-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+    .insight-title { font-size: 14px; font-weight: 700; margin-bottom: 6px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+    .insight-body { font-size: 13px; color: var(--text-muted); }
+    .table-responsive { overflow-x: auto; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-card); }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; }
+    th { background: rgba(18,24,32,0.95); padding: 12px 16px; color: var(--text-muted); font-weight: 600; border-bottom: 1px solid var(--border); white-space: nowrap; }
+    td { padding: 12px 16px; border-bottom: 1px solid rgba(40,53,69,0.4); }
+    tr:last-child td { border-bottom: none; }
+    .mono { font-family: 'JetBrains Mono', monospace; font-weight: 600; }
+    .source-bar { display: grid; grid-template-columns: 180px 1fr 70px; gap: 12px; align-items: center; padding: 8px 0; font-size: 13px; }
+    .source-track { height: 8px; background: rgba(255,255,255,0.08); border-radius: 4px; overflow: hidden; }
+    .source-fill { height: 100%; border-radius: 4px; background: var(--accent-cyan); }
+    .playbook-list { list-style: none; display: grid; gap: 10px; }
+    .playbook-list li {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
+      padding: 14px 16px; font-size: 13px; color: var(--text-muted);
+    }
+    .playbook-list strong { color: var(--text-main); }
+    .note { font-size: 12px; color: var(--text-dim); margin-top: 12px; font-family: 'JetBrains Mono', monospace; }
+    .video-row { display: grid; grid-template-columns: 120px 1fr; gap: 16px; align-items: start; background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 12px; }
+    .video-row img { width: 120px; height: 68px; object-fit: cover; display: block; background: #000; }
+    .video-row .vb { padding: 10px 14px 12px 0; }
+    .video-row h3 { font-size: 14px; font-weight: 700; line-height: 1.35; margin-bottom: 4px; }
+    .meta { font-size: 12px; color: var(--text-muted); }
+    @media (max-width: 640px) {
+      .video-row { grid-template-columns: 1fr; }
+      .video-row img { width: 100%; height: 160px; }
+      .video-row .vb { padding: 12px 14px; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="top-nav">
+    <a href="index.html" class="nav-brand">
+      <div class="nav-logo">▶</div>
+      <div><div class="nav-title">YouTube Studio MCP</div></div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li class="nav-group" data-group="operate">
+        <button type="button" class="nav-link nav-group-toggle">Operate <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Studio ops</li>
+          <li><a href="index.html" class="nav-dropdown-link" data-page="index.html">Dashboard <span class="nav-dropdown-hint">home</span></a></li>
+          <li><a href="endvideo.html" class="nav-dropdown-link" data-page="endvideo.html">End Video Closing</a></li>
+          <li><a href="skills.html" class="nav-dropdown-link" data-page="skills.html">Skills Studio</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="library">
+        <button type="button" class="nav-link nav-group-toggle">Library <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Content assets</li>
+          <li><a href="catalog.html" class="nav-dropdown-link" data-page="catalog.html">Video Catalog</a></li>
+          <li><a href="playlists.html" class="nav-dropdown-link" data-page="playlists.html">Playlists</a></li>
+          <li><a href="thumbnails.html" class="nav-dropdown-link" data-page="thumbnails.html">Thumbnails</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="performance">
+        <button type="button" class="nav-link nav-group-toggle">Performance <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Audience metrics</li>
+          <li><a href="analytics.html" class="nav-dropdown-link" data-page="analytics.html">Overview</a></li>
+          <li><a href="retention.html" class="nav-dropdown-link" data-page="retention.html">Retention</a></li>
+          <li><a href="ctr.html" class="nav-dropdown-link" data-page="ctr.html">CTR</a></li>
+          <li><a href="august.html" class="nav-dropdown-link" data-page="august.html">August 2026</a></li>
+          <li><a href="year.html" class="nav-dropdown-link" data-page="year.html">Year briefing</a></li>
+          <li><a href="flow.html" class="nav-dropdown-link" data-page="flow.html">Google Flow</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="logs">
+        <button type="button" class="nav-link nav-group-toggle">Logs <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Change history</li>
+          <li><a href="reports.html" class="nav-dropdown-link" data-page="reports.html">Reports</a></li>
+          <li><a href="updates.html" class="nav-dropdown-link" data-page="updates.html">Updates Log</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="channel">
+        <button type="button" class="nav-link nav-group-toggle">Channel <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">External</li>
+          <li><a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" rel="noopener" class="nav-dropdown-link">@RifatErdemSahin ↗</a></li>
+          <li><a href="https://www.skool.com/delivery-pilot-8938" target="_blank" rel="noopener" class="nav-dropdown-link">Skool Community ↗</a></li>
+        </ul>
+      </li>
+    </ul>
+    <div class="nav-actions">
+      <a href="august.html" class="btn btn-secondary" style="padding: 6px 12px; font-size: 12px;">August ➔</a>
+      <a href="analytics.html" class="btn btn-secondary" style="padding: 6px 12px; font-size: 12px;">Overview ➔</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <div class="header-info">
+        <h1>Year briefing <span class="header-badge-live"><span class="pulse-dot"></span> Analytics lag</span></h1>
+        <p>Last complete Analytics day is <strong style="color:var(--text-main)">18 Aug 2026</strong> (dump pulled 21 Aug). Today is 22 Aug — 19–22 are incomplete. Channel live: 707 subscribers · 5,271 lifetime views · 27 videos.</p>
+      </div>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">18 Aug views</div>
+        <div class="kpi-value">25</div>
+        <div class="kpi-sub">9 min watched · last closed day</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">August (to 18th)</div>
+        <div class="kpi-value">103</div>
+        <div class="kpi-sub">71 min · AVD 41s · <span class="flat">0 net subs</span></div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">365-day views</div>
+        <div class="kpi-value">3,614</div>
+        <div class="kpi-sub">16 Aug 2025 – 15 Aug 2026</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Watch time (365d)</div>
+        <div class="kpi-value">92.8h</div>
+        <div class="kpi-sub">AVD 1:32 · 10.2% viewed</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Subs gained (365d)</div>
+        <div class="kpi-value">79</div>
+        <div class="kpi-sub">CTR 2.3% · 35,548 impressions</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Flow vs live hold</div>
+        <div class="kpi-value up">4.3×</div>
+        <div class="kpi-sub">~60% Flow · ~13% live-action</div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">Today / last complete days</div>
+      <div class="section-desc">YouTube Analytics reports lag 48–72h. Newest video views below mix Analytics (closed days) with Data API (lifetime).</div>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Window</th>
+              <th>Views</th>
+              <th>Watch time</th>
+              <th>Subs</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Last complete day (18 Aug)</td>
+              <td class="mono">25</td>
+              <td>9 min</td>
+              <td>0 net</td>
+              <td>Strongest closed day of August</td>
+            </tr>
+            <tr>
+              <td>16–18 Aug (Flow uploads)</td>
+              <td class="mono">22 / 25 / 25</td>
+              <td>17 / 18 / 9 min</td>
+              <td>+1 / −1</td>
+              <td>Spike after Knowledge Engine</td>
+            </tr>
+            <tr>
+              <td>August to 18th</td>
+              <td class="mono">103</td>
+              <td>71 min</td>
+              <td class="flat">0 net (+2 / −2)</td>
+              <td>AVD 41s · 8.8% hold · 2 likes · 1 comment · 6 shares</td>
+            </tr>
+            <tr>
+              <td>Last 28 days (older pull)</td>
+              <td class="mono">72</td>
+              <td>2.0 h</td>
+              <td>+1</td>
+              <td>19 Jul – 15 Aug, pre-Flow</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Month-to-month views: May 92 → Jun 122 → Jul 92 → Aug 103 (through 18th). August has more views and shares, worse hold (41s vs July 129s) because the mix shifted to short Flow clips.</p>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">Latest uploads</div>
+      <div class="section-desc">Data API is live; Analytics has not fully closed for the 19 Aug video.</div>
+      <div class="video-row">
+        <img src="https://i.ytimg.com/vi/27jXA2V2Zio/hqdefault.jpg" alt="">
+        <div class="vb">
+          <h3>AI Isn't a Bubble: The Real Revolution Is Happening in Silence</h3>
+          <div class="meta">19 Aug · 1:54 · Flow · Analytics not closed</div>
+          <div class="meta" style="margin-top:6px"><span class="mono">28</span> views · 1 like · 1 comment (Data API)</div>
+        </div>
+      </div>
+      <div class="video-row">
+        <img src="https://i.ytimg.com/vi/HUTlnlw3h8o/hqdefault.jpg" alt="">
+        <div class="vb">
+          <h3>Building an AI Knowledge Engine: Turn 46k Obsidian Notes into Clarity</h3>
+          <div class="meta">16 Aug · 1:09 · Flow · best August performer</div>
+          <div class="meta" style="margin-top:6px"><span class="mono">57</span> Data API / <span class="mono">47</span> Analytics · <span class="up">55.2% retention</span> · 5 shares · 1 sub gained</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">Last year — 16 Aug 2025 – 15 Aug 2026</div>
+      <div class="section-desc">3,614 views · 92.8 watch hours · 79 subscribers gained · 35,548 impressions · 2.3% CTR · 1:32 AVD · 10.2% viewed.</div>
+      <div class="section-title" style="font-size:15px;margin-top:8px">Where traffic came from</div>
+      <div class="source-bar"><span>External</span><div class="source-track"><div class="source-fill" style="width:40.8%"></div></div><span class="mono">40.8%</span></div>
+      <div class="source-bar"><span>Direct / unknown</span><div class="source-track"><div class="source-fill" style="width:23.1%"></div></div><span class="mono">23.1%</span></div>
+      <div class="source-bar"><span>Browse</span><div class="source-track"><div class="source-fill" style="width:16.8%"></div></div><span class="mono">16.8%</span></div>
+      <div class="source-bar"><span>Channel pages</span><div class="source-track"><div class="source-fill" style="width:6.9%"></div></div><span class="mono">6.9%</span></div>
+      <div class="source-bar"><span>Suggested</span><div class="source-track"><div class="source-fill" style="width:4.4%"></div></div><span class="mono">4.4%</span></div>
+      <div class="source-bar"><span>YouTube Search</span><div class="source-track"><div class="source-fill" style="width:4.4%"></div></div><span class="mono">4.4%</span></div>
+      <p class="note">Suggested CTR 1.0% (loses the impression auction). Search CTR 3.7% (best CTR, tiny volume). End screens: 1 view for the year.</p>
+
+      <div class="section-title" style="font-size:15px;margin-top:24px;margin-bottom:10px">What earned the views</div>
+      <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px">Top 3 = <strong style="color:var(--text-main)">36.7%</strong> of year views. Practical career + automation, not theory.</p>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr><th>Video</th><th>Views</th><th>Share</th><th>Avg % viewed</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>How to Build an AI to Automate LinkedIn Job Hunt</td><td class="mono">531</td><td>14.7%</td><td>10.8%</td></tr>
+            <tr><td>AI No-Code: Build Your Own AI Solutions</td><td class="mono">398</td><td>11.0%</td><td>7.9%</td></tr>
+            <tr><td>The Agentic Era</td><td class="mono">396</td><td>11.0%</td><td>7.2%</td></tr>
+            <tr><td>How to Actually Learn AI (Visual Construction)</td><td class="mono">347</td><td>9.6%</td><td>10.2%</td></tr>
+            <tr><td>RAISE Your AI SKILLS (RAG + Copilot)</td><td class="mono">340</td><td>9.4%</td><td>7.5%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">What the year taught</div>
+      <div class="section-desc">Patterns from the catalog — not generic YouTube advice.</div>
+      <div class="insights-grid">
+        <div class="insight-card">
+          <div class="insight-title">Format beats topic for hold <span class="badge-chip chip-green">4.3×</span></div>
+          <div class="insight-body">Google Flow shorts hold ~60%. Talking-head / workshop holds ~13%. Claude Architect intro 66.6%. Length is the cheapest lever.</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-title">Tutorials under ~6 minutes <span class="badge-chip chip-cyan">23.2%</span></div>
+          <div class="insight-body"><strong>10x Interview Rate</strong> (5:55, 23.2%) and <strong>MCP Explained</strong> (5:58, 18.7%) beat 15–25 min career videos sitting at 7–11% even when those get more views.</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-title">Long-form is a mid-video leak <span class="badge-chip chip-yellow">7–11%</span></div>
+          <div class="insight-body">LinkedIn Job Hunt / No-Code / Agentic Era drive traffic and dump viewers. Recut as 6–8 min “one outcome” pieces. The 46-min workshop at 16% is the exception — live build energy, not slides.</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-title">Off-platform channel <span class="badge-chip chip-orange">64% ext+direct</span></div>
+          <div class="insight-body">You bring people in; YouTube does not discover you. Search and Suggested are both 4.4%. Community (Skool / GitHub / LinkedIn) already works. SEO and titles are the unlock.</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-title">Comments on frameworks <span class="badge-chip chip-purple">discussion hubs</span></div>
+          <div class="insight-body">Master Complex Topics, Master AI, Resumes are Obsolete generate dialogue. Pinned Skool CTAs belong there — not only on the newest upload.</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-title">Flow shares, not yet subs <span class="badge-chip chip-red">0 net Aug</span></div>
+          <div class="insight-body">6 shares in August vs 1/month before. Retention on Flow is elite. Conversion to subscribe is still flat. Hold the format; close the CTA harder.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">Playbook from the data</div>
+      <ul class="playbook-list">
+        <li><strong>1. Open on the result.</strong> First frame should match the thumbnail promise. No 20-second channel ident.</li>
+        <li><strong>2. Target 8 minutes or less</strong> for tutorials unless it is a live build. Under-8-minute videos sit well above the 10.2% average hold.</li>
+        <li><strong>3. Recut the three traffic engines.</strong> LinkedIn Job Hunt, AI No-Code, and Agentic Era are 36.7% of views at ~8% hold.</li>
+        <li><strong>4. Chapter anything longer.</strong> Spoken checkpoints reduce the mid-video cliff on 15+ minute videos.</li>
+        <li><strong>5. End screen only after a hold.</strong> End screens contributed 1 view all year. Last-20-second retention is the prerequisite.</li>
+        <li><strong>6. Keep shipping Flow for reach,</strong> and put the subscribe / Skool ask on the 55%+ hold clips, not on the 8% lectures.</li>
+      </ul>
+      <p class="note">Sources: analytics_data.json (365d through 15 Aug 2026) · august_analytics.json (pulled 21 Aug 2026) · flow_analytics.json</p>
+    </div>
+  </div>
+  <script src="nav.js"></script>
+</body>
+</html>

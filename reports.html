@@ -368,6 +368,7 @@
       border-top: 1px solid var(--border);
     }
   </style>
+  <link rel="stylesheet" href="nav.css">
 </head>
 <body>
 
@@ -378,18 +379,53 @@
       <div><div class="nav-title">YouTube Studio Reports</div></div>
     </a>
 
-    <ul class="nav-links">
-      <li><a href="index.html" class="nav-link">Operations</a></li>
-      <li><a href="endvideo.html" class="nav-link">End Video Closing</a></li>
-      <li><a href="reports.html" class="nav-link active">Reports</a></li>
-      <li><a href="skills.html" class="nav-link">Skills Studio</a></li>
-      <li><a href="catalog.html" class="nav-link">Video Catalog</a></li>
-      <li><a href="playlists.html" class="nav-link">Playlists</a></li>
-      <li><a href="thumbnails.html" class="nav-link">Thumbnails</a></li>
-      <li><a href="analytics.html" class="nav-link">Analytics</a></li>
-      <li><a href="updates.html" class="nav-link">Updates Log</a></li>
-      <li><a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" class="nav-link">@RifatErdemSahin ↗</a></li>
-      <li><a href="https://www.skool.com/delivery-pilot-8938" target="_blank" class="nav-link">Skool Community ↗</a></li>
+    <ul class="nav-links" id="navLinks">
+      <li class="nav-group" data-group="operate">
+        <button type="button" class="nav-link nav-group-toggle">Operate <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Studio ops</li>
+          <li><a href="index.html" class="nav-dropdown-link" data-page="index.html">Dashboard <span class="nav-dropdown-hint">home</span></a></li>
+          <li><a href="endvideo.html" class="nav-dropdown-link" data-page="endvideo.html">End Video Closing</a></li>
+          <li><a href="skills.html" class="nav-dropdown-link" data-page="skills.html">Skills Studio</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="library">
+        <button type="button" class="nav-link nav-group-toggle">Library <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Content assets</li>
+          <li><a href="catalog.html" class="nav-dropdown-link" data-page="catalog.html">Video Catalog</a></li>
+          <li><a href="playlists.html" class="nav-dropdown-link" data-page="playlists.html">Playlists</a></li>
+          <li><a href="thumbnails.html" class="nav-dropdown-link" data-page="thumbnails.html">Thumbnails</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="performance">
+        <button type="button" class="nav-link nav-group-toggle">Performance <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Audience metrics</li>
+          <li><a href="analytics.html" class="nav-dropdown-link" data-page="analytics.html">Overview</a></li>
+          <li><a href="retention.html" class="nav-dropdown-link" data-page="retention.html">Retention</a></li>
+          <li><a href="ctr.html" class="nav-dropdown-link" data-page="ctr.html">CTR</a></li>
+          <li><a href="august.html" class="nav-dropdown-link" data-page="august.html">August 2026</a></li>
+          <li><a href="year.html" class="nav-dropdown-link" data-page="year.html">Year briefing</a></li>
+          <li><a href="flow.html" class="nav-dropdown-link" data-page="flow.html">Google Flow</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="logs">
+        <button type="button" class="nav-link nav-group-toggle">Logs <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Change history</li>
+          <li><a href="reports.html" class="nav-dropdown-link" data-page="reports.html">Reports</a></li>
+          <li><a href="updates.html" class="nav-dropdown-link" data-page="updates.html">Updates Log</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="channel">
+        <button type="button" class="nav-link nav-group-toggle">Channel <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">External</li>
+          <li><a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" rel="noopener" class="nav-dropdown-link">@RifatErdemSahin ↗</a></li>
+          <li><a href="https://www.skool.com/delivery-pilot-8938" target="_blank" rel="noopener" class="nav-dropdown-link">Skool Community ↗</a></li>
+        </ul>
+      </li>
     </ul>
 
     <div class="nav-actions">
@@ -633,5 +669,6 @@
 
     loadReports();
   </script>
+  <script src="nav.js"></script>
 </body>
 </html>

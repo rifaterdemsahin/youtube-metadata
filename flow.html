@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Flow vs Live-Action Retention — @RifatErdemSahin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="nav.css">
+  <style>
+    :root {
+      --bg-primary: #090d13; --bg-secondary: #121820; --bg-card: #19222c; --bg-card-hover: #1f2b38;
+      --border: #283545; --text-main: #f1f5f9; --text-muted: #94a3b8; --text-dim: #64748b;
+      --accent-blue: #38bdf8; --accent-purple: #818cf8; --accent-green: #34d399;
+      --accent-yellow: #fbbf24; --accent-red: #f87171; --accent-cyan: #22d3ee; --accent-orange: #fb923c;
+      --flow: #22d3ee; --live: #818cf8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-primary); color: var(--text-main); line-height: 1.6; padding-top: 72px;
+    }
+    .top-nav {
+      position: fixed; top: 0; left: 0; right: 0; height: 64px;
+      background: rgba(18,24,32,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between;
+      padding: 0 28px; z-index: 1000;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-main); }
+    .nav-logo {
+      width: 32px; height: 32px; background: linear-gradient(135deg,#ff0033,#cc0000);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 16px; color: white;
+    }
+    .nav-title { font-size: 16px; font-weight: 700; }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+    .container { max-width: 1320px; margin: 28px auto 80px; padding: 0 24px; }
+    .page-header {
+      background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px;
+      padding: 28px 32px; margin-bottom: 28px; display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 20px;
+    }
+    .header-info h1 {
+      font-size: 26px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 6px;
+      display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    }
+    .header-info p { color: var(--text-muted); font-size: 14px; max-width: 780px; }
+    .header-badge-live {
+      display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px;
+      background: rgba(34,211,238,0.15); border: 1px solid rgba(34,211,238,0.35);
+      color: var(--accent-cyan); border-radius: 9999px; font-size: 12px; font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 8px;
+      font-size: 13px; font-weight: 600; text-decoration: none; border: none;
+    }
+    .btn-secondary { background: var(--bg-card); color: var(--text-main); border: 1px solid var(--border); }
+    .btn-cyan { background: rgba(34,211,238,0.15); color: var(--accent-cyan); border: 1px solid rgba(34,211,238,0.4); }
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 28px; }
+    .kpi-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+    .kpi-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); font-weight: 600; margin-bottom: 8px; }
+    .kpi-value { font-size: 28px; font-weight: 800; font-family: 'JetBrains Mono', monospace; letter-spacing: -0.03em; }
+    .kpi-sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+    .up { color: var(--accent-green); font-weight: 600; }
+    .section-card {
+      background: var(--bg-secondary); border: 1px solid var(--border);
+      border-radius: 14px; padding: 24px; margin-bottom: 28px;
+    }
+    .section-title { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+    .section-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 18px; max-width: 840px; }
+    .thesis {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
+      padding: 16px 18px; font-size: 14px; color: var(--text-muted); margin-bottom: 16px;
+    }
+    .thesis strong { color: var(--text-main); }
+    .badge-chip {
+      display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 6px;
+      font-size: 11px; font-weight: 600; font-family: 'JetBrains Mono', monospace;
+    }
+    .chip-flow { background: rgba(34,211,238,0.15); color: var(--flow); border: 1px solid rgba(34,211,238,0.35); }
+    .chip-live { background: rgba(129,140,248,0.15); color: var(--live); border: 1px solid rgba(129,140,248,0.35); }
+    .chip-green { background: rgba(52,211,153,0.15); color: var(--accent-green); border: 1px solid rgba(52,211,153,0.3); }
+    .chip-orange { background: rgba(251,146,60,0.15); color: var(--accent-orange); border: 1px solid rgba(251,146,60,0.3); }
+    .chip-yellow { background: rgba(251,191,36,0.15); color: var(--accent-yellow); border: 1px solid rgba(251,191,36,0.3); }
+    .compare {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 8px;
+    }
+    @media (max-width: 800px) { .compare { grid-template-columns: 1fr; } }
+    .compare-col { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
+    .compare-col h3 { font-size: 14px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .big { font-size: 42px; font-weight: 800; font-family: 'JetBrains Mono', monospace; letter-spacing: -0.04em; line-height: 1; margin-bottom: 8px; }
+    .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+    .video-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+    .video-card img { width: 100%; height: 150px; object-fit: cover; display: block; background: #000; }
+    .video-body { padding: 16px; }
+    .video-body h3 { font-size: 15px; font-weight: 700; line-height: 1.35; margin: 8px 0; }
+    .meta { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; }
+    .metric-row { display: flex; justify-content: space-between; font-size: 13px; padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .mono { font-family: 'JetBrains Mono', monospace; font-weight: 600; }
+    .scatter-wrap { position: relative; height: 360px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; }
+    .scatter-plot { position: absolute; inset: 28px 24px 44px 58px; }
+    .scatter-axis-y, .scatter-axis-x {
+      position: absolute; color: var(--text-dim); font-size: 11px; font-family: 'JetBrains Mono', monospace;
+    }
+    .scatter-axis-y { left: 10px; top: 28px; bottom: 44px; writing-mode: vertical-rl; transform: rotate(180deg); }
+    .scatter-axis-x { bottom: 14px; left: 58px; right: 24px; text-align: center; }
+    .dot {
+      position: absolute; width: 11px; height: 11px; border-radius: 50%;
+      transform: translate(-50%, 50%); cursor: pointer; border: 2px solid rgba(9,13,19,0.7);
+    }
+    .dot.flow { width: 16px; height: 16px; }
+    .dot.pending { background: transparent !important; border: 2px dashed var(--flow); }
+    .legend { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 12px; font-size: 12px; color: var(--text-muted); }
+    .legend i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 6px; }
+    .table-responsive { overflow-x: auto; border: 1px solid var(--border); border-radius: 10px; background: var(--bg-card); }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; }
+    th { background: rgba(18,24,32,0.95); padding: 12px 16px; color: var(--text-muted); font-weight: 600; border-bottom: 1px solid var(--border); white-space: nowrap; }
+    td { padding: 11px 16px; border-bottom: 1px solid rgba(40,53,69,0.4); }
+    tr.flow-row td { background: rgba(34,211,238,0.05); }
+    tr:last-child td { border-bottom: none; }
+    .pct-bar { display: flex; align-items: center; gap: 8px; min-width: 140px; }
+    .pct-track { flex: 1; height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; }
+    .pct-fill { height: 100%; border-radius: 3px; }
+    .insights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
+    .insight-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+    .insight-title { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+    .insight-body { font-size: 13px; color: var(--text-muted); }
+    .playbook-list { list-style: none; display: grid; gap: 10px; }
+    .playbook-list li {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
+      padding: 14px 16px; font-size: 13px; color: var(--text-muted);
+    }
+    .playbook-list strong { color: var(--text-main); }
+    .note { font-size: 12px; color: var(--text-dim); margin-top: 10px; font-family: 'JetBrains Mono', monospace; }
+  </style>
+</head>
+<body>
+  <nav class="top-nav">
+    <a href="index.html" class="nav-brand">
+      <div class="nav-logo">▶</div>
+      <div><div class="nav-title">YouTube Studio MCP</div></div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li class="nav-group" data-group="operate">
+        <button type="button" class="nav-link nav-group-toggle">Operate <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Studio ops</li>
+          <li><a href="index.html" class="nav-dropdown-link" data-page="index.html">Dashboard <span class="nav-dropdown-hint">home</span></a></li>
+          <li><a href="endvideo.html" class="nav-dropdown-link" data-page="endvideo.html">End Video Closing</a></li>
+          <li><a href="skills.html" class="nav-dropdown-link" data-page="skills.html">Skills Studio</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="library">
+        <button type="button" class="nav-link nav-group-toggle">Library <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Content assets</li>
+          <li><a href="catalog.html" class="nav-dropdown-link" data-page="catalog.html">Video Catalog</a></li>
+          <li><a href="playlists.html" class="nav-dropdown-link" data-page="playlists.html">Playlists</a></li>
+          <li><a href="thumbnails.html" class="nav-dropdown-link" data-page="thumbnails.html">Thumbnails</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="performance">
+        <button type="button" class="nav-link nav-group-toggle">Performance <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Audience metrics</li>
+          <li><a href="analytics.html" class="nav-dropdown-link" data-page="analytics.html">Overview</a></li>
+          <li><a href="retention.html" class="nav-dropdown-link" data-page="retention.html">Retention</a></li>
+          <li><a href="ctr.html" class="nav-dropdown-link" data-page="ctr.html">CTR</a></li>
+          <li><a href="august.html" class="nav-dropdown-link" data-page="august.html">August 2026</a></li>
+          <li><a href="year.html" class="nav-dropdown-link" data-page="year.html">Year briefing</a></li>
+          <li><a href="flow.html" class="nav-dropdown-link" data-page="flow.html">Google Flow</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="logs">
+        <button type="button" class="nav-link nav-group-toggle">Logs <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Change history</li>
+          <li><a href="reports.html" class="nav-dropdown-link" data-page="reports.html">Reports</a></li>
+          <li><a href="updates.html" class="nav-dropdown-link" data-page="updates.html">Updates Log</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="channel">
+        <button type="button" class="nav-link nav-group-toggle">Channel <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">External</li>
+          <li><a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" rel="noopener" class="nav-dropdown-link">@RifatErdemSahin ↗</a></li>
+          <li><a href="https://www.skool.com/delivery-pilot-8938" target="_blank" rel="noopener" class="nav-dropdown-link">Skool Community ↗</a></li>
+        </ul>
+      </li>
+    </ul>
+    <div class="nav-actions">
+      <a href="retention.html" class="btn btn-secondary" style="padding:6px 12px;font-size:12px">Retention ➔</a>
+      <a href="august.html" class="btn btn-secondary" style="padding:6px 12px;font-size:12px">August ➔</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <div class="header-info">
+        <h1>
+          <span>Google Flow vs live-action</span>
+          <span class="header-badge-live">4.3× retention</span>
+        </h1>
+        <p>The last three uploads are Google Flow animations (Veo). Lifetime average-percentage-viewed on the two scored Flow clips is <strong>60%</strong>. The other 24 talking-head / screen-share videos sit at <strong>14%</strong>. Length is a confound — and even against sub-8-minute live videos, Flow still holds ~3×.</p>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <a href="flow_analytics.json" class="btn btn-cyan" target="_blank">Raw JSON ↗</a>
+        <a href="https://labs.google/fx/tools/flow" class="btn btn-secondary" target="_blank" rel="noopener">Google Flow ↗</a>
+      </div>
+    </div>
+
+    <div class="kpi-grid" id="kpis"></div>
+
+    <div class="section-card">
+      <div class="section-title">The comparison</div>
+      <div class="section-desc">Metric is YouTube Analytics <span class="mono">averageViewPercentage</span>, lifetime through 21 Aug 2026. Flow set = last 3 uploads.</div>
+      <div class="compare">
+        <div class="compare-col" style="border-color:rgba(34,211,238,0.35)">
+          <h3><span class="badge-chip chip-flow">Google Flow</span> 3 animations</h3>
+          <div class="big" style="color:var(--flow)" id="flowBig">—</div>
+          <div class="kpi-sub">Unweighted mean of scored Flow clips. Median matches because n=2.</div>
+        </div>
+        <div class="compare-col" style="border-color:rgba(129,140,248,0.35)">
+          <h3><span class="badge-chip chip-live">Live-action</span> 24 videos</h3>
+          <div class="big" style="color:var(--live)" id="liveBig">—</div>
+          <div class="kpi-sub">Talking-head, workshop, screen-share. Best live video is still 23%.</div>
+        </div>
+      </div>
+      <div class="thesis">
+        Flow wins hold because the films are <strong>short, visual, and edited to a voiceover</strong>, not because Veo magically beats a 20-minute demo. Average Flow runtime is <strong>1:05</strong> vs <strong>14:25</strong> for live-action. That said, the six live videos already under 8 minutes only hold <strong>19.3%</strong> — and the best of them (10x Interview Rate, 23.2%) is still less than half of Knowledge Engine (55.2%). Format is doing work that length alone does not explain.
+      </div>
+      <div class="insights-grid">
+        <div class="insight-card">
+          <div class="insight-title">Not just “shorts vs long”</div>
+          <div class="insight-body">Sub-8-minute live-action: 19.3% hold. Flow scored clips: 59.9%. Same order of magnitude as a bumper (11s, 64.6%) and a 69-second narrative (55.2%) — the hold stays high as Flow leaves bumper-length.</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-title">Hours vs percentage</div>
+          <div class="insight-body">Live catalog still owns watch time (LinkedIn Job Hunt 888 minutes lifetime). Flow wins the ranking signal YouTube uses for Suggested. Do not read 60% hold as “more minutes.” It is “people finish it.”</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-title">One clip still pending</div>
+          <div class="insight-body">AI Isn't a Bubble (1:54, 28 live views, 19 Aug) is not in the Analytics retention report yet. If it lands under 40%, the doomsday-headline hook is a clicker, not a holder. Re-read 22–23 Aug.</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-title">Best live cannot catch Flow</div>
+          <div class="insight-body">10x Interview Rate is the live champion at 23.2% / 5:55. Every scored Flow clip is more than double that. If H2 (animated content format) is the hypothesis, this is the first quantitative confirmation.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">The three Flow animations</div>
+      <div class="section-desc">Newest first. Retention uses Analytics where it exists; views also show the live Data API count.</div>
+      <div class="video-grid" id="flowCards"></div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">Duration vs retention</div>
+      <div class="section-desc">X is length, Y is average % viewed. Cyan = Google Flow (larger dots). Purple = live-action. Dashed = Flow clip waiting on Analytics.</div>
+      <div class="scatter-wrap">
+        <div class="scatter-axis-y">Avg % viewed →</div>
+        <div class="scatter-plot" id="scatter"></div>
+        <div class="scatter-axis-x">Video duration (minutes) →</div>
+      </div>
+      <div class="legend">
+        <span><i style="background:var(--flow)"></i> Google Flow</span>
+        <span><i style="background:var(--live)"></i> Live-action</span>
+        <span><i style="border:2px dashed var(--flow);background:transparent;box-sizing:border-box"></i> Flow, Analytics pending</span>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">Full catalog, tagged</div>
+      <div class="section-desc">Sorted by retention. Flow rows are highlighted. Live videos under 8 minutes are the fairer peer group.</div>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th><th>Format</th><th>Video</th><th>Length</th><th>Views</th><th>Retention</th><th>Avg duration</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+      <div class="note" id="pulledAt"></div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">What this means for the next Flow film</div>
+      <ul class="playbook-list">
+        <li><strong>1. Keep the 60–90 second narrative.</strong> The 11-second bumper holds 65% because it is a bumper. The 69-second Knowledge Engine holding 55% is the real result — that is a story, not a sting.</li>
+        <li><strong>2. Do not “fair-fight” a 20-minute workshop against Flow on % viewed.</strong> Use this page for format decisions. Use August Analytics for watch-time hours. You need both: Flow for Suggested-training hold, live long-form for Search minutes.</li>
+        <li><strong>3. Recut the live champion into Flow.</strong> 10x Interview Rate already holds 23% as talking-head. A Flow 90-second sibling would test whether animation adds hold on a proven topic, not just on new topics.</li>
+        <li><strong>4. Wait on the Bubble film before changing the hook recipe.</strong> 28 views in ~40 hours is slower velocity than Knowledge Engine. Retention will decide if “AI isn’t a bubble” is a finishable argument on screen.</li>
+        <li><strong>5. Flow is not a substitute for packaging.</strong> August Browse is still 4 views. High hold only trains Suggested if the thumbnail wins the impression. Pair this page with CTR.</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script src="flow_data.js"></script>
+  <script>
+    function sec(n) {
+      if (n == null) return '—';
+      n = Math.round(n);
+      return Math.floor(n / 60) + ':' + String(n % 60).padStart(2, '0');
+    }
+
+    async function load() {
+      let data = window.FLOW_DATA;
+      if (!data) {
+        data = await fetch('flow_analytics.json').then(r => r.json());
+      }
+      const k = data.kpis;
+      document.getElementById('flowBig').textContent = k.flow_unweighted_retention.toFixed(1) + '%';
+      document.getElementById('liveBig').textContent = k.live_unweighted_retention.toFixed(1) + '%';
+      document.getElementById('pulledAt').textContent = 'Pulled ' + data.pulled_at + ' · ' + data.definition.lag_note;
+
+      const kpiItems = [
+        ['Flow hold (unweighted)', k.flow_unweighted_retention.toFixed(1) + '%', '2 scored clips · 3rd pending'],
+        ['Live-action hold', k.live_unweighted_retention.toFixed(1) + '%', '24 videos'],
+        ['Multiple', k.retention_multiple.toFixed(2) + '×', 'Flow ÷ live unweighted'],
+        ['Short live-action (<8 min)', k.short_live_unweighted.toFixed(1) + '%', k.short_live_count + ' talking-head peers'],
+        ['Best live video', k.best_live_retention.toFixed(1) + '%', '10x Interview Rate'],
+        ['Avg length', sec(k.flow_avg_duration_sec) + ' vs ' + sec(k.live_avg_duration_sec), 'Flow vs live']
+      ];
+      document.getElementById('kpis').innerHTML = kpiItems.map(([l,v,s]) =>
+        `<div class="kpi-card"><div class="kpi-label">${l}</div><div class="kpi-value">${v}</div><div class="kpi-sub">${s}</div></div>`
+      ).join('');
+
+      const flow = data.videos.filter(v => v.format === 'google_flow')
+        .sort((a,b) => b.published_at.localeCompare(a.published_at));
+      document.getElementById('flowCards').innerHTML = flow.map(v => {
+        const pending = v.retention_pct == null;
+        return `<div class="video-card">
+          <a href="https://www.youtube.com/watch?v=${v.id}" target="_blank" rel="noopener"><img src="${v.thumbnail}" alt=""></a>
+          <div class="video-body">
+            <span class="badge-chip ${pending ? 'chip-orange' : 'chip-flow'}">${pending ? 'Analytics pending' : 'Google Flow'}</span>
+            <h3>${v.title}</h3>
+            <div class="meta">${v.published_at.slice(0,10)} · ${v.duration} · ${v.flow_project || ''}</div>
+            <div class="metric-row"><span>Live views</span><span class="mono">${v.data_api_views}</span></div>
+            <div class="metric-row"><span>Retention</span><span class="mono">${pending ? 'pending' : v.retention_pct.toFixed(1) + '%'}</span></div>
+            <div class="metric-row"><span>Avg view duration</span><span class="mono">${pending ? '—' : sec(v.avd_sec)}</span></div>
+            <div class="metric-row"><span>Shares</span><span class="mono">${v.shares == null ? '—' : v.shares}</span></div>
+            <div class="meta" style="margin-top:10px">${v.role || ''}</div>
+          </div>
+        </div>`;
+      }).join('');
+
+      const scored = data.videos.filter(v => v.retention_pct != null);
+      const maxSec = Math.max(...data.videos.map(v => v.duration_sec), 1);
+      const maxPct = Math.max(...scored.map(v => v.retention_pct), 70);
+      const plot = document.getElementById('scatter');
+      data.videos.forEach(v => {
+        const x = (v.duration_sec / maxSec) * 100;
+        const y = v.retention_pct == null ? 8 : (v.retention_pct / maxPct) * 100;
+        const d = document.createElement('div');
+        d.className = 'dot ' + (v.format === 'google_flow' ? 'flow' : 'live') + (v.retention_pct == null ? ' pending' : '');
+        d.style.left = x + '%';
+        d.style.bottom = y + '%';
+        d.style.background = v.format === 'google_flow' ? 'var(--flow)' : 'var(--live)';
+        d.title = v.title + ' · ' + v.duration + ' · ' + (v.retention_pct == null ? 'pending' : v.retention_pct.toFixed(1) + '%');
+        plot.appendChild(d);
+      });
+
+      const ranked = [...data.videos].sort((a,b) => (b.retention_pct ?? -1) - (a.retention_pct ?? -1));
+      document.getElementById('tableBody').innerHTML = ranked.map((v,i) => {
+        const pending = v.retention_pct == null;
+        const color = v.format === 'google_flow' ? 'var(--flow)' : 'var(--live)';
+        const width = pending ? 0 : Math.min(v.retention_pct, 100);
+        return `<tr class="${v.format === 'google_flow' ? 'flow-row' : ''}">
+          <td class="mono" style="color:var(--text-dim)">${i+1}</td>
+          <td><span class="badge-chip ${v.format === 'google_flow' ? 'chip-flow' : 'chip-live'}">${v.format === 'google_flow' ? 'Flow' : 'Live'}</span></td>
+          <td>
+            <div style="font-weight:600">${v.title}</div>
+            <div style="font-size:11px;color:var(--text-muted)">${v.published_at.slice(0,10)} · ${v.id}</div>
+          </td>
+          <td class="mono">${v.duration}</td>
+          <td class="mono">${v.data_api_views.toLocaleString()}</td>
+          <td>
+            <div class="pct-bar">
+              <span class="mono" style="width:52px">${pending ? '—' : v.retention_pct.toFixed(1)+'%'}</span>
+              <div class="pct-track"><div class="pct-fill" style="width:${width}%;background:${color}"></div></div>
+            </div>
+          </td>
+          <td class="mono">${sec(v.avd_sec)}</td>
+        </tr>`;
+      }).join('');
+    }
+    load().catch(err => console.error(err));
+  </script>
+</body>
+</html>

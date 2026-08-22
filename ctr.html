@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impressions CTR — @RifatErdemSahin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="nav.css">
+  <style>
+    :root {
+      --bg-primary: #090d13;
+      --bg-secondary: #121820;
+      --bg-card: #19222c;
+      --bg-card-hover: #1f2b38;
+      --border: #283545;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --accent-blue: #38bdf8;
+      --accent-purple: #818cf8;
+      --accent-green: #34d399;
+      --accent-yellow: #fbbf24;
+      --accent-red: #f87171;
+      --accent-cyan: #22d3ee;
+      --accent-orange: #fb923c;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-top: 72px;
+    }
+
+    .top-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 64px;
+      background: rgba(18, 24, 32, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      z-index: 1000;
+    }
+
+    .nav-brand {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none; color: var(--text-main);
+    }
+
+    .nav-logo {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, #ff0033, #cc0000);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 16px; color: white;
+      box-shadow: 0 2px 8px rgba(255, 0, 51, 0.3);
+    }
+
+    .nav-title { font-size: 16px; font-weight: 700; letter-spacing: -0.02em; }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+
+    .container { max-width: 1320px; margin: 28px auto 80px; padding: 0 24px; }
+
+    .page-header {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .header-info h1 {
+      font-size: 26px; font-weight: 800; letter-spacing: -0.03em;
+      margin-bottom: 6px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    }
+    .header-info p { color: var(--text-muted); font-size: 14px; max-width: 740px; }
+
+    .header-badge-live {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 10px;
+      background: rgba(251, 191, 36, 0.15);
+      border: 1px solid rgba(251, 191, 36, 0.35);
+      color: var(--accent-yellow);
+      border-radius: 9999px;
+      font-size: 12px; font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .pulse-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent-yellow);
+      box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.7);
+      animation: pulse 1.8s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.7); }
+      70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(251, 191, 36, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(251, 191, 36, 0); }
+    }
+
+    .header-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 16px; border-radius: 8px;
+      font-size: 13px; font-weight: 600;
+      text-decoration: none; cursor: pointer; border: none;
+    }
+    .btn-secondary { background: var(--bg-card); color: var(--text-main); border: 1px solid var(--border); }
+    .btn-secondary:hover { background: var(--bg-card-hover); }
+    .btn-cyan { background: rgba(34, 211, 238, 0.15); color: var(--accent-cyan); border: 1px solid rgba(34, 211, 238, 0.4); }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px; margin-bottom: 28px;
+    }
+    .kpi-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px;
+      transition: transform 0.15s ease, border-color 0.15s ease;
+    }
+    .kpi-card:hover { transform: translateY(-2px); border-color: rgba(251, 191, 36, 0.4); }
+    .kpi-label {
+      font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em;
+      color: var(--text-muted); margin-bottom: 8px; font-weight: 600;
+      display: flex; justify-content: space-between;
+    }
+    .kpi-value {
+      font-size: 28px; font-weight: 800;
+      font-family: 'JetBrains Mono', monospace;
+      letter-spacing: -0.03em; margin-bottom: 4px;
+    }
+    .kpi-sub { font-size: 12px; color: var(--text-muted); }
+    .kpi-tag-pos { color: var(--accent-green); font-weight: 600; }
+    .kpi-tag-yellow { color: var(--accent-yellow); font-weight: 600; }
+    .kpi-tag-cyan { color: var(--accent-cyan); font-weight: 600; }
+    .kpi-tag-red { color: var(--accent-red); font-weight: 600; }
+
+    .section-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 14px; padding: 24px; margin-bottom: 28px;
+    }
+    .section-head {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 20px; flex-wrap: wrap; gap: 12px;
+    }
+    .section-title { font-size: 18px; font-weight: 700; }
+    .section-desc { font-size: 13px; color: var(--text-muted); margin-top: 4px; max-width: 760px; }
+
+    .define-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+    .define-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px; padding: 16px;
+    }
+    .define-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+    .define-card p { font-size: 13px; color: var(--text-muted); }
+
+    .badge-chip {
+      display: inline-flex; align-items: center;
+      padding: 2px 8px; border-radius: 6px;
+      font-size: 11px; font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .chip-green { background: rgba(52, 211, 153, 0.15); color: var(--accent-green); border: 1px solid rgba(52, 211, 153, 0.3); }
+    .chip-cyan { background: rgba(34, 211, 238, 0.15); color: var(--accent-cyan); border: 1px solid rgba(34, 211, 238, 0.3); }
+    .chip-purple { background: rgba(129, 140, 248, 0.15); color: var(--accent-purple); border: 1px solid rgba(129, 140, 248, 0.3); }
+    .chip-yellow { background: rgba(251, 191, 36, 0.15); color: var(--accent-yellow); border: 1px solid rgba(251, 191, 36, 0.3); }
+    .chip-orange { background: rgba(251, 146, 60, 0.15); color: var(--accent-orange); border: 1px solid rgba(251, 146, 60, 0.3); }
+    .chip-red { background: rgba(248, 113, 113, 0.15); color: var(--accent-red); border: 1px solid rgba(248, 113, 113, 0.3); }
+
+    .bench-row {
+      display: grid;
+      grid-template-columns: 140px 1fr 80px;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+      font-size: 13px;
+    }
+    .bench-track {
+      height: 18px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 6px;
+      overflow: hidden;
+      position: relative;
+    }
+    .bench-fill { height: 100%; border-radius: 6px; }
+    .bench-marker {
+      position: absolute; top: -4px; bottom: -4px; width: 2px;
+      background: white; opacity: 0.85;
+    }
+    .bench-val { font-family: 'JetBrains Mono', monospace; font-weight: 700; text-align: right; }
+
+    .source-bar {
+      display: grid;
+      grid-template-columns: 180px 1fr 70px 90px 80px;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      font-size: 13px;
+    }
+    .source-bar:last-child { border-bottom: none; }
+    .source-track { height: 10px; background: rgba(255,255,255,0.08); border-radius: 5px; overflow: hidden; }
+    .source-fill { height: 100%; border-radius: 5px; }
+    .mono { font-family: 'JetBrains Mono', monospace; font-weight: 600; }
+
+    @media (max-width: 800px) {
+      .source-bar { grid-template-columns: 1fr 1fr; }
+      .source-track { grid-column: 1 / -1; }
+    }
+
+    .table-responsive {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--bg-card);
+    }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; text-align: left; }
+    th {
+      background: rgba(18, 24, 32, 0.95);
+      padding: 12px 16px; color: var(--text-muted); font-weight: 600;
+      border-bottom: 1px solid var(--border); white-space: nowrap;
+    }
+    td { padding: 12px 16px; border-bottom: 1px solid rgba(40, 53, 69, 0.4); }
+    tr:last-child td { border-bottom: none; }
+
+    .insights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+    .insight-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px; padding: 18px;
+    }
+    .insight-title { font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .insight-body { font-size: 13px; color: var(--text-muted); }
+
+    .playbook-list { list-style: none; display: grid; gap: 10px; }
+    .playbook-list li {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .playbook-list strong { color: var(--text-main); }
+
+    .funnel {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    @media (max-width: 800px) { .funnel { grid-template-columns: 1fr 1fr; } }
+    .funnel-step {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      text-align: center;
+    }
+    .funnel-step .n {
+      font-size: 22px; font-weight: 800;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .funnel-step .l { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+  </style>
+</head>
+<body>
+  <nav class="top-nav">
+    <a href="index.html" class="nav-brand">
+      <div class="nav-logo">▶</div>
+      <div><div class="nav-title">YouTube Studio MCP</div></div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li class="nav-group" data-group="operate">
+        <button type="button" class="nav-link nav-group-toggle">Operate <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Studio ops</li>
+          <li><a href="index.html" class="nav-dropdown-link" data-page="index.html">Dashboard <span class="nav-dropdown-hint">home</span></a></li>
+          <li><a href="endvideo.html" class="nav-dropdown-link" data-page="endvideo.html">End Video Closing</a></li>
+          <li><a href="skills.html" class="nav-dropdown-link" data-page="skills.html">Skills Studio</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="library">
+        <button type="button" class="nav-link nav-group-toggle">Library <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Content assets</li>
+          <li><a href="catalog.html" class="nav-dropdown-link" data-page="catalog.html">Video Catalog</a></li>
+          <li><a href="playlists.html" class="nav-dropdown-link" data-page="playlists.html">Playlists</a></li>
+          <li><a href="thumbnails.html" class="nav-dropdown-link" data-page="thumbnails.html">Thumbnails</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="performance">
+        <button type="button" class="nav-link nav-group-toggle">Performance <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Audience metrics</li>
+          <li><a href="analytics.html" class="nav-dropdown-link" data-page="analytics.html">Overview</a></li>
+          <li><a href="retention.html" class="nav-dropdown-link" data-page="retention.html">Retention</a></li>
+          <li><a href="ctr.html" class="nav-dropdown-link" data-page="ctr.html">CTR</a></li>
+          <li><a href="august.html" class="nav-dropdown-link" data-page="august.html">August 2026</a></li>
+          <li><a href="year.html" class="nav-dropdown-link" data-page="year.html">Year briefing</a></li>
+          <li><a href="flow.html" class="nav-dropdown-link" data-page="flow.html">Google Flow</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="logs">
+        <button type="button" class="nav-link nav-group-toggle">Logs <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Change history</li>
+          <li><a href="reports.html" class="nav-dropdown-link" data-page="reports.html">Reports</a></li>
+          <li><a href="updates.html" class="nav-dropdown-link" data-page="updates.html">Updates Log</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="channel">
+        <button type="button" class="nav-link nav-group-toggle">Channel <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">External</li>
+          <li><a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" rel="noopener" class="nav-dropdown-link">@RifatErdemSahin ↗</a></li>
+          <li><a href="https://www.skool.com/delivery-pilot-8938" target="_blank" rel="noopener" class="nav-dropdown-link">Skool Community ↗</a></li>
+        </ul>
+      </li>
+    </ul>
+    <div class="nav-actions">
+      <a href="retention.html" class="btn btn-secondary" style="padding: 6px 12px; font-size: 12px;">Retention ➔</a>
+      <a href="thumbnails.html" class="btn btn-secondary" style="padding: 6px 12px; font-size: 12px;">Thumbnails ➔</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <div class="header-info">
+        <h1>
+          <span>Impressions CTR</span>
+          <span class="header-badge-live"><span class="pulse-dot"></span> 2.3% channel CTR</span>
+        </h1>
+        <p>Click-through rate is impressions that became views. It is a packaging metric: thumbnail + title, not the video itself. A 2.3% CTR is in the typical YouTube band — Search already beats it; Suggested is the leak.</p>
+      </div>
+      <div class="header-actions">
+        <a href="retention.html" class="btn btn-cyan">Retention companion ➔</a>
+        <a href="thumbnails.html" class="btn btn-secondary">Thumbnails studio ➔</a>
+      </div>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label"><span>Channel CTR</span><span>🎯</span></div>
+        <div class="kpi-value" id="kpiCtr">2.3%</div>
+        <div class="kpi-sub"><span class="kpi-tag-yellow">Typical band</span> is 2–10%. 4%+ is strong.</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label"><span>Impressions</span><span>👁️</span></div>
+        <div class="kpi-value" id="kpiImp">35,548</div>
+        <div class="kpi-sub">365-day YouTube surfaces that showed a thumbnail</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label"><span>Est. impression clicks</span><span>🖱️</span></div>
+        <div class="kpi-value" id="kpiClicks">—</div>
+        <div class="kpi-sub">impressions × CTR. External traffic has no CTR.</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label"><span>Best surface</span><span>🏆</span></div>
+        <div class="kpi-value" id="kpiBest">—</div>
+        <div class="kpi-sub" id="kpiBestSrc">YouTube search titles match intent</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label"><span>Worst surface</span><span>⚠️</span></div>
+        <div class="kpi-value" id="kpiWorst">—</div>
+        <div class="kpi-sub" id="kpiWorstSrc">Suggested — packaging loses the sidebar auction</div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-head">
+        <div>
+          <div class="section-title">The click funnel</div>
+          <div class="section-desc">CTR only exists where YouTube shows a thumbnail. 40.8% of views are External (Skool, GitHub, LinkedIn) and have no CTR — those are earned, not packaged.</div>
+        </div>
+      </div>
+      <div class="funnel">
+        <div class="funnel-step">
+          <div class="n" id="funnelImp">35.5k</div>
+          <div class="l">Impressions</div>
+        </div>
+        <div class="funnel-step">
+          <div class="n" id="funnelCtr">2.3%</div>
+          <div class="l">Clicked the thumbnail</div>
+        </div>
+        <div class="funnel-step">
+          <div class="n" id="funnelClicks">~818</div>
+          <div class="l">Impression-sourced views</div>
+        </div>
+        <div class="funnel-step">
+          <div class="n">10.2%</div>
+          <div class="l">Then retained (see Retention)</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-head">
+        <div>
+          <div class="section-title">What CTR measures</div>
+          <div class="section-desc">Impressions CTR = views from a YouTube surface ÷ times the thumbnail was shown. Per-video CTR is Studio-only and is not in this API export.</div>
+        </div>
+      </div>
+      <div class="define-grid">
+        <div class="define-card">
+          <h3>Thumbnail</h3>
+          <p>The first 100ms decision. Face + one readable claim + contrast against the YouTube dark UI. See Thumbnails Studio for the live pack.</p>
+        </div>
+        <div class="define-card">
+          <h3>Title</h3>
+          <p>Search CTR (3.7% here) rewards specific outcomes. Browse/Suggested CTR rewards curiosity without looking like bait. They are different copy jobs.</p>
+        </div>
+        <div class="define-card">
+          <h3>Impression vs view</h3>
+          <p>External, Direct, Notifications, and End screens do not generate impressions CTR. A healthy channel mixes packaged reach with community send.</p>
+        </div>
+        <div class="define-card">
+          <h3>Why 4% is the line</h3>
+          <p>Below ~2% YouTube stops testing the thumbnail. At 4%+ it extends the impression budget. 2.3% is “keep testing,” not “packaging is solved.”</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-head">
+        <div>
+          <div class="section-title">Where 2.3% sits</div>
+          <div class="section-desc">Typical YouTube impressions CTR is roughly 2–10%. Marker is this channel. Target is 4%.</div>
+        </div>
+      </div>
+      <div class="bench-row">
+        <div>Weak &lt;2%</div>
+        <div class="bench-track">
+          <div class="bench-fill" style="width:20%;background:#f87171"></div>
+          <div class="bench-marker" id="benchMarker" style="left:23%"></div>
+        </div>
+        <div class="bench-val">0–2%</div>
+      </div>
+      <div class="bench-row">
+        <div>Typical 2–4%</div>
+        <div class="bench-track">
+          <div class="bench-fill" style="width:100%;background:#fbbf24"></div>
+        </div>
+        <div class="bench-val">You are here</div>
+      </div>
+      <div class="bench-row">
+        <div>Strong 4–8%</div>
+        <div class="bench-track">
+          <div class="bench-fill" style="width:70%;background:#34d399"></div>
+        </div>
+        <div class="bench-val">4–8%</div>
+      </div>
+      <div class="bench-row">
+        <div>Outlier 8%+</div>
+        <div class="bench-track">
+          <div class="bench-fill" style="width:40%;background:#22d3ee"></div>
+        </div>
+        <div class="bench-val">Rare</div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-head">
+        <div>
+          <div class="section-title">CTR by traffic source</div>
+          <div class="section-desc">Only surfaces with impressions report CTR. Search and Channel pages already beat Browse; Suggested is the packaging failure.</div>
+        </div>
+        <span class="badge-chip chip-yellow">365-day window</span>
+      </div>
+      <div class="source-bar" style="color:var(--text-dim);font-size:11px;text-transform:uppercase;letter-spacing:0.04em;font-weight:600">
+        <div>Source</div>
+        <div>CTR vs 4% target</div>
+        <div>CTR</div>
+        <div>Impressions</div>
+        <div>Est. clicks</div>
+      </div>
+      <div id="sourceBars"></div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-head">
+        <div>
+          <div class="section-title">All sources, including no-CTR traffic</div>
+          <div class="section-desc">External and Direct dominate views. They do not train YouTube’s thumbnail auction. Growing Search + Suggested is how the channel stops depending on outbound links.</div>
+        </div>
+      </div>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Traffic source</th>
+              <th>Views</th>
+              <th>Share</th>
+              <th>Impressions</th>
+              <th>CTR</th>
+              <th>Est. clicks</th>
+              <th>Note</th>
+            </tr>
+          </thead>
+          <tbody id="sourceTable"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-head">
+        <div>
+          <div class="section-title">What the data says</div>
+          <div class="section-desc">Packaging conclusions from the current 365-day export.</div>
+        </div>
+      </div>
+      <div class="insights-grid">
+        <div class="insight-card">
+          <div class="insight-title">Search already works <span class="badge-chip chip-green">3.7%</span></div>
+          <div class="insight-body">YouTube search CTR is 3.7% on 3,185 impressions. Outcome titles (“10x interview rate”, “build a RAG app”) convert when intent is typed. Keep titles specific; do not generic-brand them.</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-title">Suggested is the leak <span class="badge-chip chip-red">1.0%</span></div>
+          <div class="insight-body">7,549 suggested impressions at 1.0% CTR. Sidebar/home packaging is losing. Thumbnails that work in search (text-heavy) often fail in Suggested — they need a face, one object, and less copy.</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-title">Browse is the volume knob <span class="badge-chip chip-yellow">2.3% · 16.2k</span></div>
+          <div class="insight-body">Browse is 16,214 impressions — nearly half of all impressions — at the channel average. A +1pt CTR here is ~162 extra views without new subscribers. A/B the top three traffic videos first.</div>
+        </div>
+        <div class="insight-card">
+          <div class="insight-title">Channel page is healthy <span class="badge-chip chip-cyan">2.9%</span></div>
+          <div class="insight-body">People who land on the channel already chose you. 2.9% is fine. Playlists at 2.4% on only 1,299 impressions — more playlist shelf real estate would raise this without new creative.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-head">
+        <div>
+          <div class="section-title">CTR playbook</div>
+          <div class="section-desc">Packaging work lives in Thumbnails Studio. Retention work is a different page — do not mix the two in one recut pass.</div>
+        </div>
+      </div>
+      <ul class="playbook-list">
+        <li><strong>1. Two thumbnail languages.</strong> Search: readable 3-word claim. Suggested/Browse: face + one visual metaphor, almost no text. Suggested at 1.0% is the proof the current pack is search-coded.</li>
+        <li><strong>2. A/B the three traffic engines.</strong> LinkedIn Job Hunt, AI No-Code, and Agentic Era already have A/B flags. Swap Suggested-style thumbs on those first — they have impression volume to learn from.</li>
+        <li><strong>3. Title = outcome, not topic.</strong> “The Agentic Era” is a topic. “Build a digital workforce in a weekend” is a click. Search at 3.7% shows outcome copy already converts.</li>
+        <li><strong>4. Stop shipping thumbs that blend into Home.</strong> Dark navy + small type disappears on YouTube dark mode. High-contrast yellow/red blocks (channel brand) win the 100ms scan.</li>
+        <li><strong>5. CTR without retention is a trap.</strong> A 5% click into a 3% hold trains YouTube to stop showing the video. Pair every thumbnail test with the Retention page target of 15%+ on recuts.</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    const COLORS = {
+      'Browse features': '#34d399',
+      'Channel pages': '#fbbf24',
+      'Suggested videos': '#f87171',
+      'YouTube search': '#22d3ee',
+      'Playlists': '#a78bfa',
+      'External': '#38bdf8',
+      'Direct or unknown': '#818cf8'
+    };
+
+    function parseCtr(raw) {
+      if (!raw || raw === '—') return null;
+      const n = parseFloat(String(raw).replace('%', ''));
+      return Number.isFinite(n) ? n : null;
+    }
+
+    async function load() {
+      const res = await fetch('analytics_data.json');
+      const data = await res.json();
+      const ch = data.channel.period_365_days;
+      const sources = data.traffic_sources || [];
+      const ctr = parseCtr(ch.impressions_ctr);
+      const imp = ch.impressions;
+      const clicks = Math.round(imp * (ctr / 100));
+
+      document.getElementById('kpiCtr').textContent = ch.impressions_ctr;
+      document.getElementById('kpiImp').textContent = imp.toLocaleString();
+      document.getElementById('kpiClicks').textContent = '~' + clicks.toLocaleString();
+      document.getElementById('funnelImp').textContent = (imp / 1000).toFixed(1) + 'k';
+      document.getElementById('funnelCtr').textContent = ch.impressions_ctr;
+      document.getElementById('funnelClicks').textContent = '~' + clicks.toLocaleString();
+      document.getElementById('benchMarker').style.left = Math.min((ctr / 10) * 100, 100) + '%';
+
+      const withCtr = sources
+        .map(s => ({ ...s, ctrNum: parseCtr(s.ctr) }))
+        .filter(s => s.ctrNum != null && s.impressions > 0)
+        .sort((a, b) => b.ctrNum - a.ctrNum);
+
+      if (withCtr.length) {
+        const best = withCtr[0];
+        const worst = withCtr[withCtr.length - 1];
+        document.getElementById('kpiBest').textContent = best.ctr;
+        document.getElementById('kpiBestSrc').textContent = best.source + ' · ' + best.impressions.toLocaleString() + ' imp';
+        document.getElementById('kpiWorst').textContent = worst.ctr;
+        document.getElementById('kpiWorstSrc').textContent = worst.source + ' · ' + worst.impressions.toLocaleString() + ' imp';
+      }
+
+      const bars = document.getElementById('sourceBars');
+      bars.innerHTML = '';
+      withCtr.forEach(s => {
+        const est = Math.round(s.impressions * (s.ctrNum / 100));
+        const width = Math.min((s.ctrNum / 4) * 100, 100);
+        const color = COLORS[s.source] || '#38bdf8';
+        const row = document.createElement('div');
+        row.className = 'source-bar';
+        row.innerHTML = `
+          <div style="font-weight:600">${s.source}</div>
+          <div class="source-track"><div class="source-fill" style="width:${width}%;background:${color}"></div></div>
+          <div class="mono" style="color:${color}">${s.ctr}</div>
+          <div class="mono">${s.impressions.toLocaleString()}</div>
+          <div class="mono">${est.toLocaleString()}</div>
+        `;
+        bars.appendChild(row);
+      });
+
+      const tbody = document.getElementById('sourceTable');
+      tbody.innerHTML = '';
+      sources.forEach(s => {
+        const n = parseCtr(s.ctr);
+        const est = n != null && s.impressions ? Math.round(s.impressions * (n / 100)) : '—';
+        let note = 'No impression CTR';
+        if (n == null) note = 'Community / direct — not a packaging surface';
+        else if (n >= 3.5) note = 'Intent match — keep this copy style';
+        else if (n >= 2.5) note = 'Healthy for the surface';
+        else if (n >= 2) note = 'Channel average — test packaging';
+        else note = 'Losing the auction — new thumbnail language';
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><strong>${s.source}</strong></td>
+          <td class="mono">${s.views.toLocaleString()}</td>
+          <td class="mono">${s.views_share_pct.toFixed(1)}%</td>
+          <td class="mono">${s.impressions ? s.impressions.toLocaleString() : '—'}</td>
+          <td class="mono">${s.ctr}</td>
+          <td class="mono">${est}</td>
+          <td style="color:var(--text-muted);font-size:12px">${note}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    load().catch(err => console.error(err));
+  </script>
+</body>
+</html>
