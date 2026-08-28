@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thumbnail Tester — @RifatErdemSahin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="nav.css">
+  <style>
+    :root {
+      --bg-primary: #090d13;
+      --bg-secondary: #121820;
+      --bg-card: #19222c;
+      --border: #283545;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent-blue: #38bdf8;
+      --yt-bg: #0f0f0f;
+      --yt-card: #212121;
+      --yt-text: #f1f1f1;
+      --yt-muted: #aaa;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Inter, -apple-system, sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-main);
+      padding-top: 72px;
+      line-height: 1.5;
+    }
+    .top-nav {
+      position: fixed; top: 0; left: 0; right: 0; height: 64px;
+      background: rgba(18, 24, 32, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 28px; z-index: 1000;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-main); }
+    .nav-logo {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, #ff0033, #cc0000);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      font-weight: 800; color: white;
+    }
+    .nav-title { font-size: 16px; font-weight: 700; }
+    .nav-link {
+      color: var(--text-muted); text-decoration: none; font-size: 13px; font-weight: 500;
+      padding: 6px 12px; border-radius: 6px;
+    }
+    .container { max-width: 1280px; margin: 0 auto; padding: 28px 24px 80px; }
+    h1 { font-size: 28px; letter-spacing: -0.03em; margin-bottom: 6px; }
+    .sub { color: var(--text-muted); margin-bottom: 24px; }
+    .toolbar {
+      display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 14px 16px; margin-bottom: 28px;
+    }
+    .toolbar label { font-size: 12px; color: var(--text-muted); font-weight: 600; }
+    .toolbar select, .toolbar input[type="text"] {
+      background: #0d131a; color: var(--text-main); border: 1px solid var(--border);
+      border-radius: 8px; padding: 8px 10px; font-size: 13px; min-width: 280px;
+    }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }
+    .panel {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 16px 16px 20px;
+    }
+    .panel h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 14px; }
+    .yt { background: var(--yt-bg); border-radius: 12px; padding: 16px; font-family: Roboto, Inter, sans-serif; }
+    .home-card { width: 360px; }
+    .home-thumb {
+      width: 360px; height: 202px; border-radius: 12px; overflow: hidden;
+      background: #000; position: relative;
+    }
+    .home-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .duration {
+      position: absolute; right: 8px; bottom: 8px; background: rgba(0,0,0,.8);
+      color: #fff; font-size: 12px; font-weight: 600; padding: 2px 5px; border-radius: 4px;
+    }
+    .meta { display: flex; gap: 12px; margin-top: 12px; }
+    .avatar { width: 36px; height: 36px; border-radius: 50%; background: #c00; flex-shrink: 0; }
+    .vtitle { color: var(--yt-text); font-size: 16px; font-weight: 500; line-height: 1.3; }
+    .vsub { color: var(--yt-muted); font-size: 13px; margin-top: 4px; }
+    .suggest { display: flex; gap: 8px; width: 402px; }
+    .suggest-thumb { width: 168px; height: 94px; border-radius: 8px; overflow: hidden; flex-shrink: 0; background: #000; }
+    .suggest-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .suggest .vtitle { font-size: 14px; }
+    .search-row { display: flex; gap: 16px; }
+    .search-thumb { width: 360px; height: 202px; border-radius: 12px; overflow: hidden; background: #000; flex-shrink: 0; }
+    .search-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .shorts-wrap { display: flex; gap: 12px; align-items: flex-end; }
+    .short {
+      width: 180px; height: 320px; border-radius: 14px; overflow: hidden;
+      background: #000; position: relative;
+    }
+    .short img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+    .short .cap {
+      position: absolute; left: 10px; right: 10px; bottom: 12px;
+      color: #fff; font-size: 13px; font-weight: 600; text-shadow: 0 1px 4px #000;
+    }
+    .full img { width: 100%; max-width: 1280px; height: auto; border-radius: 8px; display: block; border: 1px solid var(--border); }
+    .span-2 { grid-column: 1 / -1; }
+    .sizes { color: var(--text-muted); font-size: 12px; margin-top: 8px; font-variant-numeric: tabular-nums; }
+  </style>
+</head>
+<body>
+  <nav class="top-nav">
+    <a href="index.html" class="nav-brand">
+      <div class="nav-logo">▶</div>
+      <div class="nav-title">Thumbnail Tester</div>
+    </a>
+    <ul class="nav-links">
+      <li class="nav-group" data-group="library">
+        <button type="button" class="nav-link nav-group-toggle">Library <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li><a href="thumbnails.html" class="nav-dropdown-link" data-page="thumbnails.html">Thumbnails</a></li>
+          <li><a href="thumbnail-tester.html" class="nav-dropdown-link" data-page="thumbnail-tester.html">Thumbnail Tester</a></li>
+          <li><a href="catalog.html" class="nav-dropdown-link" data-page="catalog.html">Catalog</a></li>
+        </ul>
+      </li>
+    </ul>
+    <a href="https://www.youtube.com/shorts/OGB69NVn8ZU" target="_blank" rel="noopener" class="nav-link">Open Short ↗</a>
+  </nav>
+
+  <div class="container">
+    <h1>Thumbnail tester</h1>
+    <p class="sub">Preview how a 16:9 custom thumbnail reads in YouTube home, search, suggested, and Shorts crops. <strong>Rule for Shorts:</strong> keep title type in the center third — a 9:16 crop clips the left/right edges.</p>
+
+    <div class="toolbar">
+      <label for="pick">Asset</label>
+      <select id="pick">
+        <option value="thumbnails/thumbnail_OGB69NVn8ZU.jpg" selected>OGB69NVn8ZU — AI isn't a con</option>
+        <option value="thumbnails/thumbnail_27jXA2V2Zio.jpg">27jXA2V2Zio — AI isn't a bubble</option>
+        <option value="thumbnails/thumbnail_HUTlnlw3h8o.jpg">HUTlnlw3h8o</option>
+        <option value="thumbnails/thumbnail_l7bc8KTOyMo.jpg">l7bc8KTOyMo</option>
+        <option value="thumbnails/frame_OGB69NVn8ZU.jpg">OGB69NVn8ZU first frame</option>
+      </select>
+      <label for="file">or local file</label>
+      <input type="file" id="file" accept="image/*">
+    </div>
+
+    <div class="grid">
+      <div class="panel">
+        <h2>Home feed card — 360×202</h2>
+        <div class="yt">
+          <div class="home-card">
+            <div class="home-thumb">
+              <img class="thumb-src" alt="thumbnail">
+              <span class="duration">1:03</span>
+            </div>
+            <div class="meta">
+              <div class="avatar"></div>
+              <div>
+                <div class="vtitle">They Called AI a Con. I Walked In Anyway.</div>
+                <div class="vsub">Rifat Erdem Sahin · Unlisted Short</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Suggested sidebar — 168×94</h2>
+        <div class="yt">
+          <div class="suggest">
+            <div class="suggest-thumb"><img class="thumb-src" alt="thumbnail"></div>
+            <div>
+              <div class="vtitle">They Called AI a Con. I Walked In Anyway.</div>
+              <div class="vsub">Rifat Erdem Sahin<br>Short · 1:03</div>
+            </div>
+          </div>
+        </div>
+        <p class="sizes">Smallest real click surface — text must still read.</p>
+      </div>
+
+      <div class="panel span-2">
+        <h2>Search result — 360×202</h2>
+        <div class="yt">
+          <div class="search-row">
+            <div class="search-thumb"><img class="thumb-src" alt="thumbnail"></div>
+            <div>
+              <div class="vtitle" style="font-size:18px">They Called AI a Con. I Walked In Anyway.</div>
+              <div class="vsub">Rifat Erdem Sahin · 1:03</div>
+              <div class="vsub" style="margin-top:10px">Someone called this an AI con. I walked in anyway. Abundance is a platform — and yes, the hype can be dishonest.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Shorts crop — 9:16 center</h2>
+        <div class="yt">
+          <div class="shorts-wrap">
+            <div class="short">
+              <img class="thumb-src" alt="thumbnail">
+              <div class="cap">They Called AI a Con…</div>
+            </div>
+          </div>
+        </div>
+        <p class="sizes">YouTube Shorts often center-crops landscape thumbs. Edges (title plate) may clip.</p>
+      </div>
+
+      <div class="panel">
+        <h2>Mobile feed — 390×219</h2>
+        <div class="yt" style="max-width: 422px;">
+          <div class="home-thumb" style="width:390px;height:219px;max-width:100%">
+            <img class="thumb-src" alt="thumbnail">
+            <span class="duration">1:03</span>
+          </div>
+          <div class="meta">
+            <div class="avatar"></div>
+            <div>
+              <div class="vtitle">They Called AI a Con. I Walked In Anyway.</div>
+              <div class="vsub">Rifat Erdem Sahin</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel span-2">
+        <h2>Full asset (native)</h2>
+        <div class="full"><img class="thumb-src" alt="full thumbnail"></div>
+        <p class="sizes" id="dims"></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    const DEFAULT = 'thumbnails/thumbnail_OGB69NVn8ZU.jpg';
+    const params = new URLSearchParams(location.search);
+    const pick = document.getElementById('pick');
+    const file = document.getElementById('file');
+    const imgs = document.querySelectorAll('.thumb-src');
+    const dims = document.getElementById('dims');
+
+    function setSrc(src) {
+      imgs.forEach(function (img) { img.src = src; });
+      const probe = new Image();
+      probe.onload = function () {
+        dims.textContent = probe.naturalWidth + ' × ' + probe.naturalHeight + ' · ' + src;
+      };
+      probe.src = src;
+    }
+
+    const initial = params.get('src') || DEFAULT;
+    if ([...pick.options].some(function (o) { return o.value === initial; })) {
+      pick.value = initial;
+    }
+    setSrc(initial);
+
+    pick.addEventListener('change', function () { setSrc(pick.value); });
+    file.addEventListener('change', function () {
+      const f = file.files && file.files[0];
+      if (!f) return;
+      setSrc(URL.createObjectURL(f));
+    });
+  </script>
+</body>
+</html>
