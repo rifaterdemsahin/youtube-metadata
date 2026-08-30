@@ -1,0 +1,56 @@
+{
+  "channel": "@RifatErdemSahin",
+  "updated": "2026-08-30",
+  "note": "Source of truth is thumbnail_<VIDEO_ID>.jpg. live_*.jpg is the YouTube maxresdefault snapshot. frame_<VIDEO_ID>.jpg is a first-frame still, not a per-second dump.",
+  "thumbnails": [
+    {
+      "video_id": "OGB69NVn8ZU",
+      "title": "AI Isn't a Con — Human Leverage",
+      "custom": "thumbnails/thumbnail_OGB69NVn8ZU.jpg",
+      "live": "thumbnails/live_OGB69NVn8ZU.jpg",
+      "first_frame": "thumbnails/frame_OGB69NVn8ZU.jpg",
+      "studio": "https://studio.youtube.com/video/OGB69NVn8ZU/edit",
+      "watch": "https://www.youtube.com/shorts/OGB69NVn8ZU",
+      "live_matches_custom": true
+    },
+    {
+      "video_id": "omC9xa6G7u4",
+      "title": "Don't Blame Your Degree. Level Up Your Circle.",
+      "custom": "thumbnails/thumbnail_omC9xa6G7u4.jpg",
+      "live": "thumbnails/live_omC9xa6G7u4.jpg",
+      "preview_shorts_crop": "thumbnails/preview_shorts_crop_omC9xa6G7u4.jpg",
+      "studio": "https://studio.youtube.com/video/omC9xa6G7u4/edit",
+      "watch": "https://www.youtube.com/shorts/omC9xa6G7u4",
+      "live_matches_custom": false,
+      "live_note": "YouTube Shorts is serving a center-cropped/letterboxed version of the custom 16:9. Custom jpg is still the archive original."
+    },
+    {
+      "video_id": "27jXA2V2Zio",
+      "title": "AI Isn't a Bubble",
+      "custom": "thumbnails/thumbnail_27jXA2V2Zio.jpg",
+      "live": "thumbnails/live_27jXA2V2Zio.jpg",
+      "studio": "https://studio.youtube.com/video/27jXA2V2Zio/edit",
+      "watch": "https://www.youtube.com/shorts/27jXA2V2Zio",
+      "live_matches_custom": true
+    },
+    {
+      "video_id": "HUTlnlw3h8o",
+      "title": "Obsidian AI Knowledge Engine",
+      "custom": "thumbnails/thumbnail_HUTlnlw3h8o.jpg",
+      "live": "thumbnails/live_HUTlnlw3h8o.jpg",
+      "studio": "https://studio.youtube.com/video/HUTlnlw3h8o/edit",
+      "watch": "https://www.youtube.com/watch?v=HUTlnlw3h8o",
+      "live_matches_custom": true
+    },
+    {
+      "video_id": "l7bc8KTOyMo",
+      "title": "Obsidian AI Knowledge Engine (superseded upload)",
+      "custom": "thumbnails/thumbnail_l7bc8KTOyMo.jpg",
+      "live": null,
+      "studio": "https://studio.youtube.com/video/l7bc8KTOyMo/edit",
+      "watch": "https://www.youtube.com/watch?v=l7bc8KTOyMo",
+      "live_matches_custom": false,
+      "live_note": "maxresdefault.jpg 404 — video was re-uploaded as HUTlnlw3h8o. Custom jpg kept in archive."
+    }
+  ]
+}
