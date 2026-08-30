@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>New Video Packaging Checklist — @RifatErdemSahin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #090d13;
+      --bg-secondary: #121820;
+      --bg-card: #19222c;
+      --bg-card-hover: #1f2b38;
+      --border: #283545;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent-blue: #38bdf8;
+      --accent-green: #34d399;
+      --accent-yellow: #fbbf24;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: Inter, -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-top: 72px;
+    }
+    .container { max-width: 1180px; margin: 32px auto 64px; padding: 0 24px; }
+    .link-highlight { color: var(--accent-blue); text-decoration: none; font-weight: 500; }
+    .link-highlight:hover { text-decoration: underline; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 16px; border-radius: 6px; font-size: 13px; font-weight: 600;
+      text-decoration: none; border: 1px solid var(--border);
+      background: rgba(255,255,255,0.08); color: var(--text-main);
+    }
+    .btn:hover { background: rgba(255,255,255,0.12); }
+    .hero {
+      background: linear-gradient(135deg, rgba(52,211,153,0.14), rgba(56,189,248,0.05));
+      border: 1px solid rgba(52,211,153,0.35);
+      border-radius: 16px; padding: 28px 32px; margin-bottom: 28px;
+    }
+    .hero h1 { font-size: 26px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 8px; }
+    .hero p { color: var(--text-muted); max-width: 760px; font-size: 14px; }
+    .run {
+      display: grid; grid-template-columns: 320px 1fr; gap: 24px;
+      background: var(--bg-secondary); border: 1px solid var(--border);
+      border-radius: 14px; padding: 20px; margin-bottom: 28px;
+    }
+    @media (max-width: 860px) { .run { grid-template-columns: 1fr; } }
+    .run img { width: 100%; border-radius: 10px; display: block; border: 1px solid var(--border); }
+    .run h2 { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+    .meta { font-size: 13px; color: var(--text-muted); margin-bottom: 12px; }
+    .meta code { font-family: 'JetBrains Mono', monospace; color: var(--accent-blue); }
+    .pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .pill {
+      font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px;
+      background: rgba(52,211,153,0.15); color: var(--accent-green);
+      border: 1px solid rgba(52,211,153,0.3);
+    }
+    .section {
+      background: var(--bg-secondary); border: 1px solid var(--border);
+      border-radius: 12px; padding: 24px; margin-bottom: 24px;
+    }
+    .section h2 { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+    .section .sub { color: var(--text-muted); font-size: 13px; margin-bottom: 16px; }
+    .check-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .check-item {
+      display: grid; grid-template-columns: 22px 1fr auto; gap: 12px; align-items: start;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 12px 14px;
+    }
+    .check-item.done { border-color: rgba(52,211,153,0.28); }
+    .box {
+      width: 18px; height: 18px; border-radius: 5px; margin-top: 2px;
+      background: var(--accent-green); color: #042; font-size: 12px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .box.open { background: transparent; border: 2px solid #475569; color: transparent; }
+    .check-item strong { display: block; font-size: 14px; }
+    .check-item span { display: block; font-size: 12px; color: var(--text-muted); }
+    .who {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+      color: var(--accent-yellow); white-space: nowrap;
+    }
+    .who.you { color: var(--accent-green); }
+  </style>
+  <link rel="stylesheet" href="nav.css">
+</head>
+<body>
+  <nav class="top-nav">
+    <a href="index.html" class="nav-brand">
+      <div class="nav-logo">▶</div>
+      <div><div class="nav-title">YouTube Studio MCP</div></div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li class="nav-group" data-group="operate">
+        <button type="button" class="nav-link nav-group-toggle">Operate <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Studio ops</li>
+          <li><a href="index.html" class="nav-dropdown-link" data-page="index.html">Dashboard <span class="nav-dropdown-hint">home</span></a></li>
+          <li><a href="checklist.html" class="nav-dropdown-link" data-page="checklist.html">Packaging Checklist</a></li>
+          <li><a href="endvideo.html" class="nav-dropdown-link" data-page="endvideo.html">End Video Closing</a></li>
+          <li><a href="skills.html" class="nav-dropdown-link" data-page="skills.html">Skills Studio</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="library">
+        <button type="button" class="nav-link nav-group-toggle">Library <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Content assets</li>
+          <li><a href="catalog.html" class="nav-dropdown-link" data-page="catalog.html">Video Catalog</a></li>
+          <li><a href="playlists.html" class="nav-dropdown-link" data-page="playlists.html">Playlists</a></li>
+          <li><a href="thumbnails.html" class="nav-dropdown-link" data-page="thumbnails.html">Thumbnails</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="performance">
+        <button type="button" class="nav-link nav-group-toggle">Performance <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Audience metrics</li>
+          <li><a href="analytics.html" class="nav-dropdown-link" data-page="analytics.html">Overview</a></li>
+          <li><a href="retention.html" class="nav-dropdown-link" data-page="retention.html">Retention</a></li>
+          <li><a href="ctr.html" class="nav-dropdown-link" data-page="ctr.html">CTR</a></li>
+          <li><a href="august.html" class="nav-dropdown-link" data-page="august.html">August 2026</a></li>
+          <li><a href="year.html" class="nav-dropdown-link" data-page="year.html">Year briefing</a></li>
+          <li><a href="flow.html" class="nav-dropdown-link" data-page="flow.html">Google Flow</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="logs">
+        <button type="button" class="nav-link nav-group-toggle">Logs <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Change history</li>
+          <li><a href="reports.html" class="nav-dropdown-link" data-page="reports.html">Reports</a></li>
+          <li><a href="updates.html" class="nav-dropdown-link" data-page="updates.html">Updates Log</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="channel">
+        <button type="button" class="nav-link nav-group-toggle">Channel <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">External</li>
+          <li><a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" rel="noopener" class="nav-dropdown-link">@RifatErdemSahin ↗</a></li>
+          <li><a href="https://www.skool.com/delivery-pilot-8938" target="_blank" rel="noopener" class="nav-dropdown-link">Skool Community ↗</a></li>
+        </ul>
+      </li>
+    </ul>
+    <div class="nav-actions" style="display:flex;gap:12px;align-items:center;">
+      <a href="index.html#packaging-checklist" class="btn" style="padding:6px 12px;font-size:12px;">Dashboard ➔</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="hero">
+      <h1>New video packaging checklist</h1>
+      <p>
+        Repeatable run for every new upload on <strong>@RifatErdemSahin</strong>: transcribe, title, Skool-first description, center-safe thumbnail, live verify, pin the Skool comment in Studio, then commit.
+        Latest completed run is Short <code>omC9xa6G7u4</code>.
+      </p>
+    </div>
+
+    <div class="run" id="latest-run">
+      <div>
+        <img src="thumbnails/thumbnail_omC9xa6G7u4.jpg" alt="Custom thumbnail for omC9xa6G7u4">
+      </div>
+      <div>
+        <div class="pills">
+          <span class="pill">Completed 30 Aug 2026</span>
+          <span class="pill">Unlisted</span>
+          <span class="pill">Pinned in Studio</span>
+        </div>
+        <h2>Don't Blame Your Degree. Level Up Your Circle.</h2>
+        <p class="meta">
+          Video <code>omC9xa6G7u4</code> · 38s Short · git <code>ee53a9c</code><br>
+          IT-market downturn → skyrocketing AI skill expectations → self-mastery → lift your circle.
+        </p>
+        <p style="display:flex;flex-wrap:wrap;gap:10px;">
+          <a class="btn" href="https://studio.youtube.com/video/omC9xa6G7u4/edit" target="_blank" rel="noopener">Studio edit ↗</a>
+          <a class="btn" href="https://www.youtube.com/shorts/omC9xa6G7u4" target="_blank" rel="noopener">Watch Short ↗</a>
+          <a class="btn" href="descriptions/omC9xa6G7u4.txt">Description file</a>
+          <a class="btn" href="transcripts/omC9xa6G7u4.txt">Transcript</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>This run — omC9xa6G7u4</h2>
+      <p class="sub">Everything required for this Short, including the Skool pin you added in Studio.</p>
+      <ul class="check-list">
+        <li class="check-item done"><div class="box">✓</div><div><strong>Transcribe the Short</strong><span>Whisper from private download. Saved to transcripts/omC9xa6G7u4.txt.</span></div><div class="who">Grok</div></li>
+        <li class="check-item done"><div class="box">✓</div><div><strong>Write the title</strong><span>Don't Blame Your Degree. Level Up Your Circle.</span></div><div class="who">Grok</div></li>
+        <li class="check-item done"><div class="box">✓</div><div><strong>Write Skool-first description</strong><span>Line 1 is the community CTA. Body from the transcript. Footer: Delivery Pilot, Skool, GitHub.</span></div><div class="who">Grok</div></li>
+        <li class="check-item done"><div class="box">✓</div><div><strong>Custom thumbnail</strong><span>16:9, hook stacked in the center third for Shorts 9:16 crop. Live maxresdefault verified.</span></div><div class="who">Grok</div></li>
+        <li class="check-item done"><div class="box">✓</div><div><strong>Upload title, description, tags, thumbnail</strong><span>YouTube Data API. Privacy set unlisted so comments work.</span></div><div class="who">Grok</div></li>
+        <li class="check-item done"><div class="box">✓</div><div><strong>Skool comment posted and pinned</strong><span>You pinned it in Studio as @RifatErdemSahin. API cannot pin, and OAuth posts as the default Google channel.</span></div><div class="who you">You</div></li>
+        <li class="check-item done"><div class="box">✓</div><div><strong>Commit and push the package</strong><span>descriptions/, thumbnail, transcript on main (ee53a9c).</span></div><div class="who">Grok</div></li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>SOP — every new video</h2>
+      <p class="sub">Copy this list for the next upload. Do not skip live thumbnail verify or the Studio pin.</p>
+      <ul class="check-list">
+        <li class="check-item"><div class="box open">☐</div><div><strong>1. Pull the video ID from Studio</strong><span>studio.youtube.com/video/VIDEO_ID/edit</span></div></li>
+        <li class="check-item"><div class="box open">☐</div><div><strong>2. Transcribe</strong><span>fetch_transcript.py, or yt-dlp + Whisper if private.</span></div></li>
+        <li class="check-item"><div class="box open">☐</div><div><strong>3. Title from the hook</strong><span>Punchy, searchable, under 100 characters.</span></div></li>
+        <li class="check-item"><div class="box open">☐</div><div><strong>4. Description</strong><span>Line 1: 🚀 Join our AI Architect &amp; Builder Community: https://www.skool.com/delivery-pilot-8938 — then body, resources, hashtags, footer.</span></div></li>
+        <li class="check-item"><div class="box open">☐</div><div><strong>5. Thumbnail</strong><span>1280×720 JPG. Shorts: stack the hook in the center third. Save to thumbnails/thumbnail_VIDEO_ID.jpg. Show it, then verify live maxresdefault.</span></div></li>
+        <li class="check-item"><div class="box open">☐</div><div><strong>6. Upload</strong><span>update_video_metadata_cli.py VIDEO_ID --title --description-file --tags --thumbnail. Unlisted until comments work.</span></div></li>
+        <li class="check-item"><div class="box open">☐</div><div><strong>7. Pin Skool comment in Studio as @RifatErdemSahin</strong><span>YouTube cannot pin via API. Paste the Skool CTA and pin it yourself.</span></div></li>
+        <li class="check-item"><div class="box open">☐</div><div><strong>8. Commit and push</strong><span>Only description, thumbnail, transcript for that video.</span></div></li>
+      </ul>
+    </div>
+  </div>
+  <script src="nav.js"></script>
+</body>
+</html>

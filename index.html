@@ -330,6 +330,46 @@
 
     .btn-secondary { background: rgba(255, 255, 255, 0.08); color: var(--text-main); border: 1px solid var(--border); }
     .btn-secondary:hover { background: rgba(255, 255, 255, 0.12); }
+
+    .latest-run {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 20px;
+      align-items: center;
+      margin-bottom: 32px;
+    }
+    @media (max-width: 800px) { .latest-run { grid-template-columns: 1fr; } }
+    .latest-run img {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      display: block;
+    }
+    .check-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .check-item {
+      display: grid;
+      grid-template-columns: 22px 1fr auto;
+      gap: 12px;
+      align-items: start;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+    .check-item.done { border-color: rgba(52, 211, 153, 0.28); }
+    .check-box {
+      width: 18px; height: 18px; border-radius: 5px; margin-top: 2px;
+      background: var(--accent-green); color: #042f1a;
+      font-size: 12px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .check-item strong { display: block; font-size: 14px; }
+    .check-item .hint { display: block; font-size: 12px; color: var(--text-muted); }
+    .who {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.04em;
+      text-transform: uppercase; color: var(--accent-yellow); white-space: nowrap;
+    }
+    .who.you { color: var(--accent-green); }
   </style>
   <link rel="stylesheet" href="nav.css">
 </head>
@@ -348,6 +388,7 @@
         <ul class="nav-dropdown">
           <li class="nav-dropdown-label">Studio ops</li>
           <li><a href="index.html" class="nav-dropdown-link" data-page="index.html">Dashboard <span class="nav-dropdown-hint">home</span></a></li>
+          <li><a href="checklist.html" class="nav-dropdown-link" data-page="checklist.html">Packaging Checklist</a></li>
           <li><a href="endvideo.html" class="nav-dropdown-link" data-page="endvideo.html">End Video Closing</a></li>
           <li><a href="skills.html" class="nav-dropdown-link" data-page="skills.html">Skills Studio</a></li>
         </ul>
@@ -404,14 +445,14 @@
       <div class="status-banner-content">
         <div class="pulse-indicator"></div>
         <div>
-          <div class="banner-title">🎉 Channel Videos Synced & Updated Live!</div>
+          <div class="banner-title">Latest Short packaged — Don't Blame Your Degree</div>
           <div class="banner-desc">
-            All videos on <strong>@RifatErdemSahin</strong> synced with YouTube-friendly emojis, custom metadata, and community links.
+            <code>omC9xa6G7u4</code> is live unlisted with title, Skool-first description, custom thumbnail, and a Skool comment you pinned in Studio. See the <a class="link-highlight" href="#packaging-checklist">packaging checklist</a> or the full <a class="link-highlight" href="checklist.html">SOP page</a>.
           </div>
         </div>
       </div>
       <div>
-        <a href="updates.html" class="btn btn-secondary" style="background: rgba(52, 211, 153, 0.2); border-color: rgba(52, 211, 153, 0.4); color: white;">View Updates Log ➔</a>
+        <a href="checklist.html" class="btn btn-secondary" style="background: rgba(52, 211, 153, 0.2); border-color: rgba(52, 211, 153, 0.4); color: white;">Open checklist ➔</a>
       </div>
     </div>
 
@@ -433,6 +474,45 @@
         <div class="card-label">Channel Sync Status</div>
         <div class="card-value" style="color: var(--accent-green); font-size: 18px;">26 / 26 Synced ✓</div>
       </div>
+      <div class="card">
+        <div class="card-label">Latest packaging run</div>
+        <div class="card-value" style="font-size: 15px;">
+          <a class="link-highlight" href="https://studio.youtube.com/video/omC9xa6G7u4/edit" target="_blank" rel="noopener">omC9xa6G7u4 ↗</a>
+        </div>
+        <div class="meta-tag">Pinned Skool comment · git ee53a9c</div>
+      </div>
+    </div>
+
+    <div id="packaging-checklist" class="section">
+      <h2 class="section-title">
+        <span>Packaging checklist — omC9xa6G7u4</span>
+        <span class="badge badge-ready">Done</span>
+      </h2>
+      <div class="latest-run">
+        <a href="checklist.html"><img src="thumbnails/thumbnail_omC9xa6G7u4.jpg" alt="Custom thumbnail for Don't Blame Your Degree"></a>
+        <div>
+          <p style="color: var(--text-muted); margin-bottom: 14px;">
+            30 Aug 2026 · 38s Short · unlisted so comments work.
+            Title, description, thumbnail, and transcript shipped in
+            <a class="link-highlight" href="https://github.com/rifaterdemsahin/youtube-metadata/commit/ee53a9c">ee53a9c</a>.
+            You added and pinned the Skool comment in Studio as @RifatErdemSahin.
+          </p>
+          <p style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;">
+            <a class="btn btn-secondary" href="https://studio.youtube.com/video/omC9xa6G7u4/edit" target="_blank" rel="noopener">Studio ↗</a>
+            <a class="btn btn-secondary" href="https://www.youtube.com/shorts/omC9xa6G7u4" target="_blank" rel="noopener">Watch ↗</a>
+            <a class="btn btn-secondary" href="checklist.html">Full SOP checklist</a>
+          </p>
+        </div>
+      </div>
+      <ul class="check-list">
+        <li class="check-item done"><div class="check-box">✓</div><div><strong>Transcribe</strong><span class="hint">transcripts/omC9xa6G7u4.txt</span></div><div class="who">Grok</div></li>
+        <li class="check-item done"><div class="check-box">✓</div><div><strong>Title</strong><span class="hint">Don't Blame Your Degree. Level Up Your Circle.</span></div><div class="who">Grok</div></li>
+        <li class="check-item done"><div class="check-box">✓</div><div><strong>Skool-first description</strong><span class="hint">descriptions/omC9xa6G7u4.txt — CTA on line 1, footer on the bottom</span></div><div class="who">Grok</div></li>
+        <li class="check-item done"><div class="check-box">✓</div><div><strong>Custom thumbnail</strong><span class="hint">Center-safe 16:9. Live maxresdefault verified.</span></div><div class="who">Grok</div></li>
+        <li class="check-item done"><div class="check-box">✓</div><div><strong>Upload to YouTube</strong><span class="hint">Title, tags, description, thumbnail. Privacy: unlisted.</span></div><div class="who">Grok</div></li>
+        <li class="check-item done"><div class="check-box">✓</div><div><strong>Skool comment pinned</strong><span class="hint">You posted and pinned it in Studio as @RifatErdemSahin.</span></div><div class="who you">You</div></li>
+        <li class="check-item done"><div class="check-box">✓</div><div><strong>Commit and push</strong><span class="hint">ee53a9c on main</span></div><div class="who">Grok</div></li>
+      </ul>
     </div>
 
     <!-- Video Queue Section -->
