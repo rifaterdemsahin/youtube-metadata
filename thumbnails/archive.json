@@ -4,6 +4,16 @@
   "note": "Source of truth is thumbnail_<VIDEO_ID>.jpg. live_*.jpg is the YouTube maxresdefault snapshot. frame_<VIDEO_ID>.jpg is a first-frame still, not a per-second dump.",
   "thumbnails": [
     {
+      "video_id": "KVKJRdkH-B8",
+      "title": "How LLMs Actually Read: Tokenization Explained",
+      "custom": "thumbnails/thumbnail_KVKJRdkH-B8.jpg",
+      "live": "thumbnails/live_KVKJRdkH-B8.jpg",
+      "studio": "https://studio.youtube.com/video/KVKJRdkH-B8/edit",
+      "watch": "https://www.youtube.com/shorts/KVKJRdkH-B8",
+      "live_matches_custom": true,
+      "live_note": "No custom cover yet. Archived YouTube auto maxresdefault (Shorts 9:16 letterboxed into 16:9). Token IDs / 1D4 / 1D2 factory scene."
+    },
+    {
       "video_id": "OGB69NVn8ZU",
       "title": "AI Isn't a Con — Human Leverage",
       "custom": "thumbnails/thumbnail_OGB69NVn8ZU.jpg",
