@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A/B Test Recommendations — @RifatErdemSahin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="nav.css">
+  <style>
+    :root {
+      --bg-primary: #090d13;
+      --bg-secondary: #121820;
+      --bg-card: #19222c;
+      --bg-card-hover: #1f2b38;
+      --border: #283545;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --accent-blue: #38bdf8;
+      --accent-purple: #818cf8;
+      --accent-green: #34d399;
+      --accent-yellow: #fbbf24;
+      --accent-red: #f87171;
+      --accent-cyan: #22d3ee;
+      --accent-orange: #fb923c;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-top: 72px;
+    }
+    .top-nav {
+      position: fixed; top: 0; left: 0; right: 0; height: 64px;
+      background: rgba(18, 24, 32, 0.92);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 28px; z-index: 1000;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-main); }
+    .nav-logo {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, #ff0033, #cc0000);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 16px; color: white;
+      box-shadow: 0 2px 8px rgba(255, 0, 51, 0.3);
+    }
+    .nav-title { font-size: 16px; font-weight: 700; letter-spacing: -0.02em; }
+    .container { max-width: 1320px; margin: 28px auto 80px; padding: 0 24px; }
+
+    .hero {
+      position: relative; border-radius: 16px; overflow: hidden; margin-bottom: 28px;
+      border: 1px solid var(--border); min-height: 200px; display: flex; align-items: flex-end;
+    }
+    .hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.55; }
+    .hero-overlay {
+      position: relative; z-index: 1;
+      background: linear-gradient(0deg, rgba(9,13,19,0.95) 10%, rgba(9,13,19,0.35) 100%);
+      width: 100%; padding: 28px 32px;
+    }
+    .hero h1 { font-size: 28px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 8px; }
+    .hero p { color: var(--text-muted); font-size: 14px; max-width: 720px; }
+
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 28px; }
+    .kpi-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+    .kpi-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 8px; font-weight: 600; }
+    .kpi-value { font-size: 28px; font-weight: 800; font-family: 'JetBrains Mono', monospace; letter-spacing: -0.03em; margin-bottom: 4px; }
+    .kpi-sub { font-size: 12px; color: var(--text-muted); }
+
+    .section-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin-bottom: 28px; }
+    .section-head { margin-bottom: 16px; }
+    .section-title { font-size: 18px; font-weight: 700; }
+    .section-desc { font-size: 13px; color: var(--text-muted); margin-top: 4px; max-width: 800px; }
+
+    .rec-list { display: grid; gap: 16px; }
+    .rec-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px;
+      padding: 18px 20px; display: grid; grid-template-columns: 160px 1fr; gap: 18px;
+    }
+    @media (max-width: 700px) { .rec-card { grid-template-columns: 1fr; } }
+    .rec-thumb { position: relative; border-radius: 8px; overflow: hidden; aspect-ratio: 16/9; }
+    .rec-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .rec-priority {
+      position: absolute; top: 6px; left: 6px;
+      font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
+      padding: 2px 8px; border-radius: 100px;
+    }
+    .p-high { background: rgba(248,113,113,0.9); color: #1a0505; }
+    .p-medium { background: rgba(251,191,36,0.9); color: #1a1405; }
+    .rec-body { display: flex; flex-direction: column; gap: 8px; }
+    .rec-title-row { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+    .rec-title { font-size: 15px; font-weight: 700; }
+    .rec-stats { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--text-dim); }
+    .rec-stats b { color: var(--text-main); }
+    .rec-diagnosis {
+      font-size: 12.5px; padding: 4px 10px; border-radius: 100px; display: inline-flex; align-items: center; gap: 6px; width: fit-content;
+      font-weight: 600;
+    }
+    .diag-high { background: rgba(248,113,113,0.12); color: var(--accent-red); border: 1px solid rgba(248,113,113,0.3); }
+    .diag-over { background: rgba(251,191,36,0.12); color: var(--accent-yellow); border: 1px solid rgba(251,191,36,0.3); }
+    .rec-plan { font-size: 13px; color: var(--text-muted); }
+    .rec-plan strong { color: var(--text-main); }
+    .rec-actions { display: flex; gap: 10px; margin-top: 4px; flex-wrap: wrap; }
+    .rec-link {
+      font-size: 11.5px; font-weight: 600; text-decoration: none; padding: 5px 12px;
+      border-radius: 100px; border: 1px solid var(--border); color: var(--text-main); background: var(--bg-secondary);
+    }
+    .rec-link:hover { background: var(--bg-card-hover); }
+    .rec-link.primary { background: rgba(56,189,248,0.15); border-color: rgba(56,189,248,0.4); color: var(--accent-cyan); }
+
+    .method-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+    .method-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+    .method-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+    .method-card p { font-size: 13px; color: var(--text-muted); }
+
+    .playbook-list { list-style: none; display: grid; gap: 10px; }
+    .playbook-list li { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; font-size: 13px; color: var(--text-muted); }
+    .playbook-list strong { color: var(--text-main); }
+    .empty-state { padding: 32px; text-align: center; color: var(--text-muted); font-size: 13px; }
+  </style>
+</head>
+<body>
+  <nav class="top-nav">
+    <a href="index.html" class="nav-brand">
+      <div class="nav-logo">▶</div>
+      <div><div class="nav-title">YouTube Studio MCP</div></div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li class="nav-group" data-group="operate">
+        <button type="button" class="nav-link nav-group-toggle">Operate <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Studio ops</li>
+          <li><a href="index.html" class="nav-dropdown-link" data-page="index.html">Dashboard <span class="nav-dropdown-hint">home</span></a></li>
+          <li><a href="checklist.html" class="nav-dropdown-link" data-page="checklist.html">Packaging Checklist</a></li>
+          <li><a href="endvideo.html" class="nav-dropdown-link" data-page="endvideo.html">End Video Closing</a></li>
+          <li><a href="skills.html" class="nav-dropdown-link" data-page="skills.html">Skills Studio</a></li>
+          <li><a href="authentication.html" class="nav-dropdown-link" data-page="authentication.html">Analytics Authentication</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="library">
+        <button type="button" class="nav-link nav-group-toggle">Library <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Content assets</li>
+          <li><a href="catalog.html" class="nav-dropdown-link" data-page="catalog.html">Video Catalog</a></li>
+          <li><a href="playlists.html" class="nav-dropdown-link" data-page="playlists.html">Playlists</a></li>
+          <li><a href="thumbnails.html" class="nav-dropdown-link" data-page="thumbnails.html">Thumbnails</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="performance">
+        <button type="button" class="nav-link nav-group-toggle">Performance <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Audience metrics</li>
+          <li><a href="analytics.html" class="nav-dropdown-link" data-page="analytics.html">Overview</a></li>
+          <li><a href="retention.html" class="nav-dropdown-link" data-page="retention.html">Retention</a></li>
+          <li><a href="ctr.html" class="nav-dropdown-link" data-page="ctr.html">CTR</a></li>
+          <li><a href="video-ctr-report.html" class="nav-dropdown-link" data-page="video-ctr-report.html">Per-Video CTR Report</a></li>
+          <li><a href="ab-test-recommendations.html" class="nav-dropdown-link" data-page="ab-test-recommendations.html">A/B Test Recommendations</a></li>
+          <li><a href="august.html" class="nav-dropdown-link" data-page="august.html">August 2026</a></li>
+          <li><a href="year.html" class="nav-dropdown-link" data-page="year.html">Year briefing</a></li>
+          <li><a href="flow.html" class="nav-dropdown-link" data-page="flow.html">Google Flow</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="logs">
+        <button type="button" class="nav-link nav-group-toggle">Logs <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Change history</li>
+          <li><a href="reports.html" class="nav-dropdown-link" data-page="reports.html">Reports</a></li>
+          <li><a href="updates.html" class="nav-dropdown-link" data-page="updates.html">Updates Log</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="channel">
+        <button type="button" class="nav-link nav-group-toggle">Channel <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">External</li>
+          <li><a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" rel="noopener" class="nav-dropdown-link">@RifatErdemSahin ↗</a></li>
+          <li><a href="https://www.skool.com/delivery-pilot-8938" target="_blank" rel="noopener" class="nav-dropdown-link">Skool Community ↗</a></li>
+        </ul>
+      </li>
+    </ul>
+    <div class="nav-actions">
+      <a href="video-ctr-report.html" class="btn-secondary" style="padding: 6px 12px; font-size: 12px; border:1px solid var(--border); border-radius:8px; color:var(--text-main); text-decoration:none;">CTR Report ➔</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="hero">
+      <img src="thumbnails/ab_recommendations_hero.png" alt="">
+      <div class="hero-overlay">
+        <h1>A/B Test Recommendations</h1>
+        <p>Videos flagged from the <a href="video-ctr-report.html" style="color:var(--accent-cyan)">Per-Video CTR Report</a> as needing a packaging uplift, with a concrete thumbnail + title test plan for each — following the 3-variant A/B rule used on this channel: 3 thumbnails, 3 paired titles, run in YouTube Studio's Test &amp; Compare.</p>
+      </div>
+    </div>
+
+    <div class="kpi-grid" id="kpiGrid"></div>
+
+    <div class="section-card">
+      <div class="section-head">
+        <div class="section-title">🔴 High risk — re-package first</div>
+        <div class="section-desc">Below-median views AND below-median retention. The video isn't getting clicked much, and when it is, it isn't holding. Full repackage: new thumbnail language + new title angle, 3 variants each.</div>
+      </div>
+      <div class="rec-list" id="highRiskList"></div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-head">
+        <div class="section-title">🟡 Overpromising — align the promise</div>
+        <div class="section-desc">Above-median views but below-median retention. The thumbnail/title is winning the click but the video doesn't pay off what it promised — test titles/thumbnails that describe the actual content more precisely instead of chasing more clicks.</div>
+      </div>
+      <div class="rec-list" id="overpromisingList"></div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-head">
+        <div class="section-title">🔵 Hidden gems — promote, don't repackage</div>
+        <div class="section-desc">Below-median views but above-median retention — the content already works. These are lower priority for a thumbnail/title A/B test and higher priority for playlists, end-screens, and Community posts to get more impressions on an asset that already converts once seen.</div>
+      </div>
+      <div class="rec-list" id="gemsList"></div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-head">
+        <div class="section-title">How each test is built</div>
+        <div class="section-desc">Same 3-variant rule used on every thumbnail on this channel — see the <a href="thumbnails.html" style="color:var(--accent-cyan)">Thumbnails Studio</a> for live examples.</div>
+      </div>
+      <div class="method-grid">
+        <div class="method-card"><h3>Variant A — safe evolution</h3><p>Keep the current visual language but sharpen it: bigger claim, higher contrast, tighter crop. Control for the test.</p></div>
+        <div class="method-card"><h3>Variant B — curiosity/tension</h3><p>An open question or incomplete visual that needs the click to resolve. Usually wins raw CTR; watch retention doesn't collapse.</p></div>
+        <div class="method-card"><h3>Variant C — bold contrarian claim</h3><p>State the outcome directly and specifically. Tends to hold retention better because it sets an accurate expectation.</p></div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-head">
+        <div class="section-title">Rollout playbook</div>
+      </div>
+      <ul class="playbook-list">
+        <li><strong>1. Start with High risk, biggest view-count videos first.</strong> They have the most historical traffic to learn from fastest.</li>
+        <li><strong>2. Never A/B a thumbnail without checking real CTR in Studio first.</strong> This report's risk badges are a views/retention proxy — Studio's Reach tab has the actual number and should set the baseline before you start a test.</li>
+        <li><strong>3. Run 7–14 days per test</strong>, let YouTube's Test &amp; Compare pick a winner on watch time, not just CTR — see the <a href="ctr.html" style="color:var(--accent-cyan)">CTR page</a> playbook for why.</li>
+        <li><strong>4. Never generate a real person's likeness for a thumbnail.</strong> Leave a clean slot for a licensed/press photo cutout instead — AI faces get flagged and look uncanny.</li>
+        <li><strong>5. Overpromising videos get a title/thumbnail fix, not a bigger claim.</strong> The click problem there is already solved; retention is the leak, so test packaging that under-promises and over-delivers instead.</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    function fmt(n) { return (n === null || n === undefined) ? '—' : Number(n).toLocaleString(); }
+    function pct(n) { return (n === null || n === undefined) ? '—' : Number(n).toFixed(1) + '%'; }
+
+    function recCard(v, kind) {
+      const views = v.analytics_views || v.view_count || 0;
+      const studioUrl = `https://studio.youtube.com/video/${v.id}/analytics/tab-reach_and_engagement`;
+      const editUrl = `https://studio.youtube.com/video/${v.id}/edit`;
+      let priorityCls = 'p-medium', diagCls = 'diag-over', diagLabel = 'Overpromising', plan = '';
+      if (kind === 'high') {
+        priorityCls = 'p-high'; diagCls = 'diag-high'; diagLabel = 'High risk';
+        plan = `<strong>Test:</strong> 3 thumbnail variants (safe evolution / curiosity-hook / bold-claim) each paired with its own title. Current title likely undersells or mismatches search intent — rewrite as a specific outcome, not a topic.`;
+      } else if (kind === 'over') {
+        plan = `<strong>Test:</strong> keep the click-winning visual hook but rewrite the claim to match what the video actually delivers — retention (${pct(v.avg_view_pct)}) is well under the channel median, so the current packaging is over-promising.`;
+      } else {
+        priorityCls = ''; diagCls = ''; diagLabel = '';
+        plan = `<strong>Do instead:</strong> add to a relevant playlist, link from a higher-traffic video's end screen, and post a Community update pointing at it. Retention (${pct(v.avg_view_pct)}) is already above the channel median — this is a promotion gap, not a packaging one.`;
+      }
+      return `
+        <div class="rec-card">
+          <div class="rec-thumb">
+            <img src="${v.thumbnail_url}" alt="">
+            ${priorityCls ? `<span class="rec-priority ${priorityCls}">${kind === 'high' ? 'Priority' : 'Fix promise'}</span>` : ''}
+          </div>
+          <div class="rec-body">
+            <div class="rec-title-row">
+              <div class="rec-title">${v.title || v.id}</div>
+              <div class="rec-stats"><b>${fmt(views)}</b> views · <b>${pct(v.avg_view_pct)}</b> avg viewed</div>
+            </div>
+            ${diagLabel ? `<span class="rec-diagnosis ${diagCls}">${diagLabel}</span>` : ''}
+            <div class="rec-plan">${plan}</div>
+            <div class="rec-actions">
+              <a class="rec-link primary" href="${studioUrl}" target="_blank" rel="noopener">Check real CTR in Studio ➔</a>
+              <a class="rec-link" href="${editUrl}" target="_blank" rel="noopener">Edit video ➔</a>
+              <a class="rec-link" href="https://youtu.be/${v.id}" target="_blank" rel="noopener">Watch ➔</a>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    async function load() {
+      const res = await fetch('video_ctr_data.json', { cache: 'no-store' });
+      const data = await res.json();
+      const videos = data.videos.filter(v => (v.analytics_views || v.view_count));
+
+      const viewsArr = videos.map(v => v.analytics_views || v.view_count).sort((a,b) => a-b);
+      const retArr = videos.map(v => v.avg_view_pct).filter(x => x != null).sort((a,b) => a-b);
+      const median = arr => arr.length ? arr[Math.floor(arr.length/2)] : 0;
+      const medViews = median(viewsArr);
+      const medRet = median(retArr);
+
+      function quadrant(v) {
+        const views = v.analytics_views || v.view_count || 0;
+        const ret = v.avg_view_pct;
+        if (ret == null) return 'unknown';
+        const highViews = views >= medViews;
+        const highRet = ret >= medRet;
+        if (!highViews && !highRet) return 'high';
+        if (!highViews && highRet) return 'gem';
+        if (highViews && !highRet) return 'over';
+        return 'healthy';
+      }
+
+      const highRisk = videos.filter(v => quadrant(v) === 'high').sort((a,b) => (b.analytics_views||b.view_count||0) - (a.analytics_views||a.view_count||0));
+      const overpromising = videos.filter(v => quadrant(v) === 'over').sort((a,b) => (b.analytics_views||b.view_count||0) - (a.analytics_views||a.view_count||0));
+      const gems = videos.filter(v => quadrant(v) === 'gem').sort((a,b) => (b.avg_view_pct||0) - (a.avg_view_pct||0));
+
+      document.getElementById('kpiGrid').innerHTML = `
+        <div class="kpi-card"><div class="kpi-label">Needs re-package</div><div class="kpi-value" style="color:var(--accent-red)">${highRisk.length}</div><div class="kpi-sub">high risk — full thumbnail + title test</div></div>
+        <div class="kpi-card"><div class="kpi-label">Needs promise fix</div><div class="kpi-value" style="color:var(--accent-yellow)">${overpromising.length}</div><div class="kpi-sub">overpromising — align packaging to content</div></div>
+        <div class="kpi-card"><div class="kpi-label">Needs promotion</div><div class="kpi-value" style="color:var(--accent-purple)">${gems.length}</div><div class="kpi-sub">hidden gems — playlists/end-screens, not A/B</div></div>
+        <div class="kpi-card"><div class="kpi-label">Channel median AVP</div><div class="kpi-value">${pct(medRet)}</div><div class="kpi-sub">retention baseline used for all diagnoses above</div></div>
+      `;
+
+      const highEl = document.getElementById('highRiskList');
+      const overEl = document.getElementById('overpromisingList');
+      const gemEl = document.getElementById('gemsList');
+
+      highEl.innerHTML = highRisk.length ? highRisk.map(v => recCard(v, 'high')).join('') : '<div class="empty-state">No high-risk videos right now.</div>';
+      overEl.innerHTML = overpromising.length ? overpromising.map(v => recCard(v, 'over')).join('') : '<div class="empty-state">No overpromising videos right now.</div>';
+      gemEl.innerHTML = gems.length ? gems.map(v => recCard(v, 'gem')).join('') : '<div class="empty-state">No hidden gems flagged right now.</div>';
+    }
+
+    load().catch(err => {
+      document.getElementById('highRiskList').innerHTML = '<div class="empty-state">Could not load video_ctr_data.json — run <code>python3 fetch_video_ctr.py</code> first.</div>';
+      console.error(err);
+    });
+  </script>
+</body>
+</html>

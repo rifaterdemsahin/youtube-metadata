@@ -93,74 +93,69 @@ def main():
     end_date = datetime.date.today().isoformat()
     start_date = "2020-01-01"
 
-    metrics_attempts = [
-        ("videoThumbnailImpressions,videoThumbnailImpressionsClickRate,views", True),
-        ("videoThumbnailImpressions,videoThumbnailImpressionsClickRate", True),
-        ("videoThumbnailImpressions,videoThumbnailImpressionsClickRate", False),
-        ("impressions,impressionsClickThroughRate,views", True),
-        ("impressions,impressionClickThroughRate,views", True),
-    ]
+    # True impressions / thumbnail-CTR metrics (videoThumbnailImpressions,
+    # videoThumbnailImpressionsClickRate, and the older impressions /
+    # impressionsClickThroughRate names) are rejected by this API client for
+    # every query shape tried (channel totals, per-video, per-day, filtered
+    # to one video) with "query not supported" -- this is YouTube's Reach
+    # metrics restriction: they're gated to audited/allowlisted OAuth
+    # clients and are otherwise Studio-only. So this script pulls the
+    # engagement metrics that ARE available for dimensions=video and uses
+    # them as a packaging-risk proxy instead of fabricating a CTR number.
+    ctr_restricted = True
+    ctr_restriction_note = (
+        "videoThumbnailImpressions / impressionsClickThroughRate metrics are "
+        "restricted (Reach report) for this OAuth client -- YouTube Analytics "
+        "API returned \"query not supported\" for every dimension/filter "
+        "combination tried. Real per-video CTR is Studio-only: Studio -> "
+        "Content -> select video -> Analytics -> Reach tab."
+    )
 
-    result = None
-    used_metrics = None
-    last_err = None
-    for metrics, use_sort in metrics_attempts:
-        sort_field = metrics.split(",")[0]
-        try:
-            kwargs = dict(
-                ids=f"channel=={channel_id}",
-                startDate=start_date,
-                endDate=end_date,
-                metrics=metrics,
-                dimensions="video",
-                maxResults=200,
-            )
-            if use_sort:
-                kwargs["sort"] = "-" + sort_field
-            result = yta.reports().query(**kwargs).execute()
-            used_metrics = metrics
-            break
-        except Exception as e:
-            last_err = e
-            print(f"Attempt with metrics='{metrics}' sort={use_sort} failed: {e}")
+    metrics = "views,averageViewPercentage,subscribersGained,likes,comments"
+    result = yta.reports().query(
+        ids=f"channel=={channel_id}",
+        startDate=start_date,
+        endDate=end_date,
+        metrics=metrics,
+        dimensions="video",
+        sort="-views",
+        maxResults=200,
+    ).execute()
 
-    if result is None:
-        raise SystemExit(f"All metric-name attempts failed. Last error: {last_err}")
-
-    print(f"Using metrics string: {used_metrics}")
     headers = [h["name"] for h in result.get("columnHeaders", [])]
     rows = result.get("rows", [])
     print(f"Analytics rows returned: {len(rows)}")
 
-    ctr_by_video = {}
+    stats_by_video = {}
     for row in rows:
         rec = dict(zip(headers, row))
         vid = rec.get("video")
-        ctr_by_video[vid] = rec
+        stats_by_video[vid] = rec
 
     merged = []
     for vid, meta in videos.items():
-        rec = ctr_by_video.get(vid, {})
-        impressions = rec.get("videoThumbnailImpressions", rec.get("impressions", 0))
-        ctr_pct = rec.get(
-            "videoThumbnailImpressionsClickRate",
-            rec.get("impressionsClickThroughRate", rec.get("impressionClickThroughRate")),
-        )
+        rec = stats_by_video.get(vid, {})
         merged.append({
             **meta,
-            "impressions": impressions,
-            "impressions_ctr_pct": ctr_pct,
+            "impressions": None,
+            "impressions_ctr_pct": None,
             "analytics_views": rec.get("views"),
+            "avg_view_pct": rec.get("averageViewPercentage"),
+            "subscribers_gained": rec.get("subscribersGained"),
+            "likes": rec.get("likes"),
+            "comments": rec.get("comments"),
         })
 
-    merged.sort(key=lambda v: (v.get("impressions") or 0), reverse=True)
+    merged.sort(key=lambda v: (v.get("analytics_views") or v.get("view_count") or 0), reverse=True)
 
     out = {
         "pulled_at": datetime.datetime.utcnow().isoformat() + "Z",
         "channel_id": channel_id,
         "channel_title": channel["snippet"]["title"],
         "window": {"start": start_date, "end": end_date},
-        "metrics_used": used_metrics,
+        "metrics_used": metrics,
+        "ctr_restricted": ctr_restricted,
+        "ctr_restriction_note": ctr_restriction_note,
         "videos": merged,
     }
 

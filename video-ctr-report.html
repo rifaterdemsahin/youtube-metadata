@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Per-Video CTR Report — @RifatErdemSahin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="nav.css">
+  <style>
+    :root {
+      --bg-primary: #090d13;
+      --bg-secondary: #121820;
+      --bg-card: #19222c;
+      --bg-card-hover: #1f2b38;
+      --border: #283545;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --accent-blue: #38bdf8;
+      --accent-purple: #818cf8;
+      --accent-green: #34d399;
+      --accent-yellow: #fbbf24;
+      --accent-red: #f87171;
+      --accent-cyan: #22d3ee;
+      --accent-orange: #fb923c;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-top: 72px;
+    }
+    .top-nav {
+      position: fixed; top: 0; left: 0; right: 0; height: 64px;
+      background: rgba(18, 24, 32, 0.92);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 28px; z-index: 1000;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-main); }
+    .nav-logo {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, #ff0033, #cc0000);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 16px; color: white;
+      box-shadow: 0 2px 8px rgba(255, 0, 51, 0.3);
+    }
+    .nav-title { font-size: 16px; font-weight: 700; letter-spacing: -0.02em; }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+    .container { max-width: 1320px; margin: 28px auto 80px; padding: 0 24px; }
+
+    .hero {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 28px;
+      border: 1px solid var(--border);
+      min-height: 200px;
+      display: flex;
+      align-items: flex-end;
+    }
+    .hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.55; }
+    .hero-overlay {
+      position: relative; z-index: 1;
+      background: linear-gradient(0deg, rgba(9,13,19,0.95) 10%, rgba(9,13,19,0.35) 100%);
+      width: 100%; padding: 28px 32px;
+    }
+    .hero h1 { font-size: 28px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 8px; }
+    .hero p { color: var(--text-muted); font-size: 14px; max-width: 720px; }
+
+    .limitation-banner {
+      background: rgba(251, 191, 36, 0.08);
+      border: 1px solid rgba(251, 191, 36, 0.35);
+      border-radius: 12px;
+      padding: 16px 20px;
+      margin-bottom: 28px;
+      font-size: 13px;
+      color: var(--text-muted);
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .limitation-banner .icon { font-size: 18px; flex: none; }
+    .limitation-banner strong { color: var(--accent-yellow); }
+    .limitation-banner a { color: var(--accent-cyan); }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px; margin-bottom: 28px;
+    }
+    .kpi-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px;
+    }
+    .kpi-label {
+      font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em;
+      color: var(--text-muted); margin-bottom: 8px; font-weight: 600;
+    }
+    .kpi-value { font-size: 28px; font-weight: 800; font-family: 'JetBrains Mono', monospace; letter-spacing: -0.03em; margin-bottom: 4px; }
+    .kpi-sub { font-size: 12px; color: var(--text-muted); }
+
+    .section-card {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: 14px; padding: 24px; margin-bottom: 28px;
+    }
+    .section-head { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; flex-wrap: wrap; gap: 12px; }
+    .section-title { font-size: 18px; font-weight: 700; }
+    .section-desc { font-size: 13px; color: var(--text-muted); margin-top: 4px; max-width: 760px; }
+
+    .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+    .filter-btn {
+      font-family: 'JetBrains Mono', monospace; font-size: 11.5px; font-weight: 600;
+      padding: 6px 12px; border-radius: 100px; cursor: pointer;
+      border: 1px solid var(--border); background: var(--bg-card); color: var(--text-muted);
+    }
+    .filter-btn.active { background: rgba(56,189,248,0.15); border-color: var(--accent-blue); color: var(--accent-blue); }
+
+    .video-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; }
+    .video-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .video-thumb-wrap { position: relative; aspect-ratio: 16/9; background: #000; }
+    .video-thumb-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .risk-badge {
+      position: absolute; top: 8px; left: 8px;
+      font-family: 'JetBrains Mono', monospace; font-size: 10.5px; font-weight: 700;
+      padding: 3px 9px; border-radius: 100px;
+      backdrop-filter: blur(4px);
+    }
+    .risk-high { background: rgba(248,113,113,0.85); color: #1a0505; }
+    .risk-medium { background: rgba(251,191,36,0.85); color: #1a1405; }
+    .risk-gem { background: rgba(129,140,248,0.85); color: #0a0a1a; }
+    .risk-low { background: rgba(52,211,153,0.85); color: #05140d; }
+    .ab-flag {
+      position: absolute; top: 8px; right: 8px;
+      font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
+      padding: 3px 8px; border-radius: 100px;
+      background: rgba(56,189,248,0.85); color: #05131a;
+    }
+    .video-body { padding: 14px 16px; display: flex; flex-direction: column; gap: 10px; flex: 1; }
+    .video-title { font-size: 13.5px; font-weight: 700; line-height: 1.35; min-height: 36px; }
+    .video-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-family: 'JetBrains Mono', monospace; font-size: 12px; }
+    .video-stat-label { color: var(--text-dim); font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.04em; }
+    .video-stat-value { font-weight: 700; }
+    .video-footer { display: flex; justify-content: space-between; align-items: center; margin-top: auto; padding-top: 10px; border-top: 1px dashed rgba(40,53,69,0.6); }
+    .video-date { font-size: 11px; color: var(--text-dim); font-family: 'JetBrains Mono', monospace; }
+    .studio-link { font-size: 11px; color: var(--accent-cyan); text-decoration: none; font-weight: 600; }
+    .studio-link:hover { text-decoration: underline; }
+
+    .legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 12px; color: var(--text-muted); margin-top: 14px; }
+    .legend span { display: inline-flex; align-items: center; gap: 6px; }
+    .legend .sw { width: 10px; height: 10px; border-radius: 3px; }
+  </style>
+</head>
+<body>
+  <nav class="top-nav">
+    <a href="index.html" class="nav-brand">
+      <div class="nav-logo">▶</div>
+      <div><div class="nav-title">YouTube Studio MCP</div></div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li class="nav-group" data-group="operate">
+        <button type="button" class="nav-link nav-group-toggle">Operate <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Studio ops</li>
+          <li><a href="index.html" class="nav-dropdown-link" data-page="index.html">Dashboard <span class="nav-dropdown-hint">home</span></a></li>
+          <li><a href="checklist.html" class="nav-dropdown-link" data-page="checklist.html">Packaging Checklist</a></li>
+          <li><a href="endvideo.html" class="nav-dropdown-link" data-page="endvideo.html">End Video Closing</a></li>
+          <li><a href="skills.html" class="nav-dropdown-link" data-page="skills.html">Skills Studio</a></li>
+          <li><a href="authentication.html" class="nav-dropdown-link" data-page="authentication.html">Analytics Authentication</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="library">
+        <button type="button" class="nav-link nav-group-toggle">Library <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Content assets</li>
+          <li><a href="catalog.html" class="nav-dropdown-link" data-page="catalog.html">Video Catalog</a></li>
+          <li><a href="playlists.html" class="nav-dropdown-link" data-page="playlists.html">Playlists</a></li>
+          <li><a href="thumbnails.html" class="nav-dropdown-link" data-page="thumbnails.html">Thumbnails</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="performance">
+        <button type="button" class="nav-link nav-group-toggle">Performance <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Audience metrics</li>
+          <li><a href="analytics.html" class="nav-dropdown-link" data-page="analytics.html">Overview</a></li>
+          <li><a href="retention.html" class="nav-dropdown-link" data-page="retention.html">Retention</a></li>
+          <li><a href="ctr.html" class="nav-dropdown-link" data-page="ctr.html">CTR</a></li>
+          <li><a href="video-ctr-report.html" class="nav-dropdown-link" data-page="video-ctr-report.html">Per-Video CTR Report</a></li>
+          <li><a href="ab-test-recommendations.html" class="nav-dropdown-link" data-page="ab-test-recommendations.html">A/B Test Recommendations</a></li>
+          <li><a href="august.html" class="nav-dropdown-link" data-page="august.html">August 2026</a></li>
+          <li><a href="year.html" class="nav-dropdown-link" data-page="year.html">Year briefing</a></li>
+          <li><a href="flow.html" class="nav-dropdown-link" data-page="flow.html">Google Flow</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="logs">
+        <button type="button" class="nav-link nav-group-toggle">Logs <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Change history</li>
+          <li><a href="reports.html" class="nav-dropdown-link" data-page="reports.html">Reports</a></li>
+          <li><a href="updates.html" class="nav-dropdown-link" data-page="updates.html">Updates Log</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="channel">
+        <button type="button" class="nav-link nav-group-toggle">Channel <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">External</li>
+          <li><a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" rel="noopener" class="nav-dropdown-link">@RifatErdemSahin ↗</a></li>
+          <li><a href="https://www.skool.com/delivery-pilot-8938" target="_blank" rel="noopener" class="nav-dropdown-link">Skool Community ↗</a></li>
+        </ul>
+      </li>
+    </ul>
+    <div class="nav-actions">
+      <a href="ab-test-recommendations.html" class="btn-secondary" style="padding: 6px 12px; font-size: 12px; border:1px solid var(--border); border-radius:8px; color:var(--text-main); text-decoration:none;">A/B Recs ➔</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="hero">
+      <img src="thumbnails/ctr_report_hero.png" alt="">
+      <div class="hero-overlay">
+        <h1>Per-Video CTR &amp; Packaging Report</h1>
+        <p>Every video on the channel, ranked by views, with a packaging-risk read built from what the API actually gives us. Thumbnails included so you can eyeball each one next to its numbers.</p>
+      </div>
+    </div>
+
+    <div class="limitation-banner">
+      <span class="icon">⚠️</span>
+      <div>
+        <strong>Real per-video CTR isn't available here.</strong> YouTube's Analytics API rejects impressions / thumbnail-CTR queries for this app across every shape tried (channel totals, per-video, per-day, single-video filter) — YouTube gates that "Reach" data to audited API clients; it's otherwise <strong>Studio-only</strong>. What follows is a proxy: views + average-view-percentage + subscriber/like/comment pull, used to flag which videos most likely have a <em>packaging</em> problem (thumbnail/title) versus a <em>content</em> problem. Click "Studio ➔" on any card for the real CTR number. See <a href="ctr.html">channel-wide CTR by traffic source</a> for the one real CTR figure this repo has.
+      </div>
+    </div>
+
+    <div class="kpi-grid" id="kpiGrid"></div>
+
+    <div class="section-card">
+      <div class="section-head">
+        <div>
+          <div class="section-title">All videos</div>
+          <div class="section-desc">Sorted by views. Risk badge = packaging-risk quadrant (views × retention, both relative to the channel median) — see legend below.</div>
+        </div>
+        <span id="countBadge" style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-muted);"></span>
+      </div>
+      <div class="filter-bar" id="filterBar"></div>
+      <div class="video-grid" id="videoGrid"></div>
+      <div class="legend">
+        <span><span class="sw" style="background:#f87171"></span> High risk — low views, low retention: re-package (thumbnail + title + hook)</span>
+        <span><span class="sw" style="background:#818cf8"></span> Hidden gem — low views, high retention: content works, packaging/promotion is the bottleneck</span>
+        <span><span class="sw" style="background:#fbbf24"></span> Overpromising — high views, low retention: thumbnail/title sets expectations the video doesn't pay off</span>
+        <span><span class="sw" style="background:#34d399"></span> Healthy — high views, high retention</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    function fmt(n) { return (n === null || n === undefined) ? '—' : Number(n).toLocaleString(); }
+    function pct(n) { return (n === null || n === undefined) ? '—' : Number(n).toFixed(1) + '%'; }
+
+    async function load() {
+      const res = await fetch('video_ctr_data.json', { cache: 'no-store' });
+      const data = await res.json();
+      const videos = data.videos.filter(v => (v.analytics_views || v.view_count));
+
+      const viewsArr = videos.map(v => v.analytics_views || v.view_count).sort((a,b) => a-b);
+      const retArr = videos.map(v => v.avg_view_pct).filter(x => x != null).sort((a,b) => a-b);
+      const median = arr => arr.length ? arr[Math.floor(arr.length/2)] : 0;
+      const medViews = median(viewsArr);
+      const medRet = median(retArr);
+
+      function quadrant(v) {
+        const views = v.analytics_views || v.view_count || 0;
+        const ret = v.avg_view_pct;
+        if (ret == null) return { key: 'unknown', label: 'No retention data', cls: 'risk-medium' };
+        const highViews = views >= medViews;
+        const highRet = ret >= medRet;
+        if (!highViews && !highRet) return { key: 'high', label: 'High risk', cls: 'risk-high' };
+        if (!highViews && highRet) return { key: 'gem', label: 'Hidden gem', cls: 'risk-gem' };
+        if (highViews && !highRet) return { key: 'over', label: 'Overpromising', cls: 'risk-medium' };
+        return { key: 'healthy', label: 'Healthy', cls: 'risk-low' };
+      }
+
+      videos.forEach(v => v._q = quadrant(v));
+
+      // KPIs
+      const kpiGrid = document.getElementById('kpiGrid');
+      const totalViews = videos.reduce((s,v) => s + (v.analytics_views || v.view_count || 0), 0);
+      const highRisk = videos.filter(v => v._q.key === 'high').length;
+      const gems = videos.filter(v => v._q.key === 'gem').length;
+      kpiGrid.innerHTML = `
+        <div class="kpi-card"><div class="kpi-label">Videos analyzed</div><div class="kpi-value">${videos.length}</div><div class="kpi-sub">of ${data.videos.length} in catalog</div></div>
+        <div class="kpi-card"><div class="kpi-label">Total views</div><div class="kpi-value">${fmt(totalViews)}</div><div class="kpi-sub">lifetime, analytics window ${data.window.start} → ${data.window.end}</div></div>
+        <div class="kpi-card"><div class="kpi-label">Channel median AVP</div><div class="kpi-value">${pct(medRet)}</div><div class="kpi-sub">average view percentage — the retention baseline used below</div></div>
+        <div class="kpi-card"><div class="kpi-label">High-risk videos</div><div class="kpi-value" style="color:var(--accent-red)">${highRisk}</div><div class="kpi-sub">low views + low retention — see A/B Recs</div></div>
+        <div class="kpi-card"><div class="kpi-label">Hidden gems</div><div class="kpi-value" style="color:var(--accent-purple)">${gems}</div><div class="kpi-sub">high retention, low views — packaging is holding these back</div></div>
+      `;
+
+      document.getElementById('countBadge').textContent = videos.length + ' videos';
+
+      const filters = [
+        { key: 'all', label: 'All' },
+        { key: 'high', label: 'High risk' },
+        { key: 'gem', label: 'Hidden gems' },
+        { key: 'over', label: 'Overpromising' },
+        { key: 'healthy', label: 'Healthy' },
+        { key: 'unknown', label: 'No data yet' },
+      ];
+      let active = 'all';
+      const filterBar = document.getElementById('filterBar');
+      function renderFilters() {
+        filterBar.innerHTML = '';
+        filters.forEach(f => {
+          const btn = document.createElement('button');
+          btn.className = 'filter-btn' + (active === f.key ? ' active' : '');
+          btn.textContent = f.label;
+          btn.onclick = () => { active = f.key; renderFilters(); renderGrid(); };
+          filterBar.appendChild(btn);
+        });
+      }
+
+      const grid = document.getElementById('videoGrid');
+      function renderGrid() {
+        grid.innerHTML = '';
+        videos
+          .filter(v => active === 'all' || v._q.key === active)
+          .forEach(v => {
+            const views = v.analytics_views || v.view_count || 0;
+            const card = document.createElement('div');
+            card.className = 'video-card';
+            const abBadge = v.title && data.ab_test_ids && data.ab_test_ids.includes(v.id)
+              ? '<span class="ab-flag">A/B</span>' : '';
+            card.innerHTML = `
+              <div class="video-thumb-wrap">
+                <img src="${v.thumbnail_url}" alt="${(v.title || '').replace(/"/g,'&quot;')}" loading="lazy">
+                <span class="risk-badge ${v._q.cls}">${v._q.label}</span>
+              </div>
+              <div class="video-body">
+                <div class="video-title">${v.title || v.id}</div>
+                <div class="video-stats">
+                  <div><div class="video-stat-label">Views</div><div class="video-stat-value">${fmt(views)}</div></div>
+                  <div><div class="video-stat-label">Avg % viewed</div><div class="video-stat-value">${pct(v.avg_view_pct)}</div></div>
+                  <div><div class="video-stat-label">Likes</div><div class="video-stat-value">${fmt(v.likes)}</div></div>
+                  <div><div class="video-stat-label">Subs gained</div><div class="video-stat-value">${fmt(v.subscribers_gained)}</div></div>
+                </div>
+                <div class="video-footer">
+                  <span class="video-date">${(v.published_at || '').slice(0,10)}</span>
+                  <a class="studio-link" href="https://studio.youtube.com/video/${v.id}/analytics/tab-reach_and_engagement" target="_blank" rel="noopener">Studio (real CTR) ➔</a>
+                </div>
+              </div>
+            `;
+            grid.appendChild(card);
+          });
+      }
+
+      renderFilters();
+      renderGrid();
+    }
+
+    load().catch(err => {
+      document.getElementById('videoGrid').innerHTML =
+        '<p style="color:var(--text-muted)">Could not load video_ctr_data.json — run <code>python3 fetch_video_ctr.py</code> first.</p>';
+      console.error(err);
+    });
+  </script>
+</body>
+</html>
