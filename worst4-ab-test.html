@@ -104,7 +104,15 @@
     .tag-c { background: rgba(248,113,113,0.92); color: #1a0505; }
     .variant-body { padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
     .variant-kind { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); font-weight: 600; }
+    .variant-title-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
     .variant-title { font-size: 14px; font-weight: 700; line-height: 1.35; }
+    .copy-btn {
+      flex-shrink: 0; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
+      padding: 4px 8px; border-radius: 100px; border: 1px solid var(--border); background: var(--bg-secondary);
+      color: var(--text-muted); transition: color .15s, border-color .15s;
+    }
+    .copy-btn:hover { color: var(--accent-blue); border-color: var(--accent-blue); }
+    .copy-btn.copied { color: var(--accent-green); border-color: var(--accent-green); }
 
     .method-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 10px; }
     .method-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
@@ -233,15 +241,15 @@
       <div class="variant-grid">
         <div class="variant-card">
           <div class="variant-thumb"><span class="variant-tag tag-a">A · Safe evolution</span><img src="thumbnails/3bwaZ-xUJcs_thumb_a.png" alt="Thumbnail A: silhouette crossing a fire-to-circuit bridge"></div>
-          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title">Master AI Before the Skills Gap Masters You</div></div>
+          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title-row"><div class="variant-title">Master AI Before the Skills Gap Masters You</div><button class="copy-btn" onclick="copyTitle(this, 'Master AI Before the Skills Gap Masters You')">Copy</button></div></div>
         </div>
         <div class="variant-card">
           <div class="variant-thumb"><span class="variant-tag tag-b">B · Curiosity / tension</span><img src="thumbnails/3bwaZ-xUJcs_thumb_b.png" alt="Thumbnail B: silhouette hesitating at a widening crack in the road"></div>
-          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title">The AI Skills Gap Nobody's Talking About</div></div>
+          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title-row"><div class="variant-title">The AI Skills Gap Nobody's Talking About</div><button class="copy-btn" onclick="copyTitle(this, 'The AI Skills Gap Nobody\'s Talking About')">Copy</button></div></div>
         </div>
         <div class="variant-card">
           <div class="variant-thumb"><span class="variant-tag tag-c">C · Bold contrarian claim</span><img src="thumbnails/3bwaZ-xUJcs_thumb_c.png" alt="Thumbnail C: flame morphing into circuit pattern"></div>
-          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title">Fire Didn't Wait for Permission. Neither Will AI.</div></div>
+          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title-row"><div class="variant-title">Fire Didn't Wait for Permission. Neither Will AI.</div><button class="copy-btn" onclick="copyTitle(this, 'Fire Didn\'t Wait for Permission. Neither Will AI.')">Copy</button></div></div>
         </div>
       </div>
     </div>
@@ -263,15 +271,15 @@
       <div class="variant-grid">
         <div class="variant-card">
           <div class="variant-thumb"><span class="variant-tag tag-a">A · Safe evolution</span><img src="thumbnails/2EVPwgi8NZA_thumb_a.png" alt="Thumbnail A: giant number 10 with brain/gear icon"></div>
-          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title">10 AI Tips to Learn Faster and Execute Like a Pro</div></div>
+          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title-row"><div class="variant-title">10 AI Tips to Learn Faster and Execute Like a Pro</div><button class="copy-btn" onclick="copyTitle(this, '10 AI Tips to Learn Faster and Execute Like a Pro')">Copy</button></div></div>
         </div>
         <div class="variant-card">
           <div class="variant-thumb"><span class="variant-tag tag-b">B · Curiosity / tension</span><img src="thumbnails/2EVPwgi8NZA_thumb_b.png" alt="Thumbnail B: confused scribble vs clean checkmark split screen"></div>
-          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title">Why Most People Are Learning AI Wrong</div></div>
+          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title-row"><div class="variant-title">Why Most People Are Learning AI Wrong</div><button class="copy-btn" onclick="copyTitle(this, 'Why Most People Are Learning AI Wrong')">Copy</button></div></div>
         </div>
         <div class="variant-card">
           <div class="variant-thumb"><span class="variant-tag tag-c">C · Bold contrarian claim</span><img src="thumbnails/2EVPwgi8NZA_thumb_c.png" alt="Thumbnail C: silhouette sprinting past a giant clock"></div>
-          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title">Do These 10 Things or Fall Behind on AI</div></div>
+          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title-row"><div class="variant-title">Do These 10 Things or Fall Behind on AI</div><button class="copy-btn" onclick="copyTitle(this, 'Do These 10 Things or Fall Behind on AI')">Copy</button></div></div>
         </div>
       </div>
     </div>
@@ -293,15 +301,15 @@
       <div class="variant-grid">
         <div class="variant-card">
           <div class="variant-thumb"><span class="variant-tag tag-a">A · Safe evolution</span><img src="thumbnails/WK66w51UMrs_thumb_a.png" alt="Thumbnail A: silhouette beside a glowing AI assistant orb"></div>
-          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title">Turn AI Into Your Personal Accountability Partner</div></div>
+          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title-row"><div class="variant-title">Turn AI Into Your Personal Accountability Partner</div><button class="copy-btn" onclick="copyTitle(this, 'Turn AI Into Your Personal Accountability Partner')">Copy</button></div></div>
         </div>
         <div class="variant-card">
           <div class="variant-thumb"><span class="variant-tag tag-b">B · Curiosity / tension</span><img src="thumbnails/WK66w51UMrs_thumb_b.png" alt="Thumbnail B: silhouette walking inside a circular calendar loop"></div>
-          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title">Stuck in a Loop? Groundhog Day Has the Answer</div></div>
+          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title-row"><div class="variant-title">Stuck in a Loop? Groundhog Day Has the Answer</div><button class="copy-btn" onclick="copyTitle(this, 'Stuck in a Loop? Groundhog Day Has the Answer')">Copy</button></div></div>
         </div>
         <div class="variant-card">
           <div class="variant-thumb"><span class="variant-tag tag-c">C · Bold contrarian claim</span><img src="thumbnails/WK66w51UMrs_thumb_c.png" alt="Thumbnail C: loop breaking into a straight glowing arrow"></div>
-          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title">One AI Habit Broke My Groundhog Day Loop</div></div>
+          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title-row"><div class="variant-title">One AI Habit Broke My Groundhog Day Loop</div><button class="copy-btn" onclick="copyTitle(this, 'One AI Habit Broke My Groundhog Day Loop')">Copy</button></div></div>
         </div>
       </div>
     </div>
@@ -323,15 +331,15 @@
       <div class="variant-grid">
         <div class="variant-card">
           <div class="variant-thumb"><span class="variant-tag tag-a">A · Safe evolution</span><img src="thumbnails/3VgRz5GeYDA_thumb_a.png" alt="Thumbnail A: kintsugi-repaired cracked vase"></div>
-          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title">Why Being "Broken" Is Your Secret Weapon in the AI Era</div></div>
+          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title-row"><div class="variant-title">Why Being "Broken" Is Your Secret Weapon in the AI Era</div><button class="copy-btn" onclick="copyTitle(this, 'Why Being "Broken" Is Your Secret Weapon in the AI Era')">Copy</button></div></div>
         </div>
         <div class="variant-card">
           <div class="variant-thumb"><span class="variant-tag tag-b">B · Curiosity / tension</span><img src="thumbnails/3VgRz5GeYDA_thumb_b.png" alt="Thumbnail B: silhouette amid falling money with a rising glowing arrow"></div>
-          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title">I Lost Millions. AI Taught Me Why That Was Good.</div></div>
+          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title-row"><div class="variant-title">I Lost Millions. AI Taught Me Why That Was Good.</div><button class="copy-btn" onclick="copyTitle(this, 'I Lost Millions. AI Taught Me Why That Was Good.')">Copy</button></div></div>
         </div>
         <div class="variant-card">
           <div class="variant-thumb"><span class="variant-tag tag-c">C · Bold contrarian claim</span><img src="thumbnails/3VgRz5GeYDA_thumb_c.png" alt="Thumbnail C: extreme closeup of glowing kintsugi cracks"></div>
-          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title">Your Broken Pieces Are More Valuable Than Ever</div></div>
+          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title-row"><div class="variant-title">Your Broken Pieces Are More Valuable Than Ever</div><button class="copy-btn" onclick="copyTitle(this, 'Your Broken Pieces Are More Valuable Than Ever')">Copy</button></div></div>
         </div>
       </div>
     </div>
@@ -353,6 +361,32 @@
 
   <script src="nav.js"></script>
   <script>
+    function copyTitle(btn, text) {
+      const done = () => {
+        const original = btn.textContent;
+        btn.textContent = "Copied!";
+        btn.classList.add("copied");
+        setTimeout(() => { btn.textContent = original; btn.classList.remove("copied"); }, 1500);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+      } else {
+        fallbackCopy(text, done);
+      }
+    }
+
+    function fallbackCopy(text, done) {
+      const ta = document.createElement("textarea");
+      ta.value = text;
+      ta.style.position = "fixed";
+      ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand("copy"); } catch (e) { console.error("Copy failed", e); }
+      ta.remove();
+      done();
+    }
+
     const THUMB_DOWNLOADS = [
       { src: "thumbnails/3bwaZ-xUJcs_thumb_a.png", name: "01-master-ai-skills-gap_A-safe-evolution_3bwaZ-xUJcs.png" },
       { src: "thumbnails/3bwaZ-xUJcs_thumb_b.png", name: "01-master-ai-skills-gap_B-curiosity-tension_3bwaZ-xUJcs.png" },
