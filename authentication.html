@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytics Authentication — @RifatErdemSahin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="nav.css">
+  <style>
+    :root {
+      --bg-primary: #090d13;
+      --bg-secondary: #121820;
+      --bg-card: #19222c;
+      --bg-card-hover: #1f2b38;
+      --border: #283545;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --accent-blue: #38bdf8;
+      --accent-purple: #818cf8;
+      --accent-green: #34d399;
+      --accent-yellow: #fbbf24;
+      --accent-red: #f87171;
+      --accent-cyan: #22d3ee;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-top: 72px;
+    }
+    .top-nav {
+      position: fixed; top: 0; left: 0; right: 0; height: 64px;
+      background: rgba(18, 24, 32, 0.92);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 28px; z-index: 1000;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-main); }
+    .nav-logo {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, #ff0033, #cc0000);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 16px; color: white;
+      box-shadow: 0 2px 8px rgba(255, 0, 51, 0.3);
+    }
+    .nav-title { font-size: 16px; font-weight: 700; letter-spacing: -0.02em; }
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+    .container { max-width: 860px; margin: 28px auto 80px; padding: 0 24px; }
+    .page-header {
+      background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 16px;
+      padding: 28px 32px; margin-bottom: 28px;
+    }
+    .page-header h1 { font-size: 26px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 8px; }
+    .page-header p { color: var(--text-muted); font-size: 14px; max-width: 640px; }
+    .section-card {
+      background: var(--bg-secondary); border: 1px solid var(--border);
+      border-radius: 14px; padding: 24px; margin-bottom: 24px;
+    }
+    .section-title { font-size: 16px; font-weight: 700; margin-bottom: 12px; }
+    .status-row {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 18px;
+      font-family: 'JetBrains Mono', monospace; font-size: 13px;
+    }
+    .dot { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+    .dot-yellow { background: var(--accent-yellow); box-shadow: 0 0 0 3px rgba(251,191,36,0.2); }
+    .dot-green { background: var(--accent-green); box-shadow: 0 0 0 3px rgba(52,211,153,0.2); }
+    .dot-red { background: var(--accent-red); box-shadow: 0 0 0 3px rgba(248,113,113,0.2); }
+    .btn-auth {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 14px 24px; border-radius: 10px;
+      font-size: 15px; font-weight: 700;
+      text-decoration: none; color: #090d13;
+      background: linear-gradient(135deg, #38bdf8, #22d3ee);
+      box-shadow: 0 4px 16px rgba(56, 189, 248, 0.3);
+      transition: transform .15s ease;
+    }
+    .btn-auth:hover { transform: translateY(-1px); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 8px 16px; border-radius: 8px; font-size: 13px; font-weight: 600;
+      text-decoration: none; cursor: pointer; border: 1px solid var(--border);
+      background: var(--bg-card); color: var(--text-main);
+    }
+    .btn-secondary:hover { background: var(--bg-card-hover); }
+    code {
+      font-family: 'JetBrains Mono', monospace; font-size: 12.5px;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 6px; padding: 2px 6px; color: var(--accent-cyan);
+    }
+    .scope-list { list-style: none; display: grid; gap: 8px; margin-top: 10px; }
+    .scope-list li {
+      font-family: 'JetBrains Mono', monospace; font-size: 12.5px;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 8px; padding: 10px 14px; color: var(--text-muted);
+    }
+    .scope-list strong { color: var(--text-main); }
+    .steps { list-style: none; display: grid; gap: 10px; counter-reset: step; }
+    .steps li {
+      counter-increment: step;
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 14px 16px 14px 46px;
+      font-size: 13px; color: var(--text-muted); position: relative;
+    }
+    .steps li::before {
+      content: counter(step);
+      position: absolute; left: 14px; top: 12px;
+      width: 22px; height: 22px; border-radius: 50%;
+      background: rgba(56,189,248,0.15); color: var(--accent-blue);
+      font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 12px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .steps strong { color: var(--text-main); }
+    .meta-line { font-size: 12px; color: var(--text-dim); margin-top: 14px; font-family: 'JetBrains Mono', monospace; }
+    .note {
+      margin-top: 16px; padding: 12px 16px;
+      background: rgba(251, 191, 36, 0.08); border: 1px solid rgba(251, 191, 36, 0.3);
+      border-radius: 10px; font-size: 12.5px; color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <nav class="top-nav">
+    <a href="index.html" class="nav-brand">
+      <div class="nav-logo">▶</div>
+      <div><div class="nav-title">YouTube Studio MCP</div></div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li class="nav-group" data-group="operate">
+        <button type="button" class="nav-link nav-group-toggle">Operate <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Studio ops</li>
+          <li><a href="index.html" class="nav-dropdown-link" data-page="index.html">Dashboard <span class="nav-dropdown-hint">home</span></a></li>
+          <li><a href="checklist.html" class="nav-dropdown-link" data-page="checklist.html">Packaging Checklist</a></li>
+          <li><a href="endvideo.html" class="nav-dropdown-link" data-page="endvideo.html">End Video Closing</a></li>
+          <li><a href="skills.html" class="nav-dropdown-link" data-page="skills.html">Skills Studio</a></li>
+          <li><a href="authentication.html" class="nav-dropdown-link" data-page="authentication.html">Analytics Authentication</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="library">
+        <button type="button" class="nav-link nav-group-toggle">Library <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Content assets</li>
+          <li><a href="catalog.html" class="nav-dropdown-link" data-page="catalog.html">Video Catalog</a></li>
+          <li><a href="playlists.html" class="nav-dropdown-link" data-page="playlists.html">Playlists</a></li>
+          <li><a href="thumbnails.html" class="nav-dropdown-link" data-page="thumbnails.html">Thumbnails</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="performance">
+        <button type="button" class="nav-link nav-group-toggle">Performance <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Audience metrics</li>
+          <li><a href="analytics.html" class="nav-dropdown-link" data-page="analytics.html">Overview</a></li>
+          <li><a href="retention.html" class="nav-dropdown-link" data-page="retention.html">Retention</a></li>
+          <li><a href="ctr.html" class="nav-dropdown-link" data-page="ctr.html">CTR</a></li>
+          <li><a href="video-ctr-report.html" class="nav-dropdown-link" data-page="video-ctr-report.html">Per-Video CTR Report</a></li>
+          <li><a href="ab-test-recommendations.html" class="nav-dropdown-link" data-page="ab-test-recommendations.html">A/B Test Recommendations</a></li>
+          <li><a href="august.html" class="nav-dropdown-link" data-page="august.html">August 2026</a></li>
+          <li><a href="year.html" class="nav-dropdown-link" data-page="year.html">Year briefing</a></li>
+          <li><a href="flow.html" class="nav-dropdown-link" data-page="flow.html">Google Flow</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="logs">
+        <button type="button" class="nav-link nav-group-toggle">Logs <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Change history</li>
+          <li><a href="reports.html" class="nav-dropdown-link" data-page="reports.html">Reports</a></li>
+          <li><a href="updates.html" class="nav-dropdown-link" data-page="updates.html">Updates Log</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="channel">
+        <button type="button" class="nav-link nav-group-toggle">Channel <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">External</li>
+          <li><a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" rel="noopener" class="nav-dropdown-link">@RifatErdemSahin ↗</a></li>
+          <li><a href="https://www.skool.com/delivery-pilot-8938" target="_blank" rel="noopener" class="nav-dropdown-link">Skool Community ↗</a></li>
+        </ul>
+      </li>
+    </ul>
+    <div class="nav-actions">
+      <a href="video-ctr-report.html" class="btn-secondary" style="padding: 6px 12px; font-size: 12px;">CTR Report ➔</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="page-header">
+      <h1>Analytics Authentication</h1>
+      <p>One-click re-auth for the <code>yt-analytics.readonly</code> scope. The Data-API-only token used elsewhere in this repo can't pull per-video impressions/CTR — this page holds the always-current consent link so you don't have to dig it out of a script's console output each time.</p>
+    </div>
+
+    <div class="section-card">
+      <div class="status-row" id="statusRow"><span class="dot dot-yellow"></span><span id="statusText">Checking auth link…</span></div>
+      <div class="section-title">Step 1 — Authorize</div>
+      <p style="color:var(--text-muted);font-size:13px;margin-bottom:16px;">Click below, sign in with the Google account that owns the channel, and approve. A local script on your machine is listening for the callback — leave the terminal running.</p>
+      <a id="authLink" class="btn-auth" href="#" target="_blank" rel="noopener">🔐 Authorize YouTube Analytics access</a>
+      <div class="meta-line" id="metaLine"></div>
+      <div id="warningBox"></div>
+      <div class="note">This link is single-use per script run (PKCE-bound to one local callback server). If it's expired or already used, re-run <code>python3 fetch_video_ctr.py</code> in the repo — it writes a fresh link into <code>auth_url.json</code>, which this page reads automatically. No need to edit this HTML again.</div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">What's being requested</div>
+      <ul class="scope-list">
+        <li><strong>youtube.readonly</strong> — read video/channel catalog (titles, thumbnails, publish dates)</li>
+        <li><strong>yt-analytics.readonly</strong> — read per-video impressions + impressions CTR from YouTube Analytics, not exposed by the Data API</li>
+      </ul>
+      <p style="color:var(--text-dim);font-size:12px;margin-top:12px;">Stored separately in <code>token_analytics.json</code> — the existing <code>token.json</code> (upload/edit scopes) is untouched.</p>
+    </div>
+
+    <div class="section-card">
+      <div class="section-title">Re-running the fetch</div>
+      <ol class="steps">
+        <li><strong>Run the script.</strong> <code>cd youtube-metadata && python3 fetch_video_ctr.py</code></li>
+        <li><strong>Come back to this page and click Authorize</strong> (refresh first — it reloads the latest link from <code>auth_url.json</code>).</li>
+        <li><strong>Approve in the Google consent screen.</strong> You'll land on a "you may close this tab" confirmation.</li>
+        <li><strong>Check the terminal.</strong> The script writes <code>video_ctr_data.json</code> and exits — that's what feeds the <a href="video-ctr-report.html" style="color:var(--accent-cyan)">Per-Video CTR Report</a>.</li>
+      </ol>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    async function load() {
+      try {
+        const res = await fetch('auth_url.json', { cache: 'no-store' });
+        if (!res.ok) throw new Error('auth_url.json not found');
+        const data = await res.json();
+        document.getElementById('authLink').href = data.url;
+        document.getElementById('metaLine').textContent =
+          'generated ' + data.generated_at + ' · callback port ' + data.callback_port + ' · ' + data.purpose;
+        document.getElementById('statusRow').innerHTML =
+          '<span class="dot dot-green"></span><span>Auth link loaded — ready to authorize</span>';
+        if (data.warning) {
+          document.getElementById('warningBox').innerHTML =
+            '<div class="note" style="border-color: rgba(248,113,113,0.4); background: rgba(248,113,113,0.08);">⚠️ ' + data.warning + '</div>';
+        }
+      } catch (e) {
+        document.getElementById('statusRow').innerHTML =
+          '<span class="dot dot-red"></span><span>No auth_url.json yet — run fetch_video_ctr.py first, then refresh this page</span>';
+      }
+    }
+    load();
+  </script>
+</body>
+</html>
