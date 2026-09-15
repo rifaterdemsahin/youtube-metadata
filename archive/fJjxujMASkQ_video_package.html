@@ -204,6 +204,58 @@ section{margin-bottom:40px;}
   line-height:1.5;
 }
 
+.social-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:16px;
+}
+@media (max-width:620px){
+  .social-grid{grid-template-columns:1fr;}
+}
+.social-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:4px;
+  padding:18px 20px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+.social-card-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+.platform-tag{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  font-family:"IBM Plex Mono", ui-monospace, monospace;
+  font-size:11px;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--ink-soft);
+}
+.platform-tag .dot{
+  width:8px;height:8px;border-radius:100px;
+}
+.platform-tag.linkedin .dot{background:#0a66c2;}
+.platform-tag.x .dot{background:var(--ink);}
+.social-body{
+  font-size:14.5px;
+  line-height:1.6;
+  white-space:pre-wrap;
+  flex:1;
+}
+.social-meta{
+  font-family:"IBM Plex Mono", ui-monospace, monospace;
+  font-size:11px;
+  color:var(--ink-soft);
+  border-top:1px dashed var(--border-strong);
+  padding-top:10px;
+}
+
 .thumb-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
@@ -293,7 +345,7 @@ footer a{color:var(--teal);}
 <div class="wrap">
   <p class="eyebrow">Video package · fJjxujMASkQ</p>
   <h1>Elon Musk Says AI Ends Work. Here's Why He's Wrong.</h1>
-  <p class="sub">Rebuttal video on AI, automation, and the future of work — title, description, pinned comment, and three thumbnail variants queued for an A/B test.</p>
+  <p class="sub">Rebuttal video on AI, automation, and the future of work — title, description, pinned comment, and three thumbnail + title variants queued for a 3-way A/B test.</p>
 
   <div class="archive-note">📦 Local archive copy — mirrors the published artifact at <a href="https://claude.ai/code/artifact/82f3144e-dec5-453f-92ec-3145c3d94a78" target="_blank" rel="noopener">claude.ai/code/artifact/82f3144e-dec5-453f-92ec-3145c3d94a78</a></div>
 
@@ -379,27 +431,77 @@ Want to future-proof your own career through this shift? Join our AI Architect &
 
   <section>
     <div class="section-head">
-      <h2>Thumbnail variants</h2>
-      <span class="section-note">A applied · B, C staged for testing</span>
+      <h2>Social posts</h2>
+      <span class="section-note">manual cross-post</span>
+    </div>
+    <div class="social-grid">
+      <div class="social-card">
+        <div class="social-card-head">
+          <span class="platform-tag linkedin"><span class="dot"></span>LinkedIn</span>
+          <button class="copy-btn" data-copy-target="copy-linkedin" type="button"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="5" y="5" width="9" height="9" rx="1.5"/><path d="M3 11V3a1 1 0 0 1 1-1h8"/></svg><span>Copy</span></button>
+        </div>
+        <div class="social-body" id="copy-linkedin">Elon Musk says that within five years, AI and humanoid robots make human labor optional — maybe obsolete.
+
+I disagree, and I made the case with the data.
+
+Every technological leap gets the same doom prediction. Calculators were supposed to erase accountants. Instead the cost of math collapsed to zero and financial modeling exploded — that's the Jevons Paradox: make output cheaper and demand multiplies, it doesn't shrink the workforce.
+
+The current AI boom is already following the same pattern. The Economist's own tracking shows US "hard-hat labour" running ~300,000 jobs above baseline by 2026, and white-collar STEM roles tracking 600,000–700,000 jobs above baseline over the same stretch.
+
+I've got two daughters growing up in this world, so this isn't academic for me. I walk through the Jevons Paradox, Moravec's Paradox, the real J-curve dip, and why AI increasingly rewards "X-shaped" workers — people with multiple deep skills that intersect.
+
+If you want to future-proof your own career through this shift, join our AI Architect &amp; Builder community: https://www.skool.com/delivery-pilot-8938
+
+#AI #FutureOfWork #ElonMusk #Automation #CareerDevelopment</div>
+        <div class="social-meta">~1,100 characters · links to Skool only</div>
+      </div>
+      <div class="social-card">
+        <div class="social-card-head">
+          <span class="platform-tag x"><span class="dot"></span>X / Twitter</span>
+          <button class="copy-btn" data-copy-target="copy-x" type="button"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="5" y="5" width="9" height="9" rx="1.5"/><path d="M3 11V3a1 1 0 0 1 1-1h8"/></svg><span>Copy</span></button>
+        </div>
+        <div class="social-body" id="copy-x">Elon says AI makes work optional within 5 years.
+
+I say we get MORE jobs, not fewer — the data backs it up:
+
+🏗️ Hard-hat labor: +300k jobs above baseline
+💻 White-collar STEM: +600-700k jobs above baseline
+
+Future-proof your career 👇
+https://www.skool.com/delivery-pilot-8938</div>
+        <div class="social-meta">274 characters · links to Skool only</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <h2>Thumbnail + title variants</h2>
+      <span class="section-note">3-way test · A live, B &amp; C staged</span>
     </div>
     <div class="thumb-grid">
       <div class="thumb-card">
-        <img src="../thumbnails/fJjxujMASkQ_thumb_a.png" alt="Thumbnail A: robot hand versus human hand, MORE JOBS NOT FEWER">
+        <img src="../thumbnails/fJjxujMASkQ_thumb_a.png" alt="Thumbnail A: split world, robot hand versus human hand, MORE JOBS NOT FEWER">
         <div class="thumb-label"><span>Variant A</span><span class="thumb-tag">✓</span></div>
-        <div class="thumb-caption">Split hands, cold vs warm. Set as the live thumbnail.</div>
+        <div class="thumb-caption"><b>Split World</b> — cold factory vs warm skyline, hands reaching toward each other. Set as the live thumbnail.</div>
+        <div class="thumb-caption">Title A: <i>Elon Musk Thinks Nobody Will Have to Work Soon. Here's the Truth.</i></div>
       </div>
       <div class="thumb-card">
-        <img src="../thumbnails/fJjxujMASkQ_thumb_b.png" alt="Thumbnail B: anonymous silhouette with rising data chart, THE PREDICTION IS WRONG">
+        <img src="../thumbnails/fJjxujMASkQ_thumb_b.png" alt="Thumbnail B: empty office at dusk, NOBODY WORKS? WRONG">
         <div class="thumb-label"><span>Variant B</span><span class="thumb-tag">B</span></div>
-        <div class="thumb-caption">Anonymous silhouette, data-chart hook. Staged for A/B test.</div>
+        <div class="thumb-caption"><b>Empty Office</b> — vast unoccupied desks, one lit lamp, curiosity/tension hook. Staged for A/B test.</div>
+        <div class="thumb-caption">Title B: <i>Elon Says Work Is Ending. The Data Says Otherwise.</i></div>
       </div>
       <div class="thumb-card">
-        <img src="../thumbnails/fJjxujMASkQ_thumb_c.png" alt="Thumbnail C: robot spawning job icons across a city street, AI CREATES JOBS">
+        <img src="../thumbnails/fJjxujMASkQ_thumb_c.png" alt="Thumbnail C: JOBS graph bursting with job-role icons, AI = MORE JOBS NOT FEWER">
         <div class="thumb-label"><span>Variant C</span><span class="thumb-tag">C</span></div>
-        <div class="thumb-caption">Robot spawning job icons. Staged for A/B test.</div>
+        <div class="thumb-caption"><b>Job Explosion</b> — cracked graph erupting with job icons, bold contrarian claim. Staged for A/B test.</div>
+        <div class="thumb-caption">Title C: <i>The "No More Jobs" Prediction Is Wrong (Here's What Actually Happens)</i></div>
       </div>
     </div>
-    <div class="ab-note"><b>Next step:</b> YouTube's thumbnail test isn't exposed via the Data API — in Studio, open this video → Details → the thumbnail test icon → upload B and C alongside the live A to start the test.</div>
+    <div class="ab-note"><b>Note on Musk's likeness:</b> no AI-generated face of Elon Musk is used in any variant — each composition leaves a clean slot for a licensed/press photo cutout instead, since AI likenesses of real people tend to get flagged and look uncanny.</div>
+    <div class="ab-note"><b>Testing tip:</b> A keeps the existing visual language (safe baseline), B leans on curiosity/tension, C leans on a bold contrarian claim. Run all three for 7–14 days and let YouTube's Test &amp; Compare pick on watch time, not just CTR — B often wins clicks but C tends to hold viewers who agree with the thesis.</div>
+    <div class="ab-note"><b>Next step:</b> YouTube's thumbnail test isn't exposed via the Data API — in Studio, open this video → Details → the thumbnail test icon → upload B and C alongside the live A, pairing each with its title variant, to start the 3-way test.</div>
   </section>
 
   <footer>
