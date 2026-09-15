@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Worst 4 — A/B Test Review</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="nav.css">
+  <style>
+    :root {
+      --bg-primary: #090d13;
+      --bg-secondary: #121820;
+      --bg-card: #19222c;
+      --bg-card-hover: #1f2b38;
+      --border: #283545;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --accent-blue: #38bdf8;
+      --accent-purple: #818cf8;
+      --accent-green: #34d399;
+      --accent-yellow: #fbbf24;
+      --accent-red: #f87171;
+      --accent-cyan: #22d3ee;
+      --accent-orange: #fb923c;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-top: 72px;
+    }
+    .top-nav {
+      position: fixed; top: 0; left: 0; right: 0; height: 64px;
+      background: rgba(18, 24, 32, 0.92);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 28px; z-index: 1000;
+    }
+    .nav-brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text-main); }
+    .nav-logo {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, #ff0033, #cc0000);
+      border-radius: 8px; display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 16px; color: white;
+      box-shadow: 0 2px 8px rgba(255, 0, 51, 0.3);
+    }
+    .nav-title { font-size: 16px; font-weight: 700; letter-spacing: -0.02em; }
+    .container { max-width: 1320px; margin: 28px auto 80px; padding: 0 24px; }
+
+    .status-banner {
+      display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+      background: rgba(251,191,36,0.1); border: 1px solid rgba(251,191,36,0.35);
+      border-radius: 12px; padding: 14px 18px; margin-bottom: 24px;
+      font-size: 13px; color: var(--text-main);
+    }
+    .status-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--accent-yellow); box-shadow: 0 0 0 4px rgba(251,191,36,0.18); flex-shrink: 0; }
+    .status-banner b { color: var(--accent-yellow); }
+
+    .hero {
+      border-radius: 16px; border: 1px solid var(--border); padding: 28px 32px; margin-bottom: 24px;
+      background: linear-gradient(135deg, rgba(56,189,248,0.08), rgba(129,140,248,0.05));
+    }
+    .hero h1 { font-size: 26px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 8px; }
+    .hero p { color: var(--text-muted); font-size: 14px; max-width: 760px; }
+    .hero p a { color: var(--accent-cyan); }
+
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; margin-bottom: 28px; }
+    .kpi-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+    .kpi-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 8px; font-weight: 600; }
+    .kpi-value { font-size: 26px; font-weight: 800; font-family: 'JetBrains Mono', monospace; letter-spacing: -0.03em; margin-bottom: 4px; }
+    .kpi-sub { font-size: 12px; color: var(--text-muted); }
+
+    .video-block { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin-bottom: 26px; }
+    .video-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap; margin-bottom: 8px; }
+    .video-rank { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent-red); background: rgba(248,113,113,0.12); border: 1px solid rgba(248,113,113,0.3); padding: 3px 10px; border-radius: 100px; font-weight: 700; }
+    .video-title { font-size: 17px; font-weight: 700; margin: 8px 0 4px; }
+    .video-stats { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--text-dim); }
+    .video-stats b { color: var(--text-main); }
+    .video-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .video-link {
+      font-size: 11.5px; font-weight: 600; text-decoration: none; padding: 5px 12px;
+      border-radius: 100px; border: 1px solid var(--border); color: var(--text-main); background: var(--bg-card);
+    }
+    .video-link:hover { background: var(--bg-card-hover); }
+
+    .variant-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 18px; }
+    @media (max-width: 900px) { .variant-grid { grid-template-columns: 1fr; } }
+    .variant-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
+    .variant-thumb { position: relative; aspect-ratio: 16/9; background: #000; }
+    .variant-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .variant-tag {
+      position: absolute; top: 8px; left: 8px;
+      font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
+      padding: 3px 9px; border-radius: 100px; letter-spacing: 0.03em;
+    }
+    .tag-a { background: rgba(56,189,248,0.92); color: #04151d; }
+    .tag-b { background: rgba(129,140,248,0.92); color: #0e0a2e; }
+    .tag-c { background: rgba(248,113,113,0.92); color: #1a0505; }
+    .variant-body { padding: 14px 16px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+    .variant-kind { font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); font-weight: 600; }
+    .variant-title { font-size: 14px; font-weight: 700; line-height: 1.35; }
+
+    .method-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 10px; }
+    .method-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 16px; }
+    .method-card h3 { font-size: 13px; font-weight: 700; margin-bottom: 5px; }
+    .method-card p { font-size: 12.5px; color: var(--text-muted); }
+
+    .section-card { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 14px; padding: 24px; margin-bottom: 28px; }
+    .section-head { margin-bottom: 12px; }
+    .section-title { font-size: 17px; font-weight: 700; }
+    .section-desc { font-size: 13px; color: var(--text-muted); margin-top: 4px; max-width: 800px; }
+
+    .playbook-list { list-style: none; display: grid; gap: 10px; }
+    .playbook-list li { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; font-size: 13px; color: var(--text-muted); }
+    .playbook-list strong { color: var(--text-main); }
+  </style>
+</head>
+<body>
+  <nav class="top-nav">
+    <a href="index.html" class="nav-brand">
+      <div class="nav-logo">▶</div>
+      <div><div class="nav-title">YouTube Studio MCP</div></div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li class="nav-group" data-group="operate">
+        <button type="button" class="nav-link nav-group-toggle">🛠️ Operate <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Studio ops</li>
+          <li><a href="index.html" class="nav-dropdown-link" data-page="index.html">Dashboard <span class="nav-dropdown-hint">home</span></a></li>
+          <li><a href="checklist.html" class="nav-dropdown-link" data-page="checklist.html">Packaging Checklist</a></li>
+          <li><a href="endvideo.html" class="nav-dropdown-link" data-page="endvideo.html">End Video Closing</a></li>
+          <li><a href="skills.html" class="nav-dropdown-link" data-page="skills.html">Skills Studio</a></li>
+          <li><a href="authentication.html" class="nav-dropdown-link" data-page="authentication.html">Analytics Authentication</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="library">
+        <button type="button" class="nav-link nav-group-toggle">📚 Library <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Content assets</li>
+          <li><a href="catalog.html" class="nav-dropdown-link" data-page="catalog.html">Video Catalog</a></li>
+          <li><a href="playlists.html" class="nav-dropdown-link" data-page="playlists.html">Playlists</a></li>
+          <li><a href="thumbnails.html" class="nav-dropdown-link" data-page="thumbnails.html">Thumbnails</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="performance">
+        <button type="button" class="nav-link nav-group-toggle">📊 Performance <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Audience metrics</li>
+          <li><a href="analytics.html" class="nav-dropdown-link" data-page="analytics.html">Overview</a></li>
+          <li><a href="retention.html" class="nav-dropdown-link" data-page="retention.html">Retention</a></li>
+          <li><a href="ctr.html" class="nav-dropdown-link" data-page="ctr.html">CTR</a></li>
+          <li><a href="video-ctr-report.html" class="nav-dropdown-link" data-page="video-ctr-report.html">Per-Video CTR Report</a></li>
+          <li><a href="ab-test-recommendations.html" class="nav-dropdown-link" data-page="ab-test-recommendations.html">A/B Test Recommendations</a></li>
+          <li><a href="worst4-ab-test.html" class="nav-dropdown-link" data-page="worst4-ab-test.html">Worst 4 — A/B Test</a></li>
+          <li><a href="august.html" class="nav-dropdown-link" data-page="august.html">August 2026</a></li>
+          <li><a href="year.html" class="nav-dropdown-link" data-page="year.html">Year briefing</a></li>
+          <li><a href="flow.html" class="nav-dropdown-link" data-page="flow.html">Google Flow</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="logs">
+        <button type="button" class="nav-link nav-group-toggle">📜 Logs <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">Change history</li>
+          <li><a href="reports.html" class="nav-dropdown-link" data-page="reports.html">Reports</a></li>
+          <li><a href="updates.html" class="nav-dropdown-link" data-page="updates.html">Updates Log</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="tools">
+        <button type="button" class="nav-link nav-group-toggle">🧰 Tools <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">External</li>
+          <li><a href="https://www.canva.com/design/DAHTV1XbvSs/uyMkcD8cZwdHn03nhVnC_w/edit" target="_blank" rel="noopener" class="nav-dropdown-link">Canva Whiteboard ↗</a></li>
+          <li><a href="https://claude.ai" target="_blank" rel="noopener" class="nav-dropdown-link">Claude ↗</a></li>
+          <li><a href="https://gemini.google.com" target="_blank" rel="noopener" class="nav-dropdown-link">Gemini ↗</a></li>
+        </ul>
+      </li>
+      <li class="nav-group" data-group="channel">
+        <button type="button" class="nav-link nav-group-toggle">📡 Channel <span class="nav-caret">▾</span></button>
+        <ul class="nav-dropdown">
+          <li class="nav-dropdown-label">External</li>
+          <li><a href="https://www.youtube.com/@RifatErdemSahin" target="_blank" rel="noopener" class="nav-dropdown-link">@RifatErdemSahin ↗</a></li>
+          <li><a href="https://www.skool.com/delivery-pilot-8938" target="_blank" rel="noopener" class="nav-dropdown-link">Skool Community ↗</a></li>
+        </ul>
+      </li>
+    </ul>
+    <div class="nav-actions">
+      <a href="ab-test-recommendations.html" class="btn-secondary" style="padding: 6px 12px; font-size: 12px; border:1px solid var(--border); border-radius:8px; color:var(--text-main); text-decoration:none;">All Recommendations ➔</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="status-banner">
+      <span class="status-dot"></span>
+      <span><b>Review only — nothing has been pushed to YouTube.</b> These 12 thumbnails and 12 title variants are drafts for your approval. Once you pick a winner per video, publish via <code>update_video_metadata_cli.py</code> and start the Test &amp; Compare experiment manually in Studio.</span>
+    </div>
+
+    <div class="hero">
+      <h1>Worst 4 — A/B Test Candidates</h1>
+      <p>The 4 videos flagged 🔴 <b>High risk</b> on the <a href="ab-test-recommendations.html">A/B Test Recommendations</a> page — below-median views <i>and</i> below-median retention, the biggest packaging opportunity on the channel. Each gets 3 thumbnail variants (safe evolution / curiosity-tension / bold contrarian claim), 3 paired titles, and unaltered channel median retention as its own baseline: <b>16%</b>.</p>
+      <p style="margin-top:14px; display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+        <button id="downloadAllBtn" onclick="downloadAllThumbnails()" style="cursor:pointer; font-family:'Inter',sans-serif; font-size:13px; font-weight:700; padding:10px 18px; border-radius:100px; border:1px solid rgba(56,189,248,0.4); background:rgba(56,189,248,0.14); color:#38bdf8;">⬇ Download all 12 thumbnails (renamed)</button>
+        <span id="downloadStatus" style="font-size:12px; color:var(--text-muted);"></span>
+      </p>
+    </div>
+
+    <div class="kpi-grid">
+      <div class="kpi-card"><div class="kpi-label">Videos flagged</div><div class="kpi-value" style="color:var(--accent-red)">4</div><div class="kpi-sub">all quadrant: below-median views + below-median retention</div></div>
+      <div class="kpi-card"><div class="kpi-label">Thumbnail variants drafted</div><div class="kpi-value">12</div><div class="kpi-sub">3 per video, 1376×720, no real-person likeness</div></div>
+      <div class="kpi-card"><div class="kpi-label">Title variants drafted</div><div class="kpi-value">12</div><div class="kpi-sub">paired 1:1 with each thumbnail</div></div>
+      <div class="kpi-card"><div class="kpi-label">Pushed live</div><div class="kpi-value" style="color:var(--accent-yellow)">0</div><div class="kpi-sub">awaiting your go-ahead</div></div>
+    </div>
+
+    <!-- Video 1 -->
+    <div class="video-block">
+      <div class="video-head">
+        <div>
+          <span class="video-rank">#1 · biggest traffic to learn from</span>
+          <div class="video-title">Master AI, Stay Ahead, Bridge Skills Gap</div>
+          <div class="video-stats"><b>130</b> views · <b>6.9%</b> avg viewed (median: 16%)</div>
+        </div>
+        <div class="video-links">
+          <a class="video-link" href="https://studio.youtube.com/video/3bwaZ-xUJcs/analytics/tab-reach_and_engagement" target="_blank" rel="noopener">Check real CTR ➔</a>
+          <a class="video-link" href="https://studio.youtube.com/video/3bwaZ-xUJcs/edit" target="_blank" rel="noopener">Edit video ➔</a>
+          <a class="video-link" href="https://youtu.be/3bwaZ-xUJcs" target="_blank" rel="noopener">Watch ➔</a>
+        </div>
+      </div>
+      <div class="variant-grid">
+        <div class="variant-card">
+          <div class="variant-thumb"><span class="variant-tag tag-a">A · Safe evolution</span><img src="thumbnails/3bwaZ-xUJcs_thumb_a.png" alt="Thumbnail A: silhouette crossing a fire-to-circuit bridge"></div>
+          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title">Master AI Before the Skills Gap Masters You</div></div>
+        </div>
+        <div class="variant-card">
+          <div class="variant-thumb"><span class="variant-tag tag-b">B · Curiosity / tension</span><img src="thumbnails/3bwaZ-xUJcs_thumb_b.png" alt="Thumbnail B: silhouette hesitating at a widening crack in the road"></div>
+          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title">The AI Skills Gap Nobody's Talking About</div></div>
+        </div>
+        <div class="variant-card">
+          <div class="variant-thumb"><span class="variant-tag tag-c">C · Bold contrarian claim</span><img src="thumbnails/3bwaZ-xUJcs_thumb_c.png" alt="Thumbnail C: flame morphing into circuit pattern"></div>
+          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title">Fire Didn't Wait for Permission. Neither Will AI.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Video 2 -->
+    <div class="video-block">
+      <div class="video-head">
+        <div>
+          <span class="video-rank">#2 · biggest traffic to learn from</span>
+          <div class="video-title">10 AI-Powered Tips to Learn Faster and Execute Like a Pro</div>
+          <div class="video-stats"><b>120</b> views · <b>11.2%</b> avg viewed (median: 16%)</div>
+        </div>
+        <div class="video-links">
+          <a class="video-link" href="https://studio.youtube.com/video/2EVPwgi8NZA/analytics/tab-reach_and_engagement" target="_blank" rel="noopener">Check real CTR ➔</a>
+          <a class="video-link" href="https://studio.youtube.com/video/2EVPwgi8NZA/edit" target="_blank" rel="noopener">Edit video ➔</a>
+          <a class="video-link" href="https://youtu.be/2EVPwgi8NZA" target="_blank" rel="noopener">Watch ➔</a>
+        </div>
+      </div>
+      <div class="variant-grid">
+        <div class="variant-card">
+          <div class="variant-thumb"><span class="variant-tag tag-a">A · Safe evolution</span><img src="thumbnails/2EVPwgi8NZA_thumb_a.png" alt="Thumbnail A: giant number 10 with brain/gear icon"></div>
+          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title">10 AI Tips to Learn Faster and Execute Like a Pro</div></div>
+        </div>
+        <div class="variant-card">
+          <div class="variant-thumb"><span class="variant-tag tag-b">B · Curiosity / tension</span><img src="thumbnails/2EVPwgi8NZA_thumb_b.png" alt="Thumbnail B: confused scribble vs clean checkmark split screen"></div>
+          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title">Why Most People Are Learning AI Wrong</div></div>
+        </div>
+        <div class="variant-card">
+          <div class="variant-thumb"><span class="variant-tag tag-c">C · Bold contrarian claim</span><img src="thumbnails/2EVPwgi8NZA_thumb_c.png" alt="Thumbnail C: silhouette sprinting past a giant clock"></div>
+          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title">Do These 10 Things or Fall Behind on AI</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Video 3 -->
+    <div class="video-block">
+      <div class="video-head">
+        <div>
+          <span class="video-rank">#3 · biggest traffic to learn from</span>
+          <div class="video-title">How to Use AI for Accountability: Tech Solutions and Life Lessons from Groundhog Day</div>
+          <div class="video-stats"><b>58</b> views · <b>12.2%</b> avg viewed (median: 16%)</div>
+        </div>
+        <div class="video-links">
+          <a class="video-link" href="https://studio.youtube.com/video/WK66w51UMrs/analytics/tab-reach_and_engagement" target="_blank" rel="noopener">Check real CTR ➔</a>
+          <a class="video-link" href="https://studio.youtube.com/video/WK66w51UMrs/edit" target="_blank" rel="noopener">Edit video ➔</a>
+          <a class="video-link" href="https://youtu.be/WK66w51UMrs" target="_blank" rel="noopener">Watch ➔</a>
+        </div>
+      </div>
+      <div class="variant-grid">
+        <div class="variant-card">
+          <div class="variant-thumb"><span class="variant-tag tag-a">A · Safe evolution</span><img src="thumbnails/WK66w51UMrs_thumb_a.png" alt="Thumbnail A: silhouette beside a glowing AI assistant orb"></div>
+          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title">Turn AI Into Your Personal Accountability Partner</div></div>
+        </div>
+        <div class="variant-card">
+          <div class="variant-thumb"><span class="variant-tag tag-b">B · Curiosity / tension</span><img src="thumbnails/WK66w51UMrs_thumb_b.png" alt="Thumbnail B: silhouette walking inside a circular calendar loop"></div>
+          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title">Stuck in a Loop? Groundhog Day Has the Answer</div></div>
+        </div>
+        <div class="variant-card">
+          <div class="variant-thumb"><span class="variant-tag tag-c">C · Bold contrarian claim</span><img src="thumbnails/WK66w51UMrs_thumb_c.png" alt="Thumbnail C: loop breaking into a straight glowing arrow"></div>
+          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title">One AI Habit Broke My Groundhog Day Loop</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Video 4 -->
+    <div class="video-block">
+      <div class="video-head">
+        <div>
+          <span class="video-rank">#4 · biggest traffic to learn from</span>
+          <div class="video-title">Why "Being Broken" is Your Secret Weapon in the Age of AI</div>
+          <div class="video-stats"><b>53</b> views · <b>14.8%</b> avg viewed (median: 16%)</div>
+        </div>
+        <div class="video-links">
+          <a class="video-link" href="https://studio.youtube.com/video/3VgRz5GeYDA/analytics/tab-reach_and_engagement" target="_blank" rel="noopener">Check real CTR ➔</a>
+          <a class="video-link" href="https://studio.youtube.com/video/3VgRz5GeYDA/edit" target="_blank" rel="noopener">Edit video ➔</a>
+          <a class="video-link" href="https://youtu.be/3VgRz5GeYDA" target="_blank" rel="noopener">Watch ➔</a>
+        </div>
+      </div>
+      <div class="variant-grid">
+        <div class="variant-card">
+          <div class="variant-thumb"><span class="variant-tag tag-a">A · Safe evolution</span><img src="thumbnails/3VgRz5GeYDA_thumb_a.png" alt="Thumbnail A: kintsugi-repaired cracked vase"></div>
+          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title">Why Being "Broken" Is Your Secret Weapon in the AI Era</div></div>
+        </div>
+        <div class="variant-card">
+          <div class="variant-thumb"><span class="variant-tag tag-b">B · Curiosity / tension</span><img src="thumbnails/3VgRz5GeYDA_thumb_b.png" alt="Thumbnail B: silhouette amid falling money with a rising glowing arrow"></div>
+          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title">I Lost Millions. AI Taught Me Why That Was Good.</div></div>
+        </div>
+        <div class="variant-card">
+          <div class="variant-thumb"><span class="variant-tag tag-c">C · Bold contrarian claim</span><img src="thumbnails/3VgRz5GeYDA_thumb_c.png" alt="Thumbnail C: extreme closeup of glowing kintsugi cracks"></div>
+          <div class="variant-body"><div class="variant-kind">Paired title</div><div class="variant-title">Your Broken Pieces Are More Valuable Than Ever</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-card">
+      <div class="section-head">
+        <div class="section-title">Next steps once you approve variants</div>
+        <div class="section-desc">Same rollout used on every packaging test on this channel.</div>
+      </div>
+      <ul class="playbook-list">
+        <li><strong>1. Pick one variant per video</strong> — A, B, or C — as the thumbnail that ships first (YouTube's Test &amp; Compare needs a live starting thumbnail before it can test against alternates).</li>
+        <li><strong>2. Push it live:</strong> <code>./venv/bin/python update_video_metadata_cli.py &lt;VIDEO_ID&gt; --title "&lt;chosen title&gt;" --thumbnail thumbnails/&lt;VIDEO_ID&gt;_thumb_&lt;x&gt;.png</code></li>
+        <li><strong>3. Start the A/B test manually</strong> in Studio — Content → video → Details → thumbnail test icon — since the Data API can't launch Test &amp; Compare itself.</li>
+        <li><strong>4. Run 7–14 days</strong>, let Studio pick a winner on watch time, not just raw CTR.</li>
+        <li><strong>5. No real person's likeness was generated</strong> for any of these 12 — all silhouettes, kintsugi objects, and abstract icons.</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="nav.js"></script>
+  <script>
+    const THUMB_DOWNLOADS = [
+      { src: "thumbnails/3bwaZ-xUJcs_thumb_a.png", name: "01-master-ai-skills-gap_A-safe-evolution_3bwaZ-xUJcs.png" },
+      { src: "thumbnails/3bwaZ-xUJcs_thumb_b.png", name: "01-master-ai-skills-gap_B-curiosity-tension_3bwaZ-xUJcs.png" },
+      { src: "thumbnails/3bwaZ-xUJcs_thumb_c.png", name: "01-master-ai-skills-gap_C-bold-contrarian_3bwaZ-xUJcs.png" },
+      { src: "thumbnails/2EVPwgi8NZA_thumb_a.png", name: "02-10-ai-tips-learn-faster_A-safe-evolution_2EVPwgi8NZA.png" },
+      { src: "thumbnails/2EVPwgi8NZA_thumb_b.png", name: "02-10-ai-tips-learn-faster_B-curiosity-tension_2EVPwgi8NZA.png" },
+      { src: "thumbnails/2EVPwgi8NZA_thumb_c.png", name: "02-10-ai-tips-learn-faster_C-bold-contrarian_2EVPwgi8NZA.png" },
+      { src: "thumbnails/WK66w51UMrs_thumb_a.png", name: "03-groundhog-day-accountability_A-safe-evolution_WK66w51UMrs.png" },
+      { src: "thumbnails/WK66w51UMrs_thumb_b.png", name: "03-groundhog-day-accountability_B-curiosity-tension_WK66w51UMrs.png" },
+      { src: "thumbnails/WK66w51UMrs_thumb_c.png", name: "03-groundhog-day-accountability_C-bold-contrarian_WK66w51UMrs.png" },
+      { src: "thumbnails/3VgRz5GeYDA_thumb_a.png", name: "04-being-broken-secret-weapon_A-safe-evolution_3VgRz5GeYDA.png" },
+      { src: "thumbnails/3VgRz5GeYDA_thumb_b.png", name: "04-being-broken-secret-weapon_B-curiosity-tension_3VgRz5GeYDA.png" },
+      { src: "thumbnails/3VgRz5GeYDA_thumb_c.png", name: "04-being-broken-secret-weapon_C-bold-contrarian_3VgRz5GeYDA.png" }
+    ];
+
+    async function downloadAllThumbnails() {
+      const btn = document.getElementById("downloadAllBtn");
+      const status = document.getElementById("downloadStatus");
+      btn.disabled = true;
+      btn.style.opacity = "0.6";
+      for (let i = 0; i < THUMB_DOWNLOADS.length; i++) {
+        const item = THUMB_DOWNLOADS[i];
+        status.textContent = `Downloading ${i + 1}/${THUMB_DOWNLOADS.length}: ${item.name}`;
+        try {
+          const res = await fetch(item.src);
+          const blob = await res.blob();
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement("a");
+          a.href = url;
+          a.download = item.name;
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          URL.revokeObjectURL(url);
+        } catch (e) {
+          console.error(`Failed to download ${item.src}`, e);
+        }
+        await new Promise(r => setTimeout(r, 300));
+      }
+      status.textContent = `Done — ${THUMB_DOWNLOADS.length} files saved to your Downloads folder.`;
+      btn.disabled = false;
+      btn.style.opacity = "1";
+    }
+  </script>
+</body>
+</html>
